@@ -1,0 +1,189 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #e0dede;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #fff;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width 0.3s ease-in-out;
+    border-right: 1px solid #ddd;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-radius: 0 20px 20px 0;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+}
+
+/* Logo */
+.sidebar .logo-container {
+    text-align: center;
+}
+
+.sidebar .logo-container img {
+    width: 100px;
+    padding-top: 50px;
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .logo-container img {
+    width: 35px;
+    padding-bottom: 45px;
+}
+
+/* Sidebar Navigation */
+.sidebar nav ul {
+    margin-top: -350px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+.sidebar nav ul li {
+    display: absolute;
+    align-items: center;
+    padding: 15px 0;
+    padding-bottom: 30px;
+}
+
+.sidebar nav ul li a {
+    display: absolute;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    border-radius: 2px;
+    transition: background 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Sidebar Icons */
+.sidebar nav ul li i {
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+    transition: font-size 0.3s ease;
+}
+
+/* Sidebar Text */
+.sidebar nav ul li .nav-text {
+    margin-left: 12px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out 0.2s; /* Delayed appearance */
+}
+
+/* When Sidebar is Collapsed */
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar.collapsed nav ul li a {
+    justify-content: center;
+}
+
+.sidebar.collapsed nav ul li i {
+    font-size: 20px; 
+}
+
+.sidebar.collapsed nav ul li .nav-text {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out; /* Quick fade out */
+    pointer-events: none;
+}
+
+/* Logout Button */
+.logout-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 30%;
+    text-align: center;
+    margin-top: -450px;
+    margin-left: auto;
+}
+
+.logout-btn:hover {
+    background: #cc0000; /* Darker red on hover */
+}
+
+.sidebar.collapsed .logout-btn {
+    display: none;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    position: absolute;
+    width: 35px; /* Increase width */
+    height: 35px; /* Increase height */
+    top: 25px;
+    right: -20px;
+    background: #d80000;
+    color: white;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.sidebar-toggle:hover {
+    background: #cc0000; /* Darker red on hover */
+}
+
+/* Main Content */
+.certification {
+    margin-left: 275px;
+    padding: 30px;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+    width: calc(100% - 250px);
+}
+
+.sidebar.collapsed + .certification {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+
+/* certification Main Card */
+.certification-main-card {
+    background: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* certification Grid Layout */
+.certification-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
