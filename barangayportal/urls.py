@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from authapp.views import home_view  # <--- import your new home view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home_view, name='home'),  # <--- handle root URL /
     path('', include('authapp.urls')),
 ]
