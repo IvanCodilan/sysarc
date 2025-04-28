@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
-
 class PersonInformation(models.Model):
     region = models.CharField(max_length=100, blank=True, null=True)
     barangay = models.CharField(max_length=100, blank=True, null=True)
@@ -15,8 +12,8 @@ class PersonInformation(models.Model):
     province = models.CharField(max_length=100, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     place_of_birth = models.CharField(max_length=100, blank=True, null=True)
-    gender = models.CharField(max_length=6, choices=[('Male','Male'),('Female','Female'),('Other','Other')])
-    civil_status = models.CharField(max_length=9, choices=[('Single','Single'),('Married','Married'),('Separated','Separated')])
+    gender = models.CharField(max_length=6, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+    civil_status = models.CharField(max_length=9, choices=[('Single', 'Single'), ('Married', 'Married'), ('Separated', 'Separated')])
     occupation = models.CharField(max_length=100, blank=True, null=True)
     citizenship = models.CharField(max_length=50, blank=True, null=True)
     relationship_to_household_head = models.CharField(max_length=100, blank=True, null=True)
@@ -25,10 +22,10 @@ class PersonInformation(models.Model):
         blank=True,
         null=True,
         choices=[
-            ('No Formal Education','No Formal Education'),
-            ('Elementary Graduate','Elementary Graduate'),
-            ('High School Graduate','High School Graduate'),
-            ('College Graduate','College Graduate'),
+            ('No Formal Education', 'No Formal Education'),
+            ('Elementary Graduate', 'Elementary Graduate'),
+            ('High School Graduate', 'High School Graduate'),
+            ('College Graduate', 'College Graduate'),
         ],
     )
 
@@ -39,5 +36,3 @@ class PersonInformation(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-
-

@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Records</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="{% static 'css/records.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <body>
 
-{% include 'authapp/navbar.html' %}
+  {% include 'authapp/navbar.html' %}
 
 <main class="records">
   <div class="records-main-card">
@@ -19,6 +19,7 @@
     <button onclick="openAddForm()" class="add-btn">+ Add New Resident</button>
   </div>
 
+  <!-- Add New Resident Form -->
   <div id="addForm" style="display:none; margin-top:20px;">
     <h2>Add New Resident</h2>
 
@@ -65,6 +66,55 @@
     <button onclick="closeAddForm()" class="cancel-btn">Cancel</button>
   </div>
 
+  <!-- Edit Resident Form (Hidden by default) -->
+  <div id="editForm" style="display:none; margin-top:20px;">
+    <h2>Edit Resident</h2>
+
+    <!-- Same fields as the Add New Resident Form but for editing -->
+    <input type="text" id="edit_first_name" placeholder="First Name">
+    <input type="text" id="edit_middle_name" placeholder="Middle Name">
+    <input type="text" id="edit_last_name" placeholder="Last Name">
+    <input type="date" id="edit_date_of_birth" placeholder="Date of Birth">
+    <input type="text" id="edit_place_of_birth" placeholder="Place of Birth">
+
+    <select id="edit_gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <select id="edit_civil_status">
+      <option value="">Select Civil Status</option>
+      <option value="Single">Single</option>
+      <option value="Married">Married</option>
+      <option value="Separated">Separated</option>
+    </select>
+
+    <input type="text" id="edit_occupation" placeholder="Occupation">
+    <input type="text" id="edit_citizenship" placeholder="Citizenship">
+    <input type="text" id="edit_relationship_to_household_head" placeholder="Relationship to Household Head">
+
+    <select id="edit_educational_background">
+      <option value="">Select Educational Background</option>
+      <option value="No Formal Education">No Formal Education</option>
+      <option value="Elementary Graduate">Elementary Graduate</option>
+      <option value="High School Graduate">High School Graduate</option>
+      <option value="College Graduate">College Graduate</option>
+    </select>
+
+    <input type="text" id="edit_region" placeholder="Region">
+    <input type="text" id="edit_province" placeholder="Province">
+    <input type="text" id="edit_city" placeholder="City">
+    <input type="text" id="edit_barangay" placeholder="Barangay">
+    <input type="text" id="edit_street_number" placeholder="Street Number">
+    <input type="text" id="edit_street" placeholder="Street">
+
+    <button onclick="submitEditForm()" class="save-btn">Save Changes</button>
+    <button onclick="closeEditForm()" class="cancel-btn">Cancel</button>
+  </div>
+
+  <!-- Resident Table -->
   <div class="records-container">
     <table class="records-table">
       <thead>
@@ -73,8 +123,18 @@
           <th>Full Name</th>
           <th>Birthdate</th>
           <th>Gender</th>
-          <th>Address</th>
-          <th>Action</th>
+          <th>Civil Status</th>
+          <th>Occupation</th>
+          <th>Citizenship</th>
+          <th>Relationship to Household Head</th>
+          <th>Educational Background</th>
+          <th>Region</th>
+          <th>Province</th>
+          <th>City</th>
+          <th>Barangay</th>
+          <th>Street Number</th>
+          <th>Street</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody id="residents-body">
@@ -84,7 +144,17 @@
           <td>{{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }}</td>
           <td>{{ resident.date_of_birth }}</td>
           <td>{{ resident.gender }}</td>
-          <td>{{ resident.street_number }} {{ resident.street }}, {{ resident.barangay }}, {{ resident.city }}, {{ resident.province }}</td>
+          <td>{{ resident.civil_status }}</td>
+          <td>{{ resident.occupation }}</td>
+          <td>{{ resident.citizenship }}</td>
+          <td>{{ resident.relationship_to_household_head }}</td>
+          <td>{{ resident.educational_background }}</td>
+          <td>{{ resident.region }}</td>
+          <td>{{ resident.province }}</td>
+          <td>{{ resident.city }}</td>
+          <td>{{ resident.barangay }}</td>
+          <td>{{ resident.street_number }}</td>
+          <td>{{ resident.street }}</td>
           <td>
             <button onclick="editResident('{{ resident.id }}')" class="edit-btn">Edit</button>
             <button onclick="deleteResident('{{ resident.id }}')" class="delete-btn">Delete</button>
@@ -96,141 +166,7 @@
   </div>
 </main>
 
-<script>
-function openAddForm() {
-  document.getElementById('addForm').style.display = 'block';
-}
-function closeAddForm() {
-  document.getElementById('addForm').style.display = 'none';
-}
-
-// ADD Resident
-function submitAddForm() {
-  fetch('/add_resident/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': '{{ csrf_token }}',
-    },
-    body: JSON.stringify({
-      first_name: document.getElementById('first_name').value,
-      middle_name: document.getElementById('middle_name').value,
-      last_name: document.getElementById('last_name').value,
-      date_of_birth: document.getElementById('date_of_birth').value,
-      place_of_birth: document.getElementById('place_of_birth').value,
-      gender: document.getElementById('gender').value,
-      civil_status: document.getElementById('civil_status').value,
-      occupation: document.getElementById('occupation').value,
-      citizenship: document.getElementById('citizenship').value,
-      relationship_to_household_head: document.getElementById('relationship_to_household_head').value,
-      educational_background: document.getElementById('educational_background').value,
-      region: document.getElementById('region').value,
-      province: document.getElementById('province').value,
-      city: document.getElementById('city').value,
-      barangay: document.getElementById('barangay').value,
-      street_number: document.getElementById('street_number').value,
-      street: document.getElementById('street').value,
-    })
-  }).then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Resident added!');
-        location.reload();
-      } else {
-        alert('Failed to add!');
-      }
-    });
-}
-
-// DELETE Resident
-function deleteResident(id) {
-  if (confirm('Are you sure you want to delete this resident?')) {
-    fetch(`/delete_resident/${id}/`, {
-      method: 'POST',
-      headers: {
-        'X-CSRFToken': '{{ csrf_token }}',
-      }
-    }).then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert('Resident deleted!');
-          document.getElementById(`row-${id}`).remove();
-        } else {
-          alert('Failed to delete!');
-        }
-      });
-  }
-}
-
-// EDIT Resident
-function editResident(id) {
-  let row = document.getElementById(`row-${id}`);
-  let columns = row.getElementsByTagName('td');
-  let fullName = columns[1].innerText.split(' ');
-  let birthdate = columns[2].innerText;
-  let gender = columns[3].innerText;
-  let address = columns[4].innerText.split(',');
-
-  row.innerHTML = `
-    <td>${columns[0].innerText}</td>
-    <td>
-      <input type="text" id="edit_first_name" value="${fullName[0] || ''}">
-      <input type="text" id="edit_middle_name" value="${fullName[1] || ''}">
-      <input type="text" id="edit_last_name" value="${fullName[2] || ''}">
-    </td>
-    <td><input type="date" id="edit_date_of_birth" value="${birthdate.trim()}"></td>
-    <td>
-      <select id="edit_gender">
-        <option value="Male" ${gender.trim() == 'Male' ? 'selected' : ''}>Male</option>
-        <option value="Female" ${gender.trim() == 'Female' ? 'selected' : ''}>Female</option>
-        <option value="Other" ${gender.trim() == 'Other' ? 'selected' : ''}>Other</option>
-      </select>
-    </td>
-    <td>
-      <input type="text" id="edit_street_number" value="${address[0] || ''}">
-      <input type="text" id="edit_street" value="${address[1] || ''}">
-      <input type="text" id="edit_barangay" value="${address[2] || ''}">
-      <input type="text" id="edit_city" value="${address[3] || ''}">
-      <input type="text" id="edit_province" value="${address[4] || ''}">
-    </td>
-    <td>
-      <button onclick="saveResident(${id})" class="save-btn">Save</button>
-      <button onclick="location.reload()" class="cancel-btn">Cancel</button>
-    </td>
-  `;
-}
-
-// SAVE updated Resident
-function saveResident(id) {
-  fetch(`/update_resident/${id}/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': '{{ csrf_token }}',
-    },
-    body: JSON.stringify({
-      first_name: document.getElementById('edit_first_name').value,
-      middle_name: document.getElementById('edit_middle_name').value,
-      last_name: document.getElementById('edit_last_name').value,
-      date_of_birth: document.getElementById('edit_date_of_birth').value,
-      gender: document.getElementById('edit_gender').value,
-      street_number: document.getElementById('edit_street_number').value,
-      street: document.getElementById('edit_street').value,
-      barangay: document.getElementById('edit_barangay').value,
-      city: document.getElementById('edit_city').value,
-      province: document.getElementById('edit_province').value,
-    })
-  }).then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Resident updated!');
-        location.reload();
-      } else {
-        alert('Failed to update!');
-      }
-    });
-}
-</script>
+<script src="{% static 'js/records.js' %}"></script>
 
 </body>
 </html>

@@ -1,0 +1,107 @@
+<!-- templates/authapp/edit_resident.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Resident</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="mb-4">Edit Resident</h2>
+        
+        <form method="POST" action="{% url 'update_resident' resident.id %}">
+            {% csrf_token %}
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Region</label>
+                    <input type="text" name="region" class="form-control" value="{{ resident.region }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Barangay</label>
+                    <input type="text" name="barangay" class="form-control" value="{{ resident.barangay }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" name="last_name" class="form-control" value="{{ resident.last_name }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">First Name</label>
+                    <input type="text" name="first_name" class="form-control" value="{{ resident.first_name }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Middle Name</label>
+                    <input type="text" name="middle_name" class="form-control" value="{{ resident.middle_name }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Street Number</label>
+                    <input type="text" name="street_number" class="form-control" value="{{ resident.street_number }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Street</label>
+                    <input type="text" name="street" class="form-control" value="{{ resident.street }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">City</label>
+                    <input type="text" name="city" class="form-control" value="{{ resident.city }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Province</label>
+                    <input type="text" name="province" class="form-control" value="{{ resident.province }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" name="date_of_birth" class="form-control" value="{{ resident.date_of_birth|date:'Y-m-d' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Place of Birth</label>
+                    <input type="text" name="place_of_birth" class="form-control" value="{{ resident.place_of_birth }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Gender</label>
+                    <select name="gender" class="form-control">
+                        <option value="Male" {% if resident.gender == 'Male' %}selected{% endif %}>Male</option>
+                        <option value="Female" {% if resident.gender == 'Female' %}selected{% endif %}>Female</option>
+                        <option value="Other" {% if resident.gender == 'Other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Civil Status</label>
+                    <select name="civil_status" class="form-control">
+                        <option value="Single" {% if resident.civil_status == 'Single' %}selected{% endif %}>Single</option>
+                        <option value="Married" {% if resident.civil_status == 'Married' %}selected{% endif %}>Married</option>
+                        <option value="Separated" {% if resident.civil_status == 'Separated' %}selected{% endif %}>Separated</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Occupation</label>
+                    <input type="text" name="occupation" class="form-control" value="{{ resident.occupation }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Citizenship</label>
+                    <input type="text" name="citizenship" class="form-control" value="{{ resident.citizenship }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Relationship to Household Head</label>
+                    <input type="text" name="relationship_to_household_head" class="form-control" value="{{ resident.relationship_to_household_head }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Educational Background</label>
+                    <select name="educational_background" class="form-control">
+                        <option value="No Formal Education" {% if resident.educational_background == 'No Formal Education' %}selected{% endif %}>No Formal Education</option>
+                        <option value="Elementary Graduate" {% if resident.educational_background == 'Elementary Graduate' %}selected{% endif %}>Elementary Graduate</option>
+                        <option value="High School Graduate" {% if resident.educational_background == 'High School Graduate' %}selected{% endif %}>High School Graduate</option>
+                        <option value="College Graduate" {% if resident.educational_background == 'College Graduate' %}selected{% endif %}>College Graduate</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{% url 'records' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

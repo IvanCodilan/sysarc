@@ -1,63 +1,28 @@
+// Toggle sidebar collapse
 function toggleSidebar() {
-    let sidebar = document.querySelector(".sidebar");
-    let toggleIcon = document.querySelector(".toggle-icon");
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('collapsed');
 
-    sidebar.classList.toggle("collapsed");
-
-    // Change the arrow direction based on the sidebar state
-    toggleIcon.innerHTML = sidebar.classList.contains("collapsed") ? "&#8594;" : "&#8592;";
-}
-
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            cookie = cookie.trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
+    const records = document.querySelector('.records');
+    if (sidebar.classList.contains('collapsed')) {
+        records.style.marginLeft = '70px';
+    } else {
+        records.style.marginLeft = '270px';
     }
-    return cookieValue;
 }
 
-function editResident(resident) {
-    // Ito ilalagay mo lahat ng input fields
-    document.getElementById('first_name').value = resident.first_name || '';
-    document.getElementById('middle_name').value = resident.middle_name || '';
-    document.getElementById('last_name').value = resident.last_name || '';
-    document.getElementById('date_of_birth').value = resident.date_of_birth || '';
-    document.getElementById('place_of_birth').value = resident.place_of_birth || '';
-    document.getElementById('gender').value = resident.gender || '';
-    document.getElementById('civil_status').value = resident.civil_status || '';
-    document.getElementById('occupation').value = resident.occupation || '';
-    document.getElementById('citizenship').value = resident.citizenship || '';
-    document.getElementById('relationship_to_household_head').value = resident.relationship_to_household_head || '';
-    document.getElementById('educational_background').value = resident.educational_background || '';
-    document.getElementById('region').value = resident.region || '';
-    document.getElementById('province').value = resident.province || '';
-    document.getElementById('city').value = resident.city || '';
-    document.getElementById('barangay').value = resident.barangay || '';
-    document.getElementById('street_number').value = resident.street_number || '';
-    document.getElementById('street').value = resident.street || '';
-
-    // Ipakita ang form kung naka-hide
-    document.getElementById('resident_form').style.display = 'block';
-
-    // Kung gusto mo, pwede mo rin itago muna yung table para focused sa form
-    document.getElementById('resident_table').style.display = 'none';
-
-    // Save the resident ID para alam natin sino sine-save mamaya
-    document.getElementById('resident_form').dataset.residentId = resident.id;
+// Open Add Form
+function openAddForm() {
+    document.getElementById('addForm').style.display = 'block';
 }
 
+// Close Add Form
+function closeAddForm() {
+    document.getElementById('addForm').style.display = 'none';
+}
 
-// Save resident info (update)
-function saveResident() {
-    const residentId = document.getElementById('resident_form').dataset.residentId;
-
+// Add Resident
+function submitAddForm() {
     const data = {
         first_name: document.getElementById('first_name').value,
         middle_name: document.getElementById('middle_name').value,
@@ -75,56 +40,144 @@ function saveResident() {
         city: document.getElementById('city').value,
         barangay: document.getElementById('barangay').value,
         street_number: document.getElementById('street_number').value,
-        street: document.getElementById('street').value
+        street: document.getElementById('street').value,
     };
 
-    fetch(`/update_resident/${residentId}/`, {
+    fetch('/add_resident/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken') // if needed
+            'X-CSRFToken': '{{ csrf_token }}',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
     .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            alert('Resident updated!');
-            fetchResidents(); // reload table
-            document.getElementById('resident_form').style.display = 'none';
-            document.getElementById('resident_table').style.display = 'block';
+    .then(data => {
+        if (data.success) {
+            alert('Resident added!');
+            location.reload();
         } else {
-            alert('Update failed.');
+            alert('Failed to add!');
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
     });
 }
 
-
-// Clear the form after save or cancel
-function clearForm() {
-    document.getElementById('resident_id').value = '';
-
-    document.getElementById('region').value = '';
-    document.getElementById('barangay').value = '';
-    document.getElementById('last_name').value = '';
-    document.getElementById('first_name').value = '';
-    document.getElementById('middle_name').value = '';
-    document.getElementById('street_number').value = '';
-    document.getElementById('street').value = '';
-    document.getElementById('city').value = '';
-    document.getElementById('province').value = '';
-    document.getElementById('date_of_birth').value = '';
-    document.getElementById('place_of_birth').value = '';
-    document.getElementById('gender').value = '';
-    document.getElementById('civil_status').value = '';
-    document.getElementById('occupation').value = '';
-    document.getElementById('citizenship').value = '';
-    document.getElementById('relationship_to_household_head').value = '';
-    document.getElementById('educational_background').value = '';
-
-    document.getElementById('addForm').style.display = 'none'; // Hide form after save/cancel
+// Delete Resident
+function deleteResident(id) {
+    if (confirm('Are you sure you want to delete this resident?')) {
+        fetch(`/delete_resident/${id}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Resident deleted!');
+                document.getElementById(`row-${id}`).remove();
+            } else {
+                alert('Failed to delete!');
+            }
+        });
+    }
 }
 
+// Edit Resident (Improved version)
+function editResident(id) {
+    let row = document.getElementById(`row-${id}`);
+    let columns = row.getElementsByTagName('td');
+    let fullName = columns[1].innerText.trim().split(' ');
+    let birthdate = columns[2].innerText.trim();
+    let gender = columns[3].innerText.trim();
+    let address = columns[4].innerText.trim().split(',');
+
+    row.classList.add('editing-row');
+
+    row.innerHTML = `
+        <td>${columns[0].innerText}</td>
+        <td>
+            <div class="edit-field-group">
+                <input type="text" id="edit_first_name" value="${fullName[0] || ''}" placeholder="First Name">
+                <input type="text" id="edit_middle_name" value="${fullName[1] || ''}" placeholder="Middle Name">
+                <input type="text" id="edit_last_name" value="${fullName[2] || ''}" placeholder="Last Name">
+            </div>
+        </td>
+        <td>
+            <input type="date" id="edit_date_of_birth" value="${birthdate}">
+        </td>
+        <td>
+            <select id="edit_gender">
+                <option value="Male" ${gender == 'Male' ? 'selected' : ''}>Male</option>
+                <option value="Female" ${gender == 'Female' ? 'selected' : ''}>Female</option>
+                <option value="Other" ${gender == 'Other' ? 'selected' : ''}>Other</option>
+            </select>
+        </td>
+        <td>
+            <div class="edit-field-group">
+                <input type="text" id="edit_street_number" value="${address[0]?.trim() || ''}" placeholder="Street No.">
+                <input type="text" id="edit_street" value="${address[1]?.trim() || ''}" placeholder="Street">
+                <input type="text" id="edit_barangay" value="${address[2]?.trim() || ''}" placeholder="Barangay">
+                <input type="text" id="edit_city" value="${address[3]?.trim() || ''}" placeholder="City">
+                <input type="text" id="edit_province" value="${address[4]?.trim() || ''}" placeholder="Province">
+            </div>
+        </td>
+        <td>
+            <div class="edit-field-group">
+                <input type="text" id="edit_occupation" value="${columns[5].innerText.trim()}" placeholder="Occupation">
+                <input type="text" id="edit_citizenship" value="${columns[6].innerText.trim()}" placeholder="Citizenship">
+                <input type="text" id="edit_relationship_to_household_head" value="${columns[7].innerText.trim()}" placeholder="Relationship">
+                <input type="text" id="edit_educational_background" value="${columns[8].innerText.trim()}" placeholder="Education">
+                <input type="text" id="edit_region" value="${columns[9].innerText.trim()}" placeholder="Region">
+            </div>
+        </td>
+        <td>
+            <button onclick="saveResident(${id})" class="save-btn">Save</button>
+            <button onclick="cancelEdit(${id})" class="cancel-btn">Cancel</button>
+        </td>
+    `;
+}
+
+// Cancel Edit and revert back to original state
+function cancelEdit(id) {
+    location.reload(); // Simply reload the page to restore original state
+}
+
+// Save updated Resident
+function saveResident(id) {
+    const data = {
+        first_name: document.getElementById('edit_first_name').value,
+        middle_name: document.getElementById('edit_middle_name').value,
+        last_name: document.getElementById('edit_last_name').value,
+        date_of_birth: document.getElementById('edit_date_of_birth').value,
+        gender: document.getElementById('edit_gender').value,
+        street_number: document.getElementById('edit_street_number').value,
+        street: document.getElementById('edit_street').value,
+        barangay: document.getElementById('edit_barangay').value,
+        city: document.getElementById('edit_city').value,
+        province: document.getElementById('edit_province').value,
+        occupation: document.getElementById('edit_occupation').value,
+        citizenship: document.getElementById('edit_citizenship').value,
+        relationship_to_household_head: document.getElementById('edit_relationship_to_household_head').value,
+        educational_background: document.getElementById('edit_educational_background').value,
+        region: document.getElementById('edit_region').value,
+    };
+
+    fetch(`/update_resident/${id}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Resident updated!');
+            location.reload();
+        } else {
+            alert('Failed to update!');
+        }
+    });
+}

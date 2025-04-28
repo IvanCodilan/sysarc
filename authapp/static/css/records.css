@@ -3,11 +3,17 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+    transition: margin-left 0.3s ease-in-out;
 }
 
 .records {
     padding: 20px;
-    margin-left: 270px; /* Adjust depending sa sidebar width mo */
+    margin-left: 270px; /* Default sidebar width */
+    transition: margin-left 0.3s ease-in-out; /* Smooth transition */
+}
+
+.sidebar.collapsed ~ .records {
+    margin-left: 90px; /* Adjust this based on collapsed sidebar width */
 }
 
 .records-main-card {
