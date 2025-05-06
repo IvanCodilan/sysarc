@@ -7,3 +7,6 @@ function toggleSidebar() {
     // Change the arrow direction based on the sidebar state
     toggleIcon.innerHTML = sidebar.classList.contains("collapsed") ? "&#8594;" : "&#8592;";
 }
+
+
+

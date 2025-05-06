@@ -2,42 +2,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Records</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/records.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Records</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/records.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <body>
-    <div class="sidebar">
-        <button class="sidebar-toggle" onclick="toggleSidebar()">
-            <span class="toggle-icon">&#8592;</span> <!-- Left arrow by default -->
-        </button>   
-        <div class="logo-container">
-            <a href="{% url 'dashboard' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
-                <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
-                <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
-                <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
-            </ul>
-        </nav>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
-    </div>
 
-    <main class="records">
-        <div class="records-main-card">
-            <h1>Records</h1>
-        </div>
-    </main>
+{% include 'authapp/navbar.html' %}
 
-    <script src="{% static 'js/records.js' %}"></script>
+<main class="records">
+  <div class="records-main-card">
+    <h1>Records</h1>
+    <button onclick="openAddForm()" class="add-btn">+ Add New Resident</button>
+    
+    <form id="excelUploadForm" enctype="multipart/form-data" method="post" style="margin-top: 10px;">
+      {% csrf_token %}
+      <input type="file" name="excel_file" accept=".xlsx, .xls" required>
+      <button type="submit" class="upload-btn">Upload Excel</button>
+    </form>    
+  </div>
+
+  <div id="addForm" style="display:none; margin-top:20px;">
+    <h2>Add New Resident</h2>
+
+    <input type="text" id="first_name" placeholder="First Name">
+    <input type="text" id="middle_name" placeholder="Middle Name">
+    <input type="text" id="last_name" placeholder="Last Name">
+    <input type="date" id="date_of_birth" placeholder="Date of Birth">
+    <input type="text" id="place_of_birth" placeholder="Place of Birth">
+
+    <select id="gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <select id="civil_status">
+      <option value="">Select Civil Status</option>
+      <option value="Single">Single</option>
+      <option value="Married">Married</option>
+      <option value="Separated">Separated</option>
+    </select>
+
+    <input type="text" id="occupation" placeholder="Occupation">
+    <input type="text" id="citizenship" placeholder="Citizenship">
+    <input type="text" id="relationship_to_household_head" placeholder="Relationship to Household Head">
+
+    <select id="educational_background">
+      <option value="">Select Educational Background</option>
+      <option value="No Formal Education">No Formal Education</option>
+      <option value="Elementary Graduate">Elementary Graduate</option>
+      <option value="High School Graduate">High School Graduate</option>
+      <option value="College Graduate">College Graduate</option>
+    </select>
+
+    <input type="text" id="street_number" placeholder="Street Number">
+    <input type="text" id="street" placeholder="Street">
+    <input type="text" id="barangay" placeholder="Barangay">
+    <input type="text" id="city" placeholder="City">
+    <input type="text" id="province" placeholder="Province">
+    <input type="text" id="region" placeholder="Region">
+
+    <button onclick="submitAddForm()" class="save-btn">Save</button>
+    <button onclick="closeAddForm()" class="cancel-btn">Cancel</button>
+  </div>
+
+  <div class="records-container">
+    <form method="GET" action="{% url 'records' %}" style="margin-bottom: 20px;">
+      <input type="text" name="q" placeholder="Search by name..." value="{{ query|default:'' }}" class="search-bar" />
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+    <table class="records-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Full Name</th>
+          <th>Birthdate</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="residents-body">
+        {% for resident in residents %}
+        <tr id="row-{{ resident.id }}">
+          <td>{{ forloop.counter }}</td>
+          <td>{{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }}</td>
+          <td>{{ resident.date_of_birth }}</td>
+          <td>{{ resident.gender }}</td>
+          <td>{{ resident.street_number }} {{ resident.street }}, {{ resident.barangay }}, {{ resident.city }}</td>
+          <td>
+            <button onclick="editResident('{{ resident.id }}')" class="edit-btn">Edit</button>
+            <button onclick="deleteResident('{{ resident.id }}')" class="delete-btn">Delete</button>
+
+            <!-- hidden fields para sa Edit -->
+            <div id="resident-data-{{ resident.id }}" style="display:none;">
+              <input type="hidden" class="civil_status" value="{{ resident.civil_status }}">
+              <input type="hidden" class="occupation" value="{{ resident.occupation }}">
+              <input type="hidden" class="citizenship" value="{{ resident.citizenship }}">
+              <input type="hidden" class="place_of_birth" value="{{ resident.place_of_birth }}"> 
+              <input type="hidden" class="date_of_birth" value="{{ resident.date_of_birth|date:'Y-m-d' }}">      
+              <input type="hidden" class="relationship_to_household_head" value="{{ resident.relationship_to_household_head }}">
+              <input type="hidden" class="educational_background" value="{{ resident.educational_background }}">
+              <input type="hidden" class="region" value="{{ resident.region }}">
+              <input type="hidden" class="province" value="{{ resident.province }}">
+              <input type="hidden" class="city" value="{{ resident.city }}">
+              <input type="hidden" class="barangay" value="{{ resident.barangay }}">
+              <input type="hidden" class="street" value="{{ resident.street }}">
+              <input type="hidden" class="street_number" value="{{ resident.street_number }}">
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="3">No residents found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script>
+function openAddForm() {
+  document.getElementById('addForm').style.display = 'block';
+}
+function closeAddForm() {
+  document.getElementById('addForm').style.display = 'none';
+}
+
+// ADD Resident
+function submitAddForm() {
+  fetch('/add_resident/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': '{{ csrf_token }}',
+    },
+    body: JSON.stringify({
+      first_name: document.getElementById('first_name').value,
+      middle_name: document.getElementById('middle_name').value,
+      last_name: document.getElementById('last_name').value,
+      date_of_birth: document.getElementById('date_of_birth').value,
+      place_of_birth: document.getElementById('place_of_birth').value,
+      gender: document.getElementById('gender').value,
+      civil_status: document.getElementById('civil_status').value,
+      occupation: document.getElementById('occupation').value,
+      citizenship: document.getElementById('citizenship').value,
+      relationship_to_household_head: document.getElementById('relationship_to_household_head').value,
+      educational_background: document.getElementById('educational_background').value,
+      region: document.getElementById('region').value,
+      province: document.getElementById('province').value,
+      city: document.getElementById('city').value,
+      barangay: document.getElementById('barangay').value,
+      street_number: document.getElementById('street_number').value,
+      street: document.getElementById('street').value,
+    })
+  }).then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Resident added!');
+        location.reload();
+      } else {
+        alert('Failed to add!');
+      }
+    });
+}
+
+// DELETE Resident
+function deleteResident(id) {
+  if (confirm('Are you sure you want to delete this resident?')) {
+    fetch(`/delete_resident/${id}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+      }
+    }).then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Resident deleted!');
+          document.getElementById(`row-${id}`).remove();
+        } else {
+          alert('Failed to delete!');
+        }
+      });
+  }
+}
+
+// EDIT Resident
+function editResident(id) {
+  let row = document.getElementById(`row-${id}`);
+  let columns = row.getElementsByTagName('td');
+  let fullName = columns[1].innerText.split(' ');
+  let birthdate = columns[2].innerText.trim();
+  let gender = columns[3].innerText.trim();
+
+  // Hidden Data
+  let dataDiv = document.getElementById(`resident-data-${id}`);
+  let getValue = (cls) => dataDiv.querySelector(`.${cls}`)?.value || '';
+
+  let dateOfBirth = getValue('date_of_birth'); // This should be in YYYY-MM-DD format
+  
+  // If date_of_birth isn't in hidden fields, try to parse from display
+  if (!dateOfBirth) {
+    let displayDate = columns[2].innerText.trim();
+    if (displayDate) {
+      // Try to convert displayed date to YYYY-MM-DD format
+      let dateParts = displayDate.split('/');
+      if (dateParts.length === 3) {
+        dateOfBirth = `${dateParts[2]}-${dateParts[0].padStart(2, '0')}-${dateParts[1].padStart(2, '0')}`;
+      }
+    }
+  }
+
+  row.innerHTML = `
+    <td>${columns[0].innerText}</td>
+    <td>
+      <input type="text" id="edit_first_name" value="${fullName[0] || ''}">
+      <input type="text" id="edit_middle_name" value="${fullName[1] || ''}">
+      <input type="text" id="edit_last_name" value="${fullName[2] || ''}">
+    </td>
+    <td><input type="date" id="edit_date_of_birth" value="${dateOfBirth}"></td>
+    <td>
+      <select id="edit_gender">
+        <option value="Male" ${gender == 'Male' ? 'selected' : ''}>Male</option>
+        <option value="Female" ${gender == 'Female' ? 'selected' : ''}>Female</option>
+        <option value="Other" ${gender == 'Other' ? 'selected' : ''}>Other</option>
+      </select>
+    </td>
+    <td>
+      <input type="text" id="edit_region" value="${getValue('region')}" placeholder="Region">
+      <input type="text" id="edit_province" value="${getValue('province')}" placeholder="Province">
+      <input type="text" id="edit_city" value="${getValue('city')}" placeholder="City">
+      <input type="text" id="edit_barangay" value="${getValue('barangay')}" placeholder="Barangay">
+      <input type="text" id="edit_street_number" value="${getValue('street_number')}" placeholder="Street Number">
+      <input type="text" id="edit_street" value="${getValue('street')}" placeholder="Street">
+    </td>
+    <td>
+      <input type="text" id="edit_place_of_birth" value="${getValue('place_of_birth')}" placeholder="Place of Birth">
+      <select id="edit_civil_status">
+        <option value="">Select Civil Status</option>
+        <option value="Single" ${getValue('civil_status') == 'Single' ? 'selected' : ''}>Single</option>
+        <option value="Married" ${getValue('civil_status') == 'Married' ? 'selected' : ''}>Married</option>
+        <option value="Separated" ${getValue('civil_status') == 'Separated' ? 'selected' : ''}>Separated</option>
+      </select>
+      <input type="text" id="edit_occupation" value="${getValue('occupation')}" placeholder="Occupation">
+      <input type="text" id="edit_citizenship" value="${getValue('citizenship')}" placeholder="Citizenship">
+      <input type="text" id="edit_relationship_to_household_head" value="${getValue('relationship_to_household_head')}" placeholder="Relationship">
+      <select id="edit_educational_background">
+        <option value="">Select Education</option>
+        <option value="No Formal Education" ${getValue('educational_background') == 'No Formal Education' ? 'selected' : ''}>No Formal Education</option>
+        <option value="Elementary Graduate" ${getValue('educational_background') == 'Elementary Graduate' ? 'selected' : ''}>Elementary Graduate</option>
+        <option value="High School Graduate" ${getValue('educational_background') == 'High School Graduate' ? 'selected' : ''}>High School Graduate</option>
+        <option value="College Graduate" ${getValue('educational_background') == 'College Graduate' ? 'selected' : ''}>College Graduate</option>
+      </select>
+      <button onclick="saveResident(${id})" class="save-btn">Save</button>
+      <button onclick="location.reload()" class="cancel-btn">Cancel</button>
+    </td>
+  `;
+}
+
+// SAVE updated Resident
+function saveResident(id) {
+  fetch(`/update_resident/${id}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': '{{ csrf_token }}',
+    },
+    body: JSON.stringify({
+      first_name: document.getElementById('edit_first_name').value,
+      middle_name: document.getElementById('edit_middle_name').value,
+      last_name: document.getElementById('edit_last_name').value,
+      date_of_birth: document.getElementById('edit_date_of_birth').value,
+      gender: document.getElementById('edit_gender').value,
+      street_number: document.getElementById('edit_street_number').value,
+      street: document.getElementById('edit_street').value,
+      barangay: document.getElementById('edit_barangay').value,
+      city: document.getElementById('edit_city').value,
+      province: document.getElementById('edit_province').value,
+      region: document.getElementById('edit_region').value,
+      place_of_birth: document.getElementById('edit_place_of_birth').value,
+      civil_status: document.getElementById('edit_civil_status').value,
+      occupation: document.getElementById('edit_occupation').value,
+      citizenship: document.getElementById('edit_citizenship').value,
+      relationship_to_household_head: document.getElementById('edit_relationship_to_household_head').value,
+      educational_background: document.getElementById('edit_educational_background').value
+    })
+  }).then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Resident updated!');
+        location.reload();
+      } else {
+        alert('Failed to update!');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while saving');
+    });
+}
+
+// UPLOAD EXCEL
+document.getElementById('excelUploadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+
+  fetch('/upload_excel/', {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': '{{ csrf_token }}'
+    },
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert(data.message || (data.success ? 'Upload successful!' : 'Upload failed!'));
+    if (data.success) location.reload();
+  })
+  .catch(error => {
+    console.error('Upload error:', error);
+    alert('An error occurred during upload.');
+  });
+});
+
+
+</script>
+
 </body>
 </html>
