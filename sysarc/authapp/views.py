@@ -33,7 +33,29 @@ def login_view(request):
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'authapp/dashboard.html')
+    today = date.today()
+    
+    residents = PersonInformation.objects.all()
+
+    male_count = residents.filter(gender__iexact='Male').count()
+    female_count = residents.filter(gender__iexact='Female').count()
+
+    seniors_count = residents.filter(
+        date_of_birth__isnull=False,
+        date_of_birth__lte=date(today.year - 60, today.month, today.day)
+    ).count()
+
+    kids_count = residents.filter(
+        date_of_birth__isnull=False,
+        date_of_birth__gte=date(today.year - 17, today.month, today.day)
+    ).count()
+
+    return render(request, 'authapp/dashboard.html', {
+        'male_count': male_count,
+        'female_count': female_count,
+        'seniors_count': seniors_count,
+        'kids_count': kids_count
+    })
 
 def logout_view(request):
     logout(request)
@@ -56,19 +78,35 @@ def home_view(request):
 #CRUD FUNCTION OF RECORDS
 @login_required
 def records_view(request):
+    query = request.GET.get('q')
     filter_type = request.GET.get('filter')
     today = date.today()
 
     residents = PersonInformation.objects.all()
 
-    # Filter by gender (age filters will be handled client-side)
-    if filter_type == 'male':
+    # Search by name
+    if query:
+        residents = residents.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(middle_name__icontains=query)
+        )
+
+    # Filter by age or gender
+    if filter_type == 'seniors':
+        residents = [r for r in residents if r.date_of_birth and (
+            today.year - r.date_of_birth.year - ((today.month, today.day) < (r.date_of_birth.month, r.date_of_birth.day)) >= 60)]
+    elif filter_type == 'kids':
+        residents = [r for r in residents if r.date_of_birth and (
+            today.year - r.date_of_birth.year - ((today.month, today.day) < (r.date_of_birth.month, r.date_of_birth.day)) <= 17)]
+    elif filter_type == 'male':
         residents = residents.filter(gender__iexact='Male')
     elif filter_type == 'female':
         residents = residents.filter(gender__iexact='Female')
 
     return render(request, "authapp/records.html", {
         "residents": residents,
+        "query": query,
         "selected_filter": filter_type
     })
 
