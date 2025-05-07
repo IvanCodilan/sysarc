@@ -1,0 +1,24 @@
+{% load static %}
+
+    <div class="sidebar">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">
+            <span class="toggle-icon">&#8592;</span> <!-- Left arrow by default -->
+        </button>        
+        <div class="logo-container">
+            <a href="{% url 'dashboard' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
+                <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
+                <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
+                <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
+            </ul>
+        </nav>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
