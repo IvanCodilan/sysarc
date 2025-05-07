@@ -1,0 +1,55 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #e0dede;
+}
+
+/* Main Content */
+.dashboard {
+    margin-left: 275px;
+    padding: 30px;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+    width: calc(100% - 250px);
+}
+
+.main-dashboard-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 100%; /* Make it span the full width */
+}
+
+.sidebar.collapsed + .dashboard {
+    margin-left: 80px;
+    width: calc(100% - 60px);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Grid Layout for Cards */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Increase min card size */
+    gap: 30px; /* More spacing between cards */
+}
+
+.card {
+    background: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+    text-align: center;
+}
