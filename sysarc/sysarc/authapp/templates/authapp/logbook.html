@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/logbook.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+</head>
+<body>
+    {% include 'authapp/navbar.html' %}
+
+    <main class="logbook">
+        <div class="logbook-main-card">
+            <h1>Log-book</h1>
+        </div>
+    </main>
+
+    <script src="{% static 'js/logbook.js' %}"></script>
+</body>
+</html>
