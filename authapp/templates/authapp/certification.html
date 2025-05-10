@@ -2,41 +2,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certification</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/certification.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <body>
-    <div class="sidebar">
-        <button class="sidebar-toggle" onclick="toggleSidebar()">
-            <span class="toggle-icon">&#8592;</span> <!-- Left arrow by default -->
-        </button>   
-        <div class="logo-container">
-            <a href="{% url 'dashboard' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
-                <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
-                <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
-                <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
-            </ul>
-        </nav>        
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
-    </div>
+    {% include 'authapp/navbar.html' %}
 
     <main class="certification">
         <div class="certification-main-card">
             <header>
                 <h1>Certification</h1>
             </header>
+
+            <div class="certificate-grid-container">
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Good Moral Character</h3>
+                    <a href="{% url 'search_resident' 'good_moral' %}">
+                        <img src="{% static 'images/goodmoral.png' %}" alt="Good Moral Character">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title"> Financial Assistance</h3>
+                    <a href="{% url 'search_resident' 'financial_assistance' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-financial-assistancee.png' %}" alt="Financial Assistance">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Proof of Residency</h3>
+                    <a href="{% url 'search_resident' 'proof_of_residency' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-Proof-of-Residency.png' %}" alt="Certificate of Residency">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Medical Assistance</h3>
+                    <a href="{% url 'search_resident' 'medical_assistance' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-of-Indigency-for-Medical-Assistance.png' %}" alt="Certificate of Medical Assistance">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Burial Assistance</h3>
+                    <a href="{% url 'search_resident' 'burial_assistance' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-burial-assistance.png' %}" alt="Burial Assistance">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Solo Parent Renewal</h3>
+                    <a href="{% url 'search_resident' 'solo_parent_renewal' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-Solo-Parent-Renewal.png' %}" alt="Solo Parent Renewal">
+                    </a>
+                </div>
+
+            </div>
         </div>
     </main>
 
