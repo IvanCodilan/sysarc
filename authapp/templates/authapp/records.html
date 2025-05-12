@@ -9,32 +9,48 @@
     <link rel="stylesheet" href="{% static 'css/records.css' %}">
 </head>
 <body>
-    <div class="sidebar">
-        <button class="sidebar-toggle" onclick="toggleSidebar()">
-            <span class="toggle-icon">&#8592;</span> <!-- Left arrow by default -->
-        </button>   
-        <div class="logo-container">
-            <a href="{% url 'dashboard' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
-                <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
-                <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
-                <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
-            </ul>
-        </nav>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
-    </div>
+    {% include 'authapp/navbar.html' %}
 
     <main class="records">
         <div class="records-main-card">
             <h1>Records</h1>
+        </div>
+
+        <div class="records-container">
+            <table class="records-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Birthdate</th>
+                        <th>Gender</th>
+                        <th>Contact No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample Row -->
+                    <tr>
+                        <td>1</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>30</td>
+                        <td>Purok 1, Barangay Uno</td>
+                        <td>1994-01-01</td>
+                        <td>Male</td>
+                        <td>09123456789</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="add-new">
+                <a href="#" class="add-btn"> Add New Resident</a>
+            </div>
         </div>
     </main>
 

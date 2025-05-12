@@ -37,3 +37,6 @@ def logbook_view(request):
 @login_required  # Restrict access to authenticated users
 def certification_view(request):
     return render(request, "authapp/certification.html")
+
+def home_view(request):
+    return redirect('dashboard')
