@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manual Certificate Entry</title>
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 30px;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  {% include 'authapp/navbar.html' %}
+  <div class="container">
+    <h2>Generate Certificate Manually</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <label>Full Name:</label>
+      <input type="text" name="full_name" required>
+
+      <label>Address:</label>
+      <input type="text" name="address" required>
+
+      <label>Birthday:</label>
+      <input type="date" name="birthday">
+
+      <label>Civil Status:</label>
+      <input type="text" name="civil_status">
+
+      <label>Certificate Type:</label>
+      <select name="cert_type" required>
+        <option value="financial_assistance">Financial Assistance</option>
+        <option value="good_moral">Good Moral Character</option>
+        <option value="medical_assistance">Medical Assistance</option>
+        <option value="proof_of_residency">Proof of Residency</option>
+        <option value="burial_assistance">Burial Assistance</option>
+        <option value="solo_parent_renewal">Solo Parent Renewal</option>
+      </select>
+
+      <button type="submit">Generate Certificate</button>
+    </form>
+  </div>
+</body>
+</html>
