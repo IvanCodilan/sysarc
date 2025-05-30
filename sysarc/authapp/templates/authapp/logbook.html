@@ -24,6 +24,8 @@
 
         th {
             background-color: #f2f2f2;
+            position: sticky;
+            top: 0;
         }
 
         h1 {
@@ -34,6 +36,12 @@
         .logbook-main-card {
             padding: 20px;
         }
+
+        .log-table-container {
+            max-height: 70vh;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -42,35 +50,37 @@
     <main class="logbook">
         <div class="logbook-main-card">
             <h1>Logbook</h1>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name of Admin</th>
-                        <th>Action</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Resident</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for log in logs %}
+            
+            <div class="log-table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ log.admin.username }}</td>
-                            <td>{{ log.action }}</td>
-                            <td>{{ log.timestamp|date:"Y-m-d" }}</td>
-                            <td>{{ log.timestamp|time:"H:i:s" }}</td>
-                            <td>{{ log.resident_name }}</td>
+                            <th>Admin</th>
+                            <th>Certificate Type</th>
+                            <th>Resident</th>
+                            <th>Purpose</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
-                    {% empty %}
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
                         <tr>
-                            <td colspan="6">No log entries found.</td>
+                            <td>{{ log.admin.get_full_name|default:log.admin.username }}</td>
+                            <td>{{ log.certificate_type }}</td>
+                            <td>{{ log.resident_name|default:"Manual Entry" }}</td>
+                            <td>{{ log.purpose }}</td>
+                            <td>{{ log.created_at|date:"M d, Y" }}</td>
+                            <td>{{ log.created_at|time:"h:i A" }}</td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">No logs available</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 

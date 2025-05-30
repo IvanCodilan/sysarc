@@ -44,3 +44,39 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 30px;
 }
+/* Grid for Certificates */
+.certificate-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns fixed */
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Individual Certificate Card */
+.certificate-card {
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-card img {
+    height: 580px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+}
+
+.certificate-card img:hover {
+    transform: scale(1.02);
+}
+
+.cert-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #222;
+    font-weight: bold;
+    text-transform: uppercase;
+}

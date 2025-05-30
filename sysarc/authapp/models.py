@@ -32,26 +32,52 @@ class PersonInformation(models.Model):
         ],
     )
 
-class Meta:
-    db_table = 'person_information'
-    verbose_name = 'Resident'
-    verbose_name_plural = 'Residents'
-
-class ActivityLog(models.Model):
-    ACTION_CHOICES = [
-        ('ADD', 'Add'),
-        ('EDIT', 'Edit'),
-        ('DELETE', 'Delete'),
-    ]
-
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activity_logs')
-    action = models.CharField(max_length=10, choices=ACTION_CHOICES)
-    resident_name = models.CharField(max_length=255)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    
+class CertificateLog(models.Model):
+    admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    resident = models.ForeignKey(PersonInformation, on_delete=models.SET_NULL, null=True, blank=True)
+    certificate_type = models.CharField(max_length=100)
+    purpose = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    resident_name = models.CharField(max_length=255, blank=True)  # For manual entries
 
     class Meta:
-        db_table = 'authapp_activitylog'  # Explicit table name to match your error
+        ordering = ['-created_at']
+        verbose_name = 'Certificate Log'
+        verbose_name_plural = 'Certificate Logs'
 
     def __str__(self):
-        return f"{self.admin.username} - {self.action} - {self.resident_name}"
+        if self.resident:
+            return f"{self.certificate_type} - {self.resident.first_name} {self.resident.last_name}"
+        return f"{self.certificate_type} - {self.resident_name or 'Manual Entry'}"
+
+class BarangayOfficial(models.Model):
+    POSITION_CHOICES = [
+        ('Punong Barangay', 'Punong Barangay'),
+        ('Kagawad', 'Kagawad'),
+        ('Secretary', 'Secretary'),
+        ('Treasurer', 'Treasurer'),
+        ('SK Chairman', 'SK Chairman'),
+    ]
     
+    COMMITTEE_CHOICES = [
+        ('Appropriation', 'Appropriation'),
+        ('Clean & Beautification', 'Clean & Beautification'),
+        ('Women, Children, & Elderly', 'Women, Children, & Elderly'),
+        ('Health & Sanitation', 'Health & Sanitation'),
+        ('Peace & Order', 'Peace & Order'),
+        ('Youth & Education', 'Youth & Education'),
+        ('Ways & Means', 'Ways & Means'),
+        ('None', 'None'),
+    ]
+    
+    position = models.CharField(max_length=50, choices=POSITION_CHOICES)
+    name = models.CharField(max_length=100)
+    committee = models.CharField(max_length=50, choices=COMMITTEE_CHOICES, default='None')
+    order = models.IntegerField(default=0)  # For sorting
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.position}: {self.name}"
