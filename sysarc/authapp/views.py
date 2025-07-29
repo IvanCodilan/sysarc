@@ -8,11 +8,14 @@ import json
 from datetime import datetime
 from datetime import date
 import openpyxl
-from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.db.models import Q
-from .models import ActivityLog
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.timezone import now
+from .models import CertificateLog
+from django.utils.dateparse import parse_date
+from .models import BarangayOfficial
 
 
 
@@ -33,7 +36,29 @@ def login_view(request):
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'authapp/dashboard.html')
+    today = date.today()
+    
+    residents = PersonInformation.objects.all()
+
+    male_count = residents.filter(gender__iexact='Male').count()
+    female_count = residents.filter(gender__iexact='Female').count()
+
+    seniors_count = residents.filter(
+        date_of_birth__isnull=False,
+        date_of_birth__lte=date(today.year - 60, today.month, today.day)
+    ).count()
+
+    kids_count = residents.filter(
+        date_of_birth__isnull=False,
+        date_of_birth__gte=date(today.year - 17, today.month, today.day)
+    ).count()
+
+    return render(request, 'authapp/dashboard.html', {
+        'male_count': male_count,
+        'female_count': female_count,
+        'seniors_count': seniors_count,
+        'kids_count': kids_count
+    })
 
 def logout_view(request):
     logout(request)
@@ -41,8 +66,8 @@ def logout_view(request):
 
 @login_required
 def logbook_view(request):
-    logs = ActivityLog.objects.select_related('admin').order_by('-timestamp')
-    return render(request, 'authapp/logbook.html', {'logs': logs})
+    logs = CertificateLog.objects.all().order_by('-created_at')
+    return render(request, "authapp/logbook.html", {"logs": logs})
 
 
 @login_required  # Restrict access to authenticated users
@@ -56,19 +81,35 @@ def home_view(request):
 #CRUD FUNCTION OF RECORDS
 @login_required
 def records_view(request):
+    query = request.GET.get('q')
     filter_type = request.GET.get('filter')
     today = date.today()
 
     residents = PersonInformation.objects.all()
 
-    # Filter by gender (age filters will be handled client-side)
-    if filter_type == 'male':
+    # Search by name
+    if query:
+        residents = residents.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(middle_name__icontains=query)
+        )
+
+    # Filter by age or gender
+    if filter_type == 'seniors':
+        residents = [r for r in residents if r.date_of_birth and (
+            today.year - r.date_of_birth.year - ((today.month, today.day) < (r.date_of_birth.month, r.date_of_birth.day)) >= 60)]
+    elif filter_type == 'kids':
+        residents = [r for r in residents if r.date_of_birth and (
+            today.year - r.date_of_birth.year - ((today.month, today.day) < (r.date_of_birth.month, r.date_of_birth.day)) <= 17)]
+    elif filter_type == 'male':
         residents = residents.filter(gender__iexact='Male')
     elif filter_type == 'female':
         residents = residents.filter(gender__iexact='Female')
 
     return render(request, "authapp/records.html", {
         "residents": residents,
+        "query": query,
         "selected_filter": filter_type
     })
 
@@ -97,11 +138,6 @@ def add_resident(request):
             educational_background = data.get('educational_background'),
         )
 
-        ActivityLog.objects.create(
-            admin=request.user,
-            action='ADD',
-            resident_name=f"{person.last_name}, {person.first_name} {person.middle_name}"
-        )
         
         return JsonResponse({"success": True})
     return JsonResponse({"error": "Invalid method"}, status=400)
@@ -152,12 +188,6 @@ def update_resident(request, id):
                 if field in data:
                     setattr(person, field, data[field])
 
-            ActivityLog.objects.create(
-                admin=request.user,
-                action='EDIT',
-                resident_name=f"{person.last_name}, {person.first_name} {person.middle_name}" 
-            )
-
             person.save()
             return JsonResponse({"success": True})
             
@@ -174,11 +204,6 @@ def delete_resident(request, id):
             person = PersonInformation.objects.get(id=id)
             resident_name = f"{person.last_name}, {person.first_name} {person.middle_name}"
 
-            ActivityLog.objects.create(
-                admin=request.user,
-                action='DELETE',
-                resident_name=resident_name
-            )
             person.delete()
             return JsonResponse({"success": True})
         except PersonInformation.DoesNotExist:
@@ -198,12 +223,13 @@ def upload_excel(request):
         file_full_path = default_storage.path(file_path)
 
         try:
-            wb = openpyxl.load_workbook(file_full_path)
+            wb = openpyxl.load_workbook(file_full_path, read_only=True)
             ws = wb.active
-            success_count = 0
-            for row in ws.iter_rows(min_row=2, values_only=True):  # Assuming first row is header
+            residents_to_create = []
+            names_for_log = []
+            for row in ws.iter_rows(min_row=2, values_only=True):  # Skip header
                 try:
-                    person = PersonInformation.objects.create(
+                    resident = PersonInformation(
                         first_name=row[0],
                         middle_name=row[1],
                         last_name=row[2],
@@ -222,18 +248,151 @@ def upload_excel(request):
                         province=row[15],
                         region=row[16]
                     )
-                    ActivityLog.objects.create(
-                        admin=request.user,
-                        action='ADD',
-                        resident_name=f"{person.last_name}, {person.first_name} {person.middle_name}"
-                    )
-                    success_count += 1
-                except Exception as e:
+                    residents_to_create.append(resident)
+                    names_for_log.append(f"{row[2]}, {row[0]} {row[1]}")
+                except Exception:
                     continue  # Skip invalid row
-            return JsonResponse({'success': True, 'message': f'{success_count} records uploaded successfully.'})
+
+            # Bulk create all valid residents at once
+            PersonInformation.objects.bulk_create(residents_to_create)
+
+
+            return JsonResponse({'success': True, 'message': f'{len(residents_to_create)} records uploaded successfully.'})
         except Exception as e:
             return JsonResponse({'success': False, 'message': f'Error processing file: {str(e)}'})
+
     return JsonResponse({'success': False, 'message': 'No file uploaded or invalid method'})
 
+#
+
+def search_resident(request, cert_type):
+    if request.method == "POST":
+        search_name = request.POST.get("full_name")
+        # Search in first_name, last_name, or middle_name
+        residents = PersonInformation.objects.filter(
+            Q(first_name__icontains=search_name) |
+            Q(last_name__icontains=search_name) |
+            Q(middle_name__icontains=search_name)
+        )
+        
+        if residents.exists():
+            if residents.count() == 1:
+                return redirect('generate_certificate', cert_type=cert_type, resident_id=residents.first().id)
+            else:
+                return render(request, 'certificates/search.html', {
+                    'residents': residents,
+                    'cert_type': cert_type,
+                    'search_term': search_name
+                })
+        else:
+            return render(request, 'certificates/search.html', {
+                'error': 'Resident not found.',
+                'cert_type': cert_type,
+                'search_term': search_name
+            })
+    return render(request, 'certificates/search.html', {'cert_type': cert_type})
 
 
+def generate_certificate(request, cert_type, resident_id):
+    # Define purpose_map first
+    purpose_map = {
+        "good_moral": "Good Moral Certificate",
+        "financial_assistance": "FINANCIAL ASSISTANCE",
+        "proof_of_residency": "PROOF OF RESIDENCY",
+        "medical_assistance": "MEDICAL ASSISTANCE",
+        "first_time_job_seekers": "EMPLOYMENT REQUIREMENT",
+        "solo_parent_renewal": "SOLO PARENT/PWD SUPPORT"
+    }
+
+    resident = get_object_or_404(PersonInformation, pk=resident_id)
+    full_name = f"{resident.first_name} {resident.middle_name} {resident.last_name}"
+    address = f"{resident.street_number} {resident.street}, {resident.barangay}, {resident.city}"
+    birthday = resident.date_of_birth.strftime("%B %d, %Y") if resident.date_of_birth else ""
+    civil_status = resident.civil_status
+
+    # Log the certificate generation
+    CertificateLog.objects.create(
+        admin=request.user,
+        resident=resident,
+        certificate_type=cert_type.replace('_', ' ').title(),
+        purpose=purpose_map.get(cert_type, "OFFICIAL PURPOSES"),
+        resident_name=full_name,
+        created_at=now() 
+    )
+
+    context = {
+        'full_name': full_name,
+        'address': address,
+        'birthday': birthday,
+        'civil_status': civil_status,
+        'date_today': date.today().strftime("%B %d, %Y"),
+        'purpose': purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES")
+    }
+
+    return render(request, f'certificates/{cert_type}.html', context)
+
+def manual_certificate_input(request):
+    if request.method == "POST":
+        full_name = request.POST.get("full_name")
+        address = request.POST.get("address")
+        birthday = request.POST.get("birthday")
+        civil_status = request.POST.get("civil_status")
+        cert_type = request.POST.get("cert_type")
+
+        purpose_map = {
+            "good_moral": "",
+            "financial_assistance": "FINANCIAL ASSISTANCE",
+            "proof_of_residency": "PROOF OF RESIDENCY",
+            "medical_assistance": "MEDICAL ASSISTANCE",
+            "burial_assistance": "BURIAL ASSISTANCE",
+            "solo_parent_renewal": "SOLO PARENT/PWD SUPPORT"
+        }
+
+        context = {
+            "full_name": full_name,
+            "address": address,
+            "birthday": parse_date(birthday).strftime("%B %d, %Y") if birthday else "",
+            "civil_status": civil_status,
+            "date_today": date.today().strftime("%B %d, %Y"),
+            "purpose": purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES"),
+        }
+
+        return render(request, f'certificates/{cert_type}.html', context)
+
+    return render(request, "certificates/manual_input.html")
+
+
+@login_required
+def get_officials_json(request):
+    officials = BarangayOfficial.objects.all().order_by('order')
+    data = [{
+        'id': official.id,
+        'position': official.position,
+        'name': official.name,
+        'committee': official.committee,
+        'order': official.order
+    } for official in officials]
+    
+    response = JsonResponse(data, safe=False)
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
+
+def update_officials(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            for official_data in data:
+                try:
+                    official_id = int(official_data.get('id'))
+                    official = BarangayOfficial.objects.get(id=official_id)
+                    official.name = official_data.get('name', official.name)
+                    official.save()
+                except (ValueError, BarangayOfficial.DoesNotExist):
+                    continue
+            
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+    return JsonResponse({'success': False, 'error': 'Invalid method'}, status=400)
