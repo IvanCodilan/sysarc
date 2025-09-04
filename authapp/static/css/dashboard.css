@@ -196,3 +196,47 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
     text-align: center;
 }
+
+/* Main Content */
+.dashboard {
+    margin-left: 275px;
+    padding: 30px;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+    width: calc(100% - 250px);
+}
+
+/* When sidebar collapsed */
+.sidebar.collapsed + .dashboard {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Card Titles */
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Chart canvas sizing */
+canvas {
+    max-width: 100%;
+    height: 250px;
+}
