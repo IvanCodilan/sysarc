@@ -301,3 +301,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+function openResidentDetail(residentId) {
+  // optional: show a loading message
+  document.getElementById("residentDetailContent").innerHTML = "<p>Loading…</p>";
+  document.getElementById("residentDetailModal").style.display = "block";
+
+  fetch(`/resident/${residentId}/modal/`, { credentials: 'same-origin' })
+    .then(response => {
+      // debug: log status/url
+      console.log('detail fetch status', response.status, response.url);
+      if (response.status === 302 || response.url.includes('/login')) {
+        // likely redirected to login
+        document.getElementById("residentDetailContent").innerHTML = "<p>Session expired — please refresh and login again.</p>";
+        return;
+      }
+      if (!response.ok) {
+        document.getElementById("residentDetailContent").innerHTML = `<p>Error loading details: ${response.status}</p>`;
+        return;
+      }
+      return response.text();
+    })
+    .then(html => {
+      if (html) document.getElementById("residentDetailContent").innerHTML = html;
+    })
+    .catch(err => {
+      console.error('Error fetching resident detail:', err);
+      document.getElementById("residentDetailContent").innerHTML = "<p>Network error — check console.</p>";
+    });
+}
+
+function closeResidentDetail() {
+  document.getElementById("residentDetailModal").style.display = "none";
+  document.getElementById("residentDetailContent").innerHTML = "";
+}
+
+// Optional: close when clicking outside modal content
+window.addEventListener('click', function(e){
+  const modal = document.getElementById('residentDetailModal');
+  if (modal && e.target === modal) closeResidentDetail();
+});
+
+

@@ -24,4 +24,5 @@ urlpatterns = [
     path('get-officials/', views.get_officials_json, name='get_officials_json'),
     path('update-officials/', views.update_officials, name='update_officials'),
     path('backup-database/', views.backup_database, name='backup_database'),
+    path('resident/<int:id>/detail/', views.resident_detail_modal, name='resident_detail')
 ]

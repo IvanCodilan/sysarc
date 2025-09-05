@@ -20,6 +20,7 @@ import subprocess
 from django.conf import settings
 from pathlib import Path
 from django.contrib import messages
+from django.db.models import Count
 
 def login_view(request):
     if request.method == "POST":
@@ -512,3 +513,18 @@ def backup_database(request):
             return JsonResponse({"success": False, "error": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid method"}, status=405)
+
+@login_required
+def resident_detail_modal(request, id):
+    resident = get_object_or_404(PersonInformation, id=id)
+    total_certs = CertificateLog.objects.filter(resident=resident).count()
+    certs_by_type = (CertificateLog.objects
+                        .filter(resident=resident)
+                        .values('certificate_type')
+                        .annotate(count=Count('id'))
+                        .order_by('-count'))
+    return render(request, 'authapp/resident_detail_modal.html', {
+        'resident': resident,
+        'total_certs': total_certs,
+        'certs_by_type': certs_by_type,
+    })

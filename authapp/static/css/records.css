@@ -473,3 +473,91 @@ select[name="filter"], #filterSelect {
     width: 100%;
     margin-bottom: 20px;
 }
+/* Modal Background */
+#residentDetailModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  overflow-y: auto;
+}
+
+/* Modal Background */
+#residentDetailModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+/* Modal Content */
+#residentDetailModal .modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+/* Close Button */
+#residentDetailModal .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#residentDetailModal .close-btn:hover {
+  color: #28a745;
+}
+
+/* Headings (h3) inside modal content */
+#residentDetailModal .modal-content h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff; /* blue */
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* Labels like Region, Province, etc. inside modal */
+#residentDetailModal .modal-content .resident-label {
+  display: inline-block;
+  background-color: #28a745; /* green */
+  color: #fff;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin: 4px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Total Certificates inside modal */
+#residentDetailModal .modal-content .total-certificates {
+  display: inline-block;
+  background-color: #007bff; /* blue */
+  color: #fff;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+}
