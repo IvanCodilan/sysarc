@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Resident - {{ cert_type|title }}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/search.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+</head>
+<body>
+  {% include 'authapp/navbar.html' %}
+  <div class="container">
+    <div class="search-box">
+      <div class="search-section">
+        <h2>Certification > Generate {{ cert_type|title }} Certificate</h2> 
+
+        <form method="POST" class="search-form">
+          {% csrf_token %}
+          <input type="text" name="full_name" placeholder="Search(FN/IN/MI)" required>
+          <button type="submit">Search</button>
+        </form>
+
+        {% if residents %}
+        <div class="search-results">
+          <h3>Search Results for "{{ search_term }}"</h3>
+          <ul>
+            {% for resident in residents %}
+              <li>
+                <a href="{% url 'generate_certificate' cert_type=cert_type resident_id=resident.id %}">
+                  {{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }} - {{ resident.street_number }} {{ resident.street }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <div class="instructions">
+          <p>Use the search bar to quickly find the person whose certificate you want to create. Once found, select this record to automatically generate and print the certificate.</p>
+        </div>
+        <button class="manual-btn" onclick="openManualModal()">Manual Certificate</button>
+        <button class="manual-btn" onclick="openOfficialsModal()">Barangay Officials</button>
+      </div>
+
+      <div class="certificate-preview">
+        <h3>Certificate Preview</h3>
+        {% if cert_type == 'indigency' %}
+            <img src="{% static 'images/certificate-of-indigency.png' %}" alt="Certificate of Indigency">
+        {% elif cert_type == 'good_moral' %}
+            <img src="{% static 'images/goodmoral.png' %}" alt="Good Moral Character">
+        {% elif cert_type == 'financial_assistance' %}
+            <img src="{% static 'images/New-Brgy.-Cert-for-financial-assistancee.png' %}" alt="Financial Assistance">
+        {% elif cert_type == 'proof_of_residency' %}
+            <img src="{% static 'images/New-Brgy.-Cert-for-Proof-of-Residency.png' %}" alt="Proof of Residency">
+        {% elif cert_type == 'medical_assistance' %}
+            <img src="{% static 'images/New-Brgy.-Cert-of-Indigency-for-Medical-Assistance.png' %}" alt="Medical Assistance">
+        {% elif cert_type == 'burial_assistance' %}
+            <img src="{% static 'images/New-Brgy.-Cert-for-burial-assistance.png' %}" alt="Burial Assistance">
+        {% elif cert_type == 'solo_parent_renewal' %}
+            <img src="{% static 'images/New-Brgy.-Cert-for-Solo-Parent-Renewal.png' %}" alt="Solo Parent Renewal">
+        {% else %}
+            <p>No preview available for this certificate type.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="manualModal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeManualModal()">&times;</span>
+      <h2>Manual Certificate Entry</h2>
+      <form method="POST" action="{% url 'manual_certificate' %}">
+      
+        {% csrf_token %}
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="date" name="birthday" placeholder="Birthday">
+        <input type="text" name="civil_status" placeholder="Civil Status">
+        <select name="cert_type" required>
+          <option value="" disabled selected>Select Certificate Type</option>
+          <option value="financial_assistance">Financial Assistance</option>
+          <option value="good_moral">Good Moral Character</option>
+          <option value="medical_assistance">Medical Assistance</option>
+          <option value="proof_of_residency">Proof of Residency</option>
+          <option value="burial_assistance">Burial Assistance</option>
+          <option value="solo_parent_renewal">Solo Parent Renewal</option>
+        </select>
+        <button type="submit">Generate</button>
+      </form>
+    </div>
+  </div>
+
+<div class="modal-overlay" id="officialsModal"style="display:none;">
+  <div class="modal-content" style="max-width: 600px;">
+    <span class="close-button" onclick="closeOfficialsModal()">&times;</span>
+    <h2>Edit Barangay Officials</h2>
+    <div id="officialsEditContainer">
+      <!-- Officials will be loaded here -->
+    </div>
+    <button onclick="saveOfficials()" style="margin-top: 20px;">Save Changes</button>
+  </div>
+</div>
+
+  <script>
+    function openManualModal() {
+      document.getElementById('manualModal').style.display = 'flex';
+    }
+    function closeManualModal() {
+      document.getElementById('manualModal').style.display = 'none';
+    }
+  </script>
+  <script src="{% static 'js/search.js' %}"></script>
+  <script src="{% static 'js/officials.js' %}"></script>
+</body>
+</html>

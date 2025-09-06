@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    {% include 'authapp/navbar.html' %}
+
+    <main class="dashboard">
+        <div class="card main-dashboard-card">
+            <header>
+                <h1>Main Dashboard</h1>
+                <select id="sortOption">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </header>
+
+            <div class="grid-container">
+                <!-- Gender Distribution Card -->
+                <div class="card" data-order="1">
+                    <h2>Gender Distribution</h2>
+                    <canvas id="genderChart"></canvas>
+                </div>
+
+                <!-- Age Groups Card -->
+                <div class="card" data-order="2">
+                    <h2>Age Groups</h2>
+                    <canvas id="ageChart"></canvas>
+                </div>
+
+                <!-- Education Level Card -->
+                <div class="card" data-order="3">
+                    <h2>Education Level</h2>
+                    <canvas id="educationChart"></canvas>
+                </div>
+
+                <!-- PWD and Voter Status Card -->
+                <div class="card" data-order="4">
+                    <h2>PWD & Voter Status</h2>
+                    <canvas id="pwdVoterChart"></canvas>
+                </div>
+
+                <!-- Certificates Claimed per Month Card -->
+                <div class="card" data-order="5">
+                    <h2>Certificates Claimed per Month</h2>
+                    <canvas id="certChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chart Data JSON -->
+    <script id="dashboard-data" type="application/json">
+        {
+            "male": {{ male_count|default:0 }},
+            "female": {{ female_count|default:0 }},
+            "seniors": {{ seniors_count|default:0 }},
+            "kids": {{ kids_count|default:0 }},
+            "no_education": {{ no_education|default:0 }},
+            "elementary": {{ elementary|default:0 }},
+            "high_school": {{ high_school|default:0 }},
+            "college": {{ college|default:0 }},
+            "pwd": {{ pwd_count|default:0 }},
+            "non_pwd": {{ non_pwd_count|default:0 }},
+            "voter": {{ voter_count|default:0 }},
+            "non_voter": {{ non_voter_count|default:0 }}
+        }
+    </script>
+
+    <!-- Certificates JSON -->
+    <script id="cert-data" type="application/json">
+        {{ cert_data|safe }}
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+    <script>
+        const data = JSON.parse(document.getElementById('dashboard-data').textContent);
+        const certData = JSON.parse(document.getElementById('cert-data').textContent);
+
+        // -------- Charts --------
+        const genderChart = new Chart(document.getElementById('genderChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{ data: [data.male, data.female], backgroundColor: ['#3B82F6', '#EF4444'] }]
+            },
+            options: { 
+                responsive: true, 
+                plugins: { 
+                    legend: { position: 'bottom' },
+                    datalabels: { color: '#fff', font: { weight: 'bold', size: 14 }, formatter: (value) => value }
+                } 
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        const ageChart = new Chart(document.getElementById('ageChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Seniors', 'Kids'],
+                datasets: [{ label: 'Population', data: [data.seniors, data.kids], backgroundColor: ['#10B981', '#F59E0B'] }]
+            },
+            options: { 
+                responsive: true, 
+                plugins: { 
+                    legend: { display: false },
+                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 12 }, formatter: (value) => value }
+                },
+                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } 
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        const educationChart = new Chart(document.getElementById('educationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['No Education', 'Elementary', 'High School', 'College'],
+                datasets: [{ data: [data.no_education, data.elementary, data.high_school, data.college], backgroundColor: ['#F87171', '#FBBF24', '#3B82F6', '#8B5CF6'] }]
+            },
+            options: { 
+                responsive: true, 
+                plugins: { 
+                    legend: { position: 'bottom' },
+                    datalabels: { color: '#fff', font: { weight: 'bold', size: 14 }, formatter: (value) => value }
+                } 
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        const pwdVoterChart = new Chart(document.getElementById('pwdVoterChart'), {
+            type: 'bar',
+            data: {
+                labels: ['PWD', 'Non-PWD', 'Voter', 'Non-Voter'],
+                datasets: [{ label: 'Population', data: [data.pwd, data.non_pwd, data.voter, data.non_voter], backgroundColor: ['#EF4444', '#3B82F6', '#10B981', '#F59E0B'] }]
+            },
+            options: { 
+                responsive: true, 
+                plugins: { 
+                    legend: { display: false },
+                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 12 }, formatter: (value) => value }
+                },
+                scales: { y: { beginAtZero:true, ticks:{precision:0} } } 
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // -------- Certificates Chart --------
+        const certLabels = Object.keys(certData); // Months
+        const certTypes = [...new Set(Object.values(certData).flatMap(month => Object.keys(month)))];
+
+        // Assign fixed colors
+        const colorPalette = [
+            '#3B82F6', '#EF4444', '#10B981', '#F59E0B', '#8B5CF6', '#6366F1', '#14B8A6'
+        ];
+
+        const certDatasets = certTypes.map((type, index) => ({
+            label: type,
+            data: certLabels.map(month => certData[month][type] || 0),
+            backgroundColor: colorPalette[index % colorPalette.length]
+        }));
+
+        const certChart = new Chart(document.getElementById('certChart'), {
+            type: 'bar',
+            data: {
+                labels: certLabels,
+                datasets: certDatasets
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    datalabels: {
+                        color: '#000',
+                        anchor: 'end',
+                        align: 'top',
+                        font: { weight: 'bold', size: 12 },
+                        formatter: (value) => value
+                    }
+                },
+                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // -------- Sidebar Toggle --------
+        function toggleSidebar() {
+            const sidebar = document.querySelector(".sidebar");
+            const toggleIcon = document.querySelector(".toggle-icon");
+            sidebar.classList.toggle("collapsed");
+            toggleIcon.innerHTML = sidebar.classList.contains("collapsed") ? "&#8594;" : "&#8592;";
+
+            // Resize charts on toggle
+            [genderChart, ageChart, educationChart, pwdVoterChart, certChart].forEach(chart => chart.resize());
+        }
+
+        // -------- Sort Dashboard Cards --------
+        document.addEventListener("DOMContentLoaded", function () {
+            const sortSelect = document.getElementById("sortOption");
+            const gridContainer = document.querySelector(".grid-container");
+
+            sortSelect.addEventListener("change", function () {
+                const cards = Array.from(gridContainer.querySelectorAll(".card"));
+                const sortOrder = sortSelect.value;
+                cards.sort((a, b) => {
+                    const aOrder = parseInt(a.getAttribute('data-order'));
+                    const bOrder = parseInt(b.getAttribute('data-order'));
+                    return sortOrder === "ascending" ? aOrder - bOrder : bOrder - aOrder;
+                });
+                gridContainer.innerHTML = "";
+                cards.forEach(card => gridContainer.appendChild(card));
+            });
+        });
+    </script>
+</body>
+</html>

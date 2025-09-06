@@ -1,0 +1,70 @@
+/* Centered square banner */
+#logoutBanner {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    z-index: 10000;
+    padding: 25px 30px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Banner message */
+#logoutBanner p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Buttons */
+#logoutBanner button {
+    margin: 5px 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    min-width: 120px;
+}
+
+#logoutBanner button.backup-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#logoutBanner button.logout-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+#logoutBanner button.cancel-btn {
+    background-color: #ddd;
+    color: #333;
+}
+
+#logoutBanner button:hover {
+    opacity: 0.9;
+}
+
+/* Status message */
+#backupStatus {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Add a container for buttons */
+#logoutBanner .button-container {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    gap: 10px; /* spacing between buttons */
+    flex-wrap: wrap; /* wrap if too narrow */
+    margin-top: 15px;
+}

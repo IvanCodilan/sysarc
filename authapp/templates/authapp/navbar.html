@@ -1,0 +1,97 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+<div class="sidebar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <span class="toggle-icon">&#8592;</span>
+    </button>
+    <div class="logo-container">
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
+            <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
+            <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
+            <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Logout Button -->
+    <button type="button" class="logout-btn" onclick="openLogoutBanner()">Logout</button>
+</div>
+
+<!-- Square Logout Banner -->
+<div id="logoutBanner">
+    <p>Do you want to backup the database before logging out?</p>
+
+    <div class="button-container">
+        <button class="backup-btn" onclick="performBackup()">Yes, Backup & Logout</button>
+        <button class="logout-btn" onclick="logoutWithoutBackup()">Logout Without Backup</button>
+        <button class="cancel-btn" onclick="closeLogoutBanner()">No</button>
+    </div>
+
+    <span id="backupStatus"></span>
+</div>
+
+<script>
+    const logoutUrl = "{% url 'logout' %}";
+    const backupUrl = "{% url 'backup_database' %}";
+    const csrfToken = "{{ csrf_token }}";
+
+    function openLogoutBanner() {
+        document.getElementById("logoutBanner").style.display = "block";
+        document.getElementById("backupStatus").textContent = "";
+    }
+
+    function closeLogoutBanner() {
+        document.getElementById("logoutBanner").style.display = "none";
+        document.getElementById("backupStatus").textContent = "";
+    }
+
+    function logoutWithoutBackup() {
+        window.location.href = logoutUrl;
+    }
+
+    async function performBackup() {
+        const statusElem = document.getElementById("backupStatus");
+        statusElem.style.display = "block";
+        statusElem.style.color = "black";
+        statusElem.textContent = "Backing up database...";
+
+        try {
+            const response = await fetch(backupUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({})
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                statusElem.style.color = "green";
+                statusElem.textContent = "Backup successful! Logging out...";
+                setTimeout(() => {
+                    window.location.href = logoutUrl;
+                }, 1500);
+            } else {
+                throw new Error(result.error || "Backup failed");
+            }
+        } catch (error) {
+            statusElem.style.color = "red";
+            statusElem.textContent = "Backup failed: " + error.message;
+
+            setTimeout(() => {
+                if (confirm("Backup failed. Do you still want to logout?")) {
+                    window.location.href = logoutUrl;
+                }
+            }, 1500);
+        }
+    }
+</script>
