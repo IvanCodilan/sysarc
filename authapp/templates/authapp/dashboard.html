@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <style>
+        canvas {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        .card h2 {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
     {% include 'authapp/navbar.html' %}
@@ -17,38 +27,38 @@
             <header>
                 <h1>Main Dashboard</h1>
                 <select id="sortOption">
-                    <option value="ascending">Ascending</option>
+                    <option value="ascending" selected>Ascending</option>
                     <option value="descending">Descending</option>
                 </select>
             </header>
 
             <div class="grid-container">
                 <!-- Gender Distribution Card -->
-                <div class="card" data-order="1">
+                <div class="card" data-order="2">
                     <h2>Gender Distribution</h2>
                     <canvas id="genderChart"></canvas>
                 </div>
 
                 <!-- Age Groups Card -->
-                <div class="card" data-order="2">
+                <div class="card" data-order="3">
                     <h2>Age Groups</h2>
                     <canvas id="ageChart"></canvas>
                 </div>
 
                 <!-- Education Level Card -->
-                <div class="card" data-order="3">
+                <div class="card" data-order="4">
                     <h2>Education Level</h2>
                     <canvas id="educationChart"></canvas>
                 </div>
 
                 <!-- PWD and Voter Status Card -->
-                <div class="card" data-order="4">
+                <div class="card" data-order="5">
                     <h2>PWD & Voter Status</h2>
                     <canvas id="pwdVoterChart"></canvas>
                 </div>
 
                 <!-- Certificates Claimed per Month Card -->
-                <div class="card" data-order="5">
+                <div class="card" data-order="1">
                     <h2>Certificates Claimed per Month</h2>
                     <canvas id="certChart"></canvas>
                 </div>
@@ -86,138 +96,199 @@
         const data = JSON.parse(document.getElementById('dashboard-data').textContent);
         const certData = JSON.parse(document.getElementById('cert-data').textContent);
 
-        // -------- Charts --------
-        const genderChart = new Chart(document.getElementById('genderChart'), {
+        // Gradient helper
+        function createGradient(ctx, color1, color2) {
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+
+        // ------- Gender Chart -------
+        const genderCtx = document.getElementById('genderChart').getContext('2d');
+        new Chart(genderCtx, {
             type: 'pie',
             data: {
                 labels: ['Male', 'Female'],
-                datasets: [{ data: [data.male, data.female], backgroundColor: ['#3B82F6', '#EF4444'] }]
+                datasets: [{
+                    data: [data.male, data.female],
+                    backgroundColor: [
+                        createGradient(genderCtx, '#2563EB', '#60A5FA'), // deep blue
+                        createGradient(genderCtx, '#DC2626', '#F87171')  // vivid red
+                    ]
+                }]
             },
             options: { 
                 responsive: true, 
+                animation: { duration: 800, easing: 'easeOutQuart' },
                 plugins: { 
                     legend: { position: 'bottom' },
-                    datalabels: { color: '#fff', font: { weight: 'bold', size: 14 }, formatter: (value) => value }
+                    datalabels: { color: '#fff', font: { weight: 'bold', size: 14 } }
                 } 
             },
             plugins: [ChartDataLabels]
         });
 
-        const ageChart = new Chart(document.getElementById('ageChart'), {
+        // ------- Age Groups -------
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        new Chart(ageCtx, {
             type: 'bar',
             data: {
                 labels: ['Seniors', 'Kids'],
-                datasets: [{ label: 'Population', data: [data.seniors, data.kids], backgroundColor: ['#10B981', '#F59E0B'] }]
+                datasets: [{
+                    label: 'Population',
+                    data: [data.seniors, data.kids],
+                    backgroundColor: [
+                        createGradient(ageCtx, '#059669', '#34D399'), // emerald green
+                        createGradient(ageCtx, '#D97706', '#FBBF24')  // amber
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false
+                }]
             },
             options: { 
                 responsive: true, 
+                animation: { duration: 800, easing: 'easeOutQuart' },
                 plugins: { 
                     legend: { display: false },
-                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 12 }, formatter: (value) => value }
+                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 12 } }
                 },
-                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } 
-            },
-            plugins: [ChartDataLabels]
-        });
-
-        const educationChart = new Chart(document.getElementById('educationChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['No Education', 'Elementary', 'High School', 'College'],
-                datasets: [{ data: [data.no_education, data.elementary, data.high_school, data.college], backgroundColor: ['#F87171', '#FBBF24', '#3B82F6', '#8B5CF6'] }]
-            },
-            options: { 
-                responsive: true, 
-                plugins: { 
-                    legend: { position: 'bottom' },
-                    datalabels: { color: '#fff', font: { weight: 'bold', size: 14 }, formatter: (value) => value }
+                scales: { 
+                    x: { grid: { display: false } },
+                    y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.05)" }, ticks: { precision: 0 } } 
                 } 
             },
             plugins: [ChartDataLabels]
         });
 
-        const pwdVoterChart = new Chart(document.getElementById('pwdVoterChart'), {
-            type: 'bar',
+        // ------- Education -------
+        const eduCtx = document.getElementById('educationChart').getContext('2d');
+        new Chart(eduCtx, {
+            type: 'doughnut',
             data: {
-                labels: ['PWD', 'Non-PWD', 'Voter', 'Non-Voter'],
-                datasets: [{ label: 'Population', data: [data.pwd, data.non_pwd, data.voter, data.non_voter], backgroundColor: ['#EF4444', '#3B82F6', '#10B981', '#F59E0B'] }]
+                labels: ['No Education', 'Elementary', 'High School', 'College'],
+                datasets: [{
+                    data: [data.no_education, data.elementary, data.high_school, data.college],
+                    backgroundColor: [
+                        createGradient(eduCtx, '#DC2626', '#FCA5A5'), // red
+                        createGradient(eduCtx, '#EAB308', '#FACC15'), // yellow
+                        createGradient(eduCtx, '#2563EB', '#3B82F6'), // blue
+                        createGradient(eduCtx, '#7C3AED', '#A78BFA')  // violet
+                    ]
+                }]
             },
             options: { 
                 responsive: true, 
+                animation: { duration: 800, easing: 'easeOutQuart' },
                 plugins: { 
-                    legend: { display: false },
-                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 12 }, formatter: (value) => value }
-                },
-                scales: { y: { beginAtZero:true, ticks:{precision:0} } } 
+                    legend: { position: 'bottom' },
+                    datalabels: { color: '#fff', font: { weight: 'bold', size: 13 } }
+                } 
             },
             plugins: [ChartDataLabels]
         });
 
-        // -------- Certificates Chart --------
-        const certLabels = Object.keys(certData); // Months
-        const certTypes = [...new Set(Object.values(certData).flatMap(month => Object.keys(month)))];
-
-        // Assign fixed colors
-        const colorPalette = [
-            '#3B82F6', '#EF4444', '#10B981', '#F59E0B', '#8B5CF6', '#6366F1', '#14B8A6'
-        ];
-
-        const certDatasets = certTypes.map((type, index) => ({
-            label: type,
-            data: certLabels.map(month => certData[month][type] || 0),
-            backgroundColor: colorPalette[index % colorPalette.length]
-        }));
-
-        const certChart = new Chart(document.getElementById('certChart'), {
+        // ------- PWD & Voter -------
+        const pwdCtx = document.getElementById('pwdVoterChart').getContext('2d');
+        new Chart(pwdCtx, {
             type: 'bar',
             data: {
-                labels: certLabels,
-                datasets: certDatasets
+                labels: ['PWD', 'Non-PWD', 'Voter', 'Non-Voter'],
+                datasets: [{
+                    label: 'Population',
+                    data: [data.pwd, data.non_pwd, data.voter, data.non_voter],
+                    backgroundColor: [
+                        createGradient(pwdCtx, '#DC2626', '#F87171'), // red
+                        createGradient(pwdCtx, '#2563EB', '#60A5FA'), // blue
+                        createGradient(pwdCtx, '#059669', '#34D399'), // green
+                        createGradient(pwdCtx, '#D97706', '#FBBF24')  // orange
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false
+                }]
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom' },
-                    datalabels: {
-                        color: '#000',
-                        anchor: 'end',
-                        align: 'top',
-                        font: { weight: 'bold', size: 12 },
-                        formatter: (value) => value
-                    }
+            options: { 
+                responsive: true, 
+                animation: { duration: 800, easing: 'easeOutQuart' },
+                plugins: { 
+                    legend: { display: false },
+                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 12 } }
                 },
-                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+                scales: { 
+                    x: { grid: { display: false } },
+                    y: { beginAtZero:true, grid: { color: "rgba(0,0,0,0.05)" }, ticks:{precision:0} } 
+                } 
             },
             plugins: [ChartDataLabels]
         });
 
-        // -------- Sidebar Toggle --------
+        // ------- Certificates per Month -------
+        const certCtx = document.getElementById('certChart').getContext('2d');
+        const certLabels = Object.keys(certData); 
+        const certTypes = [...new Set(Object.values(certData).flatMap(month => Object.keys(month)))];
+
+        const palette = [
+            ['#2563EB','#60A5FA'], // blue
+            ['#DC2626','#F87171'], // red
+            ['#059669','#34D399'], // green
+            ['#D97706','#FBBF24'], // orange
+            ['#7C3AED','#A78BFA'], // violet
+            ['#0EA5E9','#38BDF8'], // sky
+            ['#14B8A6','#2DD4BF']  // teal
+        ];
+
+        const certDatasets = certTypes.map((type, i) => ({
+            label: type,
+            data: certLabels.map(m => certData[m][type] || 0),
+            backgroundColor: createGradient(certCtx, palette[i % palette.length][0], palette[i % palette.length][1]),
+            borderRadius: 12,
+            borderSkipped: false
+        }));
+
+        new Chart(certCtx, {
+            type: 'bar',
+            data: { labels: certLabels, datasets: certDatasets },
+            options: {
+                responsive: true,
+                animation: { duration: 800, easing: 'easeOutQuart' },
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 14, weight: 'bold' }, color: '#333' } },
+                    datalabels: { color: '#000', anchor: 'end', align: 'top', font: { weight: 'bold', size: 13 }, formatter: (v) => v>0?v:'' }
+                },
+                scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 13, weight: 'bold' }, color: '#444' } },
+                    y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.05)" }, ticks: { precision: 0, font: { size: 12 }, color: '#666' } }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ---- Sidebar Toggle ----
         function toggleSidebar() {
             const sidebar = document.querySelector(".sidebar");
             const toggleIcon = document.querySelector(".toggle-icon");
             sidebar.classList.toggle("collapsed");
             toggleIcon.innerHTML = sidebar.classList.contains("collapsed") ? "&#8594;" : "&#8592;";
-
-            // Resize charts on toggle
-            [genderChart, ageChart, educationChart, pwdVoterChart, certChart].forEach(chart => chart.resize());
         }
 
-        // -------- Sort Dashboard Cards --------
+        // ---- Sort Cards ----
         document.addEventListener("DOMContentLoaded", function () {
             const sortSelect = document.getElementById("sortOption");
             const gridContainer = document.querySelector(".grid-container");
 
-            sortSelect.addEventListener("change", function () {
+            function sortCards(order) {
                 const cards = Array.from(gridContainer.querySelectorAll(".card"));
-                const sortOrder = sortSelect.value;
                 cards.sort((a, b) => {
                     const aOrder = parseInt(a.getAttribute('data-order'));
                     const bOrder = parseInt(b.getAttribute('data-order'));
-                    return sortOrder === "ascending" ? aOrder - bOrder : bOrder - aOrder;
+                    return order === "ascending" ? aOrder - bOrder : bOrder - aOrder;
                 });
                 gridContainer.innerHTML = "";
                 cards.forEach(card => gridContainer.appendChild(card));
-            });
+            }
+
+            sortCards(sortSelect.value);
+            sortSelect.addEventListener("change", () => sortCards(sortSelect.value));
         });
     </script>
 </body>
