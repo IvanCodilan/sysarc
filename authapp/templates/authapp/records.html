@@ -19,7 +19,9 @@
       <h1>Records</h1>
 
       <!-- Add New Resident Button -->
+      {% if not is_limited %}
       <button onclick="openAddForm()" class="add-btn">+ Add New Resident</button>
+      {% endif %}
 
       <!-- ADD RESIDENT MODAL -->
       <div id="addResidentModal" class="modal">
@@ -180,8 +182,11 @@
       <!-- Excel Upload -->
       <form id="excelUploadForm" enctype="multipart/form-data" method="post" action="" style="margin-top: 10px;">
         {% csrf_token %}
+        {% if not is_limited %}
         <input type="file" name="excel_file" accept=".xlsx, .xls" required>
+        
         <button type="submit" class="upload-btn">Upload Excel</button>
+        {% endif %}
       </form>
     </div>
 
@@ -228,9 +233,10 @@
             <td>{{ resident.gender }}</td>
             <td>{{ resident.street_number }} {{ resident.street }}, {{ resident.barangay }}, {{ resident.city }}</td>
             <td>
+              {% if not is_limited %}
               <button onclick="editResident('{{ resident.id }}')" class="edit-btn">Edit</button>
               <button onclick="deleteResident('{{ resident.id }}')" class="delete-btn">Delete</button>
-
+              {% endif %}
               <!-- Hidden Data for Edit -->
               <div id="resident-data-{{ resident.id }}" style="display:none;">
                 <input type="hidden" class="civil_status" value="{{ resident.civil_status }}">
@@ -264,13 +270,70 @@
 
 <!-- Resident Detail Modal -->
 <div id="residentDetailModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeResidentDetail()" style="cursor:pointer;font-size:24px;">&times;</span>
-    <div id="residentDetailContent">
-      <!-- content loaded via AJAX -->
-    </div>
+  <div class="modal-content resident-detail-modal">
+    <span class="close-btn" onclick="closeResidentDetail()" style="cursor:pointer;font-size:28px;">&times;</span>
+    <div id="residentDetailContent"></div>
   </div>
 </div>
+
+<style>
+  .resident-detail-modal {
+    width: 80%;
+    max-width: 900px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .resident-modal-inner h2 {
+    margin-bottom: 10px;
+    font-size: 26px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  .resident-modal-inner h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+
+  .resident-modal-inner p {
+    margin: 6px 0;
+    line-height: 1.5;
+  }
+
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .certificate-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .certificate-item strong {
+    display: block;
+    font-size: 15px;
+    color: #222;
+    margin-bottom: 6px;
+  }
+
+  .certificate-date {
+    color: #666;
+    font-size: 13px;
+  }
+</style>
 
 <!-- Scripts -->
 {% load static %}
@@ -304,6 +367,18 @@
     document.getElementById("residentDetailModal").style.display = "none";
     document.getElementById("residentDetailContent").innerHTML = "";
   };
+</script>
+<script>
+    const userGroups = JSON.parse('{{ user_groups|escapejs }}');
+
+    function isLimitedUser() {
+        return userGroups.includes("LimitedUser");
+    }
+
+    if (isLimitedUser()) {
+        document.querySelectorAll('.edit-btn, .delete-btn, .add-btn, .upload-btn')
+            .forEach(btn => btn.style.display = "none");
+    }
 </script>
 
 </body>

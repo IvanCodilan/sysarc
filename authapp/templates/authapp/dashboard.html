@@ -17,6 +17,35 @@
             font-weight: 600;
             color: #333;
         }
+        /* 🔹 Backup Banner Styling */
+        #backupBanner {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1f2937;
+            color: white;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 320px;
+        }
+        #backupBanner button {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+        }
+        #backupBanner .backup-btn {
+            background: #2563EB;
+            color: white;
+        }
+        #backupBanner .later-btn {
+            background: #6B7280;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +95,18 @@
         </div>
     </main>
 
+    <!-- 🔹 Backup Reminder Banner -->
+    <div id="backupBanner">
+        <p style="margin: 0 0 10px 0; font-weight: bold;">
+            💾 Don't forget to back up the database!
+        </p>
+        <div style="display: flex; gap: 8px;">
+            <button onclick="performBackup()" class="backup-btn">Backup Now</button>
+            <button onclick="dismissBackupBanner()" class="later-btn">Later</button>
+        </div>
+        <span id="backupStatus" style="display:block; margin-top:10px; font-size: 14px;"></span>
+    </div>
+
     <!-- Chart Data JSON -->
     <script id="dashboard-data" type="application/json">
         {
@@ -113,8 +154,8 @@
                 datasets: [{
                     data: [data.male, data.female],
                     backgroundColor: [
-                        createGradient(genderCtx, '#2563EB', '#60A5FA'), // deep blue
-                        createGradient(genderCtx, '#DC2626', '#F87171')  // vivid red
+                        createGradient(genderCtx, '#2563EB', '#60A5FA'), 
+                        createGradient(genderCtx, '#DC2626', '#F87171')
                     ]
                 }]
             },
@@ -139,8 +180,8 @@
                     label: 'Population',
                     data: [data.seniors, data.kids],
                     backgroundColor: [
-                        createGradient(ageCtx, '#059669', '#34D399'), // emerald green
-                        createGradient(ageCtx, '#D97706', '#FBBF24')  // amber
+                        createGradient(ageCtx, '#059669', '#34D399'),
+                        createGradient(ageCtx, '#D97706', '#FBBF24')
                     ],
                     borderRadius: 12,
                     borderSkipped: false
@@ -170,10 +211,10 @@
                 datasets: [{
                     data: [data.no_education, data.elementary, data.high_school, data.college],
                     backgroundColor: [
-                        createGradient(eduCtx, '#DC2626', '#FCA5A5'), // red
-                        createGradient(eduCtx, '#EAB308', '#FACC15'), // yellow
-                        createGradient(eduCtx, '#2563EB', '#3B82F6'), // blue
-                        createGradient(eduCtx, '#7C3AED', '#A78BFA')  // violet
+                        createGradient(eduCtx, '#DC2626', '#FCA5A5'),
+                        createGradient(eduCtx, '#EAB308', '#FACC15'),
+                        createGradient(eduCtx, '#2563EB', '#3B82F6'),
+                        createGradient(eduCtx, '#7C3AED', '#A78BFA')
                     ]
                 }]
             },
@@ -198,10 +239,10 @@
                     label: 'Population',
                     data: [data.pwd, data.non_pwd, data.voter, data.non_voter],
                     backgroundColor: [
-                        createGradient(pwdCtx, '#DC2626', '#F87171'), // red
-                        createGradient(pwdCtx, '#2563EB', '#60A5FA'), // blue
-                        createGradient(pwdCtx, '#059669', '#34D399'), // green
-                        createGradient(pwdCtx, '#D97706', '#FBBF24')  // orange
+                        createGradient(pwdCtx, '#DC2626', '#F87171'),
+                        createGradient(pwdCtx, '#2563EB', '#60A5FA'),
+                        createGradient(pwdCtx, '#059669', '#34D399'),
+                        createGradient(pwdCtx, '#D97706', '#FBBF24')
                     ],
                     borderRadius: 12,
                     borderSkipped: false
@@ -228,13 +269,13 @@
         const certTypes = [...new Set(Object.values(certData).flatMap(month => Object.keys(month)))];
 
         const palette = [
-            ['#2563EB','#60A5FA'], // blue
-            ['#DC2626','#F87171'], // red
-            ['#059669','#34D399'], // green
-            ['#D97706','#FBBF24'], // orange
-            ['#7C3AED','#A78BFA'], // violet
-            ['#0EA5E9','#38BDF8'], // sky
-            ['#14B8A6','#2DD4BF']  // teal
+            ['#2563EB','#60A5FA'], 
+            ['#DC2626','#F87171'], 
+            ['#059669','#34D399'], 
+            ['#D97706','#FBBF24'], 
+            ['#7C3AED','#A78BFA'], 
+            ['#0EA5E9','#38BDF8'], 
+            ['#14B8A6','#2DD4BF']  
         ];
 
         const certDatasets = certTypes.map((type, i) => ({
@@ -291,5 +332,71 @@
             sortSelect.addEventListener("change", () => sortCards(sortSelect.value));
         });
     </script>
+
+    <script>
+    (function() {
+        const backupUrl = "{% url 'backup_database' %}";
+        const csrfToken = "{{ csrf_token }}";
+
+        // 🔹 Change here: 7 days in milliseconds
+        const snoozeTime = 7 * 24 * 60 * 60 * 1000; 
+
+        function checkBackupReminder() {
+            const banner = document.getElementById("backupBanner");
+            const lastDismiss = localStorage.getItem("lastBackupDismiss");
+            const now = Date.now();
+
+            if (!lastDismiss) {
+                // First time → show immediately
+                banner.style.display = "block";
+            } else {
+                const diff = now - parseInt(lastDismiss, 10);
+                if (isNaN(diff) || diff > snoozeTime) {
+                    banner.style.display = "block";
+                }
+            }
+        }
+
+        window.dismissBackupBanner = function() {
+            document.getElementById("backupBanner").style.display = "none";
+            localStorage.setItem("lastBackupDismiss", Date.now());
+        }
+
+        window.performBackup = async function() {
+            const statusElem = document.getElementById("backupStatus");
+            statusElem.style.color = "white";
+            statusElem.textContent = "⏳ Backing up database...";
+
+            try {
+                const response = await fetch(backupUrl, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": csrfToken,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({})
+                });
+                const result = await response.json();
+                if (result.success) {
+                    statusElem.style.color = "lightgreen";
+                    statusElem.textContent = "✅ Backup successful!";
+                    localStorage.setItem("lastBackupDismiss", Date.now());
+                    setTimeout(() => dismissBackupBanner(), 2000);
+                } else {
+                    throw new Error(result.error || "Backup failed");
+                }
+            } catch (error) {
+                statusElem.style.color = "red";
+                statusElem.textContent = "❌ Backup failed: " + error.message;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", checkBackupReminder);
+
+    })();
+</script>
+
+
+
 </body>
 </html>

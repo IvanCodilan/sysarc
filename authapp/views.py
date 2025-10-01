@@ -174,6 +174,7 @@ def records_view(request):
     filter_type = request.GET.get('filter')
     today = date.today()
 
+    # Start with all residents
     residents = PersonInformation.objects.all()
 
     # Search by name
@@ -186,26 +187,38 @@ def records_view(request):
 
     # Filter by age or gender
     if filter_type == 'seniors':
-        residents = [r for r in residents if r.date_of_birth and (
-            today.year - r.date_of_birth.year - ((today.month, today.day) < (r.date_of_birth.month, r.date_of_birth.day)) >= 60)]
+        residents = residents.filter(
+            date_of_birth__isnull=False,
+            date_of_birth__lte=date(today.year - 60, today.month, today.day)
+        )
     elif filter_type == 'kids':
-        residents = [r for r in residents if r.date_of_birth and (
-            today.year - r.date_of_birth.year - ((today.month, today.day) < (r.date_of_birth.month, r.date_of_birth.day)) <= 17)]
+        residents = residents.filter(
+            date_of_birth__isnull=False,
+            date_of_birth__gte=date(today.year - 17, today.month, today.day)
+        )
     elif filter_type == 'male':
         residents = residents.filter(gender__iexact='Male')
     elif filter_type == 'female':
         residents = residents.filter(gender__iexact='Female')
 
+    # Check if the user is LimitedUser
+    is_limited = request.user.groups.filter(name="LimitedUser").exists()
+
     return render(request, "authapp/records.html", {
         "residents": residents,
         "query": query,
-        "selected_filter": filter_type
+        "selected_filter": filter_type,
+        "is_limited": is_limited,  # <-- pass this to template
     })
 
 
 @csrf_exempt
 @login_required
 def add_resident(request):
+    if request.user.groups.filter(name="LimitedUser").exists():
+        messages.error(request, "You are not allowed to add residents.")
+        return redirect("records")
+
     if request.method == "POST":
         try:
             dob = request.POST.get("date_of_birth") or None
@@ -242,6 +255,10 @@ def add_resident(request):
 @csrf_exempt
 @login_required
 def update_resident(request, id):
+    if request.user.groups.filter(name="LimitedUser").exists():
+        messages.error(request, "You are not allowed to update residents.")
+        return redirect("records")
+
     person = get_object_or_404(PersonInformation, id=id)
     if request.method == "POST":
         try:
@@ -249,7 +266,6 @@ def update_resident(request, id):
             if dob:
                 dob = parse_date(dob)
 
-            # Update fields
             for field in [
                 "region", "barangay", "last_name", "first_name", "middle_name",
                 "street_number", "street", "city", "province", "place_of_birth",
@@ -298,6 +314,11 @@ def get_resident(request, id):
 @csrf_exempt
 @login_required
 def delete_resident(request, id):
+    # 🚫 Restrict LimitedUser
+    if request.user.groups.filter(name="LimitedUser").exists():
+        messages.error(request, "You are not allowed to delete residents.")
+        return redirect("records")
+
     person = get_object_or_404(PersonInformation, id=id)
     if request.method == "POST":
         person.delete()
@@ -308,6 +329,10 @@ def delete_resident(request, id):
 @csrf_exempt
 @login_required
 def upload_excel(request):
+    # 🚫 Restrict LimitedUser
+    if request.user.groups.filter(name="LimitedUser").exists():
+        return JsonResponse({'success': False, 'message': 'You are not allowed to upload records.'}, status=403)
+
     if request.method == 'POST' and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
 
@@ -348,42 +373,49 @@ def upload_excel(request):
 
             # Bulk create all valid residents at once
             PersonInformation.objects.bulk_create(residents_to_create)
-
-
+            
             return JsonResponse({'success': True, 'message': f'{len(residents_to_create)} records uploaded successfully.'})
         except Exception as e:
             return JsonResponse({'success': False, 'message': f'Error processing file: {str(e)}'})
 
     return JsonResponse({'success': False, 'message': 'No file uploaded or invalid method'})
 
-#
 
+@login_required
 def search_resident(request, cert_type):
+    search_name = ""
+    residents = None
+    error = None
+
     if request.method == "POST":
         search_name = request.POST.get("full_name")
-        # Search in first_name, last_name, or middle_name
         residents = PersonInformation.objects.filter(
             Q(first_name__icontains=search_name) |
             Q(last_name__icontains=search_name) |
             Q(middle_name__icontains=search_name)
         )
-        
+
         if residents.exists():
             if residents.count() == 1:
                 return redirect('generate_certificate', cert_type=cert_type, resident_id=residents.first().id)
-            else:
-                return render(request, 'certificates/search.html', {
-                    'residents': residents,
-                    'cert_type': cert_type,
-                    'search_term': search_name
-                })
         else:
-            return render(request, 'certificates/search.html', {
-                'error': 'Resident not found.',
-                'cert_type': cert_type,
-                'search_term': search_name
-            })
-    return render(request, 'certificates/search.html', {'cert_type': cert_type})
+            error = "Resident not found."
+
+    # Check if the user is LimitedUser
+    is_limited = request.user.groups.filter(name="LimitedUser").exists()
+    # Pass all user groups to template for JS logic if needed
+    user_groups = list(request.user.groups.values_list('name', flat=True))
+
+    context = {
+        'cert_type': cert_type,
+        'residents': residents,
+        'search_term': search_name,
+        'error': error,
+        'is_limited': is_limited,
+        'user_groups': user_groups,
+    }
+
+    return render(request, 'certificates/search.html', context)
 
 
 def generate_certificate(request, cert_type, resident_id):
@@ -472,7 +504,12 @@ def get_officials_json(request):
     response['Expires'] = '0'
     return response
 
+@login_required
 def update_officials(request):
+    # 🚫 Restrict LimitedUser
+    if request.user.groups.filter(name="LimitedUser").exists():
+        return JsonResponse({'success': False, 'error': 'You are not allowed to update officials.'}, status=403)
+
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
@@ -488,7 +525,9 @@ def update_officials(request):
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
     return JsonResponse({'success': False, 'error': 'Invalid method'}, status=400)
+
 
 @login_required
 def backup_database(request):
@@ -542,14 +581,28 @@ def backup_database(request):
 @login_required
 def resident_detail_modal(request, id):
     resident = get_object_or_404(PersonInformation, id=id)
+
     total_certs = CertificateLog.objects.filter(resident=resident).count()
-    certs_by_type = (CertificateLog.objects
-                        .filter(resident=resident)
-                        .values('certificate_type')
-                        .annotate(count=Count('id'))
-                        .order_by('-count'))
+
+    certs_by_type = (
+        CertificateLog.objects
+        .filter(resident=resident)
+        .values('certificate_type')
+        .annotate(count=Count('id'))
+        .order_by('-count')
+    )
+
+    certificates = (
+        CertificateLog.objects
+        .filter(resident=resident)
+        .select_related('admin')
+        .order_by('-created_at')
+    )
+
     return render(request, 'authapp/resident_detail_modal.html', {
         'resident': resident,
         'total_certs': total_certs,
         'certs_by_type': certs_by_type,
+        'certificates': certificates,
     })
+    

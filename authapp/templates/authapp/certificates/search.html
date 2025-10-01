@@ -43,7 +43,9 @@
           <p>Use the search bar to quickly find the person whose certificate you want to create. Once found, select this record to automatically generate and print the certificate.</p>
         </div>
         <button class="manual-btn" onclick="openManualModal()">Manual Certificate</button>
+        {% if not is_limited %}
         <button class="manual-btn" onclick="openOfficialsModal()">Barangay Officials</button>
+        {% endif %}
       </div>
 
       <div class="certificate-preview">
@@ -115,5 +117,6 @@
   </script>
   <script src="{% static 'js/search.js' %}"></script>
   <script src="{% static 'js/officials.js' %}"></script>
+  
 </body>
 </html>
