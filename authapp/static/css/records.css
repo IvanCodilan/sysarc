@@ -1,0 +1,563 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5f5; /* From second CSS */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #fff;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width 0.3s ease-in-out;
+    border-right: 1px solid #ddd;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-radius: 0 20px 20px 0;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+}
+
+/* Logo */
+.sidebar .logo-container {
+    text-align: center;
+}
+
+.sidebar .logo-container img {
+    width: 100px;
+    padding-top: 50px;
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .logo-container img {
+    width: 35px;
+    padding-bottom: 45px;
+}
+
+/* Sidebar Navigation */
+.sidebar nav ul {
+    margin-top: -350px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+.sidebar nav ul li {
+    display: absolute;
+    align-items: center;
+    padding: 15px 0;
+    padding-bottom: 30px;
+}
+
+.sidebar nav ul li a {
+    display: absolute;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    border-radius: 2px;
+    transition: background 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Sidebar Icons */
+.sidebar nav ul li i {
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+    transition: font-size 0.3s ease;
+}
+
+/* Sidebar Text */
+.sidebar nav ul li .nav-text {
+    margin-left: 12px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out 0.2s; /* Delayed appearance */
+}
+
+/* When Sidebar is Collapsed */
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar.collapsed nav ul li a {
+    justify-content: center;
+}
+
+.sidebar.collapsed nav ul li i {
+    font-size: 20px; 
+}
+
+.sidebar.collapsed nav ul li .nav-text {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out; /* Quick fade out */
+    pointer-events: none;
+}
+
+/* Logout Button */
+.logout-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 30%;
+    text-align: center;
+    margin-top: -450px;
+    margin-left: auto;
+}
+
+.logout-btn:hover {
+    background: #cc0000; /* Darker red on hover */
+}
+
+.sidebar.collapsed .logout-btn {
+    display: none;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    position: absolute;
+    width: 35px; /* Increase width */
+    height: 35px; /* Increase height */
+    top: 25px;
+    right: -20px;
+    background: #d80000;
+    color: white;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.sidebar-toggle:hover {
+    background: #cc0000; /* Darker red on hover */
+}
+
+/* Main Content */
+.records {
+    margin-left: 275px;
+    padding: 30px;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+    width: calc(100% - 250px);
+}
+
+.sidebar.collapsed + .records {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+/* Records Main Card */
+.records-main-card {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.records-main-card h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Buttons */
+.add-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+.upload-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+}
+
+.upload-btn:active {
+    background-color: #3e8e41;
+    transform: scale(0.98);
+}
+
+/* Records Container & Table */
+.records-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+    width: 98%;
+}
+
+.records-table {
+    width: 98%;
+    border-collapse: collapse;
+}
+
+.records-table th,
+.records-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.records-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.records-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Table Buttons */
+.edit-btn, .delete-btn, .save-btn, .cancel-btn {
+    padding: 6px 10px;
+    margin-right: 5px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.save-btn {
+    margin-top: 10px;
+    background-color: #17a2b8;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: gray;
+    color: white;
+}
+
+/* Form Styles */
+#addForm input, #addForm select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+#addForm button {
+    margin-top: 10px;
+    
+}
+
+
+/* Search and Filter */
+.search-bar {
+    padding: 8px 12px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.search-btn {
+    padding: 8px 16px;
+    background-color: #2196F3;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #1976D2;
+}
+
+select[name="filter"], #filterSelect {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.record-count {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#liveSearch {
+    padding: 8px 12px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#liveSearch:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* Records Grid Layout */
+.records-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+/* Individual Records Card */
+.records-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 20px;
+    width: 100%;
+}
+
+/* Modal Background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close-btn {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Input Styles inside modal */
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Buttons inside modal */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.modal-actions button {
+  flex: 1;
+  margin: 0 5px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.main-records-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 100%; /* Make it span the full width */
+}
+
+.records-background-card {
+    background: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+/* Modal Background */
+#residentDetailModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  overflow-y: auto;
+}
+
+/* Modal Background */
+#residentDetailModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+/* Modal Content */
+#residentDetailModal .modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+/* Close Button */
+#residentDetailModal .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#residentDetailModal .close-btn:hover {
+  color: #28a745;
+}
+
+/* Headings (h3) inside modal content */
+#residentDetailModal .modal-content h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff; /* blue */
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* Labels like Region, Province, etc. inside modal */
+#residentDetailModal .modal-content .resident-label {
+  display: inline-block;
+  background-color: #28a745; /* green */
+  color: #fff;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin: 4px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Total Certificates inside modal */
+#residentDetailModal .modal-content .total-certificates {
+  display: inline-block;
+  background-color: #007bff; /* blue */
+  color: #fff;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+}

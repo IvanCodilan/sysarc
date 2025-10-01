@@ -1,0 +1,238 @@
+/* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: 1000px; 
+      margin: 20px auto; 
+      padding: 20px;
+    }
+
+    .search-box {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .search-box .search-section {
+      flex: 1;
+      min-width: 300px; 
+    }
+
+    .search-box .certificate-preview {
+      flex: 1;
+      text-align: center;
+      min-width: 500px;
+      max-width: 700px;
+    }
+
+    .certificate-preview img {
+      width: 100%;
+      max-height: 700px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .search-section h2 {
+      margin-bottom: 20px;
+      color: #111827;
+      font-size: 1.5rem;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .search-form input {
+      width: 70%;
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+
+    .search-form input:focus {
+      border-color: #3b82f6;
+      outline: none;
+    }
+
+    .search-form button {
+      padding: 9px 16px; 
+      background-color: #ebebeb;
+      color: #000000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 16px;
+    }
+
+    .search-form button:hover {
+      background-color: #afafaf;
+    }
+
+    .manual-btn {
+      background-color: #3b82f6;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .manual-btn:hover {
+      background-color: #2563eb;
+    }
+
+    .search-results ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .search-results li {
+      margin: 10px 0;
+      padding: 8px;
+      background-color: #f9fafb;
+      border-radius: 6px;
+    }
+
+    .search-results a {
+      text-decoration: none;
+      color: #1f2937;
+      font-weight: 500;
+    }
+
+    .search-results a:hover {
+      text-decoration: underline;
+    }
+
+    .instructions {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 6px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .modal-content input,
+    .modal-content select,
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content button {
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+
+    .modal-content button:hover {
+      background-color: #1c3f8a;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #888;
+    }
+
+  .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 80%;
+    max-width: 600px;
+    resize: both; 
+    min-height: 300px;
+    min-width: 400px;
+  }
+  
+  #officialsEditContainer {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .search-box {
+        gap: 15px;
+        padding: 15px;
+      }
+
+      .certificate-preview {
+        max-width: 100%;
+        min-width: 0;
+      }
+      
+      .search-form input {
+        width: 60%;
+      }
+    }
