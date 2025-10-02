@@ -428,11 +428,11 @@ def generate_certificate(request, cert_type, resident_id):
     # Define purpose_map first
     purpose_map = {
         "good_moral": "Good Moral Certificate",
-        "financial_assistance": "FINANCIAL ASSISTANCE",
-        "proof_of_residency": "PROOF OF RESIDENCY",
-        "medical_assistance": "MEDICAL ASSISTANCE",
-        "first_time_job_seekers": "EMPLOYMENT REQUIREMENT",
-        "solo_parent_renewal": "SOLO PARENT/PWD SUPPORT"
+        "financial_assistance": "Financial Assistance",
+        "proof_of_residency": "Proof of Residency",
+        "medical_assistance": "Medical Assistance",
+        "first_time_job_seekers": "Employment Requirement",
+        "solo_parent_renewal": "Solo Parent/ PWD Support"
     }
 
     resident = get_object_or_404(PersonInformation, pk=resident_id)
@@ -556,8 +556,26 @@ def backup_database(request):
             db_host = db_settings.get('HOST', '127.0.0.1')
             db_port = db_settings.get('PORT', '3306')
 
-            # Full path to mysqldump
-            mysqldump_path = r"C:\Program Files\MySQL\MySQL Server 9.0\bin\mysqldump.exe"
+            # Try to find mysqldump in common locations
+            possible_paths = [
+                r"C:\Program Files\MySQL\MySQL Server 9.0\bin\mysqldump.exe",
+                r"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe",
+                r"C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe",
+                r"C:\xampp\mysql\bin\mysqldump.exe",
+                r"C:\wamp64\bin\mysql\mysql8.0.31\bin\mysqldump.exe",
+            ]
+            
+            mysqldump_path = None
+            for path in possible_paths:
+                if Path(path).exists():
+                    mysqldump_path = path
+                    break
+            
+            if not mysqldump_path:
+                return JsonResponse({
+                    "success": False, 
+                    "error": "mysqldump.exe not found. Please check your MySQL installation path."
+                }, status=500)
 
             # Build command
             command = [
@@ -565,23 +583,27 @@ def backup_database(request):
                 f"-u{db_user}",
                 f"-h{db_host}",
                 f"-P{db_port}",
-                db_name
             ]
 
-            # Only add password if not empty
+            # Add password if not empty
             if db_password:
-                command.insert(2, f"-p{db_password}")  # after username
+                command.append(f"-p{db_password}")
+            
+            command.append(db_name)
 
             # Run the command
             with open(backup_file, "w", encoding="utf-8") as f:
-                subprocess.run(command, stdout=f, stderr=subprocess.PIPE, check=True)
+                result = subprocess.run(command, stdout=f, stderr=subprocess.PIPE, check=True)
 
             return JsonResponse({"success": True, "file": str(backup_file)})
 
         except subprocess.CalledProcessError as e:
-            return JsonResponse({"success": False, "error": e.stderr.decode('utf-8')}, status=500)
+            error_msg = e.stderr.decode('utf-8') if e.stderr else "Unknown error occurred"
+            return JsonResponse({"success": False, "error": f"Backup failed: {error_msg}"}, status=500)
+        except FileNotFoundError:
+            return JsonResponse({"success": False, "error": "MySQL is not installed or mysqldump.exe not found"}, status=500)
         except Exception as e:
-            return JsonResponse({"success": False, "error": str(e)}, status=500)
+            return JsonResponse({"success": False, "error": f"Error: {str(e)}"}, status=500)
 
     return JsonResponse({"error": "Invalid method"}, status=405)
 
@@ -692,4 +714,23 @@ def password_reset_confirm(request, uidb64, token):
 
 def password_reset_complete(request):
     return render(request, 'authapp/password_reset_complete.html')
+
+@login_required
+def user_settings(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        
+        # Update user email
+        if email:
+            request.user.email = email
+            request.user.save()
+            messages.success(request, "Email updated successfully!")
+        else:
+            messages.error(request, "Email cannot be empty.")
+        
+        return redirect('user_settings')
+    
+    return render(request, 'authapp/user_settings.html', {
+        'user': request.user
+    })
     
