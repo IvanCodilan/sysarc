@@ -717,6 +717,11 @@ def password_reset_complete(request):
 
 @login_required
 def user_settings(request):
+    # Restrict to Admin group only
+    if not request.user.groups.filter(name="Admin").exists():
+        messages.error(request, "You do not have permission to access this page.")
+        return redirect('dashboard')
+    
     if request.method == "POST":
         email = request.POST.get("email")
         
