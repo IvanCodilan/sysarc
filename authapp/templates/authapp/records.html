@@ -183,7 +183,13 @@
       <form id="excelUploadForm" enctype="multipart/form-data" method="post" action="" style="margin-top: 10px;">
         {% csrf_token %}
         {% if not is_limited %}
-        <input type="file" name="excel_file" accept=".xlsx, .xls" required>
+        <div class="file-upload-wrapper">
+          <input type="file" name="excel_file" id="excelFile" accept=".xlsx, .xls" required class="file-input">
+          <label for="excelFile" class="file-label">
+            <i class="fas fa-file-excel"></i> Choose Excel File
+          </label>
+          <span id="fileName" class="file-name">No file chosen</span>
+        </div>
         
         <button type="submit" class="upload-btn">Upload Excel</button>
         {% endif %}
@@ -277,6 +283,49 @@
 </div>
 
 <style>
+  /* File Upload Styling */
+  .file-upload-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+
+  .file-label:hover {
+    background-color: #45a049;
+  }
+
+  .file-label i {
+    margin-right: 8px;
+  }
+
+  .file-name {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .resident-detail-modal {
     width: 80%;
     max-width: 900px;
@@ -367,6 +416,17 @@
     document.getElementById("residentDetailModal").style.display = "none";
     document.getElementById("residentDetailContent").innerHTML = "";
   };
+
+  // File input display filename
+  const fileInput = document.getElementById('excelFile');
+  const fileNameSpan = document.getElementById('fileName');
+  
+  if (fileInput && fileNameSpan) {
+    fileInput.addEventListener('change', function(e) {
+      const fileName = e.target.files[0]?.name || 'No file chosen';
+      fileNameSpan.textContent = fileName;
+    });
+  }
 </script>
 <script>
     const userGroups = JSON.parse('{{ user_groups|escapejs }}');

@@ -1,3 +1,5 @@
+<!-- dashboard.html -->
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -95,16 +97,16 @@
         </div>
     </main>
 
-    <!-- 🔹 Backup Reminder Banner -->
+    <!-- Backup Reminder Banner -->
     <div id="backupBanner">
         <p style="margin: 0 0 10px 0; font-weight: bold;">
             💾 Don't forget to back up the database!
         </p>
         <div style="display: flex; gap: 8px;">
-            <button onclick="performBackup()" class="backup-btn">Backup Now</button>
+            <button onclick="performDashboardBackup()" class="backup-btn">Backup Now</button>
             <button onclick="dismissBackupBanner()" class="later-btn">Later</button>
         </div>
-        <span id="backupStatus" style="display:block; margin-top:10px; font-size: 14px;"></span>
+        <span id="dashboardBackupStatus" style="display:block; margin-top:10px; font-size: 14px;"></span>
     </div>
 
     <!-- Chart Data JSON -->
@@ -338,7 +340,7 @@
         const backupUrl = "{% url 'backup_database' %}";
         const csrfToken = "{{ csrf_token }}";
 
-        // 🔹 Change here: 7 days in milliseconds
+        // Change here: 7 days in milliseconds
         const snoozeTime = 7 * 24 * 60 * 60 * 1000; 
 
         function checkBackupReminder() {
@@ -362,8 +364,8 @@
             localStorage.setItem("lastBackupDismiss", Date.now());
         }
 
-        window.performBackup = async function() {
-            const statusElem = document.getElementById("backupStatus");
+        window.performDashboardBackup = async function() {
+            const statusElem = document.getElementById("dashboardBackupStatus");
             statusElem.style.color = "white";
             statusElem.textContent = "⏳ Backing up database...";
 
@@ -394,9 +396,8 @@
         document.addEventListener("DOMContentLoaded", checkBackupReminder);
 
     })();
+
 </script>
-
-
 
 </body>
 </html>
