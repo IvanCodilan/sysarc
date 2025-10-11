@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Barangay Clearance - Business Permit</title>
+
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Times New Roman", serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      background: none;
+    }
+
+    .certificate-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 60mm 15mm 15mm;
+      margin: 0 auto;
+      position: relative;
+      background: url("{% static 'images/good_moral_design.png' %}") no-repeat center center;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+    }
+
+    .title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 22px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .body-text {
+      font-size: 18px;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .body-text p {
+      margin-bottom: 18px;
+    }
+
+    .underline {
+      border-bottom: 1px solid #000;
+      display: inline-block;
+      min-width: 150px;
+      line-height: 1;
+      padding-bottom: 2px;
+      vertical-align: baseline;
+    }
+
+    /* Signature Section */
+    .signature-section {
+      margin-top: 60px;
+      font-size: 18px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .signature-col {
+      width: 40%;
+    }
+
+    .signature-col.right {
+      text-align: right;
+    }
+
+    .signature-line {
+      border-top: 1px solid #000;
+      width: 250px;
+      margin-top: 40px;
+      text-align: center;
+      font-weight: bold;
+      padding-top: 5px;
+    }
+
+    .signature-col.right .signature-line {
+      margin-left: auto;
+    }
+
+    /* Underlined applicant name in signature area */
+    .signature-name {
+      display: inline-block;
+      min-width: 250px;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 40px;
+      padding-bottom: 2px;
+    }
+
+    .cert-number {
+      position: absolute;
+      bottom: 20mm;
+      right: 20mm;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .underline[contenteditable="true"] {
+      outline: none;
+      min-width: 150px;
+      display: inline-block;
+    }
+
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
+
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Print</button>
+  </div>
+  <div class="certificate-container">
+    <div class="cert-number">{{ certificate_number }}</div>
+
+    <div class="title">BARANGAY CLEARANCE</div>
+    <div class="subtitle">FOR BUSINESS PERMIT</div>
+
+    <div class="body-text">
+      <p><strong>TO WHOM IT MAY CONCERN:</strong></p>
+
+      <p>
+        This is to certify that the undersigned approved herein application of 
+        <strong class="underline">{{ full_name }}</strong> 
+        for a permit and license to operate the business of 
+        <span class="underline" contenteditable="true" data-field="business_name"></span> 
+        located at 
+        <span class="underline" contenteditable="true" data-field="business_location"></span>.
+      </p>
+
+      <p>
+        It is further certified that the subject business establishment is 
+        <em>nuisance / not a nuisance</em> to the public order and safety. 
+        Moreover, the above-named applicant pledges to abide with the existing 
+        Laws, Ordinances, Rules, and Regulations appertaining to said business.
+      </p>
+
+      <p>
+        This is issued upon the request of 
+        <strong class="underline">{{ full_name }}</strong> 
+        for presentation to the Business Permit and Licensing Officer in this City, 
+        prior to the issuance of any license or permit for said business activity 
+        pursuant to Sec. 152, Par. (C) of the 1991 Local Government Code.
+      </p>
+    </div>
+
+    <div class="signature-section">
+      <div class="signature-col">
+        <p><em>Received by:</em></p>
+        <span class="underline signature-name">{{ full_name }}</span>
+        <p style="text-align:center;">Applicant</p>
+      </div>
+      <div class="signature-col right">
+        <p><em>Attested by:</em></p>
+        <span class="underline signature-name" id="signature-name"></span>
+        <p style="text-align:center;">Punong Barangay</p>
+        <p style="text-align:center;">Brgy. 570, Zone 56</p>
+      </div>
+    </div>
+    
+    <div class="ctc-details">
+      <p>Community Tax Certificate No.: <span class="underline" contenteditable="true" data-field="ctc_no"></span></p>
+      <p>Issued at <span class="underline" contenteditable="true" data-field="issued_at"></span></p>
+      <p>Issued on <span class="underline">{{ date_today }}</span></p>
+    </div>
+  </div>
+
+  <script src="{% static 'js/certificate-officials.js' %}"></script>
+  <script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
+</body>
+</html>

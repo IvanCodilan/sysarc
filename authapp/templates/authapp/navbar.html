@@ -1,0 +1,177 @@
+<!-- navbar.html -->
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+<div class="sidebar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <span class="toggle-icon">&#8592;</span>
+    </button>
+    <div class="logo-container">
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}"><i class="fas fa-home"></i><span class="nav-text"> Home</span></a></li>
+            <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
+            <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
+            <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
+            {% if user.groups.all.0.name == "Admin" %}
+            <li><a href="{% url 'user_settings' %}"><i class="fas fa-cog"></i><span class="nav-text"> Settings</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Logout Button -->
+    <button type="button" class="logout-btn" onclick="openLogoutBanner()">Logout</button>
+</div>
+
+<!-- Logout Confirmation Banner -->
+<div id="logoutBanner" class="logout-banner">
+    <p>💾 Do you want to back up the database before logging out?</p>
+
+    <div class="button-container">
+        <button class="backup-btn" onclick="performBackup()">Yes, Backup & Logout</button>
+        <button class="logout-btn" onclick="logoutWithoutBackup()">Logout Without Backup</button>
+        <button class="cancel-btn" onclick="closeLogoutBanner()">Cancel</button>
+    </div>
+
+    <span id="backupStatus"></span>
+</div>
+
+<script>
+    const logoutUrl = "{% url 'logout' %}";
+    const backupUrl = "{% url 'backup_database' %}";
+    const csrfToken = "{{ csrf_token }}";
+
+    function openLogoutBanner() {
+        const banner = document.getElementById("logoutBanner");
+        banner.style.display = "block";
+        setTimeout(() => banner.classList.add("show"), 50);
+        document.getElementById("backupStatus").textContent = "";
+    }
+
+    function closeLogoutBanner() {
+        const banner = document.getElementById("logoutBanner");
+        banner.classList.remove("show");
+        setTimeout(() => (banner.style.display = "none"), 300);
+        document.getElementById("backupStatus").textContent = "";
+    }
+
+    function logoutWithoutBackup() {
+        window.location.href = logoutUrl;
+    }
+
+    async function performBackup() {
+        const statusElem = document.getElementById("backupStatus");
+        const buttons = document.querySelectorAll("#logoutBanner button");
+
+        // Disable buttons while processing
+        buttons.forEach(btn => btn.disabled = true);
+
+        statusElem.style.color = "black";
+        statusElem.textContent = "⏳ Backing up database...";
+
+        try {
+            const response = await fetch(backupUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({})
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                statusElem.style.color = "green";
+                statusElem.textContent = "✅ Backup successful! Logging out...";
+                setTimeout(() => (window.location.href = logoutUrl), 1500);
+            } else {
+                throw new Error(result.error || "Backup failed");
+            }
+        } catch (error) {
+            statusElem.style.color = "red";
+            statusElem.textContent = "❌ Backup failed: " + error.message;
+            setTimeout(() => {
+                if (confirm("Backup failed. Do you still want to logout?")) {
+                    window.location.href = logoutUrl;
+                }
+                buttons.forEach(btn => btn.disabled = false);
+            }, 2000);
+        }
+    }
+
+    // Sidebar Toggle (same as dashboard)
+    function toggleSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        const toggleIcon = document.querySelector(".toggle-icon");
+        sidebar.classList.toggle("collapsed");
+        toggleIcon.innerHTML = sidebar.classList.contains("collapsed") ? "&#8594;" : "&#8592;";
+    }
+</script>
+
+<style>
+/* Logout Banner Styling */
+#logoutBanner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #ffffff;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 2000;
+    max-width: 400px;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+#logoutBanner.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+#logoutBanner p {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#logoutBanner .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#logoutBanner button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+#logoutBanner .backup-btn {
+    background: #2563EB;
+    color: white;
+}
+#logoutBanner .logout-btn {
+    background: #DC2626;
+    color: white;
+    width: 350px;
+}
+#logoutBanner .cancel-btn {
+    background: #6B7280;
+    color: white;
+}
+#backupStatus {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+}
+</style>

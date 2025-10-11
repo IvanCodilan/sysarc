@@ -1,0 +1,43 @@
+<div class="resident-modal-inner">
+  <h2>{{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }}</h2>
+
+  <h3>Resident Information</h3>
+  <p><strong>Region:</strong> {{ resident.region }}</p>
+  <p><strong>Province:</strong> {{ resident.province }}</p>
+  <p><strong>City:</strong> {{ resident.city }}</p>
+  <p><strong>Barangay:</strong> {{ resident.barangay }}</p>
+  <p><strong>Street:</strong> {{ resident.street_number }} {{ resident.street }}</p>
+  <p><strong>Birthdate:</strong> {{ resident.date_of_birth|date:"F d, Y" }}</p>
+  <p><strong>Place of Birth:</strong> {{ resident.place_of_birth }}</p>
+  <p><strong>Gender:</strong> {{ resident.gender }}</p>
+  <p><strong>Civil Status:</strong> {{ resident.civil_status }}</p>
+  <p><strong>Occupation:</strong> {{ resident.occupation }}</p>
+  <p><strong>Citizenship:</strong> {{ resident.citizenship }}</p>
+  <p><strong>Relationship to HH Head:</strong> {{ resident.relationship_to_household_head }}</p>
+  <p><strong>Education:</strong> {{ resident.educational_background }}</p>
+  <p><strong>PWD Status:</strong> {{ resident.pwd_status }}</p>
+  <p><strong>Voter Status:</strong> {{ resident.voter_status }}</p>
+
+
+  <h3>Certificates Issued</h3>
+  <p><strong>Total Certificates:</strong> {{ certificates|length }}</p>
+
+  <div class="certificates-grid">
+    {% for cert in certificates %}
+      <div class="certificate-item">
+        <strong>{{ cert.certificate_type }}</strong>
+        <span class="certificate-date">
+          Issued: {{ cert.created_at|date:"M d, Y" }} at {{ cert.created_at|time:"h:i A" }}
+        </span>
+        {% if cert.purpose %}
+          <p><strong>Purpose:</strong> {{ cert.purpose }}</p>
+        {% endif %}
+        {% if cert.issued_by %}
+          <p><strong>Issued by:</strong> {{ cert.issued_by.get_full_name|default:cert.issued_by.username }}</p>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>No certificates issued yet.</p>
+    {% endfor %}
+  </div>
+</div>

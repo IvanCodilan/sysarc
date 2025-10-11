@@ -1,0 +1,445 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Records</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/records.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+
+{% include 'authapp/navbar.html' %}
+
+<main class="records">
+  <div class="records-background-card">
+    <div class="records-main-card">
+      <h1>Records</h1>
+
+      <!-- Add New Resident Button -->
+      {% if not is_limited %}
+      <button onclick="openAddForm()" class="add-btn">+ Add New Resident</button>
+      {% endif %}
+
+      <!-- ADD RESIDENT MODAL -->
+      <div id="addResidentModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeAddForm()">&times;</span>
+          <h2>Add New Resident</h2>
+          <form id="addResidentForm" method="POST" action="">
+            {% csrf_token %}
+            <!-- Personal Info -->
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <label for="middle_name">Middle Name:</label>
+            <input type="text" id="middle_name" name="middle_name"required>
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <label for="date_of_birth">Birthdate:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth"required>
+            <label for="place_of_birth">Place of Birth:</label>
+            <input type="text" id="place_of_birth" placeholder ="e.g, City/Municipality, Province" name="place_of_birth"required>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="">--Select Gender--</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <label for="civil_status">Civil Status:</label>
+            <select id="civil_status" name="civil_status" required>
+              <option value="">--Select Status--</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Separated">Separated</option>
+            </select>
+            <!-- Misc Info -->
+            <label for="occupation">Occupation:</label>
+            <input type="text" id="occupation" name="occupation"required>
+            <label for="citizenship">Citizenship:</label>
+            <input type="text" id="citizenship" name="citizenship"required>
+            <label for="relationship_to_household_head">Relationship to Household Head:</label>
+            <input type="text" id="relationship_to_household_head" name="relationship_to_household_head"required>
+            <label for="educational_background">Educational Background:</label>
+            <select id="educational_background" name="educational_background"required>
+              <option value="">Select Education</option>
+              <option value="No Formal Education">No Formal Education</option>
+              <option value="Elementary Graduate">Elementary Graduate</option>
+              <option value="High School Graduate">High School Graduate</option>
+              <option value="College Graduate">College Graduate</option>
+            </select>
+            <label for="pwd_status">PWD Status:</label>
+            <select id="pwd_status" name="pwd_status" required>
+              <option value="No">No</option>
+              <option value="PWD">PWD</option>
+            </select>
+            <label for="voter_status">Voter Status:</label>
+            <select id="voter_status" name="voter_status" required>
+              <option value="Voter">Voter</option>
+              <option value="Non-Voter">Non-Voter</option>
+            </select>
+            <!-- Address -->
+            <label for="region">Region:</label>
+            <input type="text" id="region" name="region"required>
+            <label for="province">Province:</label>
+            <input type="text" id="province" name="province"required>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city"required>
+            <label for="barangay">Barangay:</label>
+            <input type="text" id="barangay" name="barangay"required>
+            <label for="street_number">Street Number:</label>
+            <input type="number" id="street_number" name="street_number"required>
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street"required>
+
+            <div class="modal-actions">
+              <button type="submit" class="save-btn">Save</button>
+              <button type="button" onclick="closeAddForm()" class="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- EDIT RESIDENT MODAL -->
+      <div id="editResidentModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeEditForm()">&times;</span>
+          <h2>Edit Resident</h2>
+          <form id="editResidentForm" method="POST" action="">
+            {% csrf_token %}
+            <input type="hidden" id="edit_resident_id" name="id">
+            <!-- Same structure as Add Modal but with edit_ IDs -->
+            <label for="edit_first_name">First Name:</label>
+            <input type="text" id="edit_first_name" name="first_name" required>
+            <label for="edit_middle_name">Middle Name:</label>
+            <input type="text" id="edit_middle_name" name="middle_name"required>
+            <label for="edit_last_name">Last Name:</label>
+            <input type="text" id="edit_last_name" name="last_name" required>
+            <label for="edit_date_of_birth">Birthdate:</label>
+            <input type="date" id="edit_date_of_birth" name="date_of_birth"required>
+            <label for="edit_place_of_birth">Place of Birth:</label>
+            <input type="text" id="edit_place_of_birth" placeholder ="e.g, City/Municipality, Province" name="place_of_birth"required>
+            <label for="edit_gender">Gender:</label>
+            <select id="edit_gender" name="gender" required>
+              <option value="">--Select Gender--</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <label for="edit_civil_status">Civil Status:</label>
+            <select id="edit_civil_status" name="civil_status" required>
+              <option value="">--Select Status--</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Separated">Separated</option>
+            </select>
+            <label for="edit_occupation">Occupation:</label>
+            <input type="text" id="edit_occupation" name="occupation"required>
+            <label for="edit_citizenship">Citizenship:</label>
+            <input type="text" id="edit_citizenship" name="citizenship"required>
+            <label for="edit_relationship_to_household_head">Relationship to Household Head:</label>
+            <input type="text" id="edit_relationship_to_household_head" name="relationship_to_household_head"required>
+            <label for="edit_educational_background">Educational Background:</label>
+            <select id="edit_educational_background" name="educational_background"required>
+              <option value="">Select Education</option>
+              <option value="No Formal Education">No Formal Education</option>
+              <option value="Elementary Graduate">Elementary Graduate</option>
+              <option value="High School Graduate">High School Graduate</option>
+              <option value="College Graduate">College Graduate</option>
+            </select>
+            <label for="edit_pwd_status">PWD Status:</label>
+            <select id="edit_pwd_status" name="pwd_status" required>
+              <option value="No">No</option>
+              <option value="PWD">PWD</option>
+            </select>
+            <label for="edit_voter_status">Voter Status:</label>
+            <select id="edit_voter_status" name="voter_status" required>
+              <option value="Voter">Voter</option>
+              <option value="Non-Voter">Non-Voter</option>
+            </select>
+            <label for="edit_region">Region:</label>
+            <input type="text" id="edit_region" name="region"required>
+            <label for="edit_province">Province:</label>
+            <input type="text" id="edit_province" name="province"required>
+            <label for="edit_city">City:</label>
+            <input type="text" id="edit_city" name="city"required>
+            <label for="edit_barangay">Barangay:</label>
+            <input type="text" id="edit_barangay" name="barangay"required>
+            <label for="edit_street_number">Street Number:</label>
+            <input type="number" id="edit_street_number" name="street_number"required>
+            <label for="edit_street">Street:</label>
+            <input type="text" id="edit_street" name="street"required>
+            <div class="modal-actions">
+              <button type="submit" class="save-btn">Save</button>
+              <button type="button" onclick="closeEditForm()" class="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Excel Upload -->
+      <form id="excelUploadForm" enctype="multipart/form-data" method="post" action="" style="margin-top: 10px;">
+        {% csrf_token %}
+        {% if not is_limited %}
+        <div class="file-upload-wrapper">
+          <input type="file" name="excel_file" id="excelFile" accept=".xlsx, .xls" required class="file-input">
+          <label for="excelFile" class="file-label">
+            <i class="fas fa-file-excel"></i> Choose Excel File
+          </label>
+          <span id="fileName" class="file-name">No file chosen</span>
+        </div>
+        
+        <button type="submit" class="upload-btn">Upload Excel</button>
+        {% endif %}
+      </form>
+    </div>
+
+    <!-- Search + Table -->
+    <div class="records-container">
+      <div class="search-container">
+        <div class="search-header">
+          <input type="text" id="liveSearch" placeholder="Search by name, address, or gender..." class="search-bar" />
+          <span id="recordCount" class="record-count">Total Records: {{ residents|length }}</span>
+        </div>
+        <select name="filter" id="filterSelect">
+          <option value="">Select Type</option>
+          <option value="seniors" {% if selected_filter == 'seniors' %}selected{% endif %}>Seniors (60+)</option>
+          <option value="kids" {% if selected_filter == 'kids' %}selected{% endif %}>Kids (17 and below)</option>
+          <option value="male" {% if selected_filter == 'male' %}selected{% endif %}>Male</option>
+          <option value="female" {% if selected_filter == 'female' %}selected{% endif %}>Female</option>
+          <option value="pwd" {% if selected_filter == 'pwd' %}selected{% endif %}>PWD</option>
+          <option value="voter" {% if selected_filter == 'voter' %}selected{% endif %}>Voter</option>
+          <option value="nonvoter" {% if selected_filter == 'nonvoter' %}selected{% endif %}>Non-Voter</option>
+        </select>
+      </div>
+
+      <table class="records-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Birthdate</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="residents-body">
+          {% for resident in residents %}
+          <tr id="row-{{ resident.id }}">
+            <td>{{ forloop.counter }}</td>
+            <td>
+              <a href="#" onclick="openResidentDetail('{{ resident.id }}'); return false;">
+                {{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }}
+              </a>
+            </td>
+            <td>{{ resident.date_of_birth|date:"Y-m-d" }}</td>
+            <td>{{ resident.gender }}</td>
+            <td>{{ resident.street_number }} {{ resident.street }}, {{ resident.barangay }}, {{ resident.city }}</td>
+            <td>
+              {% if not is_limited %}
+              <button onclick="editResident('{{ resident.id }}')" class="edit-btn">Edit</button>
+              <button onclick="deleteResident('{{ resident.id }}')" class="delete-btn">Delete</button>
+              {% endif %}
+              <!-- Hidden Data for Edit -->
+              <div id="resident-data-{{ resident.id }}" style="display:none;">
+                <input type="hidden" class="civil_status" value="{{ resident.civil_status }}">
+                <input type="hidden" class="occupation" value="{{ resident.occupation }}">
+                <input type="hidden" class="citizenship" value="{{ resident.citizenship }}">
+                <input type="hidden" class="place_of_birth" value="{{ resident.place_of_birth }}">
+                <input type="hidden" class="date_of_birth" value="{{ resident.date_of_birth|date:'Y-m-d' }}">
+                <input type="hidden" class="relationship_to_household_head" value="{{ resident.relationship_to_household_head }}">
+                <input type="hidden" class="educational_background" value="{{ resident.educational_background }}">
+                <input type="hidden" class="region" value="{{ resident.region }}">
+                <input type="hidden" class="province" value="{{ resident.province }}">
+                <input type="hidden" class="city" value="{{ resident.city }}">
+                <input type="hidden" class="barangay" value="{{ resident.barangay }}">
+                <input type="hidden" class="street" value="{{ resident.street }}">
+                <input type="hidden" class="street_number" value="{{ resident.street_number }}">
+                <input type="hidden" class="pwd_status" value="{{ resident.pwd_status }}">
+                <input type="hidden" class="voter_status" value="{{ resident.voter_status }}">
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6">No residents found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Resident Detail Modal -->
+<div id="residentDetailModal" class="modal" style="display:none;">
+  <div class="modal-content resident-detail-modal">
+    <span class="close-btn" onclick="closeResidentDetail()" style="cursor:pointer;font-size:28px;">&times;</span>
+    <div id="residentDetailContent"></div>
+  </div>
+</div>
+
+<style>
+  /* File Upload Styling */
+  .file-upload-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+
+  .file-label:hover {
+    background-color: #45a049;
+  }
+
+  .file-label i {
+    margin-right: 8px;
+  }
+
+  .file-name {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .resident-detail-modal {
+    width: 80%;
+    max-width: 900px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .resident-modal-inner h2 {
+    margin-bottom: 10px;
+    font-size: 26px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  .resident-modal-inner h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+
+  .resident-modal-inner p {
+    margin: 6px 0;
+    line-height: 1.5;
+  }
+
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .certificate-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .certificate-item strong {
+    display: block;
+    font-size: 15px;
+    color: #222;
+    margin-bottom: 6px;
+  }
+
+  .certificate-date {
+    color: #666;
+    font-size: 13px;
+  }
+</style>
+
+<!-- Scripts -->
+{% load static %}
+<script src="{% static 'js/records.js' %}"></script>
+<script>
+  window.openResidentDetail = function(id){
+    console.log('Fetching details for resident', id);
+
+    fetch(`/resident/${id}/detail/`)   // must match your Django URL pattern
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then(html => {
+        const modal = document.getElementById("residentDetailModal");
+        const content = document.getElementById("residentDetailContent");
+        if(modal && content){
+          content.innerHTML = html;
+          modal.style.display = "block";
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching resident detail:", error);
+        alert("Could not load resident details. Check console for error.");
+      });
+  };
+
+  window.closeResidentDetail = function(){
+    document.getElementById("residentDetailModal").style.display = "none";
+    document.getElementById("residentDetailContent").innerHTML = "";
+  };
+
+  // File input display filename
+  const fileInput = document.getElementById('excelFile');
+  const fileNameSpan = document.getElementById('fileName');
+  
+  if (fileInput && fileNameSpan) {
+    fileInput.addEventListener('change', function(e) {
+      const fileName = e.target.files[0]?.name || 'No file chosen';
+      fileNameSpan.textContent = fileName;
+    });
+  }
+</script>
+<script>
+    const userGroups = JSON.parse('{{ user_groups|escapejs }}');
+
+    function isLimitedUser() {
+        return userGroups.includes("LimitedUser");
+    }
+
+    if (isLimitedUser()) {
+        document.querySelectorAll('.edit-btn, .delete-btn, .add-btn, .upload-btn')
+            .forEach(btn => btn.style.display = "none");
+    }
+</script>
+
+</body>
+</html>

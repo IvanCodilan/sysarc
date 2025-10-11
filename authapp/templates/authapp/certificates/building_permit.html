@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Barangay Building Permit Clearance</title>
+  <link rel="stylesheet" href="{% static 'css/officials.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Times New Roman", serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+        background: none !important;
+
+    }
+
+    .certificate-container {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      background: url("{% static 'images/design.png' %}") no-repeat center center;
+        background-size: 100% 100% !important;
+      box-sizing: border-box;
+    }
+
+    .text-box {
+      position: absolute;
+      top: 300px;
+      right: 70px;
+      width: 450px;
+      text-align: justify;
+      font-size: 19px;
+      line-height: 1.6;
+      color: #000;
+    }
+
+    .text-box p {
+      margin: 0 0 20px 0;
+    }
+
+    .text-box .title {
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    .text-box .subtitle {
+      text-align: center;
+      font-weight: bold;
+      font-size: 22px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .text-box .no-indent {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .underline[contenteditable="true"] {
+      outline: none;
+      min-width: 150px;
+      display: inline-block;
+    }
+
+    .underline {
+      border-bottom: 1px solid #000;
+      display: inline-block;
+      min-width: 150px;
+      line-height: 1;
+      padding-bottom: 2px;
+      vertical-align: baseline;
+    }
+
+    .signature-area {
+      position: absolute;
+      bottom: 100px;
+      right: 80px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .signature-line {
+      width: 220px;
+      border-top: 1px solid #000;
+      margin: 0 auto 5px auto;
+    }
+
+    .cert-number {
+      position: absolute;
+      bottom: 50px;
+      right: 60px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
+
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate-container">
+    
+    <!-- Punong Barangay Section -->
+        <div class="punong-barangay-section">
+          <span class="official-name" id="punong-barangay"></span>
+        </div>
+
+        <!-- Kagawads Section -->
+        <div class="kagawad-section">
+          <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
+        </div>
+
+        <!-- Secretary -->
+        <div class="secretary-section">
+          <span class="official-name" id="secretary"></span>
+        </div>
+
+        <!-- Treasurer -->
+        <div class="treasurer-section">
+          <span class="official-name" id="treasurer"></span>
+        </div>
+
+        <!-- SK Chairperson -->
+        <div class="sk-section">
+          <span class="official-name" id="sk-chairperson"></span>
+        </div>
+
+    <div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Print</button>
+    </div>
+    <div class="cert-number">{{ certificate_number }}</div>
+
+    <!-- Main content -->
+    <div class="text-box">
+      <p class="title">BARANGAY BUILDING PERMIT CLEARANCE</p>
+      <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
+
+      <p>
+        I, the undersigned Punong Barangay, interpose no objection and hereby grant
+        BARANGAY BUILDING PERMIT CLEARANCE to
+        <span class="underline">{{ full_name }}</span>
+        for the construction of
+        <span class="underline" contenteditable="true" data-field="building_type"></span>
+        located at
+        <span class="underline" contenteditable="true" data-field="building_address"></span>.
+      </p>
+
+      <p>
+        Granted this <span class="underline" contenteditable="true" data-field="day_today"></span> day of
+        <span class="underline" contenteditable="true" data-field="month_today"></span> by virtue of the authority
+        vested by the <strong>SANGGUNIANG BARANGAY OFFICIALS</strong> at Barangay 570,
+        Zone 56, District IV, Manila.
+      </p>
+    </div>
+
+    <!-- Signature area -->
+    <div class="signature-area">
+      <div class="signature-line"></div>
+      <p id="signature-name"></p>
+      <p>PUNONG BARANGAY</p>
+      <p style="color:red; font-size:13px; margin-top:15px;">Not Valid without Barangay Dry Seal</p>
+    </div>
+  </div>
+
+  <script src="{% static 'js/certificate-officials.js' %}"></script>
+  <script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
+</body>
+</html>

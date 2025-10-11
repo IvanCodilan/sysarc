@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Certificate of Indigency - Proof of Residency</title>
+  <link rel="stylesheet" href="{% static 'css/officials.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <style>
+    /* Remove margins from the printed page */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      position: center;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Times New Roman", serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      background: none;
+    }
+
+    .certificate-container {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      background: url("{% static 'images/design.png' %}") no-repeat center center;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+    }
+    .text-box {
+      position: absolute;
+      top: 250px;
+      right: 50px;
+      width: 460px;
+      text-align: justify;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #000;
+      word-spacing: 1px;
+    }
+
+    .text-box p {
+      text-indent: 50px;
+      margin: 0 0 20px 0;
+    }
+
+    .text-box p.title {
+      text-indent: 0;
+      font-weight: bold;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    .text-box p.no-indent {
+      text-indent: 0;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .signature-area {
+      position: absolute;
+      bottom: 100px;
+      right: 80px;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .underline {
+      border-bottom: 1px solid #000;
+      padding: 2px 4px;
+    }
+
+    .cert-number {
+      position: absolute;
+      bottom: 50px;
+      right: 60px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="certificate-container">
+    
+        <!-- Punong Barangay Section -->
+        <div class="punong-barangay-section">
+          <span class="official-name" id="punong-barangay"></span>
+        </div>
+
+        <!-- Kagawads Section -->
+        <div class="kagawad-section">
+          <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
+          <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
+        </div>
+
+        <!-- Secretary -->
+        <div class="secretary-section">
+          <span class="official-name" id="secretary"></span>
+        </div>
+
+        <!-- Treasurer -->
+        <div class="treasurer-section">
+          <span class="official-name" id="treasurer"></span>
+        </div>
+
+        <!-- SK Chairperson -->
+        <div class="sk-section">
+          <span class="official-name" id="sk-chairperson"></span>
+        </div>
+        
+    <div class="cert-number">{{ certificate_number }}</div>
+    
+    <div class="text-box">
+      <p class="title">CERTIFICATE OF INDIGENCY</p>
+
+      <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
+
+      <p>
+        This is to certify that Mr./Ms. <span class="underline">{{ full_name }}</span>, residing at
+        <span class="underline">{{ address }}</span>, is a bonafide resident of this Barangay.
+      </p>
+
+      <p>
+        He/She is of good moral character and a law-abiding citizen. As of this date, no derogatory or criminal
+        record has been filed in this Barangay.
+      </p>
+
+      <p>
+        This CERTIFICATION is being ISSUED upon request for the purpose of <strong>{{ purpose }}</strong>.
+      </p>
+
+      <p>Given this <span class="underline">{{ date_today }}</span>.</p>
+    </div>
+
+    <div class="signature-area">
+      <div class="signature-line"></div>
+      <p id="signature-name"></p>
+      <p>PUNONG BARANGAY</p>
+    </div>
+
+  </div>
+  <script src="{% static 'js/certificate-officials.js' %}"></script>
+</body>
+</html>
