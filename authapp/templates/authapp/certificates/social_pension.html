@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Certification - PWD ID Application</title>
+  <title>Certification - SOCIAL PENSION</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
   <style>
     @page { 
@@ -34,7 +34,7 @@
 
     .text-box {
       position: absolute;
-      top: 300px;
+      top: 270px; /* lift content more noticeably */
       right: 70px;
       width: 450px;
       text-align: justify;
@@ -48,16 +48,15 @@
       font-weight: bold; 
       letter-spacing: 1px; /* no wide spacing per design */
       font-size: 26px; 
-      margin-bottom: 10px;
-      margin-top: -16px;
+      margin-top: -16px; 
+      margin-bottom: 10px; 
       text-transform: uppercase;
-
     }
 
     .no-indent { 
         text-indent: 0; 
         font-weight: bold; 
-        font-size: 18px; 
+        font-size: 16px; 
         margin: 8px 0 12px; 
     }
     .text-box p {
@@ -77,6 +76,23 @@
       min-width: 150px;
       display: inline-block;
     }
+
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+    
 
     .cert-number { 
         position: absolute; 
@@ -150,11 +166,13 @@
     <div class="cert-number">{{ certificate_number }}</div>
 
     <div class="text-box">
-      <div class="title">CERTIFICATION</div>
-      <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
+      <div class="title">CERTIFICATE OF INDIGENCY</div>
+      <p class="no-indent" style="margin-top:26px;">TO WHOM IT MAY CONCERN:</p>
       <p>
-        This is to certify that Mr./Mrs <span class="underline">{{ full_name }}</span>,
-        residing at <span class="underline">{{ address }}</span>
+        This is to certify that Mr./Mrs 
+        <span class="underline" contenteditable="true" data-field="full_name_inline">{{ full_name }}</span>,
+        residing at 
+        <span class="underline" contenteditable="true" data-field="address_inline">{{ address }}</span>
         and is a bonafide resident of this Barangay.
       </p>
       <p>
@@ -163,14 +181,17 @@
       </p>
       <p>
         This CERTIFICATION is being ISSUED upon the request of above named person for whatever legal purposes it may best serve.
-        GIVEN THIS <span class="underline" contenteditable="true"></span> DAY OF
-        <span class="underline" contenteditable="true"></span>,
-        <span class="underline" contenteditable="true"></span>
+        GIVEN THIS <span class="editable-underline" contenteditable="true"></span> DAY OF <span class="editable-underline" contenteditable="true"></span>,
+        <span class="editable-underline" contenteditable="true"></span>
       </p>
-
+      
+      <p class="no-indent" style="margin-top:16px;">
+        <strong>*NOTE*</strong><br/>
+        HE/SHE BELONGS TO ONE OF THE INDIGENT FAMILIES OF THE BARANGAY
+      </p>
       <p class="no-indent" style="margin-top:26px;">
         <strong>*PURPOSE*</strong><br/>
-        FOR PWD ID APPLICATION
+        FOR SOCIAL PENSION
       </p>
     </div>
 

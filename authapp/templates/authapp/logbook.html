@@ -42,6 +42,28 @@
             overflow-y: auto;
             margin: 20px 0;
         }
+
+         .search-container {
+            width: 90%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 8px 14px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-container input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 3px rgba(37, 99, 235, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -50,9 +72,11 @@
     <main class="logbook">
         <div class="logbook-main-card">
             <h1>Logbook</h1>
-            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search resident name...">
+            </div>
             <div class="log-table-container">
-                <table>
+                <table id="logTable">
                     <thead>
                         <tr>
                             <th>User</th>
@@ -85,7 +109,19 @@
             </div>
         </div>
     </main>
+    <script>
+        // 🔍 Real-time search filter
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#logTable tbody tr');
 
+            rows.forEach(row => {
+                const residentCell = row.querySelector('td:nth-child(4)');
+                const residentName = residentCell ? residentCell.textContent.toLowerCase() : '';
+                row.style.display = residentName.includes(searchValue) ? '' : 'none';
+            });
+        });
+    </script>
     <script src="{% static 'js/logbook.js' %}"></script>
 </body>
 </html>

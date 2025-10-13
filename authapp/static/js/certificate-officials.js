@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
               const signatureName = document.getElementById('signature-name');
               if (signatureName) signatureName.textContent = official.name;
             }
+
+            if (official.position === 'Secretary') {
+              const signatureName = document.getElementById('signature-secretary');
+              if (signatureName) signatureName.textContent = official.name;
+            }
           }
         });
 
@@ -38,16 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
 
-        // Wait for the DOM to visually update before printing
+        // Wait for the DOM to visually update
         setTimeout(() => {
-          window.print();
         }, 300); // Small delay (adjustable)
       })
       .catch(error => {
         console.error('Error loading officials:', error);
-        window.print(); // fallback if fetch fails
       });
   }
 
-  loadOfficials(); // load and print once done
+  loadOfficials(); // load once done
 });

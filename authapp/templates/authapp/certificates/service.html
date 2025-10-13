@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Barangay Building Permit Clearance</title>
+  <title>Certificate of Service</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
   <style>
-    @page {
-      size: A4;
-      margin: 0;
+    @page { 
+        size: A4; 
+        margin: 0; 
     }
 
     html, body {
@@ -21,9 +21,7 @@
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
       background: none !important;
-
     }
-
     .certificate-container {
       position: relative;
       width: 210mm;
@@ -32,8 +30,8 @@
       background: url("{% static 'images/design.png' %}") no-repeat center center;
       background-size: 100% 100% !important;
       box-sizing: border-box;
+      font-style: times;
     }
-
     .text-box {
       position: absolute;
       top: 250px;
@@ -45,7 +43,6 @@
       color: #000;
       word-spacing: 1px;
     }
-
     .text-box p {
       text-indent: 50px;
       margin: 0 0 20px 0;
@@ -64,7 +61,6 @@
       font-size: 18px;
     }
     
-    /* Corrected CSS for editable, multi-line underlines */
     .editable-underline {
       display: inline;
       text-decoration: none;
@@ -81,7 +77,6 @@
       min-width: 150px;
     }
     
-
     .underline {
       border-bottom: 1px solid #000;
       min-width: 150px;
@@ -129,70 +124,76 @@
     @media print {
       .print-controls { display: none; }
     }
+    .note {
+      color: red;
+      text-align: center;
+      font-size: 13px;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
   <div class="certificate-container">
-    
     <!-- Punong Barangay Section -->
-        <div class="punong-barangay-section">
-          <span class="official-name" id="punong-barangay"></span>
-        </div>
+    <div class="punong-barangay-section">
+      <span class="official-name" id="punong-barangay"></span>
+    </div>
 
-        <!-- Kagawads Section -->
-        <div class="kagawad-section">
-          <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
-        </div>
+    <!-- Kagawads Section -->
+    <div class="kagawad-section">
+      <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
+    </div>
 
-        <!-- Secretary -->
-        <div class="secretary-section">
-          <span class="official-name" id="secretary"></span>
-        </div>
+    <!-- Secretary -->
+    <div class="secretary-section">
+      <span class="official-name" id="secretary"></span>
+    </div>
 
-        <!-- Treasurer -->
-        <div class="treasurer-section">
-          <span class="official-name" id="treasurer"></span>
-        </div>
+    <!-- Treasurer -->
+    <div class="treasurer-section">
+      <span class="official-name" id="treasurer"></span>
+    </div>
 
-        <!-- SK Chairperson -->
-        <div class="sk-section">
-          <span class="official-name" id="sk-chairperson"></span>
-        </div>
+    <!-- SK Chairperson -->
+    <div class="sk-section">
+      <span class="official-name" id="sk-chairperson"></span>
+    </div>
 
     <div class="print-controls">
-    <button class="print-btn" onclick="window.print()">Print</button>
+      <button class="print-btn" onclick="window.print()">Print</button>
     </div>
     <div class="cert-number">{{ certificate_number }}</div>
 
-    <!-- Main content -->
     <div class="text-box">
-      <p class="title">BARANGAY BUILDING PERMIT CLEARANCE</p>
+      <p class="title">CERTIFICATE OF SERVICE</p>
       <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
 
       <p>
-        I, the undersigned Punong Barangay, interpose no objection and hereby grant
-        BARANGAY BUILDING PERMIT CLEARANCE to <span class="underline">{{ full_name }}</span>
-        for the construction of
-        <span class="editable-underline" contenteditable="true" data-field="building_type"></span>
-        located at
-        <span class="editable-underline" contenteditable="true" data-field="building_address"></span>.
+        This is to certify that Mr./Mrs. <span class="underline">{{ full_name }}</span>,
+        of legal age, <span class="editable-underline" contenteditable="true"></span>,
+        from <span class="editable-underline" contenteditable="true"></span>,
+        participated in the <span class="editable-underline" contenteditable="true"></span>
+        last <span class="editable-underline" contenteditable="true"></span>,
+        at <span class="editable-underline" contenteditable="true"></span>,
+        Barangay 570, Zone 56, District IV, Sampaloc, Manila.
       </p>
 
       <p>
-        Granted this <span class="editable-underline" contenteditable="true" data-field="day_today"></span> day of
-        <span class="editable-underline" contenteditable="true" data-field="month_today"></span> by virtue of the authority
-        vested by the <strong>SANGGUNIANG BARANGAY OFFICIALS</strong> at Barangay 570,
-        Zone 56, District IV, Manila.
+        This CERTIFICATION is being ISSUED upon the request of the above-named person
+        for whatever legal purposes it may best serve.
+      </p>
+
+      <p>
+        GIVEN THIS <span class="underline">{{ date_today }}</span>.
       </p>
     </div>
 
-    <!-- Signature area -->
     <div class="signature-area">
       <div class="signature-line"></div>
       <p id="signature-name"></p>
@@ -200,7 +201,6 @@
       <p style="color:red; font-size:13px; margin-top:15px;">Not Valid without Barangay Dry Seal</p>
     </div>
   </div>
-
   <script src="{% static 'js/certificate-officials.js' %}"></script>
   <script>
     document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Barangay Building Permit Clearance</title>
+  <title>Barangay Certification (Local Employment)</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
   <style>
@@ -21,7 +21,6 @@
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
       background: none !important;
-
     }
 
     .certificate-container {
@@ -32,6 +31,7 @@
       background: url("{% static 'images/design.png' %}") no-repeat center center;
       background-size: 100% 100% !important;
       box-sizing: border-box;
+      font-style: times;
     }
 
     .text-box {
@@ -64,7 +64,6 @@
       font-size: 18px;
     }
     
-    /* Corrected CSS for editable, multi-line underlines */
     .editable-underline {
       display: inline;
       text-decoration: none;
@@ -81,7 +80,6 @@
       min-width: 150px;
     }
     
-
     .underline {
       border-bottom: 1px solid #000;
       min-width: 150px;
@@ -95,6 +93,9 @@
       right: 80px;
       text-align: center;
       font-size: 16px;
+    }
+    .signature-area p {
+      text-indent: 0;
     }
 
     .signature-line {
@@ -124,6 +125,11 @@
       border: 1px solid #333;
       background: #fff;
       cursor: pointer;
+    }
+    
+    .centered-asterisk {
+        text-align: center;
+        text-indent: 0;
     }
 
     @media print {
@@ -166,30 +172,29 @@
         </div>
 
     <div class="print-controls">
-    <button class="print-btn" onclick="window.print()">Print</button>
+      <button class="print-btn" onclick="window.print()">Print</button>
     </div>
     <div class="cert-number">{{ certificate_number }}</div>
 
     <!-- Main content -->
     <div class="text-box">
-      <p class="title">BARANGAY BUILDING PERMIT CLEARANCE</p>
+      <p class="title">C E R T I F I C A T I O N</p>
       <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
 
       <p>
-        I, the undersigned Punong Barangay, interpose no objection and hereby grant
-        BARANGAY BUILDING PERMIT CLEARANCE to <span class="underline">{{ full_name }}</span>
-        for the construction of
-        <span class="editable-underline" contenteditable="true" data-field="building_type"></span>
-        located at
-        <span class="editable-underline" contenteditable="true" data-field="building_address"></span>.
+        This is to certify that Mr./Mrs <span class="underline">{{ full_name }}</span>, Filipino, of legal age and with postal address located at <span class="underline">{{ address }}</span>. He/she is a bonafide resident, constituent of good moral character and without no derogatory or criminal record has been filed in this Barangay as of this date.
       </p>
 
       <p>
-        Granted this <span class="editable-underline" contenteditable="true" data-field="day_today"></span> day of
-        <span class="editable-underline" contenteditable="true" data-field="month_today"></span> by virtue of the authority
-        vested by the <strong>SANGGUNIANG BARANGAY OFFICIALS</strong> at Barangay 570,
-        Zone 56, District IV, Manila.
+        This CERTIFICATION is being ISSUED upon the request of above named person for whatever legal purpose it may best serve.
       </p>
+
+      <p>
+        GIVEN THIS <span class="underline">{{ date_today }}</span>.
+      </p>
+      
+      <p class="centered-asterisk">*NOTE*<br>FOR LOCAL EMPLOYMENT</p>
+
     </div>
 
     <!-- Signature area -->

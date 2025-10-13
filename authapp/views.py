@@ -436,15 +436,46 @@ def generate_certificate(request, cert_type, resident_id):
         "medical_assistance": "Medical Assistance",
         "first_time_job_seekers": "Employment Requirement",
         "solo_parent_renewal": "Solo Parent/ PWD Support",
-        "business_permit": "Business Permit",
+        "business_permit": "for Business Permit",
         "building_permit": "Building Permit",
-        "pwd_application": "PWD Application"
+        "pwd_application": "PWD Application",
+        "social_pension": "Social Pension",
+        "transmittal_social_pension": "Transmittal Social Pension",
+        "barangay_protection_order": "Barangay Protection Order",
+        "4ps": "4ps Certificate",
+        "pwd_minor_application": "PWD Minor Application",
+        "deceased_person": "Barangay Deceased Certification",
+        "unlocated_person": "Unlocated Person",
+        "maynilad_leak": "Maynilad Leak",
+        "relation_and_residence": "Relation and Residence",
+        "guardian_certificate": "Guardian Certificate",
+        "bail": "Certificate of Bail",
+        "no_cohabitation": "No Cohabitation",
+        "death": "Certificate of Death",
+        "low_cost_income": "Low Cost Income",
+        "housing_application_registration": "Housing Application and Registration",
+        "service": "Service Certificate",
+        "local_employment": "Local Employment",
+        "certificate_attestation": "Attestation for low-income",
+        "certificate_completion": "Certificate for Completion",
+        "lost_scid": "Lost SC ID",
+        "cert_calamity": "Certificate for Calamity",
+        "response_for_hauling": "Response for Hauling",
+        "declogging": "Certificate for Declogging",
+        "no_existing_inventory": "Certificate for No Existing Inventory",
+
     }
 
     resident = get_object_or_404(PersonInformation, pk=resident_id)
     full_name = f"{resident.first_name} {resident.middle_name} {resident.last_name}"
     address = f"{resident.street_number} {resident.street}, {resident.barangay}, {resident.city}"
-    birthday = resident.date_of_birth.strftime("%B %d, %Y") if resident.date_of_birth else ""
+    birthday = resident.date_of_birth.strftime("%B %d, %Y") if resident.date_of_birth else "" 
+    age = None
+    if resident.date_of_birth:
+        today = date.today()
+        age = today.year - resident.date_of_birth.year - (
+            (today.month, today.day) < (resident.date_of_birth.month, resident.date_of_birth.day)
+        )    
     civil_status = resident.civil_status
 
     # Log the certificate generation and get the certificate number
@@ -461,7 +492,10 @@ def generate_certificate(request, cert_type, resident_id):
         'full_name': full_name,
         'address': address,
         'birthday': birthday,
-        'civil_status': civil_status,
+        'age': age,  
+        'gender': resident.gender,
+        'civil_status': resident.civil_status,
+        'citizenship': resident.citizenship,
         'date_today': date.today().strftime("%B %d, %Y"),
         'purpose': purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES"),
         'certificate_number': cert_log.certificate_number

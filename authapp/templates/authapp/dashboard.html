@@ -92,6 +92,7 @@
                 <div class="card" data-order="1">
                     <h2>Certificates Claimed per Month</h2>
                     <canvas id="certChart"></canvas>
+                    <div id="certSummaryTable"></div>
                 </div>
             </div>
         </div>
@@ -305,6 +306,71 @@
             },
             plugins: [ChartDataLabels]
         });
+
+                // ------- Generate Summary Table -------
+        function generateCertSummaryTable(certData) {
+            const summary = {};
+
+            // Calculate totals for each certificate type
+            Object.values(certData).forEach(monthData => {
+                Object.entries(monthData).forEach(([type, count]) => {
+                    summary[type] = (summary[type] || 0) + count;
+                });
+            });
+
+            const tableContainer = document.getElementById('certSummaryTable');
+            tableContainer.innerHTML = `
+                <table id="sortableTable" style="width:100%; border-collapse:collapse; margin-top:20px;">
+                    <thead>
+                        <tr style="background:#2563EB; color:white; text-align:left; cursor:pointer;">
+                            <th style="padding:8px;" data-type="text">Type of Certificate ⬍</th>
+                            <th style="padding:8px;" data-type="number">Number of Claimed Certificates ⬍</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${Object.entries(summary).map(([type, total]) => `
+                            <tr style="border-bottom:1px solid #ddd;">
+                                <td style="padding:8px;">${type}</td>
+                                <td style="padding:8px; font-weight:bold;">${total}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            // Add sorting feature
+            makeTableSortable(document.getElementById('sortableTable'));
+        }
+
+        // ------- Sort Functionality -------
+        function makeTableSortable(table) {
+            const headers = table.querySelectorAll('th');
+            headers.forEach((header, index) => {
+                header.addEventListener('click', () => {
+                    const tbody = table.querySelector('tbody');
+                    const rows = Array.from(tbody.querySelectorAll('tr'));
+                    const type = header.dataset.type;
+                    const ascending = header.classList.toggle('asc');
+
+                    rows.sort((a, b) => {
+                        const aText = a.children[index].textContent.trim();
+                        const bText = b.children[index].textContent.trim();
+
+                        if (type === 'number') {
+                            return ascending ? aText - bText : bText - aText;
+                        } else {
+                            return ascending ? aText.localeCompare(bText) : bText.localeCompare(aText);
+                        }
+                    });
+
+                    tbody.innerHTML = '';
+                    rows.forEach(row => tbody.appendChild(row));
+                });
+            });
+        }
+
+// Call the function after chart loads
+generateCertSummaryTable(certData);
 
         // ---- Sidebar Toggle ----
         function toggleSidebar() {

@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Barangay Building Permit Clearance</title>
+  <title>Barangay Certification</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-  <style>
+<style>
     @page {
       size: A4;
       margin: 0;
@@ -21,7 +21,6 @@
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
       background: none !important;
-
     }
 
     .certificate-container {
@@ -32,6 +31,7 @@
       background: url("{% static 'images/design.png' %}") no-repeat center center;
       background-size: 100% 100% !important;
       box-sizing: border-box;
+      font-style: times;
     }
 
     .text-box {
@@ -64,7 +64,6 @@
       font-size: 18px;
     }
     
-    /* Corrected CSS for editable, multi-line underlines */
     .editable-underline {
       display: inline;
       text-decoration: none;
@@ -81,7 +80,6 @@
       min-width: 150px;
     }
     
-
     .underline {
       border-bottom: 1px solid #000;
       min-width: 150px;
@@ -135,60 +133,58 @@
   <div class="certificate-container">
     
     <!-- Punong Barangay Section -->
-        <div class="punong-barangay-section">
-          <span class="official-name" id="punong-barangay"></span>
-        </div>
+    <div class="punong-barangay-section">
+      <span class="official-name" id="punong-barangay"></span>
+    </div>
 
-        <!-- Kagawads Section -->
-        <div class="kagawad-section">
-          <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
-          <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
-        </div>
+    <!-- Kagawads Section -->
+    <div class="kagawad-section">
+      <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
+    </div>
 
-        <!-- Secretary -->
-        <div class="secretary-section">
-          <span class="official-name" id="secretary"></span>
-        </div>
+    <!-- Secretary -->
+    <div class="secretary-section">
+      <span class="official-name" id="secretary"></span>
+    </div>
 
-        <!-- Treasurer -->
-        <div class="treasurer-section">
-          <span class="official-name" id="treasurer"></span>
-        </div>
+    <!-- Treasurer -->
+    <div class="treasurer-section">
+      <span class="official-name" id="treasurer"></span>
+    </div>
 
-        <!-- SK Chairperson -->
-        <div class="sk-section">
-          <span class="official-name" id="sk-chairperson"></span>
-        </div>
+    <!-- SK Chairperson -->
+    <div class="sk-section">
+      <span class="official-name" id="sk-chairperson"></span>
+    </div>
 
     <div class="print-controls">
-    <button class="print-btn" onclick="window.print()">Print</button>
+      <button class="print-btn" onclick="window.print()">Print</button>
     </div>
     <div class="cert-number">{{ certificate_number }}</div>
 
     <!-- Main content -->
     <div class="text-box">
-      <p class="title">BARANGAY BUILDING PERMIT CLEARANCE</p>
+      <p class="title">CERTIFICATION</p>
       <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
 
       <p>
-        I, the undersigned Punong Barangay, interpose no objection and hereby grant
-        BARANGAY BUILDING PERMIT CLEARANCE to <span class="underline">{{ full_name }}</span>
-        for the construction of
-        <span class="editable-underline" contenteditable="true" data-field="building_type"></span>
-        located at
-        <span class="editable-underline" contenteditable="true" data-field="building_address"></span>.
+        This is to certify that Mr./Ms. <span class="underline">{{ full_name }}</span>,
+        of legal age, a resident of <span class="editable-underline" contenteditable="true" data-field="address"></span>,
+        has been residing in this barangay since, <span class="editable-underline" contenteditable="true" data-field="residency_year"></span><span class="editable-underline" contenteditable="true" data-field="relationship">,</span> of Mrs./Ms. <span class="editable-underline" contenteditable="true" data-field="relative_name"></span>, who is also a resident of this barangay.
       </p>
 
       <p>
-        Granted this <span class="editable-underline" contenteditable="true" data-field="day_today"></span> day of
-        <span class="editable-underline" contenteditable="true" data-field="month_today"></span> by virtue of the authority
-        vested by the <strong>SANGGUNIANG BARANGAY OFFICIALS</strong> at Barangay 570,
-        Zone 56, District IV, Manila.
+        This certification is being issued upon the request of the interested party for whatever legal purpose it may serve.
+      </p>
+
+      <p>
+        Issued this <span class="underline">{{ date_today }}</span> at <span class="editable-underline" contenteditable="true" data-field="barangay_location">Barangay 570, Zone 56, SAMPALOC MANILA</span>.
       </p>
     </div>
 

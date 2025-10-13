@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Certificate of Declogging</title>
+
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Times New Roman", serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      background: none;
+    }
+
+    .certificate-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 50mm 25mm 25mm;
+      margin: 0 auto;
+      position: relative;
+      background: url("{% static 'images/good_moral_design.png' %}") no-repeat center center;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+    }
+
+    .date {
+      text-align: left;
+      margin-top: 50px;
+      font-size: 17px;
+    }
+
+    .content {
+      margin-top: 30px;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .content p { margin-bottom: 15px; }
+
+    .underline {
+      border-bottom: 1px solid #000;
+      display: inline-block;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+
+    .signature-area {
+      position: absolute;
+      bottom: 70px;
+      right: 80px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .signature-line {
+      width: 220px;
+      border-top: 1px solid #000;
+      margin: 0 auto 5px auto;
+    }
+    
+    .cert-number {
+      position: absolute;
+      bottom: 20mm;
+      right: 20mm;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+    }
+
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print { .print-controls { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div class="certificate-container">
+    <div class="print-controls">
+      <button class="print-btn" onclick="window.print()">Print</button>
+    </div>
+    <div class="cert-number">{{ certificate_number }}</div>
+
+    <div class="date">
+      <p>{{ date_today }}</p>
+    </div>
+
+    <div class="content">
+      <p><b><span class="editable-underline" contenteditable="true"></span></b><br>
+      Department of Public Services (DPS)<br>
+      City of Manila</p>
+
+      <span class="editable-underline" contenteditable="true">Ma'am/ Sir</span>
+
+      <p>Greetings!</p>
+
+      <p>
+        On <span class="editable-underline" contenteditable="true"></span>, the DPS successfully conducted a declogging activity here
+        at <span class="editable-underline" contenteditable="true"></span>, Barangay 570, Zone 56, Sampaloc, Manila.
+      </p>
+
+      <p>We, the Council of Barangay 570, Zone 56, express our sincere gratitude for your continuous support and assistance to our community.</p>
+
+      <p style="margin-top: 50px;">Respectfully yours,<br>
+      <b>Brgy. 570 Council</b></p>
+    </div>
+
+    <div class="signature-area">
+      <p>Written by:</p>
+      <span class="underline signature-name" id="signature-secretary"></span>
+      <p>Barangay Secretary</p>
+
+      <br>
+      <p>Signed by:</p>
+      <span class="underline signature-name" id="signature-name"></span>
+      <p>PUNONG BARANGAY</p>
+      <p>Brgy. 570, Zone 56</p>
+    </div>
+  </div>
+
+  <script src="{% static 'js/certificate-officials.js' %}"></script>
+  <script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
+</body>
+</html>

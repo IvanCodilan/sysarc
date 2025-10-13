@@ -69,8 +69,56 @@
         {% elif cert_type == 'building_permit' %}
             <img src="{% static 'images/building-permit-clearance.png' %}" alt="Building Permit">
         {% elif cert_type == 'pwd_application' %}
-            <img src="{% static 'images/New-Brgy.-Cert-for-PWD-ID.png' %}" alt="Building Permit">    
-        {% else %}
+            <img src="{% static 'images/New-Brgy.-Cert-for-PWD-ID.png' %}" alt="PWD Application"> 
+        {% elif cert_type == 'social_pension' %}
+            <img src="{% static 'images/New-Brgy.-Cert-of-Indigency-for-SOCIAL-PENSION.png' %}" alt="Social Pension">
+        {% elif cert_type == 'transmittal_social_pension' %}
+            <img src="{% static 'images/cert-for-transmittal-for-Social-Pension.png' %}" alt="Social Pension">
+        {% elif cert_type == 'barangay_protection_order' %}
+            <img src="{% static 'images/Barangay-Protection-Order.png' %}" alt="Barangay Protection Order">
+        {% elif cert_type == 'bail' %}
+            <img src="{% static 'images/New-Brgy-Cert-for-BAIL.png' %}" alt="Certificate of Bail">  
+        {% elif cert_type == '4ps' %}
+            <img src="{% static 'images/4ps.png' %}" alt="4ps Certificate"> 
+        {% elif cert_type == 'deceased_person' %}
+            <img src="{% static 'images/deceased-person.png' %}" alt="Deceased Person">    
+         {% elif cert_type == 'guardian_certificate' %}
+            <img src="{% static 'images/guardian-certificate.png' %}" alt="Guardian Certificate">  
+         {% elif cert_type == 'pwd_minor_application' %}
+            <img src="{% static 'images/PWD-Minor-Application.png' %}" alt="PWD Minor Application">
+         {% elif cert_type == 'maynilad_leak' %}
+            <img src="{% static 'images/maynilad-leak.png' %}" alt="Maynilad Leak">  
+         {% elif cert_type == 'relation_and_residence' %}
+            <img src="{% static 'images/Relation_and_Residence.png' %}" alt="Relation and Residence">  
+         {% elif cert_type == 'unlocated_person' %}
+            <img src="{% static 'images/unlocated-person.png' %}" alt="Unlocated Person">   
+        {% elif cert_type == 'no_cohabitation' %}
+            <img src="{% static 'images/New-Brgy-Cert-for-NO-cohabitation.png' %}" alt="No Cohabitation">
+        {% elif cert_type == 'death' %}
+            <img src="{% static 'images/cert-for-death.png' %}" alt="No Cohabitation"> 
+        {% elif cert_type == 'low_cost_income' %}
+            <img src="{% static 'images/cert-for-low-cost-income.png' %}" alt="No Cohabitation">   
+        {% elif cert_type == 'housing_application_registration' %}
+            <img src="{% static 'images/cert-for-housing-application-and-registration-authority.png' %}" alt="No Cohabitation">
+        {% elif cert_type == 'service' %}
+            <img src="{% static 'images/cert-for-service.png' %}" alt="Service">  
+         {% elif cert_type == 'local_employment' %}
+            <img src="{% static 'images/local-employment.png' %}" alt="Local Employment">  
+         {% elif cert_type == 'certificate_attestation' %}
+            <img src="{% static 'images/certification-attestation.png' %}" alt="Attestation for low Income">  
+         {% elif cert_type == 'certificate_completion' %}
+            <img src="{% static 'images/certificate-completion.png' %}" alt="Certificate of Completion">  
+         {% elif cert_type == 'lost_scid' %}
+            <img src="{% static 'images/lost-scid.png' %}" alt="Lost SC ID">
+         {% elif cert_type == 'cert_calamity' %}
+            <img src="{% static 'images/cert-calamity.png' %}" alt="Certificate for Calamity">
+        {% elif cert_type == 'response_for_hauling' %}
+            <img src="{% static 'images/cert-of-respons-for-hauling.png' %}" alt="Certificate of Response for Hauling"> 
+        {% elif cert_type == 'declogging' %}
+            <img src="{% static 'images/cert-Declogging.png' %}" alt="Certificate for Declogging">
+        {% elif cert_type == 'no_existing_inventory' %}
+            <img src="{% static 'images/cert-no-existing-inventory.png' %}" alt="Certificate for No Existing Inventory">
+          {% else %}
             <p>No preview available for this certificate type.</p>
         {% endif %}
       </div>

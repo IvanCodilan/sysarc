@@ -3,19 +3,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Certification - PWD ID Application</title>
+  <title>Certification - CERTIFICATE OF TRANSMITTAL</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
   <style>
-    @page { 
-        size: A4; 
-        margin: 0; 
-    }
+    @page { size: A4; margin: 0; }
 
     html, body {
-      margin: 0; 
-      padding: 0; 
-      height: 100%; 
-      width: 100%;
+      margin: 0; padding: 0; height: 100%; width: 100%;
       font-family: "Times New Roman", serif;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
@@ -24,58 +18,63 @@
 
     .certificate-container {
       position: relative;
-      width: 210mm; 
-      height: 297mm; 
-      margin: 0 auto;
+      width: 210mm; height: 297mm; margin: 0 auto;
       background: url("{% static 'images/design.png' %}") no-repeat center center;
-        background-size: 100% 100% !important;
-      box-sizing: border-box;
+      background-size: 100% 100%; box-sizing: border-box;
     }
 
     .text-box {
-      position: absolute;
-      top: 300px;
-      right: 70px;
+      position: absolute; 
+      top: 280px; 
+      right: 70px; 
       width: 450px;
-      text-align: justify;
-      font-size: 19px;
-      line-height: 1.6;
+      text-align: justify; 
+      font-size: 19px; 
+      line-height: 1.6; 
       color: #000;
     }
 
-    .title {
-      text-align: center; 
-      font-weight: bold; 
-      letter-spacing: 1px; /* no wide spacing per design */
-      font-size: 26px; 
-      margin-bottom: 10px;
-      margin-top: -16px;
-      text-transform: uppercase;
-
-    }
-
-    .no-indent { 
-        text-indent: 0; 
+    .title { text-align: center; 
         font-weight: bold; 
-        font-size: 18px; 
+        text-transform: uppercase; 
+        font-size: 26px; 
+        margin-top: -12px; 
+        margin-bottom: 12px; 
+    }
+    .no-indent { text-indent: 0; 
+        font-weight: bold; 
+        font-size: 16px; 
         margin: 8px 0 12px; 
     }
-    .text-box p {
-      margin: 0 0 10px 0;
+    .text-box p { 
+        margin: 0 0 10px 0; 
+    }
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
 
-    .underline { 
-        border-bottom: 1px solid #000;
+    .editable-underline:empty::before {
+      content: '\200B';
       display: inline-block;
       min-width: 150px;
-      line-height: 1;
-      padding-bottom: 2px;
-      vertical-align: baseline; 
+    }
+    .underline { 
+        border-bottom: 1px solid #000; 
+        display: inline-block; 
+        min-width: 150px; 
+        line-height: 1; 
+        padding-bottom: 2px; 
+        vertical-align: baseline; 
     }
     .underline[contenteditable="true"] { 
-      outline: none;
-      min-width: 150px;
-      display: inline-block;
+        outline: none; 
+        min-width: 120px; 
     }
 
     .cert-number { 
@@ -94,6 +93,7 @@
         text-align: center; 
         font-size: 16px; 
     }
+
     .signature-name { 
         display: inline-block; 
         min-width: 260px; 
@@ -123,9 +123,9 @@
         padding: 8px 14px; 
         border: 1px solid #333; 
         background: #fff; 
-        cursor: pointer; }
-    @media print { .print-controls { 
-        display: none; } }
+        cursor: pointer; 
+    }
+    @media print { .print-controls { display: none; } }
   </style>
 </head>
 <body>
@@ -133,6 +133,7 @@
     <button class="print-btn" onclick="window.print()">Print</button>
   </div>
   <div class="certificate-container">
+    <!-- Officials blocks reused -->
     <div class="punong-barangay-section"><span class="official-name" id="punong-barangay"></span></div>
     <div class="kagawad-section">
       <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
@@ -150,28 +151,32 @@
     <div class="cert-number">{{ certificate_number }}</div>
 
     <div class="text-box">
-      <div class="title">CERTIFICATION</div>
-      <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
+      <div class="title">CERTIFICATE OF TRANSMITTAL</div>
+
+      <p><span class="editable-underline" contenteditable="true"></span></p>
+      <p class="no-indent">Executive Assistance to the Mayor on Labor and Employment</p>
+      <p class="no-indent">Focal Person for Indigent Senior Citizen.</p>
+      <p class="no-indent">4<sup>th</sup> Floor, Manila City Hall</p>
+
+      
+      <p class="no-indent" style="margin-top: 50px;">Dear Sir,</p>
+      <p class="no-indent">Good day!</p>
+
       <p>
-        This is to certify that Mr./Mrs <span class="underline">{{ full_name }}</span>,
-        residing at <span class="underline">{{ address }}</span>
-        and is a bonafide resident of this Barangay.
-      </p>
-      <p>
-        He/She is a good person of good moral CHARACTER AND A LAW-ABIDING CITIZEN. As per record, no derogatory or criminal
-        record has been filed in this Barangay as of this date.
-      </p>
-      <p>
-        This CERTIFICATION is being ISSUED upon the request of above named person for whatever legal purposes it may best serve.
-        GIVEN THIS <span class="underline" contenteditable="true"></span> DAY OF
-        <span class="underline" contenteditable="true"></span>,
-        <span class="underline" contenteditable="true"></span>
+        Attached herewith the Social Pension Applicant Form 
+        <span class="editable-underline" contenteditable="true" data-field="age" style="min-width: 60px;"></span> years of age, and 
+        a bonafide resident of 
+        <span class="editable-underline" contenteditable="true" data-field="address_inline" style="min-width: 260px;"></span>.
       </p>
 
-      <p class="no-indent" style="margin-top:26px;">
-        <strong>*PURPOSE*</strong><br/>
-        FOR PWD ID APPLICATION
+      <p>
+        Thank you for your intervention toward our Senior Citizen and constituents. 
       </p>
+
+      <p>GIVEN THIS <span class="editable-underline" contenteditable="true" style="min-width: 80px; margin-top: 50px;" ></span> DAY OF 
+        <span class="editable-underline" contenteditable="true" style="min-width: 130px;"></span>,
+        <span class="editable-underline" contenteditable="true" style="min-width: 50px;"></span>
+    </p>
     </div>
 
     <div class="signature-area">
@@ -179,7 +184,7 @@
       <p>PUNONG BARANGAY</p>
     </div>
 
-    <div class="note">NOT VALID WITHOUT BARANGAY DRY SEAL</div>
+    <div class="note">NOTE: Not valid without Barangay dry seal.</div>
   </div>
   <script src="{% static 'js/certificate-officials.js' %}"></script>
   <script>

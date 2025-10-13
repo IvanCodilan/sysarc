@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Barangay Building Permit Clearance</title>
+  <title>Barangay Certification of Guardianship</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
   <style>
@@ -40,7 +40,7 @@
       right: 50px;
       width: 460px;
       text-align: justify;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1.6;
       color: #000;
       word-spacing: 1px;
@@ -64,7 +64,6 @@
       font-size: 18px;
     }
     
-    /* Corrected CSS for editable, multi-line underlines */
     .editable-underline {
       display: inline;
       text-decoration: none;
@@ -81,7 +80,6 @@
       min-width: 150px;
     }
     
-
     .underline {
       border-bottom: 1px solid #000;
       min-width: 150px;
@@ -172,24 +170,33 @@
 
     <!-- Main content -->
     <div class="text-box">
-      <p class="title">BARANGAY BUILDING PERMIT CLEARANCE</p>
+      <p class="title">CERTIFICATION OF GUARDIANSHIP</p>
       <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
 
       <p>
-        I, the undersigned Punong Barangay, interpose no objection and hereby grant
-        BARANGAY BUILDING PERMIT CLEARANCE to <span class="underline">{{ full_name }}</span>
-        for the construction of
-        <span class="editable-underline" contenteditable="true" data-field="building_type"></span>
-        located at
-        <span class="editable-underline" contenteditable="true" data-field="building_address"></span>.
+        This is to certify that Mr./Mrs <span class="underline">{{ full_name }}</span>, of legal age,
+        <span class="underline">{{ civil_status }}</span>, is a bonafide resident of <span class="underline">{{ address }}</span>.
       </p>
 
       <p>
-        Granted this <span class="editable-underline" contenteditable="true" data-field="day_today"></span> day of
-        <span class="editable-underline" contenteditable="true" data-field="month_today"></span> by virtue of the authority
-        vested by the <strong>SANGGUNIANG BARANGAY OFFICIALS</strong> at Barangay 570,
-        Zone 56, District IV, Manila.
+        This certifies further that the above-named person is the legal guardian of;
       </p>
+      
+      <p>
+        <strong>Name:</strong> <span class="editable-underline" contenteditable="true" data-field="ward_name"></span>
+      </p>
+      <p>
+        <strong>Date of Birth:</strong> <span class="editable-underline" contenteditable="true" data-field="ward_dob"></span>
+      </p>
+      <p>
+        <strong>Place of birth:</strong> <span class="editable-underline" contenteditable="true" data-field="ward_pob"></span>
+      </p>
+
+      <p>
+        This CERTIFICATION is being ISSUED upon the request of above named person for whatever legal purpose it may best serve.
+      </p>
+      
+        <p>GIVEN THIS <span class="underline">{{ date_today }}</span>.</p>
     </div>
 
     <!-- Signature area -->
@@ -197,7 +204,7 @@
       <div class="signature-line"></div>
       <p id="signature-name"></p>
       <p>PUNONG BARANGAY</p>
-      <p style="color:red; font-size:13px; margin-top:15px;">Not Valid without Barangay Dry Seal</p>
+      <p style="color:red; font-size:13px; margin-top:15px;">Not Valid without Barangay dry seal</p>
     </div>
   </div>
 

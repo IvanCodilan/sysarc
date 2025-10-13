@@ -3,97 +3,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Certification - PWD ID Application</title>
+  <title>Barangay Certification (Unlocated Person)</title>
   <link rel="stylesheet" href="{% static 'css/officials.css' %}">
-  <style>
-    @page { 
-        size: A4; 
-        margin: 0; 
+<style>
+    @page {
+      size: A4;
+      margin: 0;
     }
 
     html, body {
-      margin: 0; 
-      padding: 0; 
-      height: 100%; 
+      margin: 0;
+      padding: 0;
+      height: 100%;
       width: 100%;
       font-family: "Times New Roman", serif;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
-      background: none;
+      background: none !important;
     }
 
     .certificate-container {
       position: relative;
-      width: 210mm; 
-      height: 297mm; 
+      width: 210mm;
+      height: 297mm;
       margin: 0 auto;
       background: url("{% static 'images/design.png' %}") no-repeat center center;
-        background-size: 100% 100% !important;
+      background-size: 100% 100% !important;
       box-sizing: border-box;
+      font-style: times;
     }
 
     .text-box {
       position: absolute;
-      top: 300px;
-      right: 70px;
-      width: 450px;
+      top: 250px;
+      right: 50px;
+      width: 460px;
       text-align: justify;
-      font-size: 19px;
+      font-size: 20px;
       line-height: 1.6;
       color: #000;
+      word-spacing: 1px;
     }
 
-    .title {
-      text-align: center; 
-      font-weight: bold; 
-      letter-spacing: 1px; /* no wide spacing per design */
-      font-size: 26px; 
-      margin-bottom: 10px;
-      margin-top: -16px;
-      text-transform: uppercase;
-
-    }
-
-    .no-indent { 
-        text-indent: 0; 
-        font-weight: bold; 
-        font-size: 18px; 
-        margin: 8px 0 12px; 
-    }
     .text-box p {
-      margin: 0 0 10px 0;
+      text-indent: 50px;
+      margin: 0 0 20px 0;
     }
 
-    .underline { 
-        border-bottom: 1px solid #000;
+    .text-box p.title {
+      text-indent: 0;
+      font-weight: bold;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    .text-box p.no-indent {
+      text-indent: 0;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
       display: inline-block;
+      min-width: 150px;
+    }
+    
+    .underline {
+      border-bottom: 1px solid #000;
       min-width: 150px;
       line-height: 1;
       padding-bottom: 2px;
-      vertical-align: baseline; 
-    }
-    .underline[contenteditable="true"] { 
-      outline: none;
-      min-width: 150px;
-      display: inline-block;
     }
 
-    .cert-number { 
-        position: absolute; 
-        bottom: 50px; 
-        right: 60px; 
-        font-size: 14px; 
-        font-weight: bold; 
-        color: #333; 
+    .signature-area {
+      position: absolute;
+      bottom: 100px;
+      right: 80px;
+      text-align: center;
+      font-size: 16px;
     }
 
-    .signature-area { 
-        position: absolute; 
-        bottom: 90px; 
-        right: 90px; 
-        text-align: center; 
-        font-size: 16px; 
-    }
     .signature-name { 
         display: inline-block; 
         min-width: 260px; 
@@ -112,27 +112,41 @@
         font-weight: bold; 
     }
 
-    .print-controls { 
-        position: fixed; 
-        top: 15px; 
-        right: 15px; 
-        z-index: 9999; 
+    .cert-number {
+      position: absolute;
+      bottom: 50px;
+      right: 60px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
     }
-    .print-btn { 
-        font-size: 14px; 
-        padding: 8px 14px; 
-        border: 1px solid #333; 
-        background: #fff; 
-        cursor: pointer; }
-    @media print { .print-controls { 
-        display: none; } }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
+
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-controls { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="print-controls">
-    <button class="print-btn" onclick="window.print()">Print</button>
-  </div>
   <div class="certificate-container">
+
+    <div class="print-controls">
+      <button class="print-btn" onclick="window.print()">Print</button>
+    </div>
+    <!-- Officials blocks reused -->
     <div class="punong-barangay-section"><span class="official-name" id="punong-barangay"></span></div>
     <div class="kagawad-section">
       <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
@@ -146,41 +160,39 @@
     <div class="secretary-section"><span class="official-name" id="secretary"></span></div>
     <div class="treasurer-section"><span class="official-name" id="treasurer"></span></div>
     <div class="sk-section"><span class="official-name" id="sk-chairperson"></span></div>
-
     <div class="cert-number">{{ certificate_number }}</div>
 
+    <!-- Main content -->
     <div class="text-box">
-      <div class="title">CERTIFICATION</div>
+      <p class="title">CERTIFICATION</p>
       <p class="no-indent">TO WHOM IT MAY CONCERN:</p>
+
       <p>
-        This is to certify that Mr./Mrs <span class="underline">{{ full_name }}</span>,
-        residing at <span class="underline">{{ address }}</span>
-        and is a bonafide resident of this Barangay.
-      </p>
-      <p>
-        He/She is a good person of good moral CHARACTER AND A LAW-ABIDING CITIZEN. As per record, no derogatory or criminal
-        record has been filed in this Barangay as of this date.
-      </p>
-      <p>
-        This CERTIFICATION is being ISSUED upon the request of above named person for whatever legal purposes it may best serve.
-        GIVEN THIS <span class="underline" contenteditable="true"></span> DAY OF
-        <span class="underline" contenteditable="true"></span>,
-        <span class="underline" contenteditable="true"></span>
+        THIS IS TO CERTIFY that <span class="underline">{{ full_name }}</span> has no record in this office and hence cannot be located in this barangay despite thorough scrutiny, to wit;
       </p>
 
-      <p class="no-indent" style="margin-top:26px;">
-        <strong>*PURPOSE*</strong><br/>
-        FOR PWD ID APPLICATION
+      <p>
+        THIS CERTIFICATION is being issued upon the request of any interested persons for any legal purpose it may serve.
       </p>
+
+      <p>
+        Done this <span class="underline">{{ date_today }}</span> at <span>Barangay 570 Zone 56, Sampaloc Manila</span>.
+      </p>
+      
+      <p class="centered-asterisk">*NOTE*<br>UNLOCATED PERSON</p>
+
     </div>
 
+    <!-- Signature area -->
     <div class="signature-area">
       <span class="underline signature-name" id="signature-name"></span>
       <p>PUNONG BARANGAY</p>
     </div>
 
-    <div class="note">NOT VALID WITHOUT BARANGAY DRY SEAL</div>
+    <div class="note">NOTE: Not valid without Barangay dry seal.</div>
+
   </div>
+
   <script src="{% static 'js/certificate-officials.js' %}"></script>
   <script>
     document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){

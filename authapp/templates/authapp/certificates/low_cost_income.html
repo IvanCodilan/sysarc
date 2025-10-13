@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Barangay Certification - Low Income</title>
+
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Times New Roman", serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      background: none;
+    }
+
+    .certificate-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 50mm 25mm 25mm;
+      margin: 0 auto;
+      position: relative;
+      background: url("{% static 'images/good_moral_design.png' %}") no-repeat center center;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+
+    .content {
+      font-size: 18px;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .content p {
+      margin-bottom: 18px;
+    }
+
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+
+    .underline {
+     border-bottom: 1px solid #000;
+      min-width: 150px;
+      line-height: 1;
+      padding-bottom: 2px;
+    }
+
+    .signature-area {
+      position: absolute;
+      bottom: 150px;
+    right: 80px;
+    left: 80px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .signature-line {
+      width: 220px;
+      border-top: 1px solid #000;
+      margin: 0 auto 5px auto;
+    }
+
+    .cert-number {
+      position: absolute;
+      bottom: 20mm;
+      right: 20mm;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
+
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate-container">
+    <div class="cert-number">{{ certificate_number }}</div>
+    <div class="title">BARANGAY CERTIFICATION</div>
+
+    <div class="content">
+      <p><b>To Whom It May Concern:</b></p>
+
+      <p>
+        This Certification is hereby granted to <span class="underline">{{ full_name }}</span>,
+        of legal age, a bonafide resident of this Barangay with actual postal address at
+        <span class="underline">{{ address }}</span>.
+      </p>
+
+      <p>
+        This certifies that the individual named above has
+        <span class="underline"><b>low source of income</b></span> as
+        <span class="editable-underline" contenteditable="true" ></span>
+        with a monthly income not exceeding
+        <span class="editable-underline" contenteditable="true" ></span>.
+      </p>
+
+      <p>
+        This certification is issued in connection with application for
+        <span class="underline"><b>DSWD Requirements</b></span>.
+      </p>
+
+      <p>
+        Given this <span class="underline">{{ date_today }}</span> 
+         at Barangay 570, Zone 56, District IV, Manila, Philippines.
+      </p>
+    </div>
+
+    <div class="signature-area">
+      <div class="signature-line"></div>
+      <p id="signature-name"></p>
+      <p>PUNONG BARANGAY</p>
+    </div>
+  </div>
+
+  <script src="{% static 'js/certificate-officials.js' %}"></script>
+<script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
+</body>
+</html>
