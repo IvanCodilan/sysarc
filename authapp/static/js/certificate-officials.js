@@ -26,7 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (official.position === 'Secretary') {
               const signatureName = document.getElementById('signature-secretary');
+              const secretary2 = document.getElementById('signature-secretary-2'); // Page 2
+
               if (signatureName) signatureName.textContent = official.name;
+              if (secretary2) secretary2.textContent = official.name;
+
             }
           }
         });

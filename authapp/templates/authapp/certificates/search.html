@@ -42,7 +42,6 @@
         <div class="instructions">
           <p>Use the search bar to quickly find the person whose certificate you want to create. Once found, select this record to automatically generate and print the certificate.</p>
         </div>
-        <button class="manual-btn" onclick="openManualModal()">Manual Certificate</button>
         {% if not is_limited %}
         <button class="manual-btn" onclick="openOfficialsModal()">Barangay Officials</button>
         {% endif %}
@@ -94,7 +93,7 @@
             <img src="{% static 'images/unlocated-person.png' %}" alt="Unlocated Person">   
         {% elif cert_type == 'no_cohabitation' %}
             <img src="{% static 'images/New-Brgy-Cert-for-NO-cohabitation.png' %}" alt="No Cohabitation">
-        {% elif cert_type == 'death' %}
+        {% elif cert_type == 'death_certificate' %}
             <img src="{% static 'images/cert-for-death.png' %}" alt="No Cohabitation"> 
         {% elif cert_type == 'low_cost_income' %}
             <img src="{% static 'images/cert-for-low-cost-income.png' %}" alt="No Cohabitation">   
@@ -118,6 +117,15 @@
             <img src="{% static 'images/cert-Declogging.png' %}" alt="Certificate for Declogging">
         {% elif cert_type == 'no_existing_inventory' %}
             <img src="{% static 'images/cert-no-existing-inventory.png' %}" alt="Certificate for No Existing Inventory">
+        {% elif cert_type == 'saln' %}
+            <img src="{% static 'images/CERT-FOR-SALN.png' %}" alt="Certificate for SALN">
+        {% elif cert_type == 'demolition_certificate' %}
+            <img src="{% static 'images/certificate-of-demolition.png' %}" alt="Certificate for Demolition">
+        {% elif cert_type == 'business_closure' %}
+            <img src="{% static 'images/certificate-of-Business-Closure.png' %}" alt="Certificate for Business Closure">
+        {% elif cert_type == 'cert_jobseeker' %}
+            <img src="{% static 'images/cert-jobseeker1.png' %}" alt="Certificate for Jobseeker 1">
+            <img src="{% static 'images/cert-jobseeker2.png' %}" alt="Certificate for Jobseeker 2">
           {% else %}
             <p>No preview available for this certificate type.</p>
         {% endif %}

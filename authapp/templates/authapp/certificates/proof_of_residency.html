@@ -85,12 +85,31 @@
       font-weight: bold;
       color: #333;
     }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
 
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-controls { display: none; }
+    }
   </style>
 </head>
 <body>
   <div class="certificate-container">
-    
+    <div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Print</button>
+    </div>
         <!-- Punong Barangay Section -->
         <div class="punong-barangay-section">
           <span class="official-name" id="punong-barangay"></span>
@@ -154,5 +173,10 @@
 
   </div>
   <script src="{% static 'js/certificate-officials.js' %}"></script>
+  <script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
 </body>
 </html>

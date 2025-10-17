@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
           body: fd
         });
         if (res.ok) {
+          alert('Successfully Edited the Resident!');
           location.reload();
         } else {
           const txt = await res.text();
@@ -153,6 +154,9 @@ async function deleteResident(id) {
       // remove row from DOM
       const r = document.getElementById(`row-${id}`);
       if (r) r.remove();
+
+      alert('Successfully Deleted!');
+
       // re-run search to update counts / renumber
       if (typeof runLiveSearch === 'function') runLiveSearch();
     } else {

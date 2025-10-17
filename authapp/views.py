@@ -451,7 +451,7 @@ def generate_certificate(request, cert_type, resident_id):
         "guardian_certificate": "Guardian Certificate",
         "bail": "Certificate of Bail",
         "no_cohabitation": "No Cohabitation",
-        "death": "Certificate of Death",
+        "death_certificate": "Certificate of Death",
         "low_cost_income": "Low Cost Income",
         "housing_application_registration": "Housing Application and Registration",
         "service": "Service Certificate",
@@ -461,9 +461,12 @@ def generate_certificate(request, cert_type, resident_id):
         "lost_scid": "Lost SC ID",
         "cert_calamity": "Certificate for Calamity",
         "response_for_hauling": "Response for Hauling",
-        "declogging": "Certificate for Declogging",
-        "no_existing_inventory": "Certificate for No Existing Inventory",
-
+        "declogging": "For Declogging",
+        "no_existing_inventory": "For No Existing Inventory",
+        "saln": "Certificate of SALN",
+        "demolition_certificate": "For Demolition",
+        "business_closure": "For Business Closure",
+        "cert_jobseeker": "Certificate of First Time Jobseeker",
     }
 
     resident = get_object_or_404(PersonInformation, pk=resident_id)
@@ -488,6 +491,9 @@ def generate_certificate(request, cert_type, resident_id):
         created_at=now() 
     )
 
+    today = date.today()
+    date_next_year = today.replace(year=today.year + 1)
+
     context = {
         'full_name': full_name,
         'address': address,
@@ -497,6 +503,7 @@ def generate_certificate(request, cert_type, resident_id):
         'civil_status': resident.civil_status,
         'citizenship': resident.citizenship,
         'date_today': date.today().strftime("%B %d, %Y"),
+        'date_next_year': date_next_year.strftime("%B %d, %Y"),
         'purpose': purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES"),
         'certificate_number': cert_log.certificate_number
     }

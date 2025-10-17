@@ -1,0 +1,331 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Certificate - First Time Jobseeker</title>
+  <link rel="stylesheet" href="{% static 'css/officials.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <style>
+    @page { size: A4; margin: 0; }
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%; width: 100%;
+      font-family: "Times New Roman", serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* ===== PAGE 1 (Barangay Certification) ===== */
+    .certificate-container1 {
+      position: relative;
+      width: 225mm; height: 296mm;
+      margin: 0 auto;
+      background: url("{% static 'images/design.png' %}") no-repeat center top;
+      background-size: 100% 100% !important;
+      box-sizing: border-box;
+      page-break-after: always;
+    }
+
+    .text-box {
+      position: absolute;
+      top: 280px; right: 40px;
+      width: 500px;
+      font-size: 19px;
+      text-align: justify;
+      line-height: 1.6;
+      color: #000;
+    }
+
+    .text-box p { margin-bottom: 15px; }
+    .text-box p.title {
+      font-weight: bold;
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    .text-box p.no-indent {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .underline {
+      border-bottom: 1px solid #000;
+      min-width: 100px;
+      line-height: 1;
+      padding-bottom: 2px;
+    }
+
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+
+    .signature-area {
+      position: absolute;
+      bottom: 50px;
+      right: 80px;
+      text-align: center;
+      line-height: 23px;
+      font-size: 16px;
+    }
+    .cert-number {
+      position: absolute;
+      top: 200px;
+      right: 80px;
+      font-size: 14px;
+      color: #000;
+    }
+
+    /* ===== PAGE 2 (Oath of Undertaking) ===== */
+    .certificate-container2 {
+      position: relative;
+      width: 225mm; height: 297mm;
+      margin: 0 auto;
+      background: url("{% static 'images/job2.png' %}") no-repeat center top;
+      background-size: cover;
+      box-sizing: border-box;
+      page-break-after: avoid;
+    }
+
+    .oath-container {
+      position: absolute;
+      top: 200px;
+      left: 70px;
+      right: 70px;
+      font-size: 16px;
+      color: #000;
+      text-align: justify;
+      line-height: 1.7;
+    }
+
+    .oath-container h2 {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .oath-container p.center { text-align: center; margin-bottom: 20px; }
+    .oath-container strong { font-weight: bold; }
+
+    ol { margin: 15px 0 15px 30px; padding: 0; }
+    ol li { margin-bottom: 6px; }
+
+    .signature-section {
+      margin-top: 60px;
+      font-size: 16px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .signature-col {
+      width: 40%;
+    }
+
+    .signature-col.right {
+      text-align: right;
+    }
+
+    .signature-line {
+      border-top: 1px solid #000;
+      width: 250px;
+      margin-top: 40px;
+      text-align: center;
+      font-weight: bold;
+      padding-top: 5px;
+    }
+
+    .signature-col.right .signature-line {
+      margin-left: auto;
+    }
+
+    /* Underlined applicant name in signature area */
+    .signature-name {
+      display: inline-block;
+      min-width: 250px;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 40px;
+      padding-bottom: 2px;
+    }
+    .witness-block {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cert-number {
+      position: absolute;
+      bottom: 50px;
+      right: 60px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
+
+    .print-btn {
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-controls { display: none; }
+    }
+
+    .note { 
+        position: absolute; 
+        bottom: 30px; 
+        left: 50%; 
+        transform: translateX(-10%); 
+        color: #d00; 
+        font-size: 12px; 
+        font-weight: bold; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Print</button>
+  </div>
+
+  <!-- PAGE 1 -->
+  <div class="certificate-container1">
+    <!-- Punong Barangay Section -->
+    <div class="punong-barangay-section">
+      <span class="official-name" id="punong-barangay"></span>
+    </div>
+
+    <!-- Kagawads Section -->
+    <div class="kagawad-section">
+      <div class="official-row"><span class="official-name" id="kagawad-1"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-2"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-3"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-4"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-5"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-6"></span></div>
+      <div class="official-row"><span class="official-name" id="kagawad-7"></span></div>
+    </div>
+
+    <!-- Secretary -->
+    <div class="secretary-section">
+      <span class="official-name" id="secretary"></span>
+    </div>
+
+    <!-- Treasurer -->
+    <div class="treasurer-section">
+      <span class="official-name" id="treasurer"></span>
+    </div>
+
+    <!-- SK Chairperson -->
+    <div class="sk-section">
+      <span class="official-name" id="sk-chairperson"></span>
+    </div>
+
+    <div class="print-controls">
+      <button class="print-btn" onclick="window.print()">Print</button>
+    </div>
+    <div class="cert-number">{{ certificate_number }}</div>
+    <!-- PAGE 1 -->
+    <div class="text-box">
+      <p class="title">BARANGAY CERTIFICATION</p>
+      <p class="no-indent">(First Time Jobseekers Assistance Act - RA 11261)</p>
+
+      <p>This is to certify that Mr./Ms. <span class="underline">{{ full_name }}</span>, 
+      a resident of <span class="underline">{{ address }}</span> for <span class="editable-underline" contenteditable="true"></span> , is a qualified availee of 
+      <strong>RA 11261 or the First Time Jobseekers Assistance Act of 2019.</strong></p>
+
+      <p>I further certify that the holder/bearer was informed of his/her rights, including the duties and responsibilities 
+      accorded by RA 11261 through the <span class="underline" style="font-weight: bold;">Oath of Undertaking</span> he/she has signed and executed 
+      in the presence of Barangay Official/s.</p>
+
+      <p>Signed this <span class="underline">{{ date_today }}</span> in the City/Municipality of 
+      <strong>Manila / Barangay 570</strong>, Zone 56, District IV, Sampaloc, Manila.</p>
+
+      <p>This certification is valid only until <span class="underline">{{ date_next_year }}</span>, one (1) year from issuance.</p>
+    </div>
+
+    <div class="signature-area">
+      <span class="underline signature-name" id="signature-name" style="font-weight: bold;"></span>
+      <p>PUNONG BARANGAY</p>
+
+    <br>
+      <p>Witness by:</p>
+      <span class="underline signature-name" id="signature-secretary-2" style="font-weight: bold;"></span>
+      <p>Barangay Secretary</p>
+    </div>
+    <div class="note">NOTE: Not valid without Barangay dry seal.</div>
+
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="certificate-container2">
+    <div class="oath-container">
+      <h2>OATH OF UNDERTAKING</h2>
+      <p class="center"><strong>Republic Act 11261 – First Time Jobseekers Assistance Act</strong></p>
+
+      <p>I, <span class="underline">{{ full_name }}</span>, <span>{{ age }}</span> years old, <span>{{ civil_status }}</span>,
+      a resident of <span class="underline">{{ address }}</span> for 
+      <span class="underline">{{ years_of_residency }}</span> years, availing the benefits of 
+      RA 11261, otherwise known as the <strong>First Time Jobseekers Act of 2019</strong>, do hereby declare, agree, 
+      and undertake to abide and be bound by the following:</p>
+
+      <ol>
+        <li>This is my first time actively seeking a job, hence requesting Barangay Certification to avail benefits of the law.</li>
+        <li>I am aware that privileges under this law are valid for one (1) year from issuance.</li>
+        <li>I can avail of these benefits only once.</li>
+        <li>I understand that my personal information will be listed in the Barangay’s First Time Jobseekers roster and not used unlawfully.</li>
+        <li>I will report to the Barangay once employed, either personally, via text, or through family.</li>
+        <li>I am not a beneficiary of the JobStart Program under R.A. No. 10869 or similar exemptions.</li>
+        <li>If issued this Certification, I will not use it fraudulently or assist in any falsification.</li>
+        <li>This undertaking is solely for obtaining Barangay Certification consistent with R.A. No. 10869.</li>
+        <li>I consent to the use of my information under the Data Privacy Act and applicable laws.</li>
+      </ol>
+
+      <p>Signed this <span class="underline">{{ date_today }}</span>  in Manila, Barangay 570, Zone 56, District IV, Sampaloc, Manila.</p>
+
+        <div class="signature-section">
+        <div class="signature-col">
+            <p>Signed By:</p>
+            <span class="underline signature-name">{{ full_name }}</span>
+            <p style="text-align:center;">First Time Jobseeker</p>
+        </div>
+        <div class="signature-col right">
+            <p>Witness By:</p>
+            <span class="underline signature-name" id="signature-secretary" style="font-weight: bold;"></span>
+            <p style="text-align:center;">Barangay Secretary</p>
+        </div>
+        </div>
+    </div>
+  </div>
+<script src="{% static 'js/certificate-officials.js' %}"></script>
+  <script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
+</body>
+</html>

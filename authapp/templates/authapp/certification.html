@@ -169,7 +169,7 @@
 
                 <div class="certificate-card">
                     <h3 class="cert-title">Death Certificate</h3>
-                    <a href="{% url 'search_resident' 'death' %}">
+                    <a href="{% url 'search_resident' 'death_certificate' %}">
                         <img src="{% static 'images/cert-for-death.png' %}" alt="Unlocated Person">
                     </a>
                 </div>
@@ -248,6 +248,34 @@
                     <a href="{% url 'search_resident' 'no_existing_inventory' %}">
                         <img src="{% static 'images/cert-no-existing-inventory.png' %}" alt="Certificate for No Existing Inventory">
                     </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for SALN</h3>
+                    <a href="{% url 'search_resident' 'saln' %}">
+                        <img src="{% static 'images/CERT-FOR-SALN.png' %}" alt="Certificate for SALN">
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Demolition</h3>
+                    <a href="{% url 'search_resident' 'demolition_certificate' %}">
+                        <img src="{% static 'images/certificate-of-demolition.png' %}" alt="Certificate for Demolition">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Business Closure</h3>
+                    <a href="{% url 'search_resident' 'business_closure' %}">
+                        <img src="{% static 'images/certificate-of-Business-Closure.png' %}" alt="Certificate for Demolition">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Jobseeker</h3>
+                    <a href="{% url 'search_resident' 'cert_jobseeker' %}">
+                        <img src="{% static 'images/cert-jobseeker1.png' %}" alt="Certificate for Jobseeker 1">
+                 </a>
                 </div>
             </div>
         </div>
