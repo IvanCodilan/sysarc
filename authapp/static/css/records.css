@@ -235,7 +235,7 @@ body {
     border-radius: 10px;
     overflow-x: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
-    width: 98%;
+    width: 100%;
 }
 
 .records-table {

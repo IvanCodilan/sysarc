@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
+from django.contrib.auth.models import Group
 
 
 class PersonInformation(models.Model):
@@ -43,6 +44,7 @@ class PersonInformation(models.Model):
     choices=[('Voter', 'Voter'), ('Non-Voter', 'Non-Voter')],
     default='Non-Voter'
     )
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
 
 
@@ -118,3 +120,15 @@ class BarangayOfficial(models.Model):
     
     def __str__(self):
         return f"{self.position}: {self.name}"
+    
+from django.contrib.auth.models import User
+
+class RolePermission(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    can_add_resident = models.BooleanField(default=False)
+    can_edit_resident = models.BooleanField(default=False)
+    can_delete_resident = models.BooleanField(default=False)
+    can_upload_excel = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Permissions for {self.user.username}"

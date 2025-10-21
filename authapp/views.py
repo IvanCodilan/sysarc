@@ -22,12 +22,19 @@ from pathlib import Path
 from django.contrib import messages
 from django.db.models import Count
 from django.db.models.functions import TruncMonth
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from .models import RolePermission
+from django.contrib.auth.decorators import user_passes_test
+from django.http import JsonResponse
+from django.conf import settings
+from datetime import datetime
+from pathlib import Path
+import subprocess
 
 
 def login_view(request):
@@ -173,15 +180,17 @@ def certification_view(request):
 def home_view(request):
     return render (request, 'authapp/home.html')
 
+def get_user_permissions(user):
+    return RolePermission.objects.filter(user=user).first()
 
-#CRUD FUNCTION OF RECORDS
+# CRUD FUNCTION OF RECORDS
 @login_required
 def records_view(request):
     query = request.GET.get('q')
     filter_type = request.GET.get('filter')
     today = date.today()
 
-    # Start with all residents
+    # Start with all residents records
     residents = PersonInformation.objects.all()
 
     # Search by name
@@ -207,22 +216,48 @@ def records_view(request):
         residents = residents.filter(gender__iexact='Male')
     elif filter_type == 'female':
         residents = residents.filter(gender__iexact='Female')
+    elif filter_type == 'pwd':
+        residents = residents.filter(pwd_status__iexact='PWD')
+    elif filter_type == 'voter':
+        residents = residents.filter(voter_status__iexact='Voter')
+    elif filter_type == 'nonvoter':
+        residents = residents.filter(voter_status__iexact='Non-Voter')
 
-    # Check if the user is LimitedUser
-    is_limited = request.user.groups.filter(name="LimitedUser").exists()
+    # Default permissions (superusers get full access)
+    user = request.user
+    permissions = {
+        "can_add": user.is_superuser,
+        "can_edit": user.is_superuser,
+        "can_delete": user.is_superuser,
+        "can_upload": user.is_superuser,
+    }
+
+    # Apply user-specific RolePermission (if exists)
+    user_role_perm = RolePermission.objects.filter(user=user).first()
+    if user_role_perm:
+        permissions = {
+            "can_add": user_role_perm.can_add_resident,
+            "can_edit": user_role_perm.can_edit_resident,
+            "can_delete": user_role_perm.can_delete_resident,
+            "can_upload": user_role_perm.can_upload_excel,
+        }
+
+    # Include group list for frontend JS (optional)
+    user_groups = list(user.groups.values_list("name", flat=True))
 
     return render(request, "authapp/records.html", {
         "residents": residents,
         "query": query,
         "selected_filter": filter_type,
-        "is_limited": is_limited,  # <-- pass this to template
+        "permissions": permissions,
+        "user_groups": user_groups,
     })
-
 
 @csrf_exempt
 @login_required
 def add_resident(request):
-    if request.user.groups.filter(name="LimitedUser").exists():
+    perms = get_user_permissions(request.user)
+    if not (perms and perms.can_add_resident):
         messages.error(request, "You are not allowed to add residents.")
         return redirect("records")
 
@@ -252,6 +287,7 @@ def add_resident(request):
                 educational_background=request.POST.get("educational_background"),
                 pwd_status=request.POST.get("pwd_status", "No"),
                 voter_status=request.POST.get("voter_status", "Non-Voter"),
+                created_by=request.user,
             )
             messages.success(request, f"Resident {person.first_name} {person.last_name} added successfully.")
         except Exception as e:
@@ -262,7 +298,8 @@ def add_resident(request):
 @csrf_exempt
 @login_required
 def update_resident(request, id):
-    if request.user.groups.filter(name="LimitedUser").exists():
+    perms = get_user_permissions(request.user)
+    if not (perms and perms.can_edit_resident):
         messages.error(request, "You are not allowed to update residents.")
         return redirect("records")
 
@@ -290,39 +327,11 @@ def update_resident(request, id):
 
     return redirect("records")
 
-def get_resident(request, id):
-    try:
-        person = PersonInformation.objects.get(id=id)
-        data = {
-            "id": person.id,
-            "region": person.region,
-            "barangay": person.barangay,
-            "last_name": person.last_name,
-            "first_name": person.first_name,
-            "middle_name": person.middle_name,
-            "street_number": person.street_number,
-            "street": person.street,
-            "city": person.city,
-            "province": person.province,
-            "date_of_birth": person.date_of_birth.strftime('%Y-%m-%d') if person.date_of_birth else None,
-            "place_of_birth": person.place_of_birth,
-            "gender": person.gender,
-            "civil_status": person.civil_status,
-            "occupation": person.occupation,
-            "citizenship": person.citizenship,
-            "relationship_to_household_head": person.relationship_to_household_head,
-            "educational_background": person.educational_background,
-        }
-        return JsonResponse(data)
-    except PersonInformation.DoesNotExist:
-        return JsonResponse({"error": "Resident not found"}, status=404)
-
-
 @csrf_exempt
 @login_required
 def delete_resident(request, id):
-    # 🚫 Restrict LimitedUser
-    if request.user.groups.filter(name="LimitedUser").exists():
+    perms = get_user_permissions(request.user)
+    if not (perms and perms.can_delete_resident):
         messages.error(request, "You are not allowed to delete residents.")
         return redirect("records")
 
@@ -336,14 +345,14 @@ def delete_resident(request, id):
 @csrf_exempt
 @login_required
 def upload_excel(request):
-    # 🚫 Restrict LimitedUser
-    if request.user.groups.filter(name="LimitedUser").exists():
+    perms = get_user_permissions(request.user)
+    if not (perms and perms.can_upload_excel):
         return JsonResponse({'success': False, 'message': 'You are not allowed to upload records.'}, status=403)
 
     if request.method == 'POST' and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
 
-        # Save the file temporarily
+        # Save temporarily
         file_path = default_storage.save('tmp/' + excel_file.name, ContentFile(excel_file.read()))
         file_full_path = default_storage.path(file_path)
 
@@ -351,7 +360,6 @@ def upload_excel(request):
             wb = openpyxl.load_workbook(file_full_path, read_only=True)
             ws = wb.active
             residents_to_create = []
-            names_for_log = []
             for row in ws.iter_rows(min_row=2, values_only=True):  # Skip header
                 try:
                     resident = PersonInformation(
@@ -376,20 +384,15 @@ def upload_excel(request):
                         voter_status=row[18]
                     )
                     residents_to_create.append(resident)
-                    names_for_log.append(f"{row[2]}, {row[0]} {row[1]}")
                 except Exception:
                     continue  # Skip invalid row
 
-            # Bulk create all valid residents at once
             PersonInformation.objects.bulk_create(residents_to_create)
-            
             return JsonResponse({'success': True, 'message': f'{len(residents_to_create)} records uploaded successfully.'})
         except Exception as e:
             return JsonResponse({'success': False, 'message': f'Error processing file: {str(e)}'})
 
     return JsonResponse({'success': False, 'message': 'No file uploaded or invalid method'})
-
-
 @login_required
 def search_resident(request, cert_type):
     search_name = ""
@@ -589,15 +592,30 @@ def update_officials(request):
 def backup_database(request):
     if request.method == "POST":
         try:
-            # Prepare backup directory
-            backup_dir = Path(settings.BASE_DIR) / 'authapp' / 'static' / 'SQL'
+            # === STEP 1: Detect Flash Drive ===
+            # Set your flash drive label here
+            USB_LABEL = "BRGY_BACKUP_USB"
+
+            possible_paths = [
+                Path("E:/"), Path("F:/"), Path("G:/"), Path("H:/")  # Windows drive letters
+            ]
+
+            usb_path = next((p for p in possible_paths if p.exists()), None)
+            if not usb_path:
+                return JsonResponse({
+                    "success": False,
+                    "error": "Backup USB not detected. Please insert the authorized flash drive."
+                }, status=400)
+
+            # Create a backup folder inside the USB
+            backup_dir = usb_path / "BarangayBackup"
             backup_dir.mkdir(parents=True, exist_ok=True)
 
-            # Timestamped filename
+            # === STEP 2: Prepare Backup File ===
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_file = backup_dir / f"backup_{timestamp}.sql"
 
-            # MySQL credentials from settings
+            # === STEP 3: Get MySQL Settings ===
             db_settings = settings.DATABASES['default']
             db_name = db_settings['NAME']
             db_user = db_settings['USER']
@@ -605,8 +623,8 @@ def backup_database(request):
             db_host = db_settings.get('HOST', '127.0.0.1')
             db_port = db_settings.get('PORT', '3306')
 
-            # Try to find mysqldump in common locations
-            possible_paths = [
+            # === STEP 4: Find mysqldump Path ===
+            possible_mysqldump_paths = [
                 r"C:\Program Files\MySQL\MySQL Server 9.0\bin\mysqldump.exe",
                 r"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe",
                 r"C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe",
@@ -614,47 +632,40 @@ def backup_database(request):
                 r"C:\wamp64\bin\mysql\mysql8.0.31\bin\mysqldump.exe",
             ]
             
-            mysqldump_path = None
-            for path in possible_paths:
-                if Path(path).exists():
-                    mysqldump_path = path
-                    break
-            
+            mysqldump_path = next((p for p in possible_mysqldump_paths if Path(p).exists()), None)
             if not mysqldump_path:
                 return JsonResponse({
-                    "success": False, 
-                    "error": "mysqldump.exe not found. Please check your MySQL installation path."
+                    "success": False,
+                    "error": "mysqldump.exe not found. Please check your MySQL installation."
                 }, status=500)
 
-            # Build command
+            # === STEP 5: Build mysqldump Command ===
             command = [
                 mysqldump_path,
                 f"-u{db_user}",
                 f"-h{db_host}",
                 f"-P{db_port}",
             ]
-
-            # Add password if not empty
             if db_password:
                 command.append(f"-p{db_password}")
-            
             command.append(db_name)
 
-            # Run the command
+            # === STEP 6: Run the Backup Command ===
             with open(backup_file, "w", encoding="utf-8") as f:
-                result = subprocess.run(command, stdout=f, stderr=subprocess.PIPE, check=True)
+                subprocess.run(command, stdout=f, stderr=subprocess.PIPE, check=True)
 
-            return JsonResponse({"success": True, "file": str(backup_file)})
+            return JsonResponse({
+                "success": True,
+                "message": f"Backup successful! Saved to {backup_file}"
+            })
 
         except subprocess.CalledProcessError as e:
-            error_msg = e.stderr.decode('utf-8') if e.stderr else "Unknown error occurred"
+            error_msg = e.stderr.decode('utf-8') if e.stderr else "Unknown mysqldump error"
             return JsonResponse({"success": False, "error": f"Backup failed: {error_msg}"}, status=500)
-        except FileNotFoundError:
-            return JsonResponse({"success": False, "error": "MySQL is not installed or mysqldump.exe not found"}, status=500)
         except Exception as e:
-            return JsonResponse({"success": False, "error": f"Error: {str(e)}"}, status=500)
+            return JsonResponse({"success": False, "error": str(e)}, status=500)
 
-    return JsonResponse({"error": "Invalid method"}, status=405)
+    return JsonResponse({"error": "Invalid request method"}, status=405)
 
 @login_required
 def resident_detail_modal(request, id):
@@ -764,27 +775,198 @@ def password_reset_confirm(request, uidb64, token):
 def password_reset_complete(request):
     return render(request, 'authapp/password_reset_complete.html')
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, Group
+from .models import RolePermission
+
+
 @login_required
 def user_settings(request):
-    # Restrict to Admin group only
-    if not request.user.groups.filter(name="Admin").exists():
+    user = request.user
+    is_admin = user.is_superuser or user.groups.filter(name="Admin").exists()
+
+    # Restrict access to admin/superusers only
+    if not is_admin:
         messages.error(request, "You do not have permission to access this page.")
         return redirect('dashboard')
-    
+
+    # --- Handle POST actions ---
     if request.method == "POST":
+        if "user_id" in request.POST:
+            user_id = request.POST.get("user_id")
+            target_user = get_object_or_404(User, id=user_id)
+
+            if target_user.is_superuser:
+                messages.error(request, "You cannot modify a superadmin account.")
+                return redirect('user_settings')
+
+            # Always ensure RolePermission exists for this user
+            role_perm, _ = RolePermission.objects.get_or_create(user=target_user)
+
+            # Update checkboxes based on form inputs
+            role_perm.can_add_resident = "can_add" in request.POST
+            role_perm.can_edit_resident = "can_edit" in request.POST
+            role_perm.can_delete_resident = "can_delete" in request.POST
+            role_perm.can_upload_excel = "can_upload" in request.POST
+            role_perm.save()
+
+            messages.success(request, f"Permissions updated for '{target_user.username}'.")
+            return redirect('user_settings')
+
+        # 2️⃣ Admin updates their own email
         email = request.POST.get("email")
-        
-        # Update user email
         if email:
-            request.user.email = email
-            request.user.save()
+            user.email = email
+            user.save()
             messages.success(request, "Email updated successfully!")
         else:
             messages.error(request, "Email cannot be empty.")
-        
         return redirect('user_settings')
-    
+
+    # --- Display users for admin ---
+    users = []
+    all_users = User.objects.filter(is_superuser=False).exclude(id=user.id)
+    for u in all_users:
+        # Always ensure RolePermission exists for each user
+        role_perm, _ = RolePermission.objects.get_or_create(user=u)
+
+        users.append({
+            "user": u,
+            "group": u.groups.first().name if u.groups.exists() else "No Group",
+            "can_add": role_perm.can_add_resident,
+            "can_edit": role_perm.can_edit_resident,
+            "can_delete": role_perm.can_delete_resident,
+            "can_upload": role_perm.can_upload_excel,
+        })
+
     return render(request, 'authapp/user_settings.html', {
-        'user': request.user
+        "user": user,
+        "is_admin": is_admin,
+        "users": users,
     })
-    
+
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def create_moderator(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        # Validate form data
+        if not all([username, email, password]):
+            messages.error(request, "All fields are required.")
+            return redirect("user_settings")
+
+        # Prevent duplicate username
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists.")
+            return redirect("user_settings")
+
+        # Create new moderator account
+        moderator = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            is_staff=True,
+            is_active=True,
+        )
+
+        # Optionally tag as LimitedUser for organization (not for permissions)
+        limited_group, _ = Group.objects.get_or_create(name="LimitedUser")
+        moderator.groups.add(limited_group)
+        moderator.save()
+
+        # Create individual RolePermission for this user (default: no access)
+        RolePermission.objects.get_or_create(
+            user=moderator,
+            defaults={
+                "can_add_resident": False,
+                "can_edit_resident": False,
+                "can_delete_resident": False,
+                "can_upload_excel": False,
+            },
+        )
+
+        messages.success(request, f"Moderator account '{username}' created successfully.")
+        return redirect("user_settings")
+
+    return redirect("user_settings")
+
+@login_required
+def records(request):
+    user = request.user
+
+    # Default permission values
+    can_add = can_edit = can_delete = can_upload = False
+
+    # Check RolePermission model for this user
+    if RolePermission.objects.filter(user=user).exists():
+        role = RolePermission.objects.get(user=user)
+        can_add = role.can_add_resident
+        can_edit = role.can_edit_resident
+        can_delete = role.can_delete_resident
+        can_upload = role.can_upload_excel
+
+    # Get user groups
+    user_groups = list(user.groups.values_list('name', flat=True))
+
+    context = {
+        "permissions": {
+            "can_add": can_add,
+            "can_edit": can_edit,
+            "can_delete": can_delete,
+            "can_upload": can_upload,
+        },
+        "user_groups": user_groups,
+    }
+
+    return render(request, "records.html", context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+@login_required
+def edit_moderator_modal(request):
+    if request.method == "POST":
+        user_id = request.POST.get("user_id")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        user = User.objects.get(id=user_id)
+        user.username = username
+        user.email = email
+        if password:
+            user.set_password(password)
+        user.save()
+
+        messages.success(request, f"{username}'s account has been updated successfully.")
+        return redirect("user_settings")
+
+@user_passes_test(lambda u: u.is_superuser)
+def delete_moderator(request, user_id):
+    # Only allow superusers to perform this action
+    moderator = get_object_or_404(User, id=user_id, is_staff=True)
+
+    # Prevent deleting the superuser account
+    if moderator.is_superuser:
+        messages.error(request, "You cannot delete a superuser.")
+        return redirect("user_settings")
+
+    if request.method == "POST":
+        username = moderator.username
+
+        # Delete related permission record (if it exists)
+        RolePermission.objects.filter(user=moderator).delete()
+
+        # Delete the actual user
+        moderator.delete()
+
+        messages.success(request, f"Moderator '{username}' deleted successfully.")
+        return redirect("user_settings")
+
+    # Redirect if accessed improperly (e.g., GET request)
+    return redirect("user_settings")

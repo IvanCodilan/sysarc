@@ -26,8 +26,8 @@
         }
 
         .settings-container {
-            max-width: 600px;
-            margin: 50px auto;
+            max-width: 1200px;
+            margin: 25px auto;
             background: white;
             padding: 30px;
             border-radius: 8px;
@@ -56,7 +56,8 @@
         }
 
         input[type="text"],
-        input[type="email"] {
+        input[type="email"],
+        input[type="password"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
@@ -66,7 +67,8 @@
         }
 
         input[type="text"]:focus,
-        input[type="email"]:focus {
+        input[type="email"],
+        input[type="password"]:focus {
             outline: none;
             border-color: #4CAF50;
         }
@@ -93,10 +95,6 @@
             text-decoration: none;
         }
 
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
         .alert {
             padding: 12px 20px;
             border-radius: 4px;
@@ -115,23 +113,107 @@
             border: 1px solid #f5c6cb;
         }
 
-        .info-box {
-            background-color: #e7f3ff;
-            border-left: 4px solid #2196F3;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-
-        .info-box p {
-            margin: 0;
-            color: #0c5460;
-        }
-
         .readonly-field {
             background-color: #f5f5f5;
             cursor: not-allowed;
         }
+
+        small {
+            display: block;
+            margin-top: 4px;
+            color: #666;
+        }
+
+        /* --- Permissions Table --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        .modal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: none; align-items: center; justify-content: center;
+        z-index: 999;
+        }
+        .modal-content {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        width: 400px;
+        color: white;
+        box-shadow: 0 0 20px rgb(214, 214, 214);
+        }
+        .modal-content .close {
+        float: right;
+        cursor: pointer;
+        font-size: 22px;
+        }
+        .modal-content .form-group {
+        margin-bottom: 15px;
+        }
+
     </style>
 </head>
 <body>
@@ -150,16 +232,18 @@
                 {% endfor %}
             {% endif %}
 
-            <div class="info-box">
-                <p><strong>Note:</strong> Your email is used for password reset functionality. Make sure it's a valid email address you have access to.</p>
-            </div>
-
+            <!-- Update Admin’s Own Info -->
             <form method="POST">
                 {% csrf_token %}
-                
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="{{ user.username }}" class="readonly-field" readonly>
+                    {% if user.is_superuser %}
+                        <input type="text" id="username" name="username" value="{{ user.username }}" required>
+                        <small>As an admin, you can change your username.</small>
+                    {% else %}
+                        <input type="text" id="username" name="username" value="{{ user.username }}" class="readonly-field" readonly>
+                        <small>Moderators cannot change their username.</small>
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
@@ -167,13 +251,162 @@
                     <input type="email" id="email" name="email" value="{{ user.email }}" required>
                 </div>
 
-                <button type="submit" class="btn">Update Email</button>
+                <button type="submit" class="btn">Update Settings</button>
             </form>
 
+            {% if user.is_superuser %}
+            <hr style="margin:40px 0;">
+
+            <!-- Create Moderator Form -->
+            <h2>Create a New Moderator Account</h2>
+            <p class="subtitle">Superadmins can create new moderator accounts here.</p>
+
+            <form method="POST" action="{% url 'create_moderator' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="new_username">Username</label>
+                    <input type="text" id="new_username" name="username" required placeholder="Enter moderator username">
+                </div>
+
+                <div class="form-group">
+                    <label for="new_email">Email</label>
+                    <input type="email" id="new_email" name="email" required placeholder="Enter moderator email">
+                </div>
+
+                <div class="form-group">
+                    <label for="new_password">Password</label>
+                    <input type="password" id="new_password" name="password" required placeholder="Set moderator password">
+                </div>
+
+                <button type="submit" class="btn">Create Moderator</button>
+            </form>
+
+            <!-- Manage Permissions -->
+            <h2 style="margin-top:40px;">Manage User Permissions</h2>
+            <p class="subtitle">Toggle access rights for each user below</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Add Resident</th>
+                        <th>Edit Resident</th>
+                        <th>Delete Resident</th>
+                        <th>Upload Excel</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in users %}
+                    <tr>
+                        <td>{{ u.user.username }}</td>
+                        <td>{{ u.user.email }}</td>
+                        <td>
+                            <form method="POST" action="{% url 'user_settings' %}" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ u.user.id }}">
+                                <label class="switch">
+                                    <input type="checkbox" name="can_add" {% if u.can_add_resident %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                        </td>
+                        <td>
+                                <label class="switch">
+                                    <input type="checkbox" name="can_edit" {% if u.can_edit_resident %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                        </td>
+                        <td>
+                                <label class="switch">
+                                    <input type="checkbox" name="can_delete" {% if u.can_delete_resident %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                        </td>
+                        <td>
+                                <label class="switch">
+                                    <input type="checkbox" name="can_upload" {% if u.can_upload_excel %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                        </td>
+                        <td>
+                            <div style="display:flex; gap:6px; justify-content:center;">
+                                <button type="submit" class="btn" style="padding:6px 14px;">Save</button>
+                            </form>
+
+                                <button type="button"
+                                        class="btn open-edit-modal"
+                                        style="background:#007bff; padding:6px 14px;"
+                                        data-id="{{ u.user.id }}"
+                                        data-username="{{ u.user.username }}"
+                                        data-email="{{ u.user.email }}">
+                                    Edit
+                                </button>
+
+                                {% if not u.user.is_superuser %}
+                                <form method="POST" action="{% url 'delete_moderator' u.user.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn" style="background:#dc3545; padding:6px 14px;">Delete</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+
             <a href="{% url 'dashboard' %}" class="back-link">← Back to Dashboard</a>
+        </div>
+
+        <!-- Edit Moderator Modal -->
+        <div id="editModeratorModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Edit Moderator</h2>
+
+                <form id="editModeratorForm" method="POST" action="{% url 'edit_moderator_modal' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" id="edit_user_id">
+
+                    <div class="form-group">
+                        <label for="edit_username">Username</label>
+                        <input type="text" id="edit_username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_email">Email</label>
+                        <input type="email" id="edit_email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_password">New Password (optional)</label>
+                        <input type="password" id="edit_password" name="password" placeholder="Leave blank to keep current">
+                    </div>
+
+                    <button type="submit" class="btn">Save Changes</button>
+                </form>
+            </div>
         </div>
     </main>
 
     <script src="{% static 'js/navbar.js' %}"></script>
+    <script>
+        const modal = document.getElementById("editModeratorModal");
+        const closeModal = modal.querySelector(".close");
+
+        document.querySelectorAll(".open-edit-modal").forEach(btn => {
+            btn.addEventListener("click", () => {
+                modal.style.display = "flex";
+                document.getElementById("edit_user_id").value = btn.dataset.id;
+                document.getElementById("edit_username").value = btn.dataset.username;
+                document.getElementById("edit_email").value = btn.dataset.email;
+            });
+        });
+
+        closeModal.addEventListener("click", () => modal.style.display = "none");
+        window.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
+    </script>
 </body>
 </html>

@@ -33,4 +33,10 @@ urlpatterns = [
     path('password-reset-complete/', views.password_reset_complete, name='password_reset_complete'),
     # User Settings
     path('settings/', views.user_settings, name='user_settings'),
+    path('user/settings/', views.user_settings, name='user_settings'),
+    path('user_settings/', views.user_settings, name='user_settings'),
+    path('create_moderator/', views.create_moderator, name='create_moderator'),
+    path('edit-moderator-modal/', views.edit_moderator_modal, name='edit_moderator_modal'),
+    path("delete_moderator/<int:user_id>/", views.delete_moderator, name="delete_moderator"),
+
 ]
