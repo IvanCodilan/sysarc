@@ -33,4 +33,8 @@ urlpatterns = [
     path('password-reset-complete/', views.password_reset_complete, name='password_reset_complete'),
     # User Settings
     path('settings/', views.user_settings, name='user_settings'),
+    path('archived-records/', views.archived_records, name='archived_records'),
+    path('add-certificate/', views.add_certificate, name='add_certificate'),
+    path('restore-resident/<int:archived_id>/', views.restore_resident, name='restore_resident'),
+
 ]

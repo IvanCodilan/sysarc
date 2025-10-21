@@ -16,8 +16,18 @@ class PersonInformation(models.Model):
     province = models.CharField(max_length=100, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     place_of_birth = models.CharField(max_length=100, blank=True, null=True)
-    gender = models.CharField(max_length=6, choices=[('Male','Male'),('Female','Female'),('Other','Other')])
-    civil_status = models.CharField(max_length=9, choices=[('Single','Single'),('Married','Married'),('Separated','Separated')])
+    gender = models.CharField(
+        max_length=6,
+        choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')]
+    )
+    civil_status = models.CharField(
+        max_length=9,
+        choices=[
+            ('Single', 'Single'),
+            ('Married', 'Married'),
+            ('Separated', 'Separated')
+        ]
+    )
     occupation = models.CharField(max_length=100, blank=True, null=True)
     citizenship = models.CharField(max_length=50, blank=True, null=True)
     relationship_to_household_head = models.CharField(max_length=100, blank=True, null=True)
@@ -26,27 +36,38 @@ class PersonInformation(models.Model):
         blank=True,
         null=True,
         choices=[
-            ('No Formal Education','No Formal Education'),
-            ('Elementary Graduate','Elementary Graduate'),
-            ('High School Graduate','High School Graduate'),
-            ('College Graduate','College Graduate'),
+            ('No Formal Education', 'No Formal Education'),
+            ('Elementary Graduate', 'Elementary Graduate'),
+            ('High School Graduate', 'High School Graduate'),
+            ('College Graduate', 'College Graduate'),
         ],
     )
     pwd_status = models.CharField(
-    max_length=3,
-    choices=[('No', 'No'), ('PWD', 'PWD')],
-    default='No'
+        max_length=3,
+        choices=[('No', 'No'), ('PWD', 'PWD')],
+        default='No'
     )
 
     voter_status = models.CharField(
-    max_length=10,
-    choices=[('Voter', 'Voter'), ('Non-Voter', 'Non-Voter')],
-    default='Non-Voter'
+        max_length=10,
+        choices=[('Voter', 'Voter'), ('Non-Voter', 'Non-Voter')],
+        default='Non-Voter'
     )
 
-
-
     
+    resident_status = models.CharField(
+    max_length=20,
+    choices=[('Active', 'Active'), ('Inactive', 'Inactive')],
+    default='Inactive'
+)
+    
+    
+
+
+    def __str__(self):
+        return f"{self.last_name}, {self.first_name} ({self.status})"
+
+
 class CertificateLog(models.Model):
     admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     resident = models.ForeignKey(PersonInformation, on_delete=models.SET_NULL, null=True, blank=True)
@@ -65,7 +86,7 @@ class CertificateLog(models.Model):
         if self.resident:
             return f"{self.certificate_type} - {self.resident.first_name} {self.resident.last_name}"
         return f"{self.certificate_type} - {self.resident_name or 'Manual Entry'}"
-    
+
     def save(self, *args, **kwargs):
         if not self.certificate_number:
             # Generate certificate number: BRGY570-YYYY-NNNNNN
@@ -73,7 +94,7 @@ class CertificateLog(models.Model):
             last_cert = CertificateLog.objects.filter(
                 created_at__year=year
             ).order_by('-id').first()
-            
+
             if last_cert and last_cert.certificate_number:
                 # Extract the last number and increment
                 try:
@@ -83,10 +104,11 @@ class CertificateLog(models.Model):
                     new_number = 1
             else:
                 new_number = 1
-            
+
             self.certificate_number = f"BRGY570-{year}-{new_number:06d}"
-        
+
         super().save(*args, **kwargs)
+
 
 class BarangayOfficial(models.Model):
     POSITION_CHOICES = [
@@ -96,7 +118,7 @@ class BarangayOfficial(models.Model):
         ('Treasurer', 'Treasurer'),
         ('SK Chairman', 'SK Chairman'),
     ]
-    
+
     COMMITTEE_CHOICES = [
         ('Appropriation', 'Appropriation'),
         ('Clean & Beautification', 'Clean & Beautification'),
@@ -107,14 +129,44 @@ class BarangayOfficial(models.Model):
         ('Ways & Means', 'Ways & Means'),
         ('None', 'None'),
     ]
-    
+
     position = models.CharField(max_length=50, choices=POSITION_CHOICES)
     name = models.CharField(max_length=100)
     committee = models.CharField(max_length=50, choices=COMMITTEE_CHOICES, default='None')
     order = models.IntegerField(default=0)  # For sorting
-    
+
     class Meta:
         ordering = ['order']
-    
+
     def __str__(self):
         return f"{self.position}: {self.name}"
+    
+   # models.py
+from django.db import models
+
+class ArchivedResident(models.Model):
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    place_of_birth = models.CharField(max_length=255, null=True, blank=True)
+    gender = models.CharField(max_length=10, null=True, blank=True)
+    civil_status = models.CharField(max_length=50, null=True, blank=True)
+    occupation = models.CharField(max_length=100, null=True, blank=True)
+    citizenship = models.CharField(max_length=50, null=True, blank=True)
+    relationship_to_household_head = models.CharField(max_length=50, null=True, blank=True)
+    educational_background = models.CharField(max_length=100, null=True, blank=True)
+    street_number = models.CharField(max_length=50, null=True, blank=True)
+    street = models.CharField(max_length=100, null=True, blank=True)
+    barangay = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    province = models.CharField(max_length=100, null=True, blank=True)
+    region = models.CharField(max_length=100, null=True, blank=True)
+    pwd_status = models.CharField(max_length=50, null=True, blank=True)
+    voter_status = models.CharField(max_length=50, null=True, blank=True)
+    resident_status = models.CharField(max_length=50, default="Inactive")
+    date_archived = models.DateTimeField(auto_now_add=True)
+    archived_reason = models.CharField(max_length=255, default="Deceased")
+
+    def __str__(self):
+        return f"{self.first_name} {self.middle_name or ''} {self.last_name}"

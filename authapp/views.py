@@ -28,6 +28,10 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.shortcuts import render
+from .models import ArchivedResident
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 def login_view(request):
@@ -49,6 +53,10 @@ def login_view(request):
 def dashboard_view(request):
     today = date.today()
     residents = PersonInformation.objects.all()
+
+    # ---------------- Status Counts ----------------
+    active_count = residents.filter(resident_status='Active').count()
+    inactive_count = residents.filter(resident_status='Inactive').count()
 
     # ---------------- Gender Counts ----------------
     male_count = residents.filter(gender='Male').count()
@@ -106,7 +114,7 @@ def dashboard_view(request):
     civil_status_qs = residents.values_list('civil_status', flat=True)
     civil_status_counts = dict(Counter(civil_status_qs))
 
-# ---------------- Certificates by Month ----------------
+    # ---------------- Certificates by Month ----------------
     certificates_by_month = (
         CertificateLog.objects
         .annotate(month=TruncMonth('created_at'))
@@ -125,7 +133,6 @@ def dashboard_view(request):
             if month_str not in cert_data:
                 cert_data[month_str] = {}
             cert_data[month_str][cert_type] = count
-
 
     # ---------------- Context ----------------
     context = {
@@ -148,8 +155,9 @@ def dashboard_view(request):
         'voter_count': voter_count,
         'non_voter_count': non_voter_count,
         'civil_status_counts': civil_status_counts,
-        'cert_data': json.dumps(cert_data)  # Pass as JSON to template
-
+        'cert_data': json.dumps(cert_data),
+        'active_count': active_count,
+        'inactive_count': inactive_count,
     }
 
     return render(request, 'authapp/dashboard.html', context)
@@ -184,7 +192,7 @@ def records_view(request):
     # Start with all residents
     residents = PersonInformation.objects.all()
 
-    # Search by name
+    # 🔍 Search by name
     if query:
         residents = residents.filter(
             Q(first_name__icontains=query) |
@@ -192,7 +200,7 @@ def records_view(request):
             Q(middle_name__icontains=query)
         )
 
-    # Filter by age or gender
+    # 🔽 Apply filters
     if filter_type == 'seniors':
         residents = residents.filter(
             date_of_birth__isnull=False,
@@ -207,6 +215,14 @@ def records_view(request):
         residents = residents.filter(gender__iexact='Male')
     elif filter_type == 'female':
         residents = residents.filter(gender__iexact='Female')
+    elif filter_type == 'voter':
+        residents = residents.filter(voter_status__iexact='Voter')
+    elif filter_type == 'nonvoter':
+        residents = residents.filter(voter_status__iexact='Non-Voter')
+    elif filter_type == 'active':
+        residents = residents.filter(resident_status__iexact='Active')
+    elif filter_type == 'inactive':
+        residents = residents.filter(resident_status__iexact='Inactive')
 
     # Check if the user is LimitedUser
     is_limited = request.user.groups.filter(name="LimitedUser").exists()
@@ -215,8 +231,9 @@ def records_view(request):
         "residents": residents,
         "query": query,
         "selected_filter": filter_type,
-        "is_limited": is_limited,  # <-- pass this to template
+        "is_limited": is_limited,
     })
+
 
 
 @csrf_exempt
@@ -252,6 +269,8 @@ def add_resident(request):
                 educational_background=request.POST.get("educational_background"),
                 pwd_status=request.POST.get("pwd_status", "No"),
                 voter_status=request.POST.get("voter_status", "Non-Voter"),
+                resident_status=request.POST.get("status", "Active"),
+
             )
             messages.success(request, f"Resident {person.first_name} {person.last_name} added successfully.")
         except Exception as e:
@@ -278,7 +297,7 @@ def update_resident(request, id):
                 "street_number", "street", "city", "province", "place_of_birth",
                 "gender", "civil_status", "occupation", "citizenship",
                 "relationship_to_household_head", "educational_background",
-                "pwd_status", "voter_status"
+                "pwd_status", "voter_status", "resident_status",
             ]:
                 setattr(person, field, request.POST.get(field))
 
@@ -312,6 +331,7 @@ def get_resident(request, id):
             "citizenship": person.citizenship,
             "relationship_to_household_head": person.relationship_to_household_head,
             "educational_background": person.educational_background,
+            "resident_status": person.resident_status,
         }
         return JsonResponse(data)
     except PersonInformation.DoesNotExist:
@@ -373,7 +393,8 @@ def upload_excel(request):
                         province=row[15],
                         region=row[16],
                         pwd_status=row[17],
-                        voter_status=row[18]
+                        voter_status=row[18],
+                        resident_status=row[19],
                     )
                     residents_to_create.append(resident)
                     names_for_log.append(f"{row[2]}, {row[0]} {row[1]}")
@@ -427,8 +448,10 @@ def search_resident(request, cert_type):
     return render(request, 'certificates/search.html', context)
 
 
+
+@login_required
 def generate_certificate(request, cert_type, resident_id):
-    # Define purpose_map first
+    # Map certificate types to purposes
     purpose_map = {
         "good_moral": "Good Moral Certificate",
         "financial_assistance": "Financial Assistance",
@@ -479,7 +502,6 @@ def generate_certificate(request, cert_type, resident_id):
         age = today.year - resident.date_of_birth.year - (
             (today.month, today.day) < (resident.date_of_birth.month, resident.date_of_birth.day)
         )    
-    civil_status = resident.civil_status
 
     # Log the certificate generation and get the certificate number
     cert_log = CertificateLog.objects.create(
@@ -490,6 +512,23 @@ def generate_certificate(request, cert_type, resident_id):
         resident_name=full_name,
         created_at=now() 
     )
+
+    # ✅ Archive resident if certificate is deceased_person
+   # ✅ Archive resident if certificate is deceased_person
+    if cert_type.lower() == "deceased_person" and resident.resident_status == "Active":
+        ArchivedResident.objects.create(
+        first_name=resident.first_name,
+        middle_name=resident.middle_name,
+        last_name=resident.last_name,
+        gender=resident.gender,
+        date_of_birth=resident.date_of_birth,
+        archived_reason="Deceased",
+    )
+    # Only mark as inactive, do NOT delete
+    resident.resident_status = "Inactive"
+    resident.save()
+    messages.success(request, f"{full_name} has been archived as deceased.")
+
 
     today = date.today()
     date_next_year = today.replace(year=today.year + 1)
@@ -502,13 +541,14 @@ def generate_certificate(request, cert_type, resident_id):
         'gender': resident.gender,
         'civil_status': resident.civil_status,
         'citizenship': resident.citizenship,
-        'date_today': date.today().strftime("%B %d, %Y"),
+        'date_today': today.strftime("%B %d, %Y"),
         'date_next_year': date_next_year.strftime("%B %d, %Y"),
         'purpose': purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES"),
         'certificate_number': cert_log.certificate_number
     }
 
     return render(request, f'certificates/{cert_type}.html', context)
+
 
 def manual_certificate_input(request):
     if request.method == "POST":
@@ -788,3 +828,124 @@ def user_settings(request):
         'user': request.user
     })
     
+
+@login_required
+def add_certificate(request):
+    if request.method == 'POST':
+        resident_id = request.POST.get('resident_id')
+        certificate_type = request.POST.get('certificate_type')
+        purpose = request.POST.get('purpose', '')
+
+        if not resident_id or not certificate_type:
+            messages.error(request, "Resident ID and certificate type are required.")
+            return redirect('certificates')
+
+        resident = get_object_or_404(PersonInformation, id=resident_id)
+
+        # 1️⃣ Log the certificate
+        CertificateLog.objects.create(
+            person=resident,
+            certificate_type=certificate_type,
+            purpose=purpose,
+            issued_by=request.user,
+        )
+
+        # 2️⃣ If deceased → archive and mark inactive
+        if certificate_type.lower() == 'deceased_person':
+            # Archive resident
+            ArchivedResident.objects.create(
+                first_name=resident.first_name,
+                middle_name=resident.middle_name,
+                last_name=resident.last_name,
+                gender=resident.gender,
+                date_of_birth=resident.date_of_birth,
+                archived_reason="Deceased",
+            )
+
+            # Instead of delete(), just mark inactive
+            resident.resident_status = "Inactive"
+            resident.save()
+
+            messages.success(request, f"{resident.first_name} {resident.last_name} has been archived due to deceased certificate.")
+
+        else:
+            messages.success(request, f"{certificate_type} has been successfully issued to {resident.first_name} {resident.last_name}.")
+
+        return redirect('certificates')
+
+    residents = PersonInformation.objects.filter(resident_status="Active")
+    return render(request, 'authapp/add_certificate.html', {'residents': residents})
+
+
+def archived_records(request):
+    archived = ArchivedResident.objects.all().order_by('-date_archived')
+    return render(request, 'authapp/archived_records.html', {'archived': archived})
+
+@receiver(post_save, sender=PersonInformation)
+def archive_inactive_resident(sender, instance, created, **kwargs):
+    """
+    Archive a resident if their status becomes Inactive and they are not already archived.
+    """
+    if not created and instance.resident_status == "Inactive":
+        if not ArchivedResident.objects.filter(
+            first_name=instance.first_name,
+            middle_name=instance.middle_name,
+            last_name=instance.last_name,
+            date_of_birth=instance.date_of_birth
+        ).exists():
+           ArchivedResident.objects.create(
+            first_name=resident.first_name,
+            middle_name=resident.middle_name,
+            last_name=resident.last_name,
+            date_of_birth=resident.date_of_birth,
+            place_of_birth=resident.place_of_birth,
+            gender=resident.gender,
+            civil_status=resident.civil_status,
+            occupation=resident.occupation,
+            citizenship=resident.citizenship,
+            relationship_to_household_head=resident.relationship_to_household_head,
+            educational_background=resident.educational_background,
+            street_number=resident.street_number,
+            street=resident.street,
+            barangay=resident.barangay,
+            city=resident.city,
+            province=resident.province,
+            region=resident.region,
+            pwd_status=resident.pwd_status,
+            voter_status=resident.voter_status,
+            resident_status="Inactive",
+            archived_reason="Status changed to Inactive"
+        )
+
+
+
+@login_required
+def restore_resident(request, archived_id):
+    res = get_object_or_404(ArchivedResident, id=archived_id)
+
+    restored = PersonInformation.objects.create(
+        first_name=res.first_name,
+        middle_name=res.middle_name or "",
+        last_name=res.last_name,
+        date_of_birth=res.date_of_birth,
+        place_of_birth=res.place_of_birth or "",
+        gender=res.gender or "Unknown",
+        civil_status=res.civil_status or "Single",
+        occupation=res.occupation or "",
+        citizenship=res.citizenship or "",
+        relationship_to_household_head=res.relationship_to_household_head or "",
+        educational_background=res.educational_background or "",
+        street_number=res.street_number or "",
+        street=res.street or "",
+        barangay=res.barangay or "",
+        city=res.city or "",
+        province=res.province or "",
+        region=res.region or "",
+        pwd_status=res.pwd_status or "No",
+        voter_status=res.voter_status or "No",
+        resident_status="Active",
+    )
+
+    res.delete()
+    messages.success(request, f"{restored.first_name} {restored.last_name} has been restored.")
+    return redirect('records')

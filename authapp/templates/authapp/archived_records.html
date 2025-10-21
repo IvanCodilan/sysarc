@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Archived Residents</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/records.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+
+{% include 'authapp/navbar.html' %}
+
+<main class="records">
+  <div class="records-background-card">
+    <div class="records-main-card">
+      
+      <!-- Title -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>Archived Residents</h1>
+      </div>
+
+      <!-- Search + Filter -->
+      <div class="records-container">
+        <div class="search-container">
+          <div class="search-header">
+            <input type="text" id="liveSearch" placeholder="Search by name" class="search-bar" />
+            <span id="recordCount" class="record-count">Total Records: {{ archived|length }}</span>
+          </div>
+          <a href="{% url 'records' %}" 
+             class="add-btn" 
+             style="background-color:#4CAF50; margin-left: 870px;">
+             &#8592; Back to Records
+          </a>
+          <select name="filter" id="filterSelect">
+            <option value="">Select Type</option>
+            <option value="seniors">Seniors (60+)</option>
+            <option value="kids">Kids (17 and below)</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <!-- Archived Residents Table -->
+        <table class="records-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>Birthdate</th>
+              <th>Gender</th>
+              <th>Archived Reason</th>
+            </tr>
+          </thead>
+          <tbody id="residents-body">
+            {% for resident in archived %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }}</td>
+              <td>{{ resident.date_of_birth|date:"Y-m-d" }}</td>
+              <td>{{ resident.gender }}</td>
+              <td>
+                {{ resident.archived_reason }}
+                {% if resident.archived_reason == "Status changed to Inactive" %}
+                  <a href="{% url 'restore_resident' resident.id %}" 
+                     class="add-btn" 
+                     style="background-color:#4CAF50; font-size: 12px; padding: 2px 6px; margin-left: 10px;">
+                     Restore
+                  </a>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="5">No archived residents found.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="{% static 'js/records.js' %}"></script>
+
+</body>
+</html>

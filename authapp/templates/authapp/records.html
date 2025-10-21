@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="{% static 'css/records.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  
 </head>
 <body>
 
@@ -79,6 +80,11 @@
             <select id="voter_status" name="voter_status" required>
               <option value="Voter">Voter</option>
               <option value="Non-Voter">Non-Voter</option>
+            </select>
+            <label for="resident_status">Resident Status:</label>
+            <select id="resident_status" name="resident_status" required>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
             </select>
             <!-- Address -->
             <label for="region">Region:</label>
@@ -159,6 +165,12 @@
               <option value="Voter">Voter</option>
               <option value="Non-Voter">Non-Voter</option>
             </select>
+            <label for="edit_resident_status">Resident Status:</label>
+            <select id="edit_resident_status" name="resident_status" required>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+
             <label for="edit_region">Region:</label>
             <input type="text" id="edit_region" name="region"required>
             <label for="edit_province">Province:</label>
@@ -203,17 +215,27 @@
           <input type="text" id="liveSearch" placeholder="Search by name, address, or gender..." class="search-bar" />
           <span id="recordCount" class="record-count">Total Records: {{ residents|length }}</span>
         </div>
-        <select name="filter" id="filterSelect">
-          <option value="">Select Type</option>
-          <option value="seniors" {% if selected_filter == 'seniors' %}selected{% endif %}>Seniors (60+)</option>
-          <option value="kids" {% if selected_filter == 'kids' %}selected{% endif %}>Kids (17 and below)</option>
-          <option value="male" {% if selected_filter == 'male' %}selected{% endif %}>Male</option>
-          <option value="female" {% if selected_filter == 'female' %}selected{% endif %}>Female</option>
-          <option value="pwd" {% if selected_filter == 'pwd' %}selected{% endif %}>PWD</option>
-          <option value="voter" {% if selected_filter == 'voter' %}selected{% endif %}>Voter</option>
-          <option value="nonvoter" {% if selected_filter == 'nonvoter' %}selected{% endif %}>Non-Voter</option>
-        </select>
-      </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+  <a href="{% url 'archived_records' %}" class="add-btn" style="background-color: black;">
+    View Archived Residents
+  </a>
+
+  <select name="filter" id="filterSelect">
+    <option value="">Select Type</option>
+    <option value="seniors" {% if selected_filter == 'seniors' %}selected{% endif %}>Seniors (60+)</option>
+    <option value="kids" {% if selected_filter == 'kids' %}selected{% endif %}>Kids (17 and below)</option>
+    <option value="male" {% if selected_filter == 'male' %}selected{% endif %}>Male</option>
+    <option value="female" {% if selected_filter == 'female' %}selected{% endif %}>Female</option>
+    <option value="pwd" {% if selected_filter == 'pwd' %}selected{% endif %}>PWD</option>
+    <option value="voter" {% if selected_filter == 'voter' %}selected{% endif %}>Voter</option>
+    <option value="nonvoter" {% if selected_filter == 'nonvoter' %}selected{% endif %}>Non-Voter</option>
+    <option value="active" {% if selected_filter == 'active' %}selected{% endif %}>Active</option>
+    <option value="inactive" {% if selected_filter == 'inactive' %}selected{% endif %}>Inactive</option>
+  </select>
+</div>
+
+
+
 
       <table class="records-table">
         <thead>
@@ -260,6 +282,9 @@
                 <input type="hidden" class="street_number" value="{{ resident.street_number }}">
                 <input type="hidden" class="pwd_status" value="{{ resident.pwd_status }}">
                 <input type="hidden" class="voter_status" value="{{ resident.voter_status }}">
+                <input type="hidden" class="resident_status" value="{{ resident.resident_status }}">
+
+
               </div>
             </td>
           </tr>
