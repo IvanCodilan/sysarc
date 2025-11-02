@@ -25,12 +25,14 @@ urlpatterns = [
     path('get-officials/', views.get_officials_json, name='get_officials_json'),
     path('update-officials/', views.update_officials, name='update_officials'),
     path('backup-database/', views.backup_database, name='backup_database'),
-    path('resident/<int:id>/detail/', views.resident_detail_modal, name='resident_detail'),
+    path('resident/<int:id>/modal/', views.resident_detail_modal, name='resident_detail_modal'),
     # Password Reset URLs
     path('password-reset/', views.password_reset_request, name='password_reset'),
     path('password-reset-done/', views.password_reset_done, name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', views.password_reset_confirm, name='password_reset_confirm'),
     path('password-reset-complete/', views.password_reset_complete, name='password_reset_complete'),
+    # Login unlock (magic link)
+    path('unlock-login/<uidb64>/<token>/', views.unlock_login, name='unlock_login'),
     # User Settings
     path('settings/', views.user_settings, name='user_settings'),
     path('user/settings/', views.user_settings, name='user_settings'),
@@ -38,5 +40,7 @@ urlpatterns = [
     path('create_moderator/', views.create_moderator, name='create_moderator'),
     path('edit-moderator-modal/', views.edit_moderator_modal, name='edit_moderator_modal'),
     path("delete_moderator/<int:user_id>/", views.delete_moderator, name="delete_moderator"),
-
+    path('archived-records/', views.archived_records, name='archived_records'),
+    path('add-certificate/', views.add_certificate, name='add_certificate'),
+    path('restore-resident/<int:archived_id>/', views.restore_resident, name='restore_resident'),
 ]

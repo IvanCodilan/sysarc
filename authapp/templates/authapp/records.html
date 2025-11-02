@@ -80,6 +80,11 @@
               <option value="Voter">Voter</option>
               <option value="Non-Voter">Non-Voter</option>
             </select>
+            <label for="resident_status">Resident Status:</label>
+            <select id="resident_status" name="resident_status"disabled required>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
             <!-- Address -->
             <label for="region">Region:</label>
             <input type="text" id="region" name="region"required>
@@ -159,6 +164,11 @@
               <option value="Voter">Voter</option>
               <option value="Non-Voter">Non-Voter</option>
             </select>
+            <label for="edit_resident_status">Resident Status:</label>
+            <select id="edit_resident_status" name="resident_status" required>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
             <label for="edit_region">Region:</label>
             <input type="text" id="edit_region" name="region"required>
             <label for="edit_province">Province:</label>
@@ -203,6 +213,10 @@
           <input type="text" id="liveSearch" placeholder="Search by name, address, or gender..." class="search-bar" />
           <span id="recordCount" class="record-count">Total Records: {{ residents|length }}</span>
         </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="{% url 'archived_records' %}" class="add-btn" style="background-color: black;">
+          View Archived Residents
+        </a>
         <select name="filter" id="filterSelect">
           <option value="">Select Type</option>
           <option value="seniors" {% if selected_filter == 'seniors' %}selected{% endif %}>Seniors (60+)</option>
@@ -222,6 +236,7 @@
             <th>Full Name</th>
             <th>Birthdate</th>
             <th>Gender</th>
+            <th>Status</th>
             <th>Address</th>
             <th>Action</th>
           </tr>
@@ -237,6 +252,7 @@
             </td>
             <td>{{ resident.date_of_birth|date:"Y-m-d" }}</td>
             <td>{{ resident.gender }}</td>
+            <td>{{ resident.resident_status }}</td>
             <td>{{ resident.street_number }} {{ resident.street }}, {{ resident.barangay }}, {{ resident.city }}</td>
             <td>
       
@@ -264,12 +280,14 @@
                 <input type="hidden" class="street_number" value="{{ resident.street_number }}">
                 <input type="hidden" class="pwd_status" value="{{ resident.pwd_status }}">
                 <input type="hidden" class="voter_status" value="{{ resident.voter_status }}">
+                <input type="hidden" class="resident_status" value="{{ resident.resident_status }}">
+
               </div>
             </td>
           </tr>
           {% empty %}
           <tr>
-            <td colspan="6">No residents found.</td>
+            <td colspan="7">No residents found.</td>
           </tr>
           {% endfor %}
         </tbody>

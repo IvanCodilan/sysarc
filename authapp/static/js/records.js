@@ -104,6 +104,7 @@ function editResident(id) {
   document.getElementById('edit_street').value = getHidden('street') || '';
   document.getElementById('edit_pwd_status').value = dataDiv.querySelector('.pwd_status').value;
   document.getElementById('edit_voter_status').value = dataDiv.querySelector('.voter_status').value;
+  document.getElementById('edit_resident_status').value = dataDiv.querySelector('.resident_status').value;
 
   document.getElementById('editResidentModal').style.display = 'block';
 
@@ -231,7 +232,7 @@ function runLiveSearch() {
     const fullName = (row.cells[1]?.textContent || '').toLowerCase();
     const birthdateText = (row.cells[2]?.textContent || '').trim();
     const gender = (row.cells[3]?.textContent || '').toLowerCase();
-    const address = (row.cells[4]?.textContent || '').toLowerCase();
+    const address = (row.cells[5]?.textContent || '').toLowerCase();
     const searchContent = `${fullName} ${gender} ${address}`;
 
     const matchesSearch = !searchTerm || searchContent.includes(searchTerm);
@@ -241,6 +242,7 @@ function runLiveSearch() {
     if (filterValue) {
         const pwd = row.querySelector('.pwd_status')?.value.toLowerCase() || '';
         const voter = row.querySelector('.voter_status')?.value.toLowerCase() || '';
+        const status = row.querySelector('.resident_status')?.value.toLowerCase() || '';
 
         if (filterValue === 'seniors' || filterValue === 'kids') {
             if (birthdateText) {
@@ -264,10 +266,12 @@ function runLiveSearch() {
             matchesFilter = voter === 'voter';
         } else if (filterValue === 'nonvoter') {
             matchesFilter = voter === 'non-voter' || voter === 'nonvoter';
-        }
+        } else if (filterValue === 'active') {
+            matchesFilter = status === 'active';
+        } else if (filterValue === 'inactive') {
+            matchesFilter = status === 'inactive';
     }
-
-
+    }
     if (matchesSearch && matchesFilter) {
       row.style.display = '';
       visibleCount++;

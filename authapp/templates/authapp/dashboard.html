@@ -68,24 +68,28 @@
                 <div class="card" data-order="2">
                     <h2>Gender Distribution</h2>
                     <canvas id="genderChart"></canvas>
+                    <div id="genderSummaryTable"></div>
                 </div>
 
                 <!-- Age Groups Card -->
                 <div class="card" data-order="3">
                     <h2>Age Groups</h2>
                     <canvas id="ageChart"></canvas>
+                    <div id="ageSummaryTable"></div>
                 </div>
 
                 <!-- Education Level Card -->
                 <div class="card" data-order="4">
                     <h2>Education Level</h2>
                     <canvas id="educationChart"></canvas>
+                    <div id="educationSummaryTable"></div>
                 </div>
 
                 <!-- PWD and Voter Status Card -->
                 <div class="card" data-order="5">
                     <h2>PWD & Voter Status</h2>
                     <canvas id="pwdVoterChart"></canvas>
+                    <div id="pwdVoterSummaryTable"></div>
                 </div>
 
                 <!-- Certificates Claimed per Month Card -->
@@ -173,6 +177,37 @@
             plugins: [ChartDataLabels]
         });
 
+        (function renderGenderSummaryBelowChart() {
+            const genderCanvas = document.getElementById('genderChart');
+            if (!genderCanvas) return;
+
+            const rows = [
+            { label: 'Male', value: data.male || 0 },
+            { label: 'Female', value: data.female || 0 }
+            ];
+
+            const genderTableHtml = `
+            <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+                <thead>
+                <tr style="background:#2563EB; color:white; text-align:left;">
+                    <th style="padding:8px;">Type</th>
+                    <th style="padding:8px;">Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                ${rows.map(r => `
+                    <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:8px;">${r.label}</td>
+                    <td style="padding:8px; font-weight:bold;">${r.value}</td>
+                    </tr>
+                `).join('')}
+                </tbody>
+            </table>
+            `;
+
+            genderCanvas.insertAdjacentHTML('afterend', genderTableHtml);
+        })();
+
         // ------- Age Groups -------
         const ageCtx = document.getElementById('ageChart').getContext('2d');
         new Chart(ageCtx, {
@@ -205,6 +240,37 @@
             plugins: [ChartDataLabels]
         });
 
+        (function renderAgeSummaryBelowChart() {
+            const ageCanvas = document.getElementById('ageChart');
+            if (!ageCanvas) return;
+
+            const rows = [
+            { label: 'Seniors (60 and above)', value: data.seniors || 0 },
+            { label: 'Kids (Below 17)', value: data.kids || 0 }
+            ];
+
+            const ageTableHtml = `
+            <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+                <thead>
+                <tr style="background:#2563EB; color:white; text-align:left;">
+                    <th style="padding:8px;">Type</th>
+                    <th style="padding:8px;">Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                ${rows.map(r => `
+                    <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:8px;">${r.label}</td>
+                    <td style="padding:8px; font-weight:bold;">${r.value}</td>
+                    </tr>
+                `).join('')}
+                </tbody>
+            </table>
+            `;
+
+            ageCanvas.insertAdjacentHTML('afterend', ageTableHtml);
+        })();
+
         // ------- Education -------
         const eduCtx = document.getElementById('educationChart').getContext('2d');
         new Chart(eduCtx, {
@@ -231,6 +297,39 @@
             },
             plugins: [ChartDataLabels]
         });
+
+        (function renderEducationSummaryBelowChart() {
+            const educationCanvas = document.getElementById('educationChart');
+            if (!educationCanvas) return;
+
+            const rows = [
+            { label: 'No Education', value: data.no_education || 0 },
+            { label: 'Elementary', value: data.elementary || 0 },
+            { label: 'High School', value: data.high_school || 0 },
+            { label: 'College', value: data.college || 0 },
+            ];
+
+            const educationTableHtml = `
+            <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+                <thead>
+                <tr style="background:#2563EB; color:white; text-align:left;">
+                    <th style="padding:8px;">Type</th>
+                    <th style="padding:8px;">Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                ${rows.map(r => `
+                    <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:8px;">${r.label}</td>
+                    <td style="padding:8px; font-weight:bold;">${r.value}</td>
+                    </tr>
+                `).join('')}
+                </tbody>
+            </table>
+            `;
+
+            educationCanvas.insertAdjacentHTML('afterend', educationTableHtml);
+        })();
 
         // ------- PWD & Voter -------
         const pwdCtx = document.getElementById('pwdVoterChart').getContext('2d');
@@ -265,6 +364,39 @@
             },
             plugins: [ChartDataLabels]
         });
+
+        (function renderPwdVoterSummaryBelowChart() {
+            const pwdVoterCanvas = document.getElementById('pwdVoterChart');
+            if (!pwdVoterCanvas) return;
+
+            const rows = [
+            { label: 'PWD', value: data.pwd || 0 },
+            { label: 'Non PWD', value: data.non_pwd || 0 },
+            { label: 'Voter', value: data.voter || 0 },
+            { label: 'Non Voter', value: data.non_voter || 0 },
+            ];
+
+            const pwdVoterTableHtml = `
+            <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+                <thead>
+                <tr style="background:#2563EB; color:white; text-align:left;">
+                    <th style="padding:8px;">Type</th>
+                    <th style="padding:8px;">Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                ${rows.map(r => `
+                    <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:8px;">${r.label}</td>
+                    <td style="padding:8px; font-weight:bold;">${r.value}</td>
+                    </tr>
+                `).join('')}
+                </tbody>
+            </table>
+            `;
+
+            pwdVoterCanvas.insertAdjacentHTML('afterend', pwdVoterTableHtml);
+        })();
 
         // ------- Certificates per Month -------
         const certCtx = document.getElementById('certChart').getContext('2d');

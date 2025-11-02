@@ -46,6 +46,11 @@ class PersonInformation(models.Model):
     )
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
+    resident_status = models.CharField(
+    max_length=20,
+    choices=[('Active', 'Active'), ('Inactive', 'Inactive')],
+    default='Inactive'
+    )
 
 
     
@@ -132,3 +137,30 @@ class RolePermission(models.Model):
 
     def __str__(self):
         return f"Permissions for {self.user.username}"
+
+class ArchivedResident(models.Model):
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    place_of_birth = models.CharField(max_length=255, null=True, blank=True)
+    gender = models.CharField(max_length=10, null=True, blank=True)
+    civil_status = models.CharField(max_length=50, null=True, blank=True)
+    occupation = models.CharField(max_length=100, null=True, blank=True)
+    citizenship = models.CharField(max_length=50, null=True, blank=True)
+    relationship_to_household_head = models.CharField(max_length=50, null=True, blank=True)
+    educational_background = models.CharField(max_length=100, null=True, blank=True)
+    street_number = models.CharField(max_length=50, null=True, blank=True)
+    street = models.CharField(max_length=100, null=True, blank=True)
+    barangay = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    province = models.CharField(max_length=100, null=True, blank=True)
+    region = models.CharField(max_length=100, null=True, blank=True)
+    pwd_status = models.CharField(max_length=50, null=True, blank=True)
+    voter_status = models.CharField(max_length=50, null=True, blank=True)
+    resident_status = models.CharField(max_length=50, default="Inactive")
+    date_archived = models.DateTimeField(auto_now_add=True)
+    archived_reason = models.CharField(max_length=255, default="Deceased")
+
+    def __str__(self):
+        return f"{self.first_name} {self.middle_name or ''} {self.last_name}"
