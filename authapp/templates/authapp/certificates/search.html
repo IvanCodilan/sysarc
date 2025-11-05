@@ -42,7 +42,7 @@
         <div class="instructions">
           <p>Use the search bar to quickly find the person whose certificate you want to create. Once found, select this record to automatically generate and print the certificate.</p>
         </div>
-        {% if not is_limited %}
+        {% if can_edit_officials %}
         <button class="manual-btn" onclick="openOfficialsModal()">Barangay Officials</button>
         {% endif %}
       </div>

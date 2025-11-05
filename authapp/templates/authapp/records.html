@@ -190,11 +190,11 @@
       </div>
 
       <!-- Excel Upload -->
-      <form id="excelUploadForm" enctype="multipart/form-data" method="post" action="" style="margin-top: 10px;">
+      <form id="excelUploadForm" enctype="multipart/form-data" method="post" action="{% url 'upload_excel' %}" style="margin-top: 10px;">
         {% csrf_token %}
         {% if permissions.can_upload %}
         <div class="file-upload-wrapper">
-          <input type="file" name="excel_file" id="excelFile" accept=".xlsx, .xls" required class="file-input">
+          <input type="file" name="excel_file" id="excelFile" accept=".xlsx, .xls, .csv" required class="file-input">
           <label for="excelFile" class="file-label">
             <i class="fas fa-file-excel"></i> Choose Excel File
           </label>
@@ -430,6 +430,13 @@
     }
     if (!userPermissions.canUpload) {
       document.querySelectorAll(".upload-btn").forEach(btn => btn.style.display = "none");
+    }
+    const fileInput = document.getElementById('excelFile');
+    const fileNameSpan = document.getElementById('fileName');
+    if (fileInput && fileNameSpan) {
+      fileInput.addEventListener('change', () => {
+        fileNameSpan.textContent = fileInput.files && fileInput.files.length ? fileInput.files[0].name : 'No file chosen';
+      });
     }
   });
 </script>

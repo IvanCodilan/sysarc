@@ -3,25 +3,91 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 from django.contrib.auth.models import Group
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+from cryptography.fernet import Fernet, InvalidToken
+
+
+class EncryptedTextField(models.TextField):
+    """A TextField that transparently encrypts/decrypts values using Fernet."""
+
+    def _get_fernet(self):
+        key = getattr(settings, 'FERNET_KEY', None)
+        if not key:
+            raise ImproperlyConfigured('FERNET_KEY is not set in settings.')
+        if isinstance(key, str):
+            key = key.encode()
+        return Fernet(key)
+
+    def get_prep_value(self, value):
+        value = super().get_prep_value(value)
+        if value in (None, ''):
+            return value
+        if isinstance(value, str):
+            value_bytes = value.encode('utf-8')
+        else:
+            value_bytes = value
+        token = self._get_fernet().encrypt(value_bytes)
+        return token.decode('utf-8')
+
+    def from_db_value(self, value, expression, connection):
+        if value in (None, ''):
+            return value
+        try:
+            decrypted = self._get_fernet().decrypt(value.encode('utf-8'))
+            return decrypted.decode('utf-8')
+        except (InvalidToken, ValueError, TypeError):
+            # If it's not decryptable (e.g., already plaintext), return as-is
+            return value
+
+    def to_python(self, value):
+        if value in (None, ''):
+            return value
+        if isinstance(value, str):
+            # Attempt decrypt; if fails, assume plaintext
+            try:
+                decrypted = self._get_fernet().decrypt(value.encode('utf-8'))
+                return decrypted.decode('utf-8')
+            except (InvalidToken, ValueError, TypeError):
+                return value
+        return value
 
 
 class PersonInformation(models.Model):
-    region = models.CharField(max_length=100, blank=True, null=True)
+    # Keep plaintext for searchable/sortable fields
     barangay = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     first_name = models.CharField(max_length=100, blank=True, null=True)
     middle_name = models.CharField(max_length=100, blank=True, null=True)
-    street_number = models.CharField(max_length=20, blank=True, null=True)
-    street = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100, blank=True, null=True)
-    province = models.CharField(max_length=100, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    place_of_birth = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(max_length=6, choices=[('Male','Male'),('Female','Female'),('Other','Other')])
-    civil_status = models.CharField(max_length=9, choices=[('Single','Single'),('Married','Married'),('Separated','Separated')])
-    occupation = models.CharField(max_length=100, blank=True, null=True)
-    citizenship = models.CharField(max_length=50, blank=True, null=True)
-    relationship_to_household_head = models.CharField(max_length=100, blank=True, null=True)
+    pwd_status = models.CharField(
+        max_length=3,
+        choices=[('No', 'No'), ('PWD', 'PWD')],
+        default='No'
+    )
+    voter_status = models.CharField(
+        max_length=10,
+        choices=[('Voter', 'Voter'), ('Non-Voter', 'Non-Voter')],
+        default='Non-Voter'
+    )
+    resident_status = models.CharField(
+        max_length=20,
+        choices=[('Active', 'Active'), ('Inactive', 'Inactive')],
+        default='Inactive'
+    )
+
+    # Encrypted sensitive fields
+    region = EncryptedTextField(blank=True, null=True)
+    street_number = EncryptedTextField(blank=True, null=True)
+    street = EncryptedTextField(blank=True, null=True)
+    city = EncryptedTextField(blank=True, null=True)
+    province = EncryptedTextField(blank=True, null=True)
+    place_of_birth = EncryptedTextField(blank=True, null=True)
+    civil_status = EncryptedTextField(blank=True, null=True)
+    occupation = EncryptedTextField(blank=True, null=True)
+    citizenship = EncryptedTextField(blank=True, null=True)
+    relationship_to_household_head = EncryptedTextField(blank=True, null=True)
     educational_background = models.CharField(
         max_length=20,
         blank=True,
@@ -33,27 +99,28 @@ class PersonInformation(models.Model):
             ('College Graduate','College Graduate'),
         ],
     )
-    pwd_status = models.CharField(
-    max_length=3,
-    choices=[('No', 'No'), ('PWD', 'PWD')],
-    default='No'
-    )
-
-    voter_status = models.CharField(
-    max_length=10,
-    choices=[('Voter', 'Voter'), ('Non-Voter', 'Non-Voter')],
-    default='Non-Voter'
-    )
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
-    resident_status = models.CharField(
-    max_length=20,
-    choices=[('Active', 'Active'), ('Inactive', 'Inactive')],
-    default='Inactive'
-    )
+    def save(self, *args, **kwargs):
+        def _norm(v):
+            if isinstance(v, str):
+                v2 = v.strip()
+                return v2.title()
+            return v
+
+        for fname in [
+            'first_name', 'middle_name', 'last_name',
+            'barangay', 'street_number', 'street', 'city', 'province', 'region',
+            'place_of_birth', 'civil_status', 'occupation', 'citizenship',
+            'relationship_to_household_head', 'educational_background',
+        ]:
+            val = getattr(self, fname, None)
+            if val is not None:
+                setattr(self, fname, _norm(val))
+
+        super().save(*args, **kwargs)
 
 
-    
 class CertificateLog(models.Model):
     admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     resident = models.ForeignKey(PersonInformation, on_delete=models.SET_NULL, null=True, blank=True)

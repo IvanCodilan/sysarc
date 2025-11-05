@@ -17,8 +17,10 @@
 
         main {
             margin-left: 250px;
-            padding: 20px;
+            padding: 24px;
             transition: margin-left 0.3s ease;
+            min-height: 100vh;
+            background-color: #f5f5f5;
         }
 
         .sidebar.collapsed ~ main {
@@ -26,12 +28,12 @@
         }
 
         .settings-container {
-            max-width: 1200px;
-            margin: 25px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            background: #ffffff;
+            padding: 24px 28px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
         }
 
         h1 {
@@ -129,6 +131,9 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 40px;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         th, td {
@@ -187,6 +192,38 @@
 
         input:checked + .slider:before {
             transform: translateX(22px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            main {
+                padding: 20px;
+            }
+            .settings-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* In very small widths, ensure content never sits under sidebar */
+            .sidebar ~ main {
+                margin-left: 80px;
+            }
+            main {
+                padding: 16px;
+            }
+            .settings-container {
+                padding: 16px;
+                border-radius: 8px;
+            }
+            th, td {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
         }
 
         .modal {
@@ -262,14 +299,14 @@
                     <input type="email" id="email" name="email" value="{{ user.email }}" required>
                 </div>
 
-                <button type="submit" class="btn">Update Settings</button>
+                <button type="submit" class="btn">Update Email</button>
             </form>
 
             {% if user.is_superuser %}
             <hr style="margin:40px 0;">
 
             <!-- Create Moderator Form -->
-            <h2>Create a New Moderator Account</h2>
+            <h2>Create New Moderator Account</h2>
             <p class="subtitle">Superadmins can create new moderator accounts here.</p>
 
             <form method="POST" action="{% url 'create_moderator' %}">
@@ -293,7 +330,7 @@
             </form>
 
             <!-- Manage Permissions -->
-            <h2 style="margin-top:40px;">Manage User Permissions</h2>
+            <h2 style="margin-top:40px;">Manage Moderator Permissions</h2>
             <p class="subtitle">Toggle access rights for each user below</p>
 
             <table>
@@ -305,6 +342,7 @@
                         <th>Edit Resident</th>
                         <th>Delete Resident</th>
                         <th>Upload Excel</th>
+                        <th>Edit Barangay Officials</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -337,6 +375,12 @@
                         <td>
                                 <label class="switch">
                                     <input type="checkbox" name="can_upload" {% if u.can_upload_excel %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                        </td>
+                        <td>
+                                <label class="switch">
+                                    <input type="checkbox" name="can_edit_officials" {% if u.can_edit_officials %}checked{% endif %}>
                                     <span class="slider"></span>
                                 </label>
                         </td>

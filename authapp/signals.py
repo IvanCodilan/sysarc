@@ -3,9 +3,9 @@ from django.dispatch import receiver
 from .models import PersonInformation, ArchivedResident
 
 @receiver(post_save, sender=PersonInformation)
-def archive_and_delete_inactive_resident(sender, instance, created, **kwargs):
+def archive_inactive_resident(sender, instance, created, **kwargs):
     """
-    Archive and delete a resident if their status becomes Inactive.
+    Archive a resident if their status becomes Inactive. Do NOT delete.
     """
     # Skip newly created residents
     if created:
@@ -29,5 +29,4 @@ def archive_and_delete_inactive_resident(sender, instance, created, **kwargs):
                 archived_reason="Status changed to Inactive"
             )
 
-        # Delete the original resident record
-        instance.delete()
+        # Do not delete; keep the resident record marked as Inactive

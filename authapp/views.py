@@ -477,9 +477,10 @@ def delete_resident(request, id):
 @csrf_exempt
 @login_required
 def upload_excel(request):
-    perms = get_user_permissions(request.user)
-    if not (perms and perms.can_upload_excel):
-        return JsonResponse({'success': False, 'message': 'You are not allowed to upload records.'}, status=403)
+    if not (request.user.is_superuser or request.user.groups.filter(name="Admin").exists()):
+        perms = get_user_permissions(request.user)
+        if not (perms and perms.can_upload_excel):
+            return JsonResponse({'success': False, 'message': 'You are not allowed to upload records.'}, status=403)
 
     if request.method == 'POST' and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
@@ -552,6 +553,13 @@ def search_resident(request, cert_type):
     # Pass all user groups to template for JS logic if needed
     user_groups = list(request.user.groups.values_list('name', flat=True))
 
+    # Determine if the user can edit barangay officials
+    user = request.user
+    can_edit_officials = user.is_superuser or user.groups.filter(name="Admin").exists()
+    if not can_edit_officials:
+        perms = get_user_permissions(user)
+        can_edit_officials = bool(perms and getattr(perms, 'can_edit_officials', False))
+
     context = {
         'cert_type': cert_type,
         'residents': residents,
@@ -559,6 +567,7 @@ def search_resident(request, cert_type):
         'error': error,
         'is_limited': is_limited,
         'user_groups': user_groups,
+        'can_edit_officials': can_edit_officials,
     }
 
     return render(request, 'certificates/search.html', context)
@@ -713,9 +722,11 @@ def get_officials_json(request):
 
 @login_required
 def update_officials(request):
-    # Restrict LimitedUser
-    if request.user.groups.filter(name="LimitedUser").exists():
-        return JsonResponse({'success': False, 'error': 'You are not allowed to update officials.'}, status=403)
+    # Enforce permission: superuser/Admin or users with can_edit_officials
+    if not (request.user.is_superuser or request.user.groups.filter(name="Admin").exists()):
+        perms = get_user_permissions(request.user)
+        if not (perms and getattr(perms, 'can_edit_officials', False)):
+            return JsonResponse({'success': False, 'error': 'You are not allowed to update officials.'}, status=403)
 
     if request.method == 'POST':
         try:
@@ -967,6 +978,7 @@ def user_settings(request):
             role_perm.can_edit_resident = "can_edit" in request.POST
             role_perm.can_delete_resident = "can_delete" in request.POST
             role_perm.can_upload_excel = "can_upload" in request.POST
+            role_perm.can_edit_officials = "can_edit_officials" in request.POST
             role_perm.save()
 
             messages.success(request, f"Permissions for '{target_user.username}' updated.")
@@ -999,6 +1011,7 @@ def user_settings(request):
             "can_edit_resident": role_perm.can_edit_resident,
             "can_delete_resident": role_perm.can_delete_resident,
             "can_upload_excel": role_perm.can_upload_excel,
+            "can_edit_officials": getattr(role_perm, 'can_edit_officials', False),
         })
 
     return render(request, "authapp/user_settings.html", {
@@ -1046,6 +1059,7 @@ def create_moderator(request):
                 "can_edit_resident": False,
                 "can_delete_resident": False,
                 "can_upload_excel": False,
+                "can_edit_officials": False,
             },
         )
 

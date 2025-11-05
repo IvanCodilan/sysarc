@@ -9,7 +9,7 @@
 body {
     display: flex;
     height: 100vh;
-    background-color: #f5f5f5; /* From second CSS */
+    background-color: #e0dede;
 }
 
 /* Sidebar */
