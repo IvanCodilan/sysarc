@@ -748,15 +748,43 @@ def update_officials(request):
 
 
 @login_required
+def resident_detail_modal(request, id):
+    resident = get_object_or_404(PersonInformation, id=id)
+
+    total_certs = CertificateLog.objects.filter(resident=resident).count()
+
+    certs_by_type = (
+        CertificateLog.objects
+        .filter(resident=resident)
+        .values('certificate_type')
+        .annotate(count=Count('id'))
+        .order_by('-count')
+    )
+
+    certificates = (
+        CertificateLog.objects
+        .filter(resident=resident)
+        .select_related('admin')
+        .order_by('-created_at')
+    )
+
+    return render(request, 'authapp/resident_detail_modal.html', {
+        'resident': resident,
+        'total_certs': total_certs,
+        'certs_by_type': certs_by_type,
+        'certificates': certificates,
+    })
+
+
+@login_required
 def backup_database(request):
     if request.method == "POST":
         try:
             # === STEP 1: Detect Flash Drive ===
-            # Set your flash drive label here
-            USB_LABEL = "BRGY_BACKUP_USB"
+            USB_LABEL = "BRGY_BACKUP_USB"  # Label currently unused but kept for clarity
 
             possible_paths = [
-                Path("E:/")  # Windows drive letters
+                Path("E:/"),  # Extend to other drive letters if needed
             ]
 
             usb_path = next((p for p in possible_paths if p.exists()), None)
@@ -784,13 +812,13 @@ def backup_database(request):
 
             # === STEP 4: Find mysqldump Path ===
             possible_mysqldump_paths = [
-                r"C:\Program Files\MySQL\MySQL Server 9.0\bin\mysqldump.exe",
-                r"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe",
-                r"C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe",
-                r"C:\xampp\mysql\bin\mysqldump.exe",
-                r"C:\wamp64\bin\mysql\mysql8.0.31\bin\mysqldump.exe",
+                r"C:\\Program Files\\MySQL\\MySQL Server 9.0\\bin\\mysqldump.exe",
+                r"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe",
+                r"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe",
+                r"C:\\xampp\\mysql\\bin\\mysqldump.exe",
+                r"C:\\wamp64\\bin\\mysql\\mysql8.0.31\\bin\\mysqldump.exe",
             ]
-            
+
             mysqldump_path = next((p for p in possible_mysqldump_paths if Path(p).exists()), None)
             if not mysqldump_path:
                 return JsonResponse({
@@ -813,9 +841,66 @@ def backup_database(request):
             with open(backup_file, "w", encoding="utf-8") as f:
                 subprocess.run(command, stdout=f, stderr=subprocess.PIPE, check=True)
 
+            # === STEP 7: Export Records to XLSX ===
+            records_file = backup_dir / f"records_{timestamp}.xlsx"
+
+            wb = openpyxl.Workbook()
+            ws = wb.active
+
+            # Header row matching upload_excel column order
+            ws.append([
+                "First Name",
+                "Middle Name",
+                "Last Name",
+                "Date of Birth",
+                "Place of Birth",
+                "Gender",
+                "Civil Status",
+                "Occupation",
+                "Citizenship",
+                "Relationship to Household Head",
+                "Educational Background",
+                "Street Number",
+                "Street",
+                "Barangay",
+                "City",
+                "Province",
+                "Region",
+                "PWD Status",
+                "Voter Status",
+                "Resident Status",
+            ])
+
+            # Export all residents; adjust to filter(resident_status='Active') if needed
+            for resident in PersonInformation.objects.all():
+                ws.append([
+                    resident.first_name,
+                    resident.middle_name,
+                    resident.last_name,
+                    resident.date_of_birth,
+                    resident.place_of_birth,
+                    resident.gender,
+                    resident.civil_status,
+                    resident.occupation,
+                    resident.citizenship,
+                    resident.relationship_to_household_head,
+                    resident.educational_background,
+                    resident.street_number,
+                    resident.street,
+                    resident.barangay,
+                    resident.city,
+                    resident.province,
+                    resident.region,
+                    resident.pwd_status,
+                    resident.voter_status,
+                    resident.resident_status,
+                ])
+
+            wb.save(str(records_file))
+
             return JsonResponse({
                 "success": True,
-                "message": f"Backup successful! Saved to {backup_file}"
+                "message": f"Backup successful! SQL: {backup_file.name}, XLSX: {records_file.name}"
             })
 
         except subprocess.CalledProcessError as e:
@@ -827,32 +912,74 @@ def backup_database(request):
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 @login_required
-def resident_detail_modal(request, id):
-    resident = get_object_or_404(PersonInformation, id=id)
+def import_backup(request):
+    # Only superusers/Admins can import backups
+    if not (request.user.is_superuser or request.user.groups.filter(name="Admin").exists()):
+        messages.error(request, "You do not have permission to import backups.")
+        return redirect('dashboard')
 
-    total_certs = CertificateLog.objects.filter(resident=resident).count()
+    if request.method == "POST" and request.FILES.get("sql_file"):
+        sql_file = request.FILES["sql_file"]
 
-    certs_by_type = (
-        CertificateLog.objects
-        .filter(resident=resident)
-        .values('certificate_type')
-        .annotate(count=Count('id'))
-        .order_by('-count')
-    )
+        # Save uploaded SQL temporarily
+        tmp_path = default_storage.save('tmp/' + sql_file.name, ContentFile(sql_file.read()))
+        full_path = default_storage.path(tmp_path)
 
-    certificates = (
-        CertificateLog.objects
-        .filter(resident=resident)
-        .select_related('admin')
-        .order_by('-created_at')
-    )
+        try:
+            # Database settings
+            db_settings = settings.DATABASES['default']
+            db_name = db_settings['NAME']
+            db_user = db_settings['USER']
+            db_password = db_settings['PASSWORD']
+            db_host = db_settings.get('HOST', '127.0.0.1')
+            db_port = db_settings.get('PORT', '3306')
 
-    return render(request, 'authapp/resident_detail_modal.html', {
-        'resident': resident,
-        'total_certs': total_certs,
-        'certs_by_type': certs_by_type,
-        'certificates': certificates,
-    })
+            # Possible mysql client paths
+            possible_mysql_paths = [
+                r"C:\\Program Files\\MySQL\\MySQL Server 9.0\\bin\\mysql.exe",
+                r"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe",
+                r"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe",
+                r"C:\\xampp\\mysql\\bin\\mysql.exe",
+                r"C:\\wamp64\\bin\\mysql\\mysql8.0.31\\bin\\mysql.exe",
+            ]
+
+            mysql_path = next((p for p in possible_mysql_paths if Path(p).exists()), None)
+            if not mysql_path:
+                messages.error(request, "mysql.exe not found. Please check your MySQL installation.")
+                return redirect('user_settings')
+
+            command = [
+                mysql_path,
+                f"-u{db_user}",
+                f"-h{db_host}",
+                f"-P{db_port}",
+            ]
+            if db_password:
+                command.append(f"-p{db_password}")
+            command.append(db_name)
+
+            # Run import, feeding SQL file via stdin
+            with open(full_path, 'r', encoding='utf-8') as f:
+                subprocess.run(command, stdin=f, stderr=subprocess.PIPE, check=True)
+
+            messages.success(request, "Database imported successfully from backup file.")
+        except subprocess.CalledProcessError as e:
+            error_msg = e.stderr.decode('utf-8') if e.stderr else "Unknown mysql error"
+            messages.error(request, f"Import failed: {error_msg}")
+        except Exception as e:
+            messages.error(request, f"Import failed: {str(e)}")
+        finally:
+            # Clean up temporary file
+            try:
+                default_storage.delete(tmp_path)
+            except Exception:
+                pass
+
+        return redirect('user_settings')
+
+    messages.error(request, "No SQL file uploaded.")
+    return redirect('user_settings')
+
 
 # Password Reset Views
 def password_reset_request(request):

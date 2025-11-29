@@ -305,6 +305,21 @@
             {% if user.is_superuser %}
             <hr style="margin:40px 0;">
 
+            <!-- Import Database Backup -->
+            <h2>Import Database Backup</h2>
+            <p class="subtitle">Upload a .sql backup file to restore the database without using the MySQL admin page.</p>
+
+            <form method="POST" action="{% url 'import_backup' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="sql_file">Select .sql Backup File</label>
+                    <input type="file" id="sql_file" name="sql_file" accept=".sql" required>
+                </div>
+                <button type="submit" class="btn" style="background-color:#dc3545;">Import Backup</button>
+            </form>
+
+            <hr style="margin:40px 0;">
+
             <!-- Create Moderator Form -->
             <h2>Create New Moderator Account</h2>
             <p class="subtitle">Superadmins can create new moderator accounts here.</p>

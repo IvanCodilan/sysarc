@@ -25,6 +25,7 @@ urlpatterns = [
     path('get-officials/', views.get_officials_json, name='get_officials_json'),
     path('update-officials/', views.update_officials, name='update_officials'),
     path('backup-database/', views.backup_database, name='backup_database'),
+    path('import-backup/', views.import_backup, name='import_backup'),
     path('resident/<int:id>/modal/', views.resident_detail_modal, name='resident_detail_modal'),
     # Password Reset URLs
     path('password-reset/', views.password_reset_request, name='password_reset'),
