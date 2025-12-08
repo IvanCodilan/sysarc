@@ -13,6 +13,8 @@
 
 {% include 'authapp/navbar.html' %}
 
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
 <main class="records">
   <div class="records-background-card">      
       <!-- Title -->
@@ -27,11 +29,21 @@
             <input type="text" id="liveSearch" placeholder="Search by name" class="search-bar" />
             <span id="recordCount" class="record-count">Total Records: {{ archived|length }}</span>
           </div>
-          <a href="{% url 'records' %}" 
-             class="add-btn" 
-             style="background-color:#4CAF50; margin-left: 250px;">
-             &#8592; Back to Records
-          </a>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <a href="{% url 'records' %}" 
+               class="add-btn" 
+               style="background-color:#4CAF50;">
+               ← Back to Records
+            </a>
+            {% if archived %}
+            <a href="#" 
+               onclick="return confirmDeleteAll();" 
+               class="add-btn" 
+               style="background-color:#f44336;">
+               Delete All
+            </a>
+            {% endif %}
+          </div>
           <select name="filter" id="filterSelect" style="float: right;">
             <option value="">Select Type</option>
             <option value="seniors">Seniors (60+)</option>
@@ -68,6 +80,12 @@
                      Restore
                   </a>
                 {% endif %}
+                <a href="#" 
+                   onclick="return confirmDelete({{ resident.id }});" 
+                   class="add-btn" 
+                   style="background-color:#f44336; font-size: 12px; padding: 2px 6px; margin-left: 5px;">
+                   Delete
+                </a>
               </td>
             </tr>
             {% empty %}
@@ -81,6 +99,7 @@
 
   </div>
 </main>
+
 <div id="residentDetailModal" class="modal" style="display:none;">
   <div class="modal-content resident-detail-modal">
     <span class="close-btn" onclick="closeResidentDetail()" style="cursor:pointer;font-size:28px;">&times;</span>
@@ -89,6 +108,52 @@
 </div>
 
 <script src="{% static 'js/records.js' %}"></script>
+
+<script>
+function submitPost(actionUrl) {
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = actionUrl;
+
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrfmiddlewaretoken';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+async function confirmDelete(residentId) {
+    const proceed = await (window.showConfirmDialog
+        ? window.showConfirmDialog('Are you sure you want to delete this resident permanently?', {
+            confirmText: 'Delete',
+            cancelText: 'Cancel'
+        })
+        : Promise.resolve(confirm('Are you sure you want to delete this resident permanently?')));
+
+    if (proceed) {
+        submitPost(`/delete-archived-resident/${residentId}/`);
+    }
+    return false;
+}
+
+async function confirmDeleteAll() {
+    const proceed = await (window.showConfirmDialog
+        ? window.showConfirmDialog('This will permanently delete all archived residents. Continue?', {
+            confirmText: 'Delete All',
+            cancelText: 'Cancel'
+        })
+        : Promise.resolve(confirm('This will permanently delete all archived residents. Continue?')));
+
+    if (proceed) {
+        submitPost('/delete-all-archived/');
+    }
+    return false;
+}
+</script>
 
 </body>
 </html>

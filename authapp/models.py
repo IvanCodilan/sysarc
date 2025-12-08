@@ -99,7 +99,7 @@ class PersonInformation(models.Model):
             ('College Graduate','College Graduate'),
         ],
     )
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         def _norm(v):
@@ -122,7 +122,7 @@ class PersonInformation(models.Model):
 
 
 class CertificateLog(models.Model):
-    admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     resident = models.ForeignKey(PersonInformation, on_delete=models.SET_NULL, null=True, blank=True)
     certificate_type = models.CharField(max_length=100)
     purpose = models.CharField(max_length=255)
@@ -193,14 +193,13 @@ class BarangayOfficial(models.Model):
     def __str__(self):
         return f"{self.position}: {self.name}"
     
-from django.contrib.auth.models import User
-
 class RolePermission(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     can_add_resident = models.BooleanField(default=False)
     can_edit_resident = models.BooleanField(default=False)
     can_delete_resident = models.BooleanField(default=False)
     can_upload_excel = models.BooleanField(default=False)
+    can_edit_officials = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Permissions for {self.user.username}"
@@ -231,3 +230,12 @@ class ArchivedResident(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name or ''} {self.last_name}"
+
+class PasswordResetToken(models.Model):
+    token = models.CharField(max_length=32, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.token}"

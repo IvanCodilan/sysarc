@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv   
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,3 +147,4 @@ EMAIL_HOST_PASSWORD = 'jnov tcfv sqpp gooa'  # Replace with your app password
 DEFAULT_FROM_EMAIL = 'nepomucenoluis53@gmail.com'  # Replace with your email
 FERNET_KEY = os.environ.get('FERNET_KEY')
 
+load_dotenv(BASE_DIR / ".env")

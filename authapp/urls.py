@@ -44,4 +44,6 @@ urlpatterns = [
     path('archived-records/', views.archived_records, name='archived_records'),
     path('add-certificate/', views.add_certificate, name='add_certificate'),
     path('restore-resident/<int:archived_id>/', views.restore_resident, name='restore_resident'),
+    path('delete-archived-resident/<int:archived_id>/', views.delete_archived_resident, name='delete_archived_resident'),
+    path('delete-all-archived/', views.delete_all_archived, name='delete_all_archived'),
 ]

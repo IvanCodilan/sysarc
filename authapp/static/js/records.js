@@ -18,6 +18,22 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
+// ---------- Dialog Helpers ----------
+function appAlert(message, options = {}) {
+  if (window.showAlertDialog) {
+    return showAlertDialog(message, { confirmText: 'OK', ...options });
+  }
+  alert(message);
+  return Promise.resolve();
+}
+
+function appConfirm(message, options = {}) {
+  if (window.showConfirmDialog) {
+    return showConfirmDialog(message, options);
+  }
+  return Promise.resolve(confirm(message));
+}
+
 // ---------- Sidebar toggle (keeps existing behaviour) ----------
 function toggleSidebar() {
   const sidebar = document.querySelector(".sidebar");
@@ -57,11 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const txt = await res.text();
           console.error('Add failed:', res.status, txt);
-          alert('Failed to add resident');
+          await appAlert('Failed to add resident');
         }
       } catch (err) {
         console.error(err);
-        alert('Network error while adding resident');
+        await appAlert('Network error while adding resident');
       }
     });
   }
@@ -72,7 +88,7 @@ function editResident(id) {
   const row = document.getElementById(`row-${id}`);
   const dataDiv = document.getElementById(`resident-data-${id}`);
   if (!row || !dataDiv) {
-    alert('Resident data not found');
+    appAlert('Resident data not found');
     return;
   }
 
@@ -118,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     editForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('edit_resident_id').value;
-      if (!id) { alert('Missing resident id'); return; }
+      if (!id) { await appAlert('Missing resident id'); return; }
       const fd = new FormData(editForm);
       try {
         // endpoint: /update_resident/<id>/
@@ -128,16 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
           body: fd
         });
         if (res.ok) {
-          alert('Successfully Edited the Resident!');
+          await appAlert('Successfully edited the resident!');
           location.reload();
         } else {
           const txt = await res.text();
           console.error('Update failed', res.status, txt);
-          alert('Failed to update resident');
+          await appAlert('Failed to update resident');
         }
       } catch (err) {
         console.error(err);
-        alert('Network error while updating resident');
+        await appAlert('Network error while updating resident');
       }
     });
   }
@@ -145,7 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ---------- Delete Resident ----------
 async function deleteResident(id) {
-  if (!confirm('Are you sure you want to delete this resident?')) return;
+  const proceed = await appConfirm('Are you sure you want to delete this resident?', {
+    confirmText: 'Delete',
+    cancelText: 'Cancel'
+  });
+  if (!proceed) return;
   try {
     const res = await fetch(`${ENDPOINTS.delete}${id}/`, {
       method: 'POST',
@@ -156,17 +176,17 @@ async function deleteResident(id) {
       const r = document.getElementById(`row-${id}`);
       if (r) r.remove();
 
-      alert('Successfully Deleted!');
+      await appAlert('Successfully deleted the resident.');
 
       // re-run search to update counts / renumber
       if (typeof runLiveSearch === 'function') runLiveSearch();
     } else {
       console.error('Delete failed', res.status);
-      alert('Failed to delete resident');
+      await appAlert('Failed to delete resident');
     }
   } catch (err) {
     console.error(err);
-    alert('Network error while deleting resident');
+    await appAlert('Network error while deleting resident');
   }
 }
 
@@ -185,16 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       if (res.ok) {
         const json = await res.json().catch(()=>null);
-        alert((json && json.message) ? json.message : 'Upload successful');
+        await appAlert((json && json.message) ? json.message : 'Upload successful');
         location.reload();
       } else {
         const txt = await res.text();
         console.error('Excel upload failed', res.status, txt);
-        alert('Excel upload failed');
+        await appAlert('Excel upload failed');
       }
     } catch (err) {
       console.error(err);
-      alert('Network error during Excel upload');
+      await appAlert('Network error during Excel upload');
     }
   });
 });

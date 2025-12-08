@@ -308,15 +308,48 @@
             <!-- Import Database Backup -->
             <h2>Import Database Backup</h2>
             <p class="subtitle">Upload a .sql backup file to restore the database without using the MySQL admin page.</p>
+            <div class="alert alert-warning" style="background-color: #fff3cd; color: #856404; border-color: #ffeeba; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                <strong>Warning:</strong> Importing a backup will replace all current data with the data from the backup file. This action cannot be undone.
+            </div>
 
-            <form method="POST" action="{% url 'import_backup' %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'import_backup' %}" enctype="multipart/form-data" id="importBackupForm">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="sql_file">Select .sql Backup File</label>
                     <input type="file" id="sql_file" name="sql_file" accept=".sql" required>
                 </div>
-                <button type="submit" class="btn" style="background-color:#dc3545;">Import Backup</button>
+                <button type="submit" class="btn" style="background-color:#dc3545;" onclick="return confirmImport()">Import Backup</button>
             </form>
+
+            <script>
+            async function confirmImport() {
+                const fileInput = document.getElementById('sql_file');
+                if (fileInput.files.length === 0) {
+                    if (window.showAlertDialog) {
+                        await showAlertDialog('Please select a backup file to import.', { confirmText: 'OK' });
+                    } else {
+                        alert('Please select a backup file to import.');
+                    }
+                    return false;
+                }
+
+                const fileName = fileInput.files[0].name;
+                const proceed = await (window.showConfirmDialog
+                    ? showConfirmDialog(`WARNING: This will replace ALL current data with the backup file: ${fileName}.`, {
+                        confirmText: 'Import',
+                        cancelText: 'Cancel'
+                    })
+                    : Promise.resolve(confirm(`WARNING: This will replace ALL current data with the backup file: ${fileName}.`)));
+
+                if (proceed) {
+                    const submitBtn = document.querySelector('#importBackupForm button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Importing...';
+                    return true;
+                }
+                return false;
+            }
+            </script>
 
             <hr style="margin:40px 0;">
 
@@ -414,7 +447,11 @@
                                 </button>
 
                                 {% if not u.user.is_superuser %}
-                                <form method="POST" action="{% url 'delete_moderator' u.user.id %}" style="display:inline;">
+                                <form method="POST"
+                                      action="{% url 'delete_moderator' u.user.id %}"
+                                      style="display:inline;"
+                                      class="delete-moderator-form"
+                                      data-username="{{ u.user.username }}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn" style="background:#dc3545; padding:6px 14px;">Delete</button>
                                 </form>
@@ -462,9 +499,30 @@
     </main>
 
     <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/user_settings.js' %}"></script>
     <script>
         const modal = document.getElementById("editModeratorModal");
         const closeModal = modal.querySelector(".close");
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const deleteForms = document.querySelectorAll('.delete-moderator-form');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const username = form.dataset.username || 'this moderator';
+                    const proceed = await (window.showConfirmDialog
+                        ? showConfirmDialog(`Are you sure you want to delete ${username}?`, {
+                            confirmText: 'Delete',
+                            cancelText: 'Cancel'
+                        })
+                        : Promise.resolve(confirm(`Are you sure you want to delete ${username}?`)));
+
+                    if (proceed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
 
         document.querySelectorAll(".open-edit-modal").forEach(btn => {
             btn.addEventListener("click", () => {

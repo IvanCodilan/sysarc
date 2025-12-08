@@ -27,8 +27,11 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.core.cache import cache
+from django.urls import reverse
 from .models import RolePermission
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
@@ -37,16 +40,12 @@ from datetime import datetime
 from pathlib import Path
 import subprocess
 from django.shortcuts import render
-from .models import ArchivedResident
+from .models import ArchivedResident, PasswordResetToken
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User, Group
-from .models import RolePermission
-from django.core.cache import cache
-from django.urls import reverse
 
 def unlock_login(request, uidb64, token):
     try:
@@ -283,9 +282,16 @@ def logout_view(request):
 
 @login_required
 def logbook_view(request):
-    logs = CertificateLog.objects.all().order_by('-created_at')
-    return render(request, "authapp/logbook.html", {"logs": logs})
-
+    logs = (
+        CertificateLog.objects
+        .select_related('user')
+        .all()
+        .order_by('-created_at')
+    )
+    return render(request, "authapp/logbook.html", {
+        "logs": logs,
+        "username": request.user.username,
+    })
 
 @login_required  # Restrict access to authenticated users
 def certification_view(request):
@@ -637,19 +643,19 @@ def generate_certificate(request, cert_type, resident_id):
         created_at=now() 
     )
 
-    if cert_type.lower() == "deceased_person" and resident.resident_status == "Active":
+    if cert_type.lower() in {"deceased_person", "death_certificate"}:
         ArchivedResident.objects.create(
-        first_name=resident.first_name,
-        middle_name=resident.middle_name,
-        last_name=resident.last_name,
-        gender=resident.gender,
-        date_of_birth=resident.date_of_birth,
-        archived_reason="Deceased",
-    )
-    # Only mark as inactive, do NOT delete
-    resident.resident_status = "Inactive"
-    resident.save()
-    messages.success(request, f"{full_name} has been archived as deceased.")
+            first_name=resident.first_name,
+            middle_name=resident.middle_name,
+            last_name=resident.last_name,
+            gender=resident.gender,
+            date_of_birth=resident.date_of_birth,
+            archived_reason="Deceased",
+        )
+        # Only mark as inactive, do NOT delete
+        resident.resident_status = "Inactive"
+        resident.save()
+        messages.success(request, f"{full_name} has been archived as deceased.")
 
     today = date.today()
     date_next_year = today.replace(year=today.year + 1)
@@ -988,15 +994,21 @@ def password_reset_request(request):
         try:
             user = User.objects.get(email=email)
             
-            # Generate token and uid
-            token = default_token_generator.make_token(user)
+            # Invalidate any existing unused tokens for this user
+            PasswordResetToken.objects.filter(user=user, is_used=False).delete()
+
+            # Generate a random token and save it in the database
+            token = get_random_string(32)
+            PasswordResetToken.objects.create(user=user, token=token)
+
+            # Generate uid for URL (used only to identify the user in the link)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            
-            # Build reset link
+
+            # Build reset link containing uid and our DB-backed token
             reset_link = request.build_absolute_uri(
                 f'/password-reset-confirm/{uid}/{token}/'
             )
-            
+
             # Send email
             subject = "Password Reset Request"
             message = f"""
@@ -1010,7 +1022,7 @@ If you didn't request this, please ignore this email.
 
 This link will expire in 24 hours.
             """
-            
+
             send_mail(
                 subject,
                 message,
@@ -1018,7 +1030,7 @@ This link will expire in 24 hours.
                 [email],
                 fail_silently=False,
             )
-            
+
             return redirect('password_reset_done')
         except User.DoesNotExist:
             messages.error(request, "No user found with that email address.")
@@ -1035,28 +1047,49 @@ def password_reset_confirm(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     
-    if user is not None and default_token_generator.check_token(user, token):
+    reset_token = None
+    if user is not None:
+        reset_token = PasswordResetToken.objects.filter(
+            user=user,
+            token=token,
+            is_used=False,
+        ).first()
+
+    # Token is valid if it exists, is unused, and not older than 24 hours
+    token_valid = False
+    if reset_token is not None:
+        token_age = now() - reset_token.created_at
+        if token_age.total_seconds() <= 24 * 60 * 60:
+            token_valid = True
+
+    if token_valid:
         if request.method == "POST":
             password1 = request.POST.get("password1")
             password2 = request.POST.get("password2")
-            
-            if password1 == password2:
+
+            if password1 == password2 and password1:
                 user.set_password(password1)
                 user.save()
+
+                # Mark token as used so it cannot be reused
+                reset_token.is_used = True
+                reset_token.save()
+
                 messages.success(request, "Your password has been reset successfully!")
                 return redirect('password_reset_complete')
             else:
                 messages.error(request, "Passwords do not match.")
-        
+
         return render(request, 'authapp/password_reset_confirm.html', {
             'validlink': True,
             'uidb64': uidb64,
             'token': token
         })
-    else:
-        return render(request, 'authapp/password_reset_confirm.html', {
-            'validlink': False
-        })
+
+    # Invalid, used, or expired token
+    return render(request, 'authapp/password_reset_confirm.html', {
+        'validlink': False
+    })
 
 def password_reset_complete(request):
     return render(request, 'authapp/password_reset_complete.html')
@@ -1392,3 +1425,22 @@ def restore_resident(request, archived_id):
     res.delete()
     messages.success(request, f"{restored.first_name} {restored.last_name} has been restored.")
     return redirect('records')
+
+@login_required
+def delete_archived_resident(request, archived_id):
+    archived_resident = get_object_or_404(ArchivedResident, id=archived_id)
+    name = f"{archived_resident.first_name} {archived_resident.last_name}"
+    archived_resident.delete()
+    messages.success(request, f"Archived record for {name} has been permanently deleted.")
+    return redirect('archived_records')
+
+@login_required
+def delete_all_archived(request):
+    if request.method == 'POST':
+        count = ArchivedResident.objects.count()
+        if count > 0:
+            ArchivedResident.objects.all().delete()
+            messages.success(request, f"Successfully deleted all {count} archived records.")
+        else:
+            messages.info(request, "No archived records to delete.")
+    return redirect('archived_records')

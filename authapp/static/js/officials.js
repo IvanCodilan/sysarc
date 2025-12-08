@@ -1,4 +1,12 @@
 // officials.js
+function officialsAlert(message, options = {}) {
+  if (window.showAlertDialog) {
+    return showAlertDialog(message, { confirmText: 'OK', ...options });
+  }
+  alert(message);
+  return Promise.resolve();
+}
+
 function openOfficialsModal() {
   fetch('/get-officials/')
     .then(response => response.json())
@@ -50,7 +58,7 @@ function saveOfficials() {
   });
   
   if (firstEmpty) {
-    alert("Please fill out all officials name before saving.");
+    officialsAlert("Please fill out all officials name before saving.");
     firstEmpty.focus();
     return;
   }
@@ -64,18 +72,18 @@ function saveOfficials() {
     body: JSON.stringify(officialsData)
   })
   .then(response => response.json())
-  .then(data => {
+  .then(async data => {
     if (data.success) {
-      alert('Officials updated successfully!');
+      await officialsAlert('Officials updated successfully!');
       closeOfficialsModal();
       updateCertificatePreview();
     } else {
-      alert('Error: ' + data.error);
+      await officialsAlert('Error: ' + data.error);
     }
   })
-  .catch(error => {
+  .catch(async error => {
     console.error('Error:', error);
-    alert('An error occurred while saving');
+    await officialsAlert('An error occurred while saving');
   });
 }
 

@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <style>
+        main {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* When sidebar is collapsed */
+        .sidebar.collapsed ~ main {
+            margin-left: 80px;
+        }
         canvas {
             font-family: 'Inter', 'Segoe UI', sans-serif;
         }

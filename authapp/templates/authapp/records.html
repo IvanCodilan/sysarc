@@ -404,6 +404,16 @@
     color: #666;
     font-size: 13px;
   }
+  
+  main {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* When sidebar is collapsed */
+        .sidebar.collapsed ~ main {
+            margin-left: 80px;
+        }
 </style>
 
 <!-- Scripts -->
