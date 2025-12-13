@@ -422,7 +422,7 @@ def add_resident(request):
                 pwd_status=request.POST.get("pwd_status", "No"),
                 voter_status=request.POST.get("voter_status", "Non-Voter"),
                 resident_status=request.POST.get("resident_status", "Active"),
-                created_by=request.user,
+                user=request.user,
             )
             messages.success(request, f"Resident {person.first_name} {person.last_name} added successfully.")
         except Exception as e:
@@ -635,7 +635,7 @@ def generate_certificate(request, cert_type, resident_id):
 
     # Log the certificate generation and get the certificate number
     cert_log = CertificateLog.objects.create(
-        admin=request.user,
+        user=request.user,  # ✅ use the correct field name
         resident=resident,
         certificate_type=cert_type.replace('_', ' ').title(),
         purpose=purpose_map.get(cert_type, "OFFICIAL PURPOSES"),
@@ -675,39 +675,6 @@ def generate_certificate(request, cert_type, resident_id):
     }
 
     return render(request, f'certificates/{cert_type}.html', context)
-
-def manual_certificate_input(request):
-    if request.method == "POST":
-        full_name = request.POST.get("full_name")
-        address = request.POST.get("address")
-        birthday = request.POST.get("birthday")
-        civil_status = request.POST.get("civil_status")
-        cert_type = request.POST.get("cert_type")
-
-        purpose_map = {
-            "good_moral": "",
-            "financial_assistance": "FINANCIAL ASSISTANCE",
-            "proof_of_residency": "PROOF OF RESIDENCY",
-            "medical_assistance": "MEDICAL ASSISTANCE",
-            "burial_assistance": "BURIAL ASSISTANCE",
-            "solo_parent_renewal": "SOLO PARENT/PWD SUPPORT",
-            "business_permit": "BUSINESS PERMIT",
-            "building_permit": "BUILDING PERMIT"
-        }
-
-        context = {
-            "full_name": full_name,
-            "address": address,
-            "birthday": parse_date(birthday).strftime("%B %d, %Y") if birthday else "",
-            "civil_status": civil_status,
-            "date_today": date.today().strftime("%B %d, %Y"),
-            "purpose": purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES"),
-        }
-
-        return render(request, f'certificates/{cert_type}.html', context)
-
-    return render(request, "certificates/manual_input.html")
-
 
 @login_required
 def get_officials_json(request):
@@ -770,7 +737,7 @@ def resident_detail_modal(request, id):
     certificates = (
         CertificateLog.objects
         .filter(resident=resident)
-        .select_related('admin')
+        .select_related('user')
         .order_by('-created_at')
     )
 
