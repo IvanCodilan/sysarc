@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/loginbg.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            min-height: calc(100vh - 80px);
+            padding: 24px;
+            text-align: center;
+            background: rgba(255,255,255,0.0);
+        }
+        .hero h1 { font-size: 2rem; margin: 0; color: #111827; }
+        .hero p { color: #4b5563; max-width: 720px; }
+        .cta { margin-top: 12px; display: inline-block; padding: 10px 16px; background: #2563EB; color: #fff; border-radius: 8px; text-decoration: none; }
+        .public-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #e5e7eb; background:#ffffff; }
+        .public-header .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #111827; }
+        .public-header img { height: 40px; width: 40px; object-fit: contain; }
+        .public-header .actions a { padding: 8px 12px; border-radius: 8px; text-decoration: none; }
+        .login-btn { background:#2563EB; color: #fff; }
+    </style>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+    {# Reuse the existing sidebar/navbar for logged-in users #}
+    {% include 'authapp/navbar.html' %}
+    
+{% else %}
+    <header class="public-header">
+        <div class="brand">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" onerror="this.style.display='none'" />
+            <span>SysArc</span>
+        </div>
+        <div class="actions">
+            <a class="login-btn" href="{% url 'login' %}">Log in</a>
+        </div>
+    </header>
+{% endif %}
+
+</body>
+</html>

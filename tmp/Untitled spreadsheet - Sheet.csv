@@ -1,0 +1,1001 @@
+region,barangay,last_name,first_name,middle_name,street_number,street,city,province,date_of_birth,place_of_birth,gender,civil_status,occupation,citizenship,relationship_to_household_head,educational_background,pwd_status,voter_status
+Region II,San Antonio,Knapp,Dustin,N.,586,Caldwell Avenue,Iloilo City,Iloilo,1990-06-01,Zamboanga del Sur,Male,Single,Engineer,Filipino,Son,High School,Non-PWD,Voter
+Region XI,San Roque,Butler,Kevin,T.,413,Romero Drive,Quezon City,Iloilo,1962-09-15,Batangas,Male,Single,Farmer,Filipino,Aunt,High School,Non-PWD,Voter
+BARMM,Sta. Cruz,Leonard,Adam,A.,984,Palali Street,Cebu City,Bulacan,1963-03-05,Iloilo,Male,Widowed,Vendor,Filipino,Uncle,Post Graduate,Non-PWD,Non-Voter
+Region VII,BF Homes,Young,Douglas,W.,246,Campanilla Street,Zamboanga City,Laguna,1989-04-07,Cebu,Male,Divorced,Police Officer,Filipino,Grandmother,College,Non-PWD,Voter
+CAR,Sta. Cruz,Travis,Jason,S.,505,Batino Road Extension,Pasig,Laguna,2010-07-17,Davao del Sur,Male,Married,Farmer,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region VI,Sto. Niño,Wood,Elizabeth,K.,469,Mendez Boulevard,Davao City,Iloilo,1951-06-09,Pampanga,Female,Widowed,Farmer,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region VI,BF Homes,Mccall,James,C.,517,39th Extension,Cagayan de Oro,Iloilo,1967-07-23,Laguna,Male,Divorced,None,Filipino,Sister,Vocational,Non-PWD,Non-Voter
+Region XII,BF Homes,Nelson,Nicole,A.,531,Lumbayao Drive,Cagayan de Oro,Pampanga,2001-07-23,Cavite,Female,Single,None,Filipino,Father,College,Non-PWD,Voter
+Region VIII,Poblacion,Rogers,Kaitlyn,K.,443,Pluto Street,Quezon City,Batangas,2005-02-12,Cebu,Female,Divorced,None,Filipino,Brother,Vocational,Non-PWD,Voter
+Region V,Sta. Cruz,Manning,Audrey,T.,527,Samat Drive,Paranaque,Laguna,1998-05-05,Misamis Oriental,Female,Divorced,Vendor,Filipino,Grandfather,Vocational,Non-PWD,Voter
+NCR,Mabini,Thomas,Heather,C.,944,Libra Street,Manila,Cavite,2002-09-03,Pampanga,Female,Married,Driver,Filipino,Sister,College,Non-PWD,Non-Voter
+Region III,San Isidro,Smith,Gina,A.,101,Rosas Street,Manila,Pampanga,1969-09-27,Cebu,Female,Divorced,Student,Filipino,Father,Elementary,Non-PWD,Voter
+Region XI,Sto. Niño,Hernandez,Wanda,C.,759,77th Drive,Cagayan de Oro,Batangas,2005-09-26,Zamboanga del Sur,Female,Single,Police Officer,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region XI,Mabini,Barker,Heather,P.,758,Hercules Street,Cagayan de Oro,Bulacan,1979-07-20,Davao del Sur,Female,Widowed,Teacher,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region IV-A,Bagong Silang,Kelley,Leslie,J.,006,Tabayoc Road,Quezon City,Davao del Sur,2007-06-18,Batangas,Female,Widowed,Student,Filipino,Father,High School,Non-PWD,Voter
+Region XII,Mabini,Harding,Jennifer,K.,236,Emerald Drive,Cebu City,Batangas,1957-08-22,Laguna,Female,Married,Vendor,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+NCR,BF Homes,Vega,Jennifer,Z.,461,Cabbage Avenue,Davao City,Cebu,1960-12-04,Metro Manila,Female,Widowed,Student,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region VI,Mabini,Spears,Juan,J.,959,Pinatubo Road,Quezon City,Batangas,1978-10-12,Cavite,Male,Widowed,Driver,Filipino,Father,High School,PWD,Voter
+Region II,Poblacion,Johnson,Amanda,M.,578,Pinatubo Street,Quezon City,Misamis Oriental,1995-06-28,Metro Manila,Female,Widowed,Engineer,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region XI,Bagong Silang,Johnson,Jack,W.,678,Deleon Avenue,Cebu City,Cavite,1977-05-16,Davao del Sur,Male,Single,Student,Filipino,Son,College,Non-PWD,Voter
+Region I,Talon Uno,Johnson,Ashley,C.,826,Makiling Road,Davao City,Cebu,1998-12-09,Batangas,Female,Married,Cashier,Filipino,Grandfather,College,PWD,Voter
+Region XI,Mabini,Boone,Michelle,M.,688,47th Street,Zamboanga City,Cavite,1954-11-19,Zamboanga del Sur,Female,Single,Engineer,Filipino,Grandfather,Vocational,PWD,Voter
+Region X,San Isidro,Park,William,J.,486,91st Street,Cagayan de Oro,Laguna,1963-12-27,Bulacan,Male,Single,Farmer,Filipino,Uncle,Vocational,Non-PWD,Non-Voter
+Region X,Poblacion,Cross,Susan,S.,797,Palanan Avenue,Manila,Laguna,1997-08-01,Cebu,Female,Divorced,Vendor,Filipino,Grandmother,No Formal Education,Non-PWD,Non-Voter
+BARMM,Sta. Cruz,Carter,Katherine,J.,574,Holden Highway,Cebu City,Laguna,1974-02-13,Metro Manila,Female,Single,Nurse,Filipino,Son,Elementary,Non-PWD,Voter
+Region III,San Roque,Shaw,Corey,A.,061,Hibok-Hibok Extension,Quezon City,Batangas,1984-02-24,Misamis Oriental,Male,Divorced,None,Filipino,Father,Elementary,Non-PWD,Voter
+Region IX,Mabini,Martin,Karina,T.,763,35th Drive,Pasig,Davao del Sur,2003-04-30,Metro Manila,Female,Divorced,Driver,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region XII,Bagong Silang,Nunez,Courtney,P.,010,Miller Street,Quezon City,Metro Manila,1951-04-26,Zamboanga del Sur,Female,Widowed,Student,Filipino,Aunt,Elementary,Non-PWD,Voter
+NCR,Bagong Silang,Shah,Kimberly,C.,951,Scott Road,Paranaque,Zamboanga del Sur,1984-09-12,Zamboanga del Sur,Female,Widowed,Driver,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region XI,San Isidro,Zimmerman,Christopher,B.,836,Gladiola Street,Paranaque,Batangas,2004-03-29,Misamis Oriental,Male,Single,None,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region IV-A,Poblacion,Watkins,Taylor,C.,956,Samat Service Road,Cagayan de Oro,Batangas,1981-07-25,Cebu,Female,Single,Engineer,Filipino,Sister,Elementary,Non-PWD,Voter
+Region IV-A,San Roque,Robertson,James,K.,371,Orion Drive,Iloilo City,Batangas,1985-10-19,Laguna,Male,Widowed,Teacher,Filipino,Grandmother,High School,Non-PWD,Non-Voter
+Region X,Mabini,Hanson,Ryan,A.,936,Anahaw Drive,Caloocan,Laguna,2006-11-26,Laguna,Male,Widowed,Farmer,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+CAR,San Antonio,Hardy,Ruben,C.,104,Sardonyx Street,Davao City,Batangas,1997-05-28,Batangas,Male,Divorced,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region I,Sto. Niño,Gonzales,Shannon,L.,426,Zircon Street,Cagayan de Oro,Batangas,2003-01-27,Davao del Sur,Female,Divorced,Nurse,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region IV-A,Sto. Niño,Nelson,Jacqueline,A.,535,Constellation Road,Zamboanga City,Davao del Sur,2006-11-07,Misamis Oriental,Female,Widowed,Farmer,Filipino,Brother,High School,Non-PWD,Voter
+Region IV-A,San Antonio,Robles,Michael,G.,660,1st Road,Caloocan,Misamis Oriental,1986-12-08,Bulacan,Male,Married,Farmer,Filipino,Grandmother,Vocational,Non-PWD,Voter
+BARMM,BF Homes,Hall,Brian,M.,501,Saturn Drive,Quezon City,Misamis Oriental,1997-10-06,Laguna,Male,Single,Student,Filipino,Sister,Vocational,Non-PWD,Voter
+Region XI,Sto. Niño,Brown,Kyle,A.,667,Hercules Road,Quezon City,Metro Manila,1968-05-28,Metro Manila,Male,Divorced,Engineer,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region XII,San Antonio,Deleon,Kayla,M.,646,Asteroid Drive,Cagayan de Oro,Davao del Sur,1972-08-19,Cebu,Female,Single,None,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region X,San Antonio,Rodriguez,Amanda,D.,216,Sunstone Road,Paranaque,Davao del Sur,2001-10-22,Misamis Oriental,Female,Divorced,Driver,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region XII,San Antonio,Ford,Lauren,S.,216,Gomez Street,Manila,Misamis Oriental,1969-12-03,Iloilo,Female,Widowed,Police Officer,Filipino,Brother,High School,Non-PWD,Voter
+Region VIII,Bagong Silang,Spencer,Melissa,J.,986,20th Road,Quezon City,Batangas,1988-01-23,Cavite,Female,Married,Vendor,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+Region XII,San Antonio,Norris,Pamela,M.,537,51st Road,Davao City,Cebu,2001-02-01,Pampanga,Female,Widowed,Teacher,Filipino,Grandmother,College,Non-PWD,Voter
+Region III,Talon Uno,Brown,Marc,J.,919,Malinao Drive,Manila,Cavite,1951-10-29,Pampanga,Male,Divorced,Engineer,Filipino,Sister,Vocational,Non-PWD,Voter
+BARMM,Sta. Cruz,Dyer,Brian,A.,484,Morgan Avenue,Quezon City,Bulacan,2005-07-15,Cebu,Male,Married,Teacher,Filipino,Grandmother,Vocational,Non-PWD,Non-Voter
+Region III,Mabini,Johnson,David,P.,304,Hardin Drive Extension,Cebu City,Misamis Oriental,1968-06-29,Misamis Oriental,Male,Married,None,Filipino,Son,College,Non-PWD,Non-Voter
+Region VII,Bagong Silang,Aguirre,Christina,E.,095,Tucker Road Extension,Davao City,Cebu,2000-04-01,Cavite,Female,Divorced,Student,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+BARMM,Poblacion,Villegas,Seth,B.,264,Mars Road,Quezon City,Cavite,1975-04-01,Zamboanga del Sur,Male,Divorced,Nurse,Filipino,Son,Elementary,Non-PWD,Voter
+Region VII,Talon Uno,Mitchell,Danielle,H.,572,Franklin Road,Quezon City,Batangas,1966-01-14,Zamboanga del Sur,Female,Divorced,Nurse,Filipino,Son,Vocational,Non-PWD,Voter
+Region IX,San Antonio,Thompson,Jessica,P.,360,Diamond Drive,Caloocan,Metro Manila,1952-02-18,Misamis Oriental,Female,Divorced,Police Officer,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+Region XII,BF Homes,Lin,Kathleen,R.,361,Cresta Street,Quezon City,Cavite,2004-07-05,Pampanga,Female,Widowed,Teacher,Filipino,Brother,High School,Non-PWD,Non-Voter
+Region VII,Talon Uno,Smith,James,J.,092,Agate Street,Iloilo City,Pampanga,1978-10-02,Pampanga,Male,Divorced,Teacher,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region I,Bagong Silang,Ortiz,Charles,T.,037,Tamarind Drive,Pasig,Laguna,1971-12-16,Bulacan,Male,Widowed,Vendor,Filipino,Aunt,Vocational,Non-PWD,Voter
+BARMM,Talon Uno,Harris,William,C.,201,Milflower Road,Cagayan de Oro,Davao del Sur,2009-01-15,Laguna,Male,Widowed,Farmer,Filipino,Brother,Vocational,Non-PWD,Non-Voter
+Region VII,San Antonio,Serrano,Adrian,T.,976,78th Expressway,Iloilo City,Laguna,2000-08-17,Laguna,Male,Married,Student,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+NCR,Bagong Silang,Parker,Glenn,J.,718,Sierra Madre Street,Iloilo City,Metro Manila,2002-04-12,Batangas,Male,Divorced,Farmer,Filipino,Son,High School,Non-PWD,Voter
+Region X,Sta. Cruz,Strong,Michael,R.,330,Amber Street,Manila,Bulacan,2006-10-25,Cebu,Male,Divorced,Engineer,Filipino,Uncle,High School,Non-PWD,Voter
+Region VI,BF Homes,Taylor,John,D.,245,Cancer Street,Cebu City,Cavite,1979-08-28,Cavite,Male,Widowed,Engineer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region I,BF Homes,Atkinson,Kelly,M.,808,Gladiola Road Extension,Zamboanga City,Misamis Oriental,2004-03-09,Misamis Oriental,Male,Divorced,Police Officer,Filipino,Brother,No Formal Education,PWD,Non-Voter
+Region II,Bagong Silang,Smith,Stacy,J.,591,Stanley Street,Zamboanga City,Cebu,1984-01-20,Metro Manila,Female,Married,Student,Filipino,Brother,Elementary,Non-PWD,Voter
+Region IX,Mabini,Hale,John,A.,018,Canopus Drive,Quezon City,Davao del Sur,1991-09-01,Cebu,Male,Divorced,Farmer,Filipino,Daughter,College,Non-PWD,Voter
+BARMM,Mabini,Montoya,Scott,A.,525,Jade Road,Pasig,Misamis Oriental,1967-12-09,Cavite,Male,Married,Vendor,Filipino,Father,High School,Non-PWD,Voter
+CAR,San Isidro,Galloway,Rachel,C.,881,36th Service Road,Iloilo City,Misamis Oriental,1987-05-06,Cebu,Female,Single,Cashier,Filipino,Mother,Vocational,Non-PWD,Voter
+Region VII,Talon Uno,Martin,Jennifer,V.,123,Sagittarius Road Extension,Pasig,Davao del Sur,1984-03-08,Zamboanga del Sur,Female,Widowed,Farmer,Filipino,Mother,College,Non-PWD,Voter
+NCR,Sta. Cruz,Dudley,Ryan,R.,906,Palali Avenue,Iloilo City,Metro Manila,1995-02-14,Batangas,Male,Divorced,Farmer,Filipino,Sister,High School,Non-PWD,Voter
+Region X,BF Homes,Martin,Jeffrey,J.,406,Galloway Extension,Quezon City,Iloilo,1976-03-14,Davao del Sur,Male,Divorced,Farmer,Filipino,Son,Vocational,Non-PWD,Voter
+Region X,Mabini,Stone,Michael,K.,719,Tabayoc Avenue,Cebu City,Bulacan,1973-02-04,Metro Manila,Male,Single,Cashier,Filipino,Grandfather,College,Non-PWD,Voter
+Region IX,Talon Uno,Jones,Joseph,J.,199,Garnet Extension,Paranaque,Cebu,1959-05-04,Cavite,Male,Single,Farmer,Filipino,Aunt,High School,Non-PWD,Non-Voter
+CAR,San Antonio,Garcia,Charles,C.,504,Garnet Road,Paranaque,Bulacan,1995-04-15,Cebu,Male,Married,Engineer,Filipino,Father,College,Non-PWD,Voter
+Region IX,Sto. Niño,Perkins,Tammie,T.,902,Andromeda Avenue,Quezon City,Metro Manila,1955-12-22,Pampanga,Female,Married,Engineer,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+NCR,Bagong Silang,Brown,Cynthia,D.,637,Peridot Drive,Pasig,Laguna,1986-05-18,Cavite,Female,Widowed,Police Officer,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region III,Bagong Silang,Davis,James,V.,555,60th Drive,Manila,Cebu,2005-04-16,Cebu,Male,Married,Engineer,Filipino,Grandfather,Post Graduate,PWD,Voter
+Region IV-A,Bagong Silang,Wood,Chad,A.,748,Berry Avenue,Cagayan de Oro,Misamis Oriental,2004-09-01,Davao del Sur,Male,Widowed,Cashier,Filipino,Sister,College,Non-PWD,Voter
+BARMM,Mabini,Cook,Christopher,C.,856,Aranga Street,Cagayan de Oro,Zamboanga del Sur,1977-04-14,Misamis Oriental,Male,Married,Cashier,Filipino,Sister,High School,PWD,Voter
+CAR,Talon Uno,Holder,Ann,S.,237,3rd Street,Quezon City,Cavite,1955-06-09,Davao del Sur,Female,Widowed,Cashier,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+Region I,Sto. Niño,Daniels,David,R.,508,Sicaba Street,Paranaque,Laguna,1969-04-21,Metro Manila,Male,Married,None,Filipino,Grandmother,Vocational,Non-PWD,Non-Voter
+Region V,Sta. Cruz,Freeman,Steven,N.,608,Milky Way Avenue,Iloilo City,Misamis Oriental,1956-03-31,Davao del Sur,Male,Married,Farmer,Filipino,Sister,Elementary,Non-PWD,Voter
+Region VIII,Sta. Cruz,Fisher,Shannon,B.,664,Cruz Boulevard,Cagayan de Oro,Bulacan,1958-08-17,Cebu,Female,Widowed,Vendor,Filipino,Mother,Elementary,Non-PWD,Voter
+Region I,Sto. Niño,Wallace,Michael,V.,011,Martinez Drive,Quezon City,Misamis Oriental,1958-10-13,Pampanga,Male,Widowed,Driver,Filipino,Son,High School,Non-PWD,Non-Voter
+Region I,San Antonio,Brooks,Adam,N.,991,Jade Drive,Paranaque,Zamboanga del Sur,1986-04-07,Zamboanga del Sur,Male,Divorced,Cashier,Filipino,Grandfather,College,Non-PWD,Voter
+BARMM,San Isidro,Andrade,Paul,D.,681,35th Road Extension,Zamboanga City,Davao del Sur,1999-02-26,Cebu,Male,Married,Driver,Filipino,Father,No Formal Education,Non-PWD,Non-Voter
+CAR,Bagong Silang,Patterson,Jeffrey,C.,876,Ruby Road,Zamboanga City,Batangas,1952-02-26,Laguna,Male,Divorced,Driver,Filipino,Sister,No Formal Education,Non-PWD,Voter
+Region XI,San Isidro,Williams,Thomas,S.,816,Sardonyx Street,Pasig,Bulacan,1955-05-05,Pampanga,Male,Married,Vendor,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region V,San Antonio,Cortez,Matthew,R.,192,47th Extension,Manila,Cebu,2000-08-01,Bulacan,Male,Divorced,Driver,Filipino,Father,High School,Non-PWD,Non-Voter
+Region VI,Bagong Silang,Carr,Ashley,M.,859,Ford Avenue,Cagayan de Oro,Iloilo,1972-09-08,Iloilo,Female,Widowed,Farmer,Filipino,Grandmother,College,Non-PWD,Voter
+Region V,San Roque,Poole,Darryl,A.,774,Lapis Lazuli Street,Zamboanga City,Pampanga,1964-04-23,Iloilo,Male,Single,Police Officer,Filipino,Sister,Post Graduate,Non-PWD,Non-Voter
+BARMM,Poblacion,Gutierrez,James,M.,158,Planet Drive,Iloilo City,Misamis Oriental,1960-11-03,Metro Manila,Male,Single,Engineer,Filipino,Father,High School,Non-PWD,Voter
+Region II,Bagong Silang,Gilbert,Benjamin,C.,802,Walker Avenue,Cagayan de Oro,Zamboanga del Sur,1956-01-26,Cebu,Male,Widowed,Student,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region V,Sto. Niño,Martin,Erica,M.,676,Granada Avenue,Manila,Misamis Oriental,1962-10-21,Zamboanga del Sur,Female,Widowed,Driver,Filipino,Father,High School,Non-PWD,Non-Voter
+Region II,San Antonio,Jensen,Andrew,M.,556,Galaxy Highway,Cagayan de Oro,Batangas,2001-03-30,Cebu,Male,Single,Cashier,Filipino,Grandmother,College,Non-PWD,Non-Voter
+Region XI,Bagong Silang,Long,Jose,T.,919,Sierra Madre Road Extension,Iloilo City,Cavite,2002-12-04,Pampanga,Male,Widowed,Nurse,Filipino,Grandmother,No Formal Education,Non-PWD,Non-Voter
+CAR,San Antonio,Bates,Matthew,R.,827,Peridot Drive,Quezon City,Zamboanga del Sur,2003-05-18,Davao del Sur,Male,Divorced,None,Filipino,Uncle,Post Graduate,Non-PWD,Non-Voter
+BARMM,San Roque,Williams,Jennifer,K.,367,Bagtikan Drive,Paranaque,Iloilo,1992-04-30,Bulacan,Female,Single,Engineer,Filipino,Brother,Elementary,Non-PWD,Non-Voter
+BARMM,San Isidro,Hale,Valerie,J.,678,46th Street,Davao City,Batangas,1987-06-09,Cavite,Female,Single,Engineer,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region III,Bagong Silang,Jones,Lance,K.,062,Citrine Service Road,Davao City,Metro Manila,2004-02-12,Zamboanga del Sur,Male,Single,Student,Filipino,Grandmother,College,Non-PWD,Voter
+BARMM,Sto. Niño,Becker,Patrick,T.,267,Santol Road,Caloocan,Misamis Oriental,1977-06-22,Metro Manila,Male,Married,None,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region IV-A,San Roque,Mcdonald,Sara,J.,153,16th Drive Extension,Quezon City,Iloilo,1997-06-29,Pampanga,Female,Single,Farmer,Filipino,Sister,College,Non-PWD,Non-Voter
+CAR,Talon Uno,Johns,Luis,D.,892,Bailey Street,Davao City,Zamboanga del Sur,1954-04-11,Pampanga,Male,Widowed,Teacher,Filipino,Brother,Vocational,Non-PWD,Voter
+NCR,San Roque,Howard,Amanda,B.,347,94th Extension,Paranaque,Misamis Oriental,2003-06-26,Cavite,Female,Single,Police Officer,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region VII,BF Homes,Williams,Jeff,A.,241,Padilla Boulevard,Manila,Bulacan,1965-11-01,Batangas,Male,Divorced,Engineer,Filipino,Daughter,High School,Non-PWD,Non-Voter
+Region XII,Sta. Cruz,Burgess,Jesse,B.,955,Turquoise Extension,Pasig,Batangas,2007-09-21,Iloilo,Male,Widowed,Vendor,Filipino,Daughter,College,Non-PWD,Voter
+Region III,Talon Uno,Flores,Mary,A.,788,Jensen Extension,Manila,Cavite,1970-02-02,Pampanga,Female,Widowed,Nurse,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region I,San Antonio,Roberson,Paula,K.,386,Frey Avenue,Caloocan,Davao del Sur,1964-02-12,Batangas,Female,Single,None,Filipino,Sister,Post Graduate,Non-PWD,Voter
+BARMM,San Roque,Vaughn,Russell,M.,050,Castro Road,Caloocan,Iloilo,1980-02-02,Bulacan,Male,Divorced,Teacher,Filipino,Father,Vocational,Non-PWD,Non-Voter
+Region III,Bagong Silang,Jones,Terry,T.,455,Iriga Street,Cagayan de Oro,Bulacan,1989-05-27,Bulacan,Male,Widowed,Engineer,Filipino,Mother,High School,Non-PWD,Voter
+Region IX,Sto. Niño,Owens,Nicole,D.,172,Samat Street,Caloocan,Laguna,1970-08-02,Iloilo,Female,Married,Vendor,Filipino,Mother,Elementary,Non-PWD,Voter
+Region IV-A,Sto. Niño,Pope,Michael,C.,198,Diamond Street,Zamboanga City,Laguna,1958-03-13,Pampanga,Male,Single,Student,Filipino,Sister,Elementary,PWD,Non-Voter
+Region I,BF Homes,Estrada,Brittany,G.,136,Jasper Service Road,Paranaque,Pampanga,1964-11-19,Batangas,Female,Divorced,Vendor,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region XI,Mabini,Knight,Monique,J.,572,Anonas Street,Manila,Davao del Sur,2007-08-22,Misamis Oriental,Female,Single,Student,Filipino,Son,College,PWD,Voter
+NCR,Sta. Cruz,Mayer,Daniel,A.,290,Jasper Road,Caloocan,Zamboanga del Sur,1971-09-23,Metro Manila,Male,Married,Engineer,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region IV-A,Bagong Silang,Anderson,Debra,K.,544,Moonstone Extension,Cebu City,Bulacan,1950-03-24,Metro Manila,Female,Widowed,Cashier,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region XII,San Antonio,Brown,Tiffany,R.,139,Citrine Avenue,Pasig,Cebu,2008-05-25,Bulacan,Female,Married,Teacher,Filipino,Brother,High School,Non-PWD,Voter
+Region XI,San Roque,Hansen,Janice,E.,770,Robinson Drive,Manila,Laguna,1993-07-09,Bulacan,Female,Divorced,Driver,Filipino,Sister,Vocational,Non-PWD,Non-Voter
+Region V,Talon Uno,Ball,Kathy,C.,080,Grimes Avenue Extension,Iloilo City,Cavite,1985-02-28,Cebu,Female,Single,Vendor,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+CAR,Sto. Niño,Bender,Steven,D.,492,Topaz Extension,Manila,Laguna,1965-06-26,Iloilo,Male,Married,None,Filipino,Sister,College,Non-PWD,Voter
+Region IV-A,Mabini,Rogers,Lawrence,B.,655,Turquoise Drive,Zamboanga City,Laguna,1986-05-08,Zamboanga del Sur,Male,Single,Police Officer,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region I,Mabini,Hernandez,Kathryn,M.,702,Banahaw Avenue,Cagayan de Oro,Davao del Sur,1951-11-12,Laguna,Female,Single,Engineer,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region VIII,San Antonio,Arias,Tiffany,V.,566,Earth Street,Quezon City,Batangas,1994-02-02,Davao del Sur,Female,Divorced,Teacher,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region VIII,BF Homes,Matthews,Sharon,S.,215,Garnet Boulevard,Zamboanga City,Laguna,1994-07-20,Metro Manila,Female,Single,Driver,Filipino,Grandfather,Elementary,Non-PWD,Non-Voter
+Region VIII,San Antonio,Maxwell,Manuel,R.,146,Banahaw Extension,Pasig,Pampanga,1951-10-21,Bulacan,Male,Widowed,Cashier,Filipino,Grandfather,College,Non-PWD,Voter
+Region VIII,San Antonio,Jones,Tiffany,K.,750,Camia Street,Pasig,Iloilo,2010-02-12,Metro Manila,Female,Widowed,Vendor,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region I,Poblacion,Johnson,Timothy,S.,662,Emerald Avenue,Pasig,Davao del Sur,1975-03-19,Iloilo,Male,Single,Student,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region II,San Antonio,Barnes,Alicia,A.,384,76th Road,Quezon City,Cavite,1970-02-17,Pampanga,Female,Widowed,Police Officer,Filipino,Sister,Vocational,Non-PWD,Voter
+Region II,BF Homes,Wang,Ann,J.,795,Hercules Boulevard,Caloocan,Metro Manila,1989-10-30,Bulacan,Female,Single,Farmer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region I,Mabini,Rodgers,Emily,D.,564,Venus Street,Iloilo City,Cavite,2001-09-28,Iloilo,Female,Married,Engineer,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region XII,Sta. Cruz,Rasmussen,Christina,S.,102,38th Boulevard Extension,Zamboanga City,Misamis Oriental,1989-04-02,Cebu,Female,Widowed,Nurse,Filipino,Father,Elementary,Non-PWD,Voter
+Region V,Talon Uno,Olsen,Erin,R.,253,Patterson Street,Cebu City,Bulacan,1974-06-20,Laguna,Female,Divorced,Engineer,Filipino,Sister,College,Non-PWD,Non-Voter
+CAR,Sto. Niño,Thompson,David,A.,997,Thompson Road,Manila,Bulacan,2000-12-16,Bulacan,Male,Single,Cashier,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region IX,Poblacion,Barber,Colleen,A.,157,Mercury Street,Cebu City,Cavite,1992-09-28,Laguna,Female,Married,Cashier,Filipino,Mother,Elementary,Non-PWD,Voter
+Region VII,San Antonio,Gray,Gregory,D.,616,Sardonyx Service Road,Cagayan de Oro,Pampanga,1953-11-06,Misamis Oriental,Male,Married,Police Officer,Filipino,Brother,Elementary,Non-PWD,Voter
+Region VI,San Isidro,Garrett,Mark,D.,789,Lily Road,Cebu City,Misamis Oriental,1950-03-14,Davao del Sur,Male,Single,None,Filipino,Uncle,Vocational,Non-PWD,Non-Voter
+Region X,Mabini,Smith,Jennifer,M.,685,Lapis Lazuli Street,Paranaque,Batangas,1980-11-15,Pampanga,Female,Married,Engineer,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region I,Sto. Niño,Phillips,Cynthia,B.,112,Saturn Street,Paranaque,Laguna,1955-01-30,Cebu,Female,Divorced,Farmer,Filipino,Uncle,High School,Non-PWD,Voter
+Region I,San Roque,Simpson,Bryan,Z.,181,95th Road,Zamboanga City,Zamboanga del Sur,1969-09-03,Zamboanga del Sur,Male,Divorced,Driver,Filipino,Daughter,High School,Non-PWD,Non-Voter
+Region V,Bagong Silang,Carter,Terry,L.,722,Pratt Street,Zamboanga City,Bulacan,1969-09-25,Iloilo,Male,Divorced,Student,Filipino,Sister,Vocational,Non-PWD,Voter
+Region VI,San Roque,Rios,Patricia,T.,872,Uranus Extension,Paranaque,Metro Manila,1950-06-07,Iloilo,Female,Married,Vendor,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region VIII,Bagong Silang,Thomas,Erika,R.,065,Johnston Road,Paranaque,Batangas,2006-04-21,Metro Manila,Female,Widowed,Teacher,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+Region V,Mabini,Ruiz,Debra,E.,648,Hercules Road,Pasig,Iloilo,1956-07-27,Davao del Sur,Female,Married,Driver,Filipino,Uncle,College,PWD,Non-Voter
+Region XI,San Isidro,Campbell,Bradley,M.,933,Santol Road,Davao City,Batangas,2004-03-03,Pampanga,Male,Widowed,None,Filipino,Aunt,Elementary,PWD,Voter
+Region VIII,San Antonio,Scott,Mia,R.,994,Saturn Street,Iloilo City,Cavite,1988-05-08,Cavite,Female,Married,None,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region XII,San Roque,Riley,Billy,M.,183,16th Street,Caloocan,Metro Manila,1996-08-19,Davao del Sur,Male,Widowed,Engineer,Filipino,Daughter,College,Non-PWD,Non-Voter
+Region VI,Sto. Niño,West,Gary,S.,611,Mariveles Street,Quezon City,Misamis Oriental,1965-07-12,Cavite,Male,Divorced,Cashier,Filipino,Grandfather,College,Non-PWD,Voter
+Region XI,Bagong Silang,Boone,Julia,C.,844,Taurus Street,Cagayan de Oro,Iloilo,1965-02-01,Cebu,Female,Single,Cashier,Filipino,Sister,College,Non-PWD,Non-Voter
+Region IV-A,Poblacion,Bryant,Rita,R.,394,Hester Road,Pasig,Pampanga,2007-02-26,Metro Manila,Female,Married,Farmer,Filipino,Brother,Elementary,Non-PWD,Non-Voter
+Region VI,Sto. Niño,Kramer,Samuel,L.,319,Hibok-Hibok Street,Cebu City,Iloilo,1957-04-11,Davao del Sur,Male,Married,Vendor,Filipino,Mother,High School,Non-PWD,Voter
+BARMM,San Roque,Carson,Angela,M.,251,Sineguelas Avenue,Manila,Iloilo,1950-06-12,Pampanga,Female,Single,Nurse,Filipino,Son,College,Non-PWD,Non-Voter
+Region VI,Sto. Niño,Patterson,Mckenzie,C.,591,Comet Road,Pasig,Iloilo,1985-02-04,Pampanga,Female,Married,Police Officer,Filipino,Son,Elementary,Non-PWD,Non-Voter
+Region I,San Roque,Chapman,Timothy,T.,901,Mercury Street,Davao City,Davao del Sur,1952-08-04,Iloilo,Male,Widowed,Vendor,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+Region IX,San Antonio,Carlson,William,A.,135,Trujillo Expressway,Pasig,Cavite,1970-04-22,Laguna,Male,Divorced,Vendor,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+Region V,Mabini,Berg,Maureen,N.,908,87th Road,Zamboanga City,Davao del Sur,1958-08-07,Laguna,Female,Married,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region V,BF Homes,Johnson,Christopher,J.,133,Topaz Road,Davao City,Metro Manila,1989-03-14,Misamis Oriental,Male,Divorced,Engineer,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region III,San Isidro,Brown,Allison,J.,570,23rd Drive,Caloocan,Metro Manila,1997-05-06,Zamboanga del Sur,Female,Divorced,Farmer,Filipino,Grandmother,No Formal Education,PWD,Voter
+Region VI,San Antonio,Garcia,Christian,R.,680,Amber Road,Iloilo City,Iloilo,1964-01-07,Bulacan,Male,Married,Cashier,Filipino,Brother,High School,Non-PWD,Voter
+NCR,Talon Uno,Vega,Sarah,D.,045,Atok Drive Extension,Davao City,Metro Manila,1996-01-08,Iloilo,Female,Single,Cashier,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+NCR,Sta. Cruz,Stanley,Christopher,J.,581,Atok Avenue,Caloocan,Metro Manila,1975-04-30,Davao del Sur,Male,Widowed,Farmer,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region X,Talon Uno,Bryant,Corey,E.,810,Diamond Street,Manila,Iloilo,1979-01-04,Iloilo,Male,Married,Nurse,Filipino,Son,Vocational,Non-PWD,Voter
+Region X,Mabini,Dean,Megan,R.,888,Mustard Street,Pasig,Metro Manila,1978-02-15,Davao del Sur,Female,Widowed,Cashier,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region II,Mabini,Miller,Kevin,H.,856,Hercules Boulevard,Caloocan,Laguna,1968-07-23,Zamboanga del Sur,Male,Married,Farmer,Filipino,Grandfather,College,Non-PWD,Non-Voter
+CAR,Mabini,Stein,Melinda,A.,239,Matumtum Avenue,Iloilo City,Misamis Oriental,1955-10-23,Bulacan,Female,Single,Student,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region IV-A,Sto. Niño,Wilson,Jacqueline,C.,419,Horton Drive,Paranaque,Laguna,2010-06-26,Bulacan,Female,Married,Driver,Filipino,Daughter,College,Non-PWD,Voter
+Region VIII,Bagong Silang,Miller,Jacob,M.,152,Emerald Street,Zamboanga City,Bulacan,1970-01-09,Bulacan,Male,Single,Farmer,Filipino,Grandmother,High School,Non-PWD,Voter
+Region VI,San Roque,Bell,Christina,M.,367,Aquamarine Highway,Cebu City,Bulacan,2005-06-20,Pampanga,Female,Widowed,Engineer,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region III,BF Homes,Brewer,Russell,N.,556,Hibok-Hibok Road,Cagayan de Oro,Pampanga,2009-10-04,Zamboanga del Sur,Male,Single,Teacher,Filipino,Son,Vocational,Non-PWD,Voter
+CAR,San Roque,Smith,Austin,N.,967,Moonstone Street,Iloilo City,Bulacan,1955-09-19,Bulacan,Male,Married,Farmer,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region III,BF Homes,Cole,Christine,C.,946,Parrish Road Extension,Iloilo City,Cebu,1986-07-11,Pampanga,Female,Widowed,None,Filipino,Mother,Elementary,Non-PWD,Voter
+Region VII,Sta. Cruz,Warren,Robin,S.,275,Akle Road,Caloocan,Metro Manila,1972-04-10,Pampanga,Female,Single,Vendor,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region III,Sta. Cruz,Martin,Kevin,D.,195,Milky Way Road,Caloocan,Zamboanga del Sur,1975-08-05,Misamis Oriental,Male,Widowed,Vendor,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region XI,San Antonio,Martinez,Jonathan,R.,632,Sardonyx Street,Paranaque,Cebu,1957-11-05,Cebu,Male,Married,Engineer,Filipino,Grandfather,Elementary,Non-PWD,Non-Voter
+Region XI,Bagong Silang,Gray,Destiny,M.,350,Alexander Drive,Pasig,Batangas,1970-03-07,Cavite,Female,Widowed,Nurse,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region XII,Bagong Silang,Powell,Stacy,D.,813,Amethyst Drive,Pasig,Metro Manila,1976-07-02,Pampanga,Female,Divorced,Police Officer,Filipino,Son,Elementary,Non-PWD,Voter
+NCR,BF Homes,Foster,Ryan,J.,914,Milky Way Avenue Extension,Pasig,Davao del Sur,1964-05-05,Pampanga,Male,Single,Engineer,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+NCR,Poblacion,Avery,Luis,C.,478,Zircon Drive Extension,Zamboanga City,Metro Manila,1966-10-25,Bulacan,Male,Single,Nurse,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region IV-A,Sto. Niño,Ramirez,Lindsey,A.,834,Orchid Street,Quezon City,Pampanga,1960-04-27,Bulacan,Female,Widowed,Teacher,Filipino,Aunt,High School,Non-PWD,Voter
+Region III,San Isidro,Carter,Timothy,L.,163,Kanlaon Road,Cebu City,Bulacan,1988-09-24,Cebu,Male,Widowed,Cashier,Filipino,Grandfather,Elementary,Non-PWD,Non-Voter
+Region VIII,San Isidro,Woods,Christine,S.,259,Brown Boulevard Extension,Zamboanga City,Zamboanga del Sur,1997-02-18,Zamboanga del Sur,Female,Married,Teacher,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region IV-A,San Antonio,Bishop,Michael,B.,320,Saturn Avenue,Davao City,Batangas,1999-11-20,Batangas,Male,Widowed,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region V,Talon Uno,Wood,Sarah,J.,593,Cox Drive,Manila,Iloilo,1964-12-09,Iloilo,Female,Single,Engineer,Filipino,Father,No Formal Education,Non-PWD,Voter
+NCR,Poblacion,Dodson,Justin,M.,945,Batino Road,Cagayan de Oro,Pampanga,1950-04-03,Metro Manila,Male,Widowed,Vendor,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region X,Poblacion,Fernandez,George,P.,244,Atis Street,Pasig,Iloilo,2004-07-27,Pampanga,Male,Single,Engineer,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region VIII,Sta. Cruz,Adams,Christopher,M.,089,81st Drive,Quezon City,Metro Manila,1960-09-03,Laguna,Male,Married,Police Officer,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region V,Sto. Niño,Hill,Nicholas,M.,320,Juno Drive,Zamboanga City,Bulacan,1954-07-01,Misamis Oriental,Male,Single,None,Filipino,Son,College,Non-PWD,Non-Voter
+Region XII,Mabini,Schultz,Christopher,D.,752,64th Avenue,Zamboanga City,Cavite,1951-09-22,Laguna,Male,Divorced,Teacher,Filipino,Son,High School,Non-PWD,Non-Voter
+CAR,Mabini,Lucas,Sandra,B.,218,75th Street,Cebu City,Cebu,1993-11-14,Iloilo,Female,Divorced,Nurse,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region VII,San Antonio,Gutierrez,Kevin,S.,546,Apo Street,Zamboanga City,Misamis Oriental,2010-07-27,Laguna,Male,Divorced,Student,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+CAR,Mabini,Garcia,Carla,P.,348,Mariveles Street,Cagayan de Oro,Laguna,2009-01-06,Misamis Oriental,Female,Widowed,Cashier,Filipino,Grandmother,College,Non-PWD,Voter
+Region III,San Roque,Jones,Laura,S.,052,Bagtikan Drive Extension,Manila,Misamis Oriental,1995-11-19,Pampanga,Female,Single,Engineer,Filipino,Uncle,College,Non-PWD,Voter
+Region X,Bagong Silang,Lozano,Samuel,R.,917,Patrick Road Extension,Caloocan,Pampanga,1984-03-31,Misamis Oriental,Male,Widowed,Police Officer,Filipino,Son,High School,Non-PWD,Voter
+Region VIII,San Roque,May,Lisa,C.,591,22nd Street,Zamboanga City,Misamis Oriental,1989-02-28,Misamis Oriental,Female,Divorced,Farmer,Filipino,Grandmother,No Formal Education,Non-PWD,Non-Voter
+NCR,BF Homes,Wilson,Catherine,A.,964,Taurus Drive,Zamboanga City,Batangas,1964-07-13,Cavite,Female,Single,Teacher,Filipino,Aunt,College,Non-PWD,Voter
+Region XII,Poblacion,Howard,Michael,A.,369,Cordillera Road,Caloocan,Pampanga,1977-09-11,Iloilo,Male,Widowed,Student,Filipino,Grandfather,High School,Non-PWD,Voter
+Region XI,Poblacion,Aguilar,Carol,T.,245,Aries Street,Davao City,Laguna,1967-05-19,Cebu,Female,Single,Cashier,Filipino,Uncle,College,Non-PWD,Voter
+BARMM,Talon Uno,Martinez,Amanda,J.,183,Nelson Street,Paranaque,Batangas,1996-11-14,Pampanga,Female,Widowed,Police Officer,Filipino,Son,Elementary,Non-PWD,Voter
+Region II,BF Homes,Gutierrez,Brandon,K.,253,63rd Drive,Caloocan,Davao del Sur,1954-11-02,Davao del Sur,Male,Divorced,Engineer,Filipino,Son,Elementary,Non-PWD,Non-Voter
+Region VII,San Isidro,Taylor,Erin,K.,101,Pluto Road,Davao City,Laguna,1982-03-27,Bulacan,Female,Single,Teacher,Filipino,Father,No Formal Education,Non-PWD,Non-Voter
+BARMM,Talon Uno,Rasmussen,Jeff,M.,342,Weber Extension,Quezon City,Cebu,1949-12-23,Pampanga,Male,Divorced,Cashier,Filipino,Mother,Post Graduate,Non-PWD,Non-Voter
+Region II,Poblacion,Baker,Zachary,M.,054,Kanlaon Street,Iloilo City,Batangas,1973-11-06,Iloilo,Male,Single,Nurse,Filipino,Uncle,Elementary,Non-PWD,Non-Voter
+NCR,Sto. Niño,Craig,Daniel,M.,014,Davis Street,Iloilo City,Pampanga,1974-04-27,Cebu,Male,Single,Engineer,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region IX,Mabini,Walker,Linda,M.,740,Planet Avenue,Iloilo City,Laguna,1957-05-15,Cebu,Female,Widowed,Farmer,Filipino,Daughter,High School,Non-PWD,Voter
+Region IV-A,San Roque,Heath,Carla,R.,024,Asteroid Drive,Quezon City,Bulacan,1951-01-21,Cavite,Female,Single,None,Filipino,Father,Vocational,Non-PWD,Non-Voter
+Region V,Sta. Cruz,Palmer,John,K.,063,Martinez Road,Pasig,Iloilo,2003-01-03,Davao del Sur,Male,Single,Cashier,Filipino,Mother,Elementary,Non-PWD,Voter
+Region II,Mabini,Barnes,Timothy,L.,736,Jupiter Street,Paranaque,Davao del Sur,1962-04-17,Zamboanga del Sur,Male,Widowed,None,Filipino,Sister,Vocational,Non-PWD,Voter
+NCR,Talon Uno,Jones,David,J.,411,Sardonyx Extension,Iloilo City,Metro Manila,2007-05-22,Metro Manila,Male,Widowed,Farmer,Filipino,Grandmother,Post Graduate,Non-PWD,Non-Voter
+Region VIII,Poblacion,Lopez,Rachel,A.,098,3rd Road Extension,Caloocan,Iloilo,1979-12-22,Laguna,Female,Divorced,Engineer,Filipino,Father,Post Graduate,Non-PWD,Non-Voter
+Region XI,Sta. Cruz,Collins,Jessica,K.,821,Constellation Road Extension,Manila,Cavite,2006-03-21,Cebu,Female,Married,Driver,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region XI,Sta. Cruz,Douglas,Mark,H.,539,60th Road,Davao City,Zamboanga del Sur,1976-01-30,Zamboanga del Sur,Male,Single,Police Officer,Filipino,Brother,High School,Non-PWD,Voter
+NCR,San Antonio,Harris,Joseph,E.,459,Libra Drive,Cagayan de Oro,Batangas,1996-12-18,Misamis Oriental,Male,Divorced,Teacher,Filipino,Father,Elementary,Non-PWD,Voter
+Region IV-A,BF Homes,Brennan,James,D.,251,13th Road Extension,Pasig,Metro Manila,1980-03-12,Cavite,Male,Widowed,Driver,Filipino,Grandfather,Post Graduate,Non-PWD,Non-Voter
+BARMM,San Roque,Todd,Brittany,L.,136,Milky Way Drive,Zamboanga City,Davao del Sur,1980-07-17,Batangas,Female,Married,None,Filipino,Grandmother,High School,Non-PWD,Voter
+BARMM,San Antonio,Frey,Natalie,P.,627,Amber Avenue,Cagayan de Oro,Bulacan,1966-11-12,Metro Manila,Female,Widowed,Cashier,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region V,San Roque,Jones,Elizabeth,V.,226,Earth Boulevard,Davao City,Zamboanga del Sur,1971-10-29,Cebu,Female,Widowed,None,Filipino,Daughter,High School,Non-PWD,Voter
+Region VI,BF Homes,Baldwin,Ann,B.,496,Cresta Drive Extension,Cagayan de Oro,Davao del Sur,1993-04-29,Batangas,Female,Divorced,None,Filipino,Brother,Elementary,Non-PWD,Voter
+Region I,Mabini,Watson,Andrea,J.,930,Jade Drive,Paranaque,Iloilo,1969-04-19,Cavite,Female,Divorced,Police Officer,Filipino,Son,College,Non-PWD,Voter
+Region X,San Isidro,Walters,Laura,D.,066,Sardonyx Drive,Paranaque,Batangas,1973-10-11,Batangas,Female,Married,None,Filipino,Grandmother,No Formal Education,Non-PWD,Non-Voter
+Region V,Sto. Niño,Rhodes,Mary,J.,125,Ruby Boulevard,Iloilo City,Metro Manila,1984-08-09,Laguna,Female,Divorced,Vendor,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region IV-A,San Isidro,Rhodes,Tammy,J.,354,Agoho Street,Cagayan de Oro,Davao del Sur,2000-10-12,Cebu,Female,Widowed,Driver,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+Region X,Poblacion,Hoffman,Amanda,I.,092,50th Drive,Quezon City,Batangas,1975-03-09,Batangas,Female,Single,Cashier,Filipino,Father,Elementary,Non-PWD,Voter
+Region XI,Poblacion,Gentry,Arthur,D.,149,Balimbing Extension,Cagayan de Oro,Bulacan,1977-06-01,Davao del Sur,Male,Single,Student,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+Region I,BF Homes,Williams,Jessica,D.,678,Emerald Drive,Cagayan de Oro,Bulacan,1967-11-06,Zamboanga del Sur,Female,Widowed,Vendor,Filipino,Mother,High School,Non-PWD,Non-Voter
+Region II,Sta. Cruz,Koch,Alexandria,B.,343,Canopus Road,Cagayan de Oro,Iloilo,1991-08-27,Misamis Oriental,Female,Divorced,None,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region VI,Sto. Niño,Oneill,Joseph,S.,001,Citrine Expressway,Quezon City,Cavite,1951-09-01,Metro Manila,Male,Divorced,Nurse,Filipino,Brother,Vocational,Non-PWD,Voter
+Region V,Sto. Niño,Spears,Michelle,M.,323,Batino Street,Zamboanga City,Zamboanga del Sur,1983-05-09,Davao del Sur,Female,Divorced,Teacher,Filipino,Grandmother,High School,Non-PWD,Voter
+Region X,San Roque,Brady,Thomas,H.,162,Opal Avenue,Caloocan,Bulacan,1955-11-19,Iloilo,Male,Married,Teacher,Filipino,Father,Vocational,Non-PWD,Non-Voter
+Region XII,Bagong Silang,White,Michelle,S.,013,Antares Street,Cagayan de Oro,Batangas,1998-10-26,Pampanga,Female,Single,Student,Filipino,Aunt,High School,Non-PWD,Non-Voter
+Region VI,San Isidro,Peters,Crystal,M.,418,Garcia Highway,Davao City,Zamboanga del Sur,1959-10-17,Iloilo,Female,Divorced,Driver,Filipino,Son,Elementary,PWD,Non-Voter
+Region X,San Isidro,Fowler,Kevin,J.,613,Venus Extension,Paranaque,Zamboanga del Sur,1958-11-03,Cebu,Male,Single,Police Officer,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region VII,BF Homes,Allen,Marcus,D.,794,92nd Street,Quezon City,Davao del Sur,1971-01-02,Cavite,Male,Widowed,None,Filipino,Brother,Elementary,Non-PWD,Voter
+Region VI,Sta. Cruz,Hudson,Diane,J.,377,99th Street,Davao City,Laguna,1966-04-14,Batangas,Female,Divorced,Vendor,Filipino,Daughter,College,Non-PWD,Voter
+Region X,San Antonio,Chambers,William,C.,387,Balimbing Drive,Quezon City,Batangas,1966-02-07,Laguna,Male,Single,Student,Filipino,Mother,College,Non-PWD,Voter
+Region III,San Antonio,Greene,Candice,A.,475,Kirk Drive,Manila,Cebu,1963-01-27,Bulacan,Female,Married,Teacher,Filipino,Sister,Elementary,Non-PWD,Voter
+Region II,Sto. Niño,Hicks,Matthew,R.,871,Lily Street,Iloilo City,Laguna,2007-10-02,Misamis Oriental,Male,Divorced,Engineer,Filipino,Aunt,Vocational,Non-PWD,Non-Voter
+Region I,Bagong Silang,Stanley,Elizabeth,C.,487,Tanguile Boulevard,Caloocan,Bulacan,1995-09-27,Cavite,Female,Widowed,Cashier,Filipino,Grandmother,High School,Non-PWD,Voter
+Region XI,San Isidro,Parker,Kevin,J.,349,Apo Road Extension,Iloilo City,Pampanga,1994-09-13,Misamis Oriental,Male,Divorced,Vendor,Filipino,Father,Vocational,Non-PWD,Voter
+BARMM,Sta. Cruz,Mitchell,Kurt,N.,161,Palanan Street,Iloilo City,Pampanga,2007-03-14,Cebu,Male,Widowed,Driver,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region X,Sta. Cruz,Matthews,Sheri,J.,904,Sapphire Road,Manila,Zamboanga del Sur,1996-12-08,Cavite,Female,Widowed,Driver,Filipino,Mother,College,Non-PWD,Voter
+BARMM,Bagong Silang,Wilson,Brandon,J.,608,Doyle Boulevard,Cagayan de Oro,Misamis Oriental,2001-11-03,Zamboanga del Sur,Male,Married,Cashier,Filipino,Father,High School,Non-PWD,Non-Voter
+Region XI,Bagong Silang,Evans,Donald,L.,675,Earth Street,Iloilo City,Batangas,1994-08-18,Metro Manila,Male,Married,None,Filipino,Brother,College,Non-PWD,Non-Voter
+Region IX,San Antonio,Burke,Joshua,J.,953,37th Street,Zamboanga City,Batangas,1982-09-26,Davao del Sur,Male,Single,Student,Filipino,Father,Post Graduate,Non-PWD,Non-Voter
+CAR,Mabini,Adams,Phyllis,L.,209,Taurus Street,Paranaque,Metro Manila,1974-04-26,Misamis Oriental,Female,Single,Cashier,Filipino,Mother,High School,Non-PWD,Voter
+Region III,Bagong Silang,Cook,Robert,M.,437,Makiling Road,Caloocan,Metro Manila,1964-06-05,Iloilo,Male,Divorced,Police Officer,Filipino,Mother,Post Graduate,Non-PWD,Non-Voter
+NCR,BF Homes,Pham,Michael,C.,380,Emerald Street,Zamboanga City,Bulacan,1976-04-04,Cebu,Male,Widowed,None,Filipino,Mother,College,Non-PWD,Voter
+Region II,Sta. Cruz,Cross,Jessica,J.,906,Santol Avenue,Cebu City,Laguna,1951-01-09,Laguna,Female,Single,Farmer,Filipino,Brother,College,PWD,Voter
+Region IV-A,San Isidro,Hansen,Lisa,D.,227,Emerald Street,Zamboanga City,Metro Manila,1982-05-19,Davao del Sur,Female,Divorced,Police Officer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region XII,Talon Uno,Cox,Catherine,C.,055,Kanlaon Street,Caloocan,Metro Manila,1984-10-30,Pampanga,Female,Single,Nurse,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+Region II,Poblacion,Wong,Kelly,M.,514,Moore Avenue,Iloilo City,Iloilo,1995-03-17,Cebu,Female,Single,Cashier,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region XI,BF Homes,Davis,Todd,K.,495,Hibok-Hibok Street,Pasig,Misamis Oriental,1961-04-23,Bulacan,Male,Widowed,Driver,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region XI,BF Homes,Gordon,Paul,J.,526,Sardonyx Road,Cagayan de Oro,Davao del Sur,1992-10-13,Laguna,Male,Married,Teacher,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region VI,Talon Uno,Thornton,Erin,G.,501,Molave Road,Iloilo City,Bulacan,1956-03-04,Iloilo,Female,Widowed,Police Officer,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+Region VI,San Roque,Johnson,Darrell,A.,135,Peridot Road,Iloilo City,Bulacan,1954-11-02,Pampanga,Male,Widowed,Cashier,Filipino,Mother,Elementary,Non-PWD,Voter
+Region II,BF Homes,Montgomery,Jennifer,K.,403,Hibok-Hibok Road,Paranaque,Batangas,1951-12-17,Laguna,Female,Single,Engineer,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region IX,Poblacion,Flores,Christina,E.,444,40th Avenue,Zamboanga City,Zamboanga del Sur,1968-11-26,Cebu,Female,Divorced,Driver,Filipino,Son,Elementary,Non-PWD,Voter
+Region III,San Roque,Armstrong,Gary,B.,947,Matumtum Avenue,Paranaque,Laguna,1950-11-18,Batangas,Male,Single,Driver,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region II,San Antonio,Molina,Regina,A.,294,Roth Street,Pasig,Bulacan,1987-05-10,Pampanga,Female,Divorced,None,Filipino,Sister,College,Non-PWD,Non-Voter
+BARMM,San Antonio,Frazier,Raymond,S.,447,Earth Street,Iloilo City,Zamboanga del Sur,1974-09-15,Laguna,Male,Divorced,Student,Filipino,Mother,Post Graduate,Non-PWD,Non-Voter
+Region II,San Isidro,Mclaughlin,Kelly,M.,671,Scorpio Drive,Manila,Batangas,1992-11-24,Batangas,Female,Married,Cashier,Filipino,Brother,Post Graduate,Non-PWD,Voter
+NCR,Sta. Cruz,Parker,Sarah,Y.,085,Yu Boulevard,Pasig,Bulacan,1963-04-21,Zamboanga del Sur,Female,Married,Police Officer,Filipino,Father,College,Non-PWD,Non-Voter
+Region V,San Isidro,Newton,Maria,D.,651,French Drive,Cagayan de Oro,Cavite,1963-07-17,Bulacan,Female,Married,Police Officer,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region IV-A,Talon Uno,Mendoza,Devin,E.,881,Yakal Avenue,Paranaque,Iloilo,1997-12-14,Bulacan,Male,Married,Cashier,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region XII,Sto. Niño,Reeves,Michael,M.,184,32nd Drive Extension,Pasig,Cavite,1983-06-29,Misamis Oriental,Male,Single,Driver,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region XII,Talon Uno,Phillips,Brent,C.,608,Hibok-Hibok Street,Davao City,Cavite,1997-12-29,Bulacan,Male,Widowed,Nurse,Filipino,Grandmother,High School,Non-PWD,Voter
+Region VIII,Bagong Silang,Howard,Shane,L.,859,Palanan Highway,Cagayan de Oro,Laguna,1996-05-23,Misamis Oriental,Male,Married,Farmer,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region X,Bagong Silang,Erickson,Michael,Z.,991,Santan Road,Zamboanga City,Davao del Sur,1950-08-08,Laguna,Male,Widowed,Engineer,Filipino,Brother,Vocational,Non-PWD,Voter
+BARMM,Talon Uno,Rodriguez,Richard,J.,619,Wilson Street,Caloocan,Batangas,1959-07-28,Pampanga,Male,Divorced,Teacher,Filipino,Father,No Formal Education,Non-PWD,Non-Voter
+Region II,Mabini,Thomas,Clayton,T.,243,62nd Road,Caloocan,Pampanga,2009-11-03,Pampanga,Male,Widowed,Police Officer,Filipino,Uncle,Post Graduate,Non-PWD,Non-Voter
+Region XII,San Isidro,Malone,Laura,T.,163,Hunter Avenue,Paranaque,Cavite,1958-07-16,Metro Manila,Female,Married,Engineer,Filipino,Aunt,College,Non-PWD,Voter
+NCR,San Antonio,Watson,Jessica,D.,201,Oneill Street,Quezon City,Metro Manila,1995-08-16,Laguna,Female,Married,Engineer,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region XI,Mabini,Fleming,Daniel,V.,424,Hercules Road,Caloocan,Cebu,1991-08-20,Zamboanga del Sur,Male,Divorced,Student,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region III,San Antonio,Long,Stephen,D.,862,87th Street,Davao City,Batangas,1984-11-28,Cavite,Male,Married,Teacher,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region V,San Roque,Medina,April,C.,673,Ruby Avenue,Iloilo City,Laguna,1996-06-21,Pampanga,Female,Widowed,Farmer,Filipino,Aunt,High School,Non-PWD,Non-Voter
+Region VI,Sto. Niño,Knapp,Tracy,P.,514,Taurus Road,Davao City,Cavite,2002-08-08,Batangas,Male,Married,Cashier,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region XI,Mabini,Anderson,Michael,R.,580,Thompson Road,Paranaque,Batangas,1950-09-10,Davao del Sur,Male,Divorced,Nurse,Filipino,Grandfather,Vocational,Non-PWD,Voter
+CAR,San Isidro,Watson,Brandi,C.,936,Samat Street,Paranaque,Cebu,1990-08-12,Laguna,Female,Widowed,Farmer,Filipino,Son,Post Graduate,PWD,Voter
+Region V,San Roque,Lee,Jeffrey,E.,177,46th Road,Zamboanga City,Davao del Sur,1964-07-31,Zamboanga del Sur,Male,Widowed,Driver,Filipino,Mother,College,Non-PWD,Voter
+CAR,Sta. Cruz,Brewer,Shelby,W.,673,Makiling Road,Cebu City,Cavite,1965-12-27,Misamis Oriental,Female,Single,Farmer,Filipino,Brother,Vocational,Non-PWD,Voter
+Region I,Mabini,Garcia,Tom,A.,878,Caraballo Avenue,Davao City,Cebu,1969-08-13,Iloilo,Male,Widowed,Police Officer,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region VI,San Antonio,Lopez,Sara,M.,902,Reeves Drive,Iloilo City,Laguna,2001-04-05,Zamboanga del Sur,Female,Single,None,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region VII,Mabini,Simmons,Angela,C.,507,Washington Road,Zamboanga City,Davao del Sur,1991-01-04,Batangas,Female,Widowed,None,Filipino,Grandfather,College,Non-PWD,Voter
+Region V,Mabini,Moore,Stefanie,C.,802,Zimmerman Boulevard,Paranaque,Batangas,1960-05-30,Laguna,Female,Divorced,Vendor,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+CAR,Poblacion,Wilson,Carla,S.,904,Simmons Boulevard,Caloocan,Laguna,1973-09-14,Laguna,Female,Divorced,Police Officer,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+BARMM,Talon Uno,Ellis,Mary,M.,167,Constellation Highway,Zamboanga City,Cavite,1963-10-29,Misamis Oriental,Female,Widowed,None,Filipino,Father,College,PWD,Voter
+Region IX,San Roque,Lawrence,Jessica,B.,420,Constellation Street,Iloilo City,Misamis Oriental,1976-11-16,Zamboanga del Sur,Female,Widowed,Cashier,Filipino,Mother,College,Non-PWD,Voter
+Region VI,San Isidro,Burgess,Peter,E.,037,78th Road Extension,Iloilo City,Laguna,1957-04-25,Bulacan,Male,Divorced,None,Filipino,Aunt,Post Graduate,Non-PWD,Non-Voter
+Region II,Sto. Niño,Shaffer,Renee,S.,153,Adams Street,Iloilo City,Pampanga,2001-11-16,Pampanga,Female,Married,Farmer,Filipino,Father,Vocational,Non-PWD,Non-Voter
+Region IX,Sto. Niño,Marsh,David,M.,404,Sardonyx Boulevard,Pasig,Zamboanga del Sur,1984-07-28,Davao del Sur,Male,Married,Cashier,Filipino,Father,College,Non-PWD,Non-Voter
+Region V,BF Homes,Cain,Jessica,A.,112,Jackson Road,Pasig,Batangas,1974-11-28,Davao del Sur,Female,Married,Nurse,Filipino,Mother,Elementary,Non-PWD,Voter
+Region XII,San Roque,Evans,Brenda,J.,142,Dao Drive,Paranaque,Cebu,1979-05-17,Davao del Sur,Female,Divorced,Police Officer,Filipino,Sister,Vocational,Non-PWD,Voter
+Region IX,San Roque,Mcdowell,Samantha,M.,761,Asteroid Road,Davao City,Bulacan,1981-11-12,Misamis Oriental,Female,Divorced,Engineer,Filipino,Uncle,College,Non-PWD,Voter
+Region V,Sta. Cruz,Mills,Matthew,D.,939,Palanan Drive Extension,Davao City,Pampanga,2003-03-15,Iloilo,Male,Divorced,Cashier,Filipino,Mother,College,Non-PWD,Non-Voter
+Region X,Mabini,Wilson,Christopher,D.,765,Jasper Street,Cebu City,Cavite,2002-08-02,Metro Manila,Male,Married,Student,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region X,Sta. Cruz,Reeves,Peter,B.,007,Jupiter Road,Paranaque,Davao del Sur,1973-02-05,Pampanga,Male,Widowed,None,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region II,BF Homes,Miller,Jonathan,N.,646,Dita Street,Davao City,Batangas,1997-07-25,Iloilo,Male,Single,Driver,Filipino,Sister,No Formal Education,Non-PWD,Voter
+Region I,San Antonio,Austin,Jordan,M.,931,59th Road,Manila,Laguna,1950-08-24,Cebu,Male,Widowed,Nurse,Filipino,Son,Post Graduate,Non-PWD,Non-Voter
+Region I,Talon Uno,Sellers,John,E.,473,Mora Street,Pasig,Batangas,1978-10-30,Davao del Sur,Male,Married,Cashier,Filipino,Son,Elementary,Non-PWD,Voter
+Region XI,BF Homes,Herrera,Ashley,J.,710,Matumtum Street,Cagayan de Oro,Cavite,1955-10-21,Cebu,Female,Divorced,Cashier,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region II,Poblacion,Porter,Amber,W.,151,Planet Boulevard,Cebu City,Bulacan,1961-10-04,Iloilo,Female,Single,Student,Filipino,Uncle,Elementary,Non-PWD,Non-Voter
+Region XI,Mabini,Jenkins,Kevin,L.,952,Banahaw Drive,Pasig,Misamis Oriental,1975-05-31,Metro Manila,Male,Widowed,Teacher,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+CAR,Sta. Cruz,Lewis,Martin,B.,736,Agate Avenue Extension,Cebu City,Laguna,1951-07-24,Misamis Oriental,Male,Married,Cashier,Filipino,Brother,College,Non-PWD,Voter
+Region I,Sta. Cruz,Carey,John,T.,637,71st Street,Pasig,Zamboanga del Sur,1954-11-06,Zamboanga del Sur,Male,Widowed,None,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region IX,Mabini,Foster,Christopher,D.,352,Amethyst Road,Iloilo City,Iloilo,2010-03-01,Laguna,Male,Widowed,Farmer,Filipino,Son,High School,Non-PWD,Non-Voter
+NCR,San Antonio,Oneill,Theresa,R.,021,Mushroom Street,Paranaque,Metro Manila,1951-02-06,Metro Manila,Female,Married,Farmer,Filipino,Son,Post Graduate,Non-PWD,Non-Voter
+Region IX,Mabini,Maxwell,Patricia,T.,701,Apo Avenue,Quezon City,Metro Manila,1978-09-18,Zamboanga del Sur,Female,Married,Student,Filipino,Sister,College,Non-PWD,Voter
+Region V,Poblacion,Reeves,William,J.,766,Pepper Street,Cagayan de Oro,Cavite,1956-08-24,Iloilo,Male,Married,Farmer,Filipino,Sister,No Formal Education,Non-PWD,Voter
+Region VII,San Antonio,Hoffman,Angela,M.,075,72nd Street,Iloilo City,Cebu,1978-04-12,Laguna,Female,Married,Farmer,Filipino,Son,High School,PWD,Voter
+Region X,Poblacion,Navarro,Ryan,D.,252,Jasper Street,Caloocan,Cavite,1955-06-30,Pampanga,Male,Widowed,Student,Filipino,Brother,Post Graduate,Non-PWD,Non-Voter
+BARMM,BF Homes,Irwin,Brandon,W.,472,Batino Street,Zamboanga City,Pampanga,1959-01-29,Pampanga,Male,Widowed,None,Filipino,Grandmother,High School,Non-PWD,Voter
+Region II,San Roque,Olson,Joshua,D.,901,Planet Road,Cagayan de Oro,Metro Manila,1994-04-23,Cavite,Male,Single,Engineer,Filipino,Brother,Elementary,Non-PWD,Voter
+Region VI,Talon Uno,Nunez,Ashley,A.,277,Sapphire Street,Quezon City,Zamboanga del Sur,1960-08-26,Batangas,Female,Divorced,None,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region VII,San Antonio,Lawson,Lauren,B.,992,Willis Drive,Pasig,Batangas,1998-02-03,Iloilo,Female,Divorced,Teacher,Filipino,Daughter,Elementary,Non-PWD,Non-Voter
+Region VI,San Roque,Rangel,Kathleen,C.,970,Reeves Road,Paranaque,Davao del Sur,1986-12-01,Pampanga,Female,Single,Vendor,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+Region X,Talon Uno,Anderson,Henry,H.,953,Venus Extension,Quezon City,Misamis Oriental,1957-01-11,Iloilo,Male,Widowed,Driver,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region V,Sta. Cruz,Nelson,Brian,J.,559,8th Drive,Manila,Zamboanga del Sur,2001-10-09,Metro Manila,Male,Married,Engineer,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region V,Mabini,Wolfe,Lauren,C.,719,Champaca Avenue,Cebu City,Davao del Sur,1996-03-18,Misamis Oriental,Female,Single,Driver,Filipino,Brother,Post Graduate,Non-PWD,Non-Voter
+Region V,Talon Uno,Lopez,Angela,T.,843,Sampaguita Drive,Davao City,Cavite,2008-09-09,Cebu,Female,Single,Nurse,Filipino,Uncle,Elementary,PWD,Voter
+BARMM,Poblacion,Allen,Melissa,B.,995,Young Avenue,Cagayan de Oro,Cavite,1961-06-17,Misamis Oriental,Female,Divorced,Nurse,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region XI,BF Homes,Mcguire,Jennifer,H.,154,Ruby Extension,Cebu City,Laguna,1988-02-27,Laguna,Female,Widowed,Driver,Filipino,Uncle,College,Non-PWD,Voter
+Region XI,BF Homes,Rivera,John,G.,413,Boyer Drive,Quezon City,Batangas,1976-12-14,Iloilo,Male,Divorced,Nurse,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+Region VIII,San Isidro,Davis,William,C.,458,45th Drive,Iloilo City,Iloilo,1961-04-14,Batangas,Male,Widowed,Nurse,Filipino,Son,High School,Non-PWD,Non-Voter
+Region III,Poblacion,Craig,William,R.,031,4th Road,Iloilo City,Pampanga,2005-08-15,Zamboanga del Sur,Male,Widowed,Driver,Filipino,Sister,Vocational,Non-PWD,Voter
+Region VI,Sta. Cruz,Allen,Richard,L.,469,Garnet Street,Pasig,Laguna,2004-06-30,Cebu,Male,Widowed,Farmer,Filipino,Grandfather,College,Non-PWD,Voter
+Region III,Sto. Niño,Willis,Lynn,A.,908,Pinatubo Road,Caloocan,Misamis Oriental,2006-11-27,Metro Manila,Female,Divorced,Driver,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region I,San Isidro,Jackson,Steven,A.,205,40th Road,Cebu City,Zamboanga del Sur,1981-03-18,Davao del Sur,Male,Widowed,Student,Filipino,Brother,Vocational,Non-PWD,Non-Voter
+CAR,San Antonio,Holt,Chloe,M.,328,Garcia Avenue,Zamboanga City,Metro Manila,1973-08-02,Davao del Sur,Female,Widowed,Farmer,Filipino,Father,College,Non-PWD,Voter
+Region II,Poblacion,Miller,Joanne,L.,599,Saturn Extension,Caloocan,Laguna,1997-10-19,Cavite,Female,Single,Nurse,Filipino,Grandfather,No Formal Education,Non-PWD,Non-Voter
+Region IX,San Isidro,Evans,Teresa,J.,425,Oconnor Street,Manila,Iloilo,2003-06-08,Cebu,Female,Divorced,Student,Filipino,Son,College,Non-PWD,Voter
+CAR,San Roque,Garcia,Angel,L.,853,Tabayoc Drive,Zamboanga City,Davao del Sur,1986-03-01,Laguna,Male,Single,Vendor,Filipino,Son,College,Non-PWD,Voter
+NCR,Mabini,Hurley,Kelly,L.,871,Uranus Drive,Caloocan,Misamis Oriental,1995-02-19,Bulacan,Female,Divorced,Vendor,Filipino,Daughter,College,Non-PWD,Non-Voter
+Region X,San Roque,Spencer,Martha,C.,285,77th Road,Zamboanga City,Zamboanga del Sur,1982-09-14,Bulacan,Female,Widowed,Teacher,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region III,Poblacion,Mullen,Gregory,F.,066,Sagittarius Road,Manila,Laguna,1975-11-08,Davao del Sur,Male,Single,Police Officer,Filipino,Grandfather,High School,Non-PWD,Voter
+NCR,San Roque,Smith,Dennis,M.,533,1st Drive Extension,Quezon City,Cavite,1995-01-21,Bulacan,Male,Married,Vendor,Filipino,Son,Post Graduate,Non-PWD,Voter
+BARMM,San Roque,Hughes,Jordan,F.,055,Cabbage Street,Iloilo City,Davao del Sur,1991-09-22,Davao del Sur,Female,Single,Teacher,Filipino,Mother,No Formal Education,Non-PWD,Non-Voter
+CAR,San Antonio,Marquez,Elizabeth,Y.,703,Constellation Avenue,Iloilo City,Metro Manila,1970-10-27,Misamis Oriental,Female,Single,Teacher,Filipino,Uncle,College,Non-PWD,Voter
+Region VII,Poblacion,Curtis,Michael,J.,354,Baticulin Street,Zamboanga City,Metro Manila,1962-10-19,Bulacan,Male,Married,Farmer,Filipino,Sister,College,Non-PWD,Voter
+NCR,Mabini,Peterson,Albert,M.,982,Granada Avenue,Cagayan de Oro,Iloilo,2002-10-24,Cebu,Male,Divorced,Student,Filipino,Aunt,High School,Non-PWD,Voter
+Region XI,Poblacion,Johnson,Angelica,I.,514,Gladiola Road Extension,Davao City,Zamboanga del Sur,1990-07-02,Zamboanga del Sur,Female,Married,Driver,Filipino,Brother,High School,Non-PWD,Voter
+Region VII,San Isidro,Khan,Lisa,H.,390,Zodiac Road,Caloocan,Cavite,1954-02-21,Zamboanga del Sur,Female,Divorced,Police Officer,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+CAR,Sta. Cruz,Leonard,Christina,V.,738,Topaz Drive,Paranaque,Cebu,1984-11-24,Laguna,Female,Married,Nurse,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region X,Poblacion,Knight,Michael,M.,050,Scorpio Street,Cebu City,Cebu,1951-11-13,Davao del Sur,Male,Single,Nurse,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region VI,Poblacion,Deleon,Timothy,J.,187,Taurus Road Extension,Manila,Iloilo,1958-04-28,Metro Manila,Male,Single,Police Officer,Filipino,Sister,High School,Non-PWD,Voter
+Region IX,Talon Uno,Gregory,Ryan,R.,425,Henderson Street,Iloilo City,Metro Manila,1995-05-07,Batangas,Male,Divorced,Cashier,Filipino,Brother,Elementary,PWD,Voter
+CAR,San Antonio,Martinez,Crystal,S.,822,Tulip Street,Cebu City,Zamboanga del Sur,1995-02-10,Iloilo,Female,Divorced,None,Filipino,Sister,Vocational,Non-PWD,Non-Voter
+Region III,Bagong Silang,Burton,Luis,R.,836,Onyx Road,Quezon City,Cavite,1991-05-14,Pampanga,Male,Widowed,Police Officer,Filipino,Father,High School,Non-PWD,Non-Voter
+Region VIII,BF Homes,Davis,Tammy,D.,070,56th Avenue,Caloocan,Metro Manila,1976-10-16,Misamis Oriental,Female,Married,Teacher,Filipino,Mother,High School,Non-PWD,Voter
+Region I,Sta. Cruz,Ballard,Holly,S.,778,50th Street,Quezon City,Zamboanga del Sur,1970-02-04,Metro Manila,Female,Divorced,None,Filipino,Mother,College,Non-PWD,Voter
+Region II,San Roque,Myers,Tina,B.,889,Mariveles Road,Zamboanga City,Iloilo,1955-01-10,Zamboanga del Sur,Female,Widowed,Police Officer,Filipino,Sister,Elementary,Non-PWD,Voter
+Region VI,Sta. Cruz,Duncan,Kathryn,D.,285,Johnson Road,Paranaque,Bulacan,1988-09-28,Cavite,Female,Single,Police Officer,Filipino,Father,College,Non-PWD,Voter
+Region I,Sto. Niño,Preston,Paige,M.,959,Gonzalez Drive,Caloocan,Batangas,1982-09-18,Cavite,Female,Divorced,Cashier,Filipino,Aunt,Elementary,Non-PWD,Voter
+CAR,San Roque,Daniels,Elizabeth,N.,682,Sicaba Drive,Quezon City,Davao del Sur,1970-12-15,Cavite,Female,Single,Teacher,Filipino,Father,College,Non-PWD,Voter
+Region VIII,Talon Uno,Jones,Sharon,A.,036,63rd Avenue,Manila,Davao del Sur,1968-03-15,Cavite,Female,Married,Farmer,Filipino,Daughter,High School,Non-PWD,Voter
+Region III,Poblacion,Garcia,Lawrence,J.,589,Tucker Road,Iloilo City,Misamis Oriental,1989-12-25,Cavite,Male,Single,Nurse,Filipino,Daughter,High School,Non-PWD,Voter
+CAR,Sta. Cruz,Meza,Sandra,A.,009,Makiling Drive Extension,Quezon City,Pampanga,1999-11-04,Cavite,Female,Married,Police Officer,Filipino,Son,Elementary,Non-PWD,Voter
+Region X,Bagong Silang,Johnson,Tammy,C.,228,Mercury Street,Zamboanga City,Misamis Oriental,1990-09-07,Iloilo,Female,Divorced,Student,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+CAR,Sta. Cruz,Schaefer,Austin,C.,203,Andromeda Drive Extension,Iloilo City,Misamis Oriental,1966-04-20,Davao del Sur,Male,Widowed,Vendor,Filipino,Sister,Vocational,Non-PWD,Voter
+Region VIII,Mabini,Lowe,Curtis,L.,109,Matumtum Avenue,Davao City,Batangas,1951-08-15,Misamis Oriental,Male,Single,Farmer,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+Region IX,San Isidro,Smith,Joshua,L.,192,Rose Road,Manila,Iloilo,1952-05-19,Misamis Oriental,Male,Married,Student,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region V,San Roque,George,Samuel,M.,958,Scorpio Street,Caloocan,Metro Manila,1981-11-14,Bulacan,Male,Single,Student,Filipino,Aunt,Elementary,Non-PWD,Voter
+CAR,San Antonio,Perkins,Wendy,M.,268,46th Avenue,Davao City,Misamis Oriental,1983-12-25,Bulacan,Female,Single,Police Officer,Filipino,Brother,High School,Non-PWD,Voter
+Region III,Poblacion,Meyer,Erik,S.,529,Sullivan Street,Caloocan,Laguna,2000-03-17,Misamis Oriental,Male,Widowed,Police Officer,Filipino,Grandfather,Vocational,PWD,Non-Voter
+Region IX,San Roque,Chen,Craig,A.,242,Garnet Highway,Caloocan,Laguna,1992-01-17,Cebu,Male,Married,None,Filipino,Brother,Vocational,Non-PWD,Voter
+Region VIII,Sta. Cruz,Zimmerman,Antonio,B.,103,Cypress Road,Zamboanga City,Bulacan,2006-02-11,Cebu,Male,Divorced,None,Filipino,Father,College,Non-PWD,Voter
+Region II,Poblacion,Miller,Mary,D.,127,Gemini Street,Zamboanga City,Cebu,1950-10-22,Iloilo,Female,Married,Student,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+BARMM,BF Homes,Steele,Bonnie,A.,528,French Road,Quezon City,Cavite,1976-01-24,Cavite,Female,Widowed,Vendor,Filipino,Mother,Post Graduate,Non-PWD,Voter
+BARMM,Mabini,Willis,Mary,H.,897,Venus Road Extension,Iloilo City,Misamis Oriental,2008-11-19,Cebu,Female,Single,Student,Filipino,Grandmother,College,Non-PWD,Voter
+Region XII,Sta. Cruz,Johnson,James,M.,288,Amethyst Road,Paranaque,Bulacan,1985-08-05,Cebu,Male,Single,Farmer,Filipino,Aunt,College,Non-PWD,Voter
+Region III,Sta. Cruz,Sloan,Crystal,C.,173,Cordillera Street,Manila,Metro Manila,1995-10-16,Misamis Oriental,Female,Widowed,Police Officer,Filipino,Brother,Post Graduate,Non-PWD,Voter
+BARMM,Mabini,Duffy,Cynthia,D.,355,Tulip Street,Manila,Iloilo,2000-06-27,Cebu,Female,Widowed,Vendor,Filipino,Aunt,Vocational,Non-PWD,Non-Voter
+Region X,Bagong Silang,Haynes,Robert,J.,503,30th Street,Cebu City,Batangas,1976-05-27,Cavite,Male,Married,Student,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region IX,San Isidro,Sweeney,Joseph,R.,211,Palali Street,Zamboanga City,Batangas,1997-10-05,Cavite,Male,Single,Teacher,Filipino,Grandfather,Vocational,Non-PWD,Non-Voter
+Region VIII,San Isidro,Lowe,Justin,A.,275,Jasper Road,Quezon City,Zamboanga del Sur,1957-08-25,Cavite,Male,Married,Student,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region XI,Talon Uno,Smith,Jose,D.,213,13th Road Extension,Pasig,Davao del Sur,1981-02-20,Bulacan,Male,Widowed,None,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+BARMM,BF Homes,Edwards,Stephen,J.,727,5th Drive,Iloilo City,Zamboanga del Sur,1975-03-24,Iloilo,Male,Single,None,Filipino,Daughter,College,Non-PWD,Voter
+Region VIII,Sto. Niño,Martinez,Amy,T.,928,Zodiac Road,Zamboanga City,Laguna,1962-07-29,Zamboanga del Sur,Female,Widowed,Nurse,Filipino,Daughter,High School,Non-PWD,Voter
+Region II,BF Homes,Chambers,Natasha,J.,527,Moonstone Street,Davao City,Bulacan,2008-09-14,Laguna,Female,Divorced,Teacher,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region VII,Sto. Niño,Davis,Daniel,T.,557,Serrano Drive,Paranaque,Misamis Oriental,1985-07-10,Zamboanga del Sur,Male,Married,Farmer,Filipino,Uncle,High School,Non-PWD,Voter
+Region II,Mabini,Hampton,Robert,M.,697,Garnet Road Extension,Manila,Metro Manila,1983-06-24,Bulacan,Male,Married,Teacher,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region VI,San Antonio,Bradley,Heather,D.,886,97th Extension,Paranaque,Misamis Oriental,2006-06-17,Cavite,Female,Widowed,Cashier,Filipino,Mother,High School,Non-PWD,Voter
+Region V,Sto. Niño,Brown,Anna,J.,527,Opal Street,Cebu City,Laguna,1989-01-23,Laguna,Female,Divorced,Teacher,Filipino,Brother,Elementary,Non-PWD,Voter
+Region XII,San Isidro,Wilson,Linda,M.,685,97th Extension,Cebu City,Davao del Sur,1974-09-29,Metro Manila,Female,Widowed,Cashier,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+NCR,Sto. Niño,Cooper,Anthony,E.,236,53rd Drive,Paranaque,Metro Manila,2000-04-09,Cebu,Male,Widowed,Student,Filipino,Sister,Vocational,Non-PWD,Non-Voter
+Region I,San Antonio,Obrien,Wayne,A.,590,Henderson Road,Manila,Cavite,2003-06-17,Pampanga,Male,Widowed,Nurse,Filipino,Grandmother,College,Non-PWD,Voter
+Region VII,Sta. Cruz,Sandoval,Christina,D.,760,Talisay Street,Davao City,Cavite,2006-08-22,Pampanga,Female,Married,Engineer,Filipino,Sister,College,Non-PWD,Voter
+Region III,Mabini,Garcia,Emily,M.,539,Mustard Boulevard,Davao City,Metro Manila,1978-11-14,Cebu,Female,Married,Vendor,Filipino,Brother,College,Non-PWD,Voter
+Region XII,San Roque,Warren,David,E.,511,Lanzones Road,Cagayan de Oro,Pampanga,1987-02-25,Cavite,Male,Married,Cashier,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region IX,Bagong Silang,Turner,Kayla,D.,917,Cancer Street,Caloocan,Zamboanga del Sur,1969-11-11,Zamboanga del Sur,Female,Divorced,Student,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region V,Sto. Niño,Long,Lisa,C.,540,Burgess Street,Quezon City,Pampanga,1962-12-29,Davao del Sur,Female,Single,Farmer,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region V,Bagong Silang,Daniels,Sharon,T.,889,Comet Street,Manila,Metro Manila,1974-08-14,Zamboanga del Sur,Female,Divorced,None,Filipino,Brother,College,Non-PWD,Voter
+Region VI,San Isidro,Hunter,Tyler,S.,856,Sunstone Avenue,Cebu City,Bulacan,1991-05-23,Iloilo,Male,Divorced,Vendor,Filipino,Aunt,Post Graduate,PWD,Voter
+BARMM,San Antonio,Wagner,Colin,S.,360,Cresta Highway,Quezon City,Metro Manila,1974-10-15,Cavite,Male,Married,Police Officer,Filipino,Grandmother,College,Non-PWD,Non-Voter
+BARMM,Sto. Niño,Smith,Angela,M.,304,Sardonyx Avenue,Cebu City,Zamboanga del Sur,1997-08-29,Metro Manila,Female,Widowed,Engineer,Filipino,Aunt,No Formal Education,Non-PWD,Non-Voter
+Region IX,Poblacion,Bowman,James,R.,194,Garnet Drive Extension,Pasig,Laguna,1971-02-28,Laguna,Male,Married,Driver,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region IX,Poblacion,Vasquez,Christine,J.,666,Earth Avenue Extension,Caloocan,Misamis Oriental,1971-06-03,Laguna,Female,Single,Nurse,Filipino,Daughter,Elementary,Non-PWD,Voter
+Region I,Talon Uno,Lamb,Michael,D.,451,Atok Avenue,Paranaque,Metro Manila,1984-02-23,Pampanga,Male,Divorced,Vendor,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region V,San Antonio,Levine,Barbara,C.,879,Opal Boulevard Extension,Cebu City,Metro Manila,1951-05-14,Metro Manila,Female,Single,None,Filipino,Grandfather,College,Non-PWD,Voter
+Region I,Sta. Cruz,Torres,James,S.,181,Constellation Highway,Pasig,Cebu,1977-04-13,Batangas,Male,Divorced,Student,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region IV-A,San Isidro,Warren,Tammy,J.,804,Palali Avenue,Paranaque,Bulacan,1970-11-18,Iloilo,Female,Divorced,Teacher,Filipino,Sister,Vocational,Non-PWD,Non-Voter
+Region XII,BF Homes,Koch,Patricia,M.,803,Balimbing Road,Davao City,Laguna,1983-02-12,Bulacan,Female,Married,Cashier,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region XII,Poblacion,Francis,Chad,E.,867,62nd Drive Extension,Davao City,Laguna,1972-06-17,Cebu,Male,Widowed,Teacher,Filipino,Aunt,College,Non-PWD,Voter
+Region IV-A,San Roque,Ramos,Paul,J.,756,Bulusan Road Extension,Zamboanga City,Metro Manila,1979-12-28,Cebu,Male,Divorced,Cashier,Filipino,Uncle,College,Non-PWD,Voter
+Region X,San Isidro,Roach,Adam,S.,162,Turquoise Drive,Quezon City,Laguna,1954-03-23,Cebu,Male,Single,Cashier,Filipino,Sister,Elementary,Non-PWD,Voter
+Region VII,San Roque,Barton,Brittany,W.,723,Apo Street,Cagayan de Oro,Cebu,2009-07-25,Metro Manila,Female,Married,Teacher,Filipino,Uncle,High School,Non-PWD,Voter
+Region X,San Roque,Thompson,Tricia,J.,217,Duncan Drive,Zamboanga City,Misamis Oriental,1985-07-19,Pampanga,Female,Married,Student,Filipino,Mother,Vocational,Non-PWD,Non-Voter
+Region VIII,Sto. Niño,Hurst,Thomas,D.,619,Hunt Road,Pasig,Davao del Sur,2000-01-08,Cavite,Male,Married,Cashier,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+BARMM,Poblacion,Wood,Sherri,W.,125,Amber Street,Davao City,Laguna,1959-03-19,Laguna,Female,Widowed,Vendor,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region VI,Bagong Silang,Greene,Wayne,M.,607,Jasper Avenue,Davao City,Iloilo,1960-03-16,Misamis Oriental,Male,Widowed,Farmer,Filipino,Sister,Vocational,Non-PWD,Voter
+Region I,San Roque,Tran,Steve,A.,498,Fox Street,Cebu City,Metro Manila,2006-03-24,Davao del Sur,Male,Married,Teacher,Filipino,Daughter,High School,Non-PWD,Voter
+Region VII,San Antonio,Calderon,Andrea,J.,582,69th Street,Manila,Cebu,1961-02-13,Cebu,Female,Married,None,Filipino,Aunt,College,Non-PWD,Voter
+Region I,Mabini,Bond,Stephen,C.,809,3rd Road,Cagayan de Oro,Laguna,1983-05-03,Laguna,Male,Widowed,Farmer,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region IX,Bagong Silang,Moon,Stephanie,B.,662,Garnet Street,Caloocan,Bulacan,1975-08-27,Bulacan,Female,Widowed,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region VI,San Roque,Moore,Vickie,R.,108,Balete Avenue,Cagayan de Oro,Cebu,1980-03-19,Bulacan,Female,Single,Cashier,Filipino,Aunt,Post Graduate,Non-PWD,Non-Voter
+Region VI,Poblacion,Little,Amy,P.,363,Garnet Extension,Davao City,Cebu,1991-10-23,Cavite,Female,Widowed,Cashier,Filipino,Daughter,High School,Non-PWD,Voter
+Region VI,Sto. Niño,Farrell,Steven,B.,066,26th Boulevard,Manila,Misamis Oriental,1955-03-02,Pampanga,Male,Widowed,Vendor,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region XII,Sto. Niño,Brown,Michelle,J.,125,Orchid Drive Extension,Iloilo City,Batangas,1983-03-09,Misamis Oriental,Female,Single,Farmer,Filipino,Daughter,Elementary,Non-PWD,Voter
+Region II,San Isidro,Smith,Penny,K.,900,76th Drive,Caloocan,Pampanga,1997-04-13,Cebu,Female,Widowed,Student,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region VI,Poblacion,Winters,Kevin,J.,312,61st Street,Zamboanga City,Metro Manila,1989-04-24,Pampanga,Male,Married,Vendor,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region I,Sta. Cruz,Sanchez,Benjamin,D.,365,Williamson Boulevard Extension,Paranaque,Pampanga,1997-03-09,Cebu,Male,Divorced,None,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region XII,Poblacion,Garcia,Karen,D.,358,Taurus Street,Cagayan de Oro,Zamboanga del Sur,1975-03-25,Iloilo,Female,Divorced,Teacher,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+Region II,San Isidro,Bailey,Walter,K.,539,Garnet Street,Zamboanga City,Batangas,2009-01-27,Laguna,Male,Widowed,Vendor,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region VII,Poblacion,Mcknight,Cindy,L.,937,6th Drive,Caloocan,Cebu,1994-04-27,Batangas,Female,Married,Police Officer,Filipino,Sister,College,Non-PWD,Non-Voter
+Region VIII,Mabini,Taylor,Dominique,K.,939,Hercules Drive,Cagayan de Oro,Davao del Sur,1996-04-22,Cavite,Female,Widowed,Cashier,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region III,San Roque,Yang,Thomas,M.,805,51st Road,Davao City,Pampanga,1990-05-15,Iloilo,Male,Widowed,Police Officer,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region IX,Talon Uno,Allen,Jennifer,C.,737,Diamond Avenue,Manila,Cavite,2004-07-26,Davao del Sur,Female,Widowed,Engineer,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region II,San Antonio,Hicks,Michelle,J.,327,Celery Road Extension,Quezon City,Cavite,2008-09-01,Iloilo,Female,Widowed,Vendor,Filipino,Father,High School,Non-PWD,Voter
+CAR,San Roque,Brady,Sarah,K.,793,Matumtum Drive,Pasig,Cebu,1987-11-25,Iloilo,Female,Married,Teacher,Filipino,Brother,No Formal Education,Non-PWD,Non-Voter
+Region III,Poblacion,Wang,Antonio,M.,539,Cancer Road,Quezon City,Cavite,1991-04-28,Cebu,Male,Married,Engineer,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region II,Sto. Niño,Ramirez,Rebecca,R.,730,Saturn Road,Caloocan,Laguna,2006-08-14,Pampanga,Female,Single,Nurse,Filipino,Aunt,Elementary,Non-PWD,Voter
+NCR,Bagong Silang,Kirk,William,E.,732,Akle Drive Extension,Quezon City,Metro Manila,1991-08-22,Cebu,Male,Widowed,Student,Filipino,Son,College,Non-PWD,Non-Voter
+Region VIII,San Isidro,Harrison,Jamie,C.,910,26th Boulevard,Quezon City,Batangas,1976-03-31,Zamboanga del Sur,Female,Married,Teacher,Filipino,Father,Post Graduate,Non-PWD,Voter
+CAR,Mabini,Green,Jason,C.,861,Williams Extension,Davao City,Pampanga,1981-07-02,Laguna,Male,Widowed,Teacher,Filipino,Grandmother,Post Graduate,Non-PWD,Non-Voter
+Region I,Sta. Cruz,Barrett,Dennis,L.,157,Topaz Street,Caloocan,Cavite,1981-03-24,Davao del Sur,Male,Widowed,Engineer,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+CAR,Sto. Niño,Orozco,Cheryl,K.,865,Miranda Road,Cagayan de Oro,Bulacan,1985-03-29,Zamboanga del Sur,Female,Divorced,Farmer,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region VIII,San Antonio,Bishop,Justin,B.,751,Celery Drive,Cagayan de Oro,Iloilo,2008-12-22,Metro Manila,Male,Single,Police Officer,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region X,Bagong Silang,Reed,Laura,R.,003,Jupiter Avenue,Iloilo City,Batangas,1954-07-07,Cavite,Female,Single,Farmer,Filipino,Daughter,High School,Non-PWD,Voter
+Region VIII,Talon Uno,Mcmahon,William,A.,981,Milflower Avenue,Davao City,Cebu,1992-03-07,Misamis Oriental,Male,Divorced,Nurse,Filipino,Grandmother,Elementary,Non-PWD,Voter
+NCR,Bagong Silang,Williams,Levi,K.,311,85th Street,Cebu City,Metro Manila,1996-12-25,Cebu,Male,Single,Police Officer,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+BARMM,Mabini,Hart,Jacob,K.,731,Hoover Road Extension,Pasig,Zamboanga del Sur,1949-11-19,Pampanga,Male,Divorced,Farmer,Filipino,Brother,No Formal Education,Non-PWD,Non-Voter
+Region III,Sta. Cruz,Peters,Wayne,J.,083,Cordillera Street,Pasig,Pampanga,1997-02-18,Cavite,Male,Widowed,Police Officer,Filipino,Grandfather,Elementary,Non-PWD,Voter
+CAR,San Roque,Levine,Joseph,T.,626,Lumbayao Avenue,Paranaque,Davao del Sur,1988-05-25,Bulacan,Male,Single,Police Officer,Filipino,Father,Vocational,PWD,Voter
+Region VII,Talon Uno,Martin,Mary,M.,859,Hall Drive,Cagayan de Oro,Metro Manila,1965-01-17,Misamis Oriental,Female,Single,Farmer,Filipino,Uncle,Elementary,Non-PWD,Non-Voter
+Region V,San Isidro,Maddox,Jessica,J.,590,Sunstone Service Road,Iloilo City,Laguna,1958-10-20,Cavite,Female,Widowed,Vendor,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+NCR,San Antonio,Simmons,Kimberly,I.,929,35th Drive,Paranaque,Iloilo,1983-05-02,Misamis Oriental,Female,Married,None,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region XII,San Antonio,Melton,Rachel,T.,208,Malinao Street,Cebu City,Misamis Oriental,2005-07-05,Davao del Sur,Female,Divorced,Teacher,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region IV-A,San Roque,Bryant,Thomas,L.,214,Palali Street,Cagayan de Oro,Metro Manila,1980-03-13,Batangas,Male,Single,Police Officer,Filipino,Uncle,High School,Non-PWD,Voter
+Region II,Sto. Niño,Spencer,Jordan,P.,775,Raddish Drive,Caloocan,Cebu,2000-09-17,Misamis Oriental,Female,Single,None,Filipino,Father,Elementary,Non-PWD,Voter
+Region X,Bagong Silang,Cummings,Makayla,A.,632,Banahaw Road,Paranaque,Metro Manila,1985-05-06,Zamboanga del Sur,Female,Divorced,Police Officer,Filipino,Father,High School,Non-PWD,Voter
+CAR,Talon Uno,Brown,Matthew,J.,200,Asparagus Street,Zamboanga City,Pampanga,1993-03-20,Laguna,Male,Married,Police Officer,Filipino,Father,Post Graduate,PWD,Voter
+Region I,BF Homes,Baker,Terri,G.,490,Emerald Street,Cebu City,Cavite,1997-06-21,Iloilo,Female,Divorced,Driver,Filipino,Brother,Elementary,Non-PWD,Voter
+NCR,Bagong Silang,Santiago,Christine,N.,738,Malugay Drive Extension,Cebu City,Zamboanga del Sur,1971-07-03,Iloilo,Female,Divorced,Police Officer,Filipino,Brother,No Formal Education,Non-PWD,Voter
+NCR,Sto. Niño,Reid,Clayton,J.,511,Leo Road,Caloocan,Cavite,1961-06-28,Metro Manila,Male,Widowed,Farmer,Filipino,Sister,Post Graduate,Non-PWD,Non-Voter
+Region VIII,Sta. Cruz,Porter,Jeffery,A.,689,Rodriguez Street,Pasig,Laguna,2005-08-04,Pampanga,Male,Widowed,Driver,Filipino,Grandfather,No Formal Education,Non-PWD,Non-Voter
+NCR,Mabini,Rodriguez,Troy,L.,259,Moonstone Street,Cagayan de Oro,Pampanga,1974-05-07,Pampanga,Male,Single,Teacher,Filipino,Grandfather,College,Non-PWD,Voter
+Region V,San Roque,Schwartz,Julie,L.,745,Stuart Boulevard,Zamboanga City,Pampanga,1980-10-26,Misamis Oriental,Female,Divorced,Nurse,Filipino,Grandfather,Vocational,Non-PWD,Non-Voter
+Region VII,Poblacion,Jones,David,A.,150,Morales Street,Cebu City,Batangas,1974-05-21,Iloilo,Male,Widowed,Teacher,Filipino,Son,College,Non-PWD,Voter
+Region XII,Sta. Cruz,Wilson,Michael,D.,454,Gemini Street,Zamboanga City,Iloilo,1976-10-01,Misamis Oriental,Male,Married,None,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+Region II,Sta. Cruz,Guzman,Monica,J.,342,Jade Road Extension,Caloocan,Misamis Oriental,1961-12-28,Bulacan,Female,Single,Farmer,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region I,Poblacion,Nichols,Jason,L.,457,14th Street,Iloilo City,Batangas,1981-05-23,Cavite,Male,Married,Vendor,Filipino,Aunt,College,Non-PWD,Voter
+Region I,Bagong Silang,Rodriguez,Brianna,J.,261,Canopus Extension,Iloilo City,Davao del Sur,2002-08-24,Laguna,Female,Married,Police Officer,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region XII,San Roque,Ball,Steven,K.,291,Samat Street,Cagayan de Oro,Iloilo,1992-06-01,Iloilo,Male,Single,Cashier,Filipino,Daughter,College,Non-PWD,Non-Voter
+Region XI,San Roque,Becker,Sarah,M.,895,Sierra Madre Road,Cagayan de Oro,Zamboanga del Sur,2010-03-09,Cavite,Female,Divorced,Engineer,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region IV-A,Talon Uno,Rodriguez,Jacqueline,K.,388,Trujillo Street,Caloocan,Batangas,2002-11-30,Pampanga,Female,Married,None,Filipino,Brother,Elementary,Non-PWD,Voter
+Region IX,Sta. Cruz,Taylor,Thomas,T.,602,Tabayoc Street,Manila,Batangas,1974-01-13,Cebu,Male,Married,None,Filipino,Mother,High School,Non-PWD,Voter
+Region IX,Sta. Cruz,Deleon,Kevin,K.,985,Tabayoc Street,Iloilo City,Misamis Oriental,1994-06-22,Batangas,Male,Single,Cashier,Filipino,Uncle,College,Non-PWD,Non-Voter
+Region XI,Bagong Silang,White,Sandra,T.,490,Tanguile Drive,Davao City,Cavite,1998-02-09,Pampanga,Female,Divorced,None,Filipino,Grandmother,Vocational,Non-PWD,Voter
+NCR,Sta. Cruz,Stewart,Monica,T.,329,Banuyo Road,Davao City,Laguna,1992-04-21,Misamis Oriental,Female,Divorced,Engineer,Filipino,Mother,Elementary,Non-PWD,Voter
+Region III,San Roque,Martinez,Jeffrey,D.,247,21st Avenue,Manila,Pampanga,1963-05-21,Davao del Sur,Male,Married,Farmer,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+BARMM,Talon Uno,Frank,Christopher,L.,638,Hibok-Hibok Highway,Paranaque,Bulacan,2001-04-30,Pampanga,Male,Divorced,Farmer,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+Region X,Talon Uno,Jackson,Tammy,K.,650,Azalea Highway,Paranaque,Cavite,1954-06-27,Bulacan,Female,Divorced,Police Officer,Filipino,Son,Post Graduate,Non-PWD,Voter
+BARMM,Poblacion,Wolfe,Sophia,K.,973,Ruby Street,Pasig,Zamboanga del Sur,1976-09-06,Pampanga,Female,Widowed,Nurse,Filipino,Daughter,Elementary,Non-PWD,Voter
+CAR,Sta. Cruz,Soto,Wanda,C.,430,45th Drive Extension,Cebu City,Batangas,2000-01-15,Batangas,Female,Married,Engineer,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region XII,Sto. Niño,Hale,Alan,L.,204,Sardonyx Street,Iloilo City,Davao del Sur,1954-03-04,Zamboanga del Sur,Male,Married,Student,Filipino,Uncle,High School,Non-PWD,Voter
+Region XI,Poblacion,Hanson,Stacey,M.,001,Comet Street,Pasig,Bulacan,1960-11-23,Batangas,Female,Married,Teacher,Filipino,Aunt,No Formal Education,Non-PWD,Non-Voter
+Region IX,San Isidro,Bowers,Charles,S.,585,Brennan Boulevard,Paranaque,Laguna,1955-08-29,Metro Manila,Male,Single,Cashier,Filipino,Father,College,Non-PWD,Voter
+BARMM,San Antonio,Cook,Derrick,B.,755,Kanlaon Drive,Davao City,Cavite,1950-01-08,Misamis Oriental,Male,Married,Police Officer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region VII,Bagong Silang,Barnes,Ashley,C.,794,Matumtum Drive,Pasig,Cebu,1959-09-15,Iloilo,Female,Single,Driver,Filipino,Mother,Post Graduate,Non-PWD,Non-Voter
+Region I,Sta. Cruz,Hicks,Claire,J.,234,62nd Drive,Davao City,Cebu,2006-08-18,Cebu,Female,Single,Engineer,Filipino,Son,No Formal Education,Non-PWD,Voter
+NCR,San Isidro,Smith,Mackenzie,A.,315,Jasmine Road,Davao City,Cebu,1953-12-12,Cebu,Female,Single,Farmer,Filipino,Father,No Formal Education,Non-PWD,Voter
+NCR,San Antonio,Lopez,Katrina,T.,155,Banahaw Road,Pasig,Misamis Oriental,1971-06-07,Bulacan,Female,Married,Student,Filipino,Daughter,Elementary,Non-PWD,Voter
+CAR,Mabini,Nelson,Yesenia,K.,179,Uranus Road,Zamboanga City,Davao del Sur,1969-09-25,Laguna,Female,Widowed,Driver,Filipino,Aunt,College,Non-PWD,Voter
+Region V,Sto. Niño,Salazar,Walter,D.,256,Sicaba Avenue,Manila,Misamis Oriental,1990-01-06,Davao del Sur,Male,Divorced,Vendor,Filipino,Sister,Post Graduate,Non-PWD,Voter
+NCR,Talon Uno,Finley,Jacob,S.,192,Mercury Extension,Caloocan,Pampanga,1981-06-07,Laguna,Male,Married,Cashier,Filipino,Brother,Elementary,Non-PWD,Voter
+NCR,BF Homes,Ross,Joseph,R.,940,Lapis Lazuli Drive Extension,Manila,Misamis Oriental,1961-12-14,Laguna,Male,Married,None,Filipino,Aunt,Post Graduate,Non-PWD,Non-Voter
+Region XII,Bagong Silang,Evans,Frederick,L.,358,Caraballo Street,Manila,Cebu,1986-09-07,Misamis Oriental,Male,Married,Driver,Filipino,Son,High School,PWD,Non-Voter
+NCR,San Isidro,King,Phillip,S.,484,93rd Street,Paranaque,Pampanga,1999-08-18,Batangas,Male,Widowed,Police Officer,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region VII,Mabini,Moon,Danielle,C.,826,Andromeda Street,Caloocan,Batangas,1985-02-27,Bulacan,Female,Married,Farmer,Filipino,Sister,No Formal Education,Non-PWD,Voter
+Region II,Mabini,Rhodes,Amy,G.,633,Hydra Boulevard,Davao City,Metro Manila,1990-06-11,Metro Manila,Female,Divorced,None,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region XII,Sta. Cruz,Bailey,Kimberly,D.,176,Aries Road,Paranaque,Cebu,1988-04-30,Laguna,Female,Divorced,Driver,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+Region III,Sto. Niño,Owen,Taylor,M.,489,Kanlaon Avenue,Davao City,Batangas,1966-12-27,Cebu,Female,Single,Farmer,Filipino,Mother,Post Graduate,Non-PWD,Non-Voter
+Region II,San Antonio,Blackwell,Kimberly,E.,899,92nd Drive Extension,Iloilo City,Cebu,1951-01-15,Pampanga,Female,Widowed,Nurse,Filipino,Daughter,Elementary,PWD,Non-Voter
+Region III,Mabini,Barnett,Cheryl,M.,743,Young Road,Iloilo City,Laguna,1996-01-07,Misamis Oriental,Female,Married,Teacher,Filipino,Uncle,College,Non-PWD,Voter
+Region XII,Talon Uno,Williams,Gloria,T.,824,Batino Drive,Quezon City,Iloilo,1991-04-04,Cebu,Female,Single,Nurse,Filipino,Father,Vocational,PWD,Voter
+Region XII,San Isidro,Randall,Nathaniel,S.,025,Talisay Street,Zamboanga City,Metro Manila,2004-05-15,Batangas,Male,Single,Driver,Filipino,Brother,Vocational,Non-PWD,Voter
+Region X,San Isidro,Lyons,Jacob,N.,332,Antares Drive,Zamboanga City,Davao del Sur,2005-06-29,Metro Manila,Male,Widowed,Police Officer,Filipino,Mother,Vocational,Non-PWD,Non-Voter
+Region I,Sto. Niño,Cooper,Roger,T.,002,Cresta Avenue,Quezon City,Iloilo,1972-11-21,Iloilo,Male,Single,Teacher,Filipino,Sister,College,Non-PWD,Voter
+CAR,San Isidro,Richards,Robert,C.,892,Gonzalez Road,Cebu City,Davao del Sur,1977-12-16,Davao del Sur,Male,Married,Driver,Filipino,Son,Elementary,Non-PWD,Voter
+BARMM,San Roque,Weiss,Samantha,C.,051,Mayon Road,Pasig,Cavite,1985-04-08,Metro Manila,Female,Single,None,Filipino,Uncle,High School,Non-PWD,Non-Voter
+BARMM,Sto. Niño,Cortez,Madeline,J.,097,Topaz Avenue,Caloocan,Misamis Oriental,1969-06-08,Cavite,Female,Divorced,Teacher,Filipino,Brother,No Formal Education,Non-PWD,Non-Voter
+Region VII,Mabini,Butler,Donna,A.,636,7th Street,Pasig,Cavite,1971-03-03,Pampanga,Female,Single,Driver,Filipino,Uncle,Elementary,Non-PWD,Voter
+CAR,Sta. Cruz,Ward,Melanie,K.,014,Mckenzie Drive,Zamboanga City,Misamis Oriental,2004-05-13,Bulacan,Female,Single,Vendor,Filipino,Grandfather,Post Graduate,Non-PWD,Non-Voter
+Region IV-A,Sta. Cruz,Taylor,Christina,S.,747,Kanlaon Road Extension,Pasig,Cavite,1989-10-15,Batangas,Female,Widowed,Teacher,Filipino,Uncle,College,Non-PWD,Voter
+Region XII,Mabini,Sanchez,Sarah,P.,433,Andromeda Street,Manila,Bulacan,1977-08-14,Bulacan,Female,Divorced,Driver,Filipino,Brother,College,Non-PWD,Non-Voter
+Region I,BF Homes,Flowers,Richard,J.,262,82nd Boulevard,Cebu City,Metro Manila,1992-08-10,Metro Manila,Male,Single,Engineer,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region III,San Roque,Floyd,George,K.,978,Pinatubo Road Extension,Zamboanga City,Pampanga,1988-12-04,Laguna,Male,Single,Nurse,Filipino,Sister,High School,Non-PWD,Voter
+Region XII,Mabini,Ashley,Rachel,K.,887,93rd Street,Zamboanga City,Bulacan,2005-03-29,Zamboanga del Sur,Female,Widowed,Cashier,Filipino,Daughter,Elementary,Non-PWD,Voter
+Region III,San Roque,Ramos,John,A.,228,Matumtum Street,Cagayan de Oro,Davao del Sur,1968-03-04,Zamboanga del Sur,Male,Widowed,Driver,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region III,Talon Uno,Miller,Matthew,P.,331,Diamond Avenue Extension,Paranaque,Misamis Oriental,1950-08-23,Laguna,Male,Divorced,Vendor,Filipino,Aunt,College,Non-PWD,Voter
+Region VII,Talon Uno,Snyder,Leonard,C.,796,19th Road,Cebu City,Batangas,1955-03-19,Zamboanga del Sur,Male,Widowed,Farmer,Filipino,Aunt,Elementary,Non-PWD,Voter
+Region XI,Bagong Silang,Montgomery,Jamie,M.,023,Griffin Road,Caloocan,Pampanga,1980-07-04,Batangas,Female,Widowed,Police Officer,Filipino,Father,High School,Non-PWD,Non-Voter
+Region VI,Poblacion,Davis,Kayla,J.,408,King Road Extension,Manila,Pampanga,2010-03-20,Laguna,Female,Widowed,Driver,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region XII,Sta. Cruz,Zimmerman,Jane,E.,575,18th Road Extension,Pasig,Laguna,2010-01-06,Cavite,Female,Divorced,Nurse,Filipino,Mother,Elementary,Non-PWD,Voter
+Region IV-A,San Isidro,Shelton,Chad,T.,648,Garnet Road Extension,Paranaque,Laguna,1967-10-09,Pampanga,Male,Married,Nurse,Filipino,Daughter,Post Graduate,Non-PWD,Non-Voter
+Region VI,Bagong Silang,Brown,Elizabeth,M.,984,Capricorn Street,Caloocan,Zamboanga del Sur,2003-04-16,Bulacan,Female,Widowed,Police Officer,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region VIII,Poblacion,Oconnor,Jessica,K.,994,Orion Drive Extension,Cebu City,Iloilo,1959-02-25,Cebu,Female,Single,Driver,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region VII,Bagong Silang,Townsend,Rhonda,L.,037,Sherman Street,Paranaque,Laguna,2009-03-18,Batangas,Female,Single,None,Filipino,Grandmother,Elementary,Non-PWD,Voter
+BARMM,San Isidro,Levy,Edward,M.,062,Bartlett Road,Cagayan de Oro,Cebu,1973-04-29,Cebu,Male,Single,Cashier,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+BARMM,Talon Uno,Reed,John,J.,916,Polaris Street,Caloocan,Pampanga,1979-09-17,Misamis Oriental,Male,Married,Engineer,Filipino,Mother,College,Non-PWD,Voter
+Region X,Sto. Niño,Davis,Amy,T.,675,Sutton Street,Quezon City,Bulacan,1950-06-19,Laguna,Female,Widowed,Nurse,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region XI,Bagong Silang,Bender,Sonya,M.,577,Antares Avenue,Davao City,Batangas,1976-01-18,Misamis Oriental,Female,Single,Teacher,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region III,Sta. Cruz,Thompson,Jessica,S.,712,Topaz Highway,Quezon City,Iloilo,1951-08-29,Metro Manila,Female,Married,Driver,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region IV-A,Mabini,Lewis,Stacey,A.,809,Carissa Avenue,Iloilo City,Zamboanga del Sur,1977-05-25,Laguna,Female,Widowed,Teacher,Filipino,Brother,High School,Non-PWD,Voter
+Region X,Mabini,Williams,Leslie,W.,435,Lapis Lazuli Extension,Paranaque,Davao del Sur,1957-12-22,Misamis Oriental,Female,Married,Driver,Filipino,Son,High School,Non-PWD,Non-Voter
+NCR,Bagong Silang,Scott,Michelle,B.,126,Banaba Street,Davao City,Pampanga,2008-02-25,Davao del Sur,Female,Married,Engineer,Filipino,Aunt,High School,Non-PWD,Voter
+Region VII,Bagong Silang,Mitchell,Bridget,N.,754,Amethyst Drive,Quezon City,Cebu,1952-07-11,Misamis Oriental,Female,Single,Vendor,Filipino,Son,Vocational,Non-PWD,Voter
+Region IV-A,San Antonio,Austin,Michelle,D.,152,Mariveles Drive Extension,Pasig,Pampanga,1965-12-24,Davao del Sur,Female,Single,Student,Filipino,Uncle,Vocational,Non-PWD,Non-Voter
+Region X,Talon Uno,Allen,Dawn,A.,552,Leo Avenue,Caloocan,Iloilo,1959-04-22,Metro Manila,Female,Widowed,Teacher,Filipino,Uncle,College,Non-PWD,Voter
+BARMM,Bagong Silang,Hall,Jared,H.,802,Butler Road Extension,Quezon City,Misamis Oriental,1974-07-28,Zamboanga del Sur,Male,Married,Teacher,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+Region V,Sto. Niño,Smith,Nancy,J.,463,Rodriguez Drive,Iloilo City,Iloilo,1987-02-28,Metro Manila,Female,Widowed,Farmer,Filipino,Uncle,High School,Non-PWD,Voter
+Region I,Talon Uno,Morrison,Sheena,J.,742,Aquamarine Street,Pasig,Cavite,1954-11-19,Metro Manila,Female,Single,Police Officer,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region IV-A,San Roque,Davis,Richard,J.,893,Jones Road,Zamboanga City,Cavite,1975-11-29,Batangas,Male,Widowed,None,Filipino,Sister,No Formal Education,Non-PWD,Voter
+Region VIII,San Antonio,Contreras,Jose,K.,323,Makiling Street,Manila,Zamboanga del Sur,1968-05-05,Pampanga,Male,Widowed,Teacher,Filipino,Brother,College,Non-PWD,Voter
+Region XII,San Isidro,Hall,Nicole,N.,926,Malinao Avenue,Paranaque,Iloilo,1994-06-13,Batangas,Female,Single,Student,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region III,Poblacion,Koch,Joseph,B.,717,Aquarius Road,Davao City,Cavite,1965-02-17,Zamboanga del Sur,Male,Single,Engineer,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region XII,Sto. Niño,Hernandez,Kathleen,B.,786,Cordillera Avenue,Zamboanga City,Pampanga,2004-09-05,Batangas,Female,Divorced,Driver,Filipino,Mother,Elementary,Non-PWD,Voter
+Region VII,Sto. Niño,Morales,Cynthia,K.,213,Batino Boulevard,Paranaque,Batangas,1985-04-14,Iloilo,Female,Widowed,Teacher,Filipino,Mother,High School,Non-PWD,Voter
+Region III,Bagong Silang,Turner,Kristin,R.,324,Palali Avenue,Quezon City,Cebu,1986-06-19,Pampanga,Female,Divorced,Nurse,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region IX,Poblacion,Rice,Shawn,D.,773,Palanan Boulevard,Cebu City,Metro Manila,1960-03-28,Zamboanga del Sur,Male,Widowed,Farmer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region IV-A,Talon Uno,Hawkins,Beth,L.,499,45th Street,Davao City,Misamis Oriental,1969-08-12,Pampanga,Female,Married,Teacher,Filipino,Uncle,High School,Non-PWD,Voter
+NCR,Mabini,Flores,Zachary,R.,945,Samat Street,Manila,Laguna,1972-08-26,Iloilo,Male,Widowed,Vendor,Filipino,Uncle,College,Non-PWD,Voter
+NCR,Sto. Niño,Anderson,Gregory,A.,861,Hall Extension,Caloocan,Pampanga,1995-06-29,Iloilo,Male,Widowed,Nurse,Filipino,Daughter,Elementary,Non-PWD,Voter
+Region IV-A,Poblacion,Hammond,Autumn,C.,776,Moonstone Drive,Quezon City,Iloilo,1962-05-28,Bulacan,Female,Married,Cashier,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region VII,San Isidro,Smith,Valerie,B.,345,Turquoise Street,Zamboanga City,Cebu,1952-08-17,Davao del Sur,Female,Divorced,Student,Filipino,Grandmother,High School,Non-PWD,Non-Voter
+Region III,San Isidro,Bender,Gregory,R.,167,Cypress Avenue,Manila,Pampanga,1971-08-03,Iloilo,Male,Divorced,Teacher,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region VI,San Roque,Vasquez,Jacqueline,S.,155,Tapia Street,Cebu City,Zamboanga del Sur,1951-06-17,Pampanga,Female,Married,Engineer,Filipino,Mother,Vocational,Non-PWD,Voter
+NCR,Mabini,Williams,John,R.,856,Onyx Drive Extension,Cebu City,Batangas,1993-01-30,Cavite,Male,Single,Driver,Filipino,Aunt,College,Non-PWD,Non-Voter
+CAR,Poblacion,Rojas,Drew,N.,744,Juno Drive,Paranaque,Pampanga,1980-02-02,Cebu,Male,Divorced,Teacher,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region XII,Bagong Silang,Cook,Elizabeth,T.,896,Hydra Road,Cagayan de Oro,Iloilo,1960-05-09,Iloilo,Female,Married,Student,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region II,Bagong Silang,Wyatt,Robert,K.,006,Mariveles Road Extension,Zamboanga City,Cebu,1959-09-15,Pampanga,Male,Widowed,Farmer,Filipino,Mother,Vocational,Non-PWD,Voter
+Region XII,Poblacion,Carter,Geoffrey,R.,179,Venus Expressway,Manila,Pampanga,2008-03-26,Cebu,Male,Divorced,Vendor,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+Region XII,Mabini,Melton,Jordan,E.,884,Constellation Avenue,Iloilo City,Zamboanga del Sur,1977-11-23,Laguna,Female,Married,Teacher,Filipino,Mother,No Formal Education,Non-PWD,Non-Voter
+CAR,BF Homes,Walsh,Kevin,A.,200,Hibok-Hibok Road,Quezon City,Laguna,1956-08-26,Misamis Oriental,Male,Divorced,Cashier,Filipino,Mother,College,Non-PWD,Non-Voter
+Region XII,San Isidro,Moran,Victor,E.,457,Taurus Road Extension,Cagayan de Oro,Cebu,1989-05-27,Davao del Sur,Male,Widowed,None,Filipino,Grandmother,High School,Non-PWD,Voter
+Region XI,San Roque,Sanchez,Samantha,A.,046,Tulip Street,Paranaque,Misamis Oriental,1975-07-22,Bulacan,Female,Widowed,Farmer,Filipino,Daughter,Post Graduate,Non-PWD,Non-Voter
+BARMM,San Isidro,Smith,Cindy,J.,786,Cresta Avenue,Davao City,Bulacan,1987-11-20,Laguna,Female,Widowed,Teacher,Filipino,Son,High School,Non-PWD,Voter
+Region XII,Mabini,Duarte,Amanda,K.,412,Mayon Avenue,Davao City,Misamis Oriental,1954-10-27,Cavite,Female,Married,Student,Filipino,Grandmother,High School,Non-PWD,Voter
+Region I,Bagong Silang,Torres,Jasmine,T.,197,Atok Street,Iloilo City,Batangas,1992-03-15,Davao del Sur,Female,Divorced,Nurse,Filipino,Brother,Vocational,Non-PWD,Voter
+Region XII,San Antonio,White,Cheyenne,D.,393,Mayon Road,Caloocan,Batangas,2006-06-10,Cavite,Female,Single,None,Filipino,Son,No Formal Education,Non-PWD,Non-Voter
+Region VIII,San Antonio,Collins,Andrew,S.,151,Aquamarine Street,Davao City,Iloilo,2002-11-04,Cavite,Male,Widowed,Farmer,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region VIII,Talon Uno,Martin,Cindy,T.,361,Hercules Road,Davao City,Bulacan,1961-11-17,Zamboanga del Sur,Female,Single,Vendor,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region IV-A,Sto. Niño,Baker,Vicki,C.,459,Santan Street,Zamboanga City,Misamis Oriental,1988-06-10,Davao del Sur,Female,Divorced,Farmer,Filipino,Son,Vocational,Non-PWD,Voter
+Region II,Mabini,Herrera,Daniel,J.,788,38th Road,Quezon City,Pampanga,1989-03-31,Bulacan,Male,Divorced,Farmer,Filipino,Son,High School,PWD,Non-Voter
+Region VIII,San Roque,Sullivan,Danny,A.,346,14th Road,Pasig,Laguna,1971-11-14,Cavite,Male,Married,Teacher,Filipino,Brother,High School,Non-PWD,Non-Voter
+Region XII,San Roque,Martin,Robert,S.,968,Palanan Boulevard,Cagayan de Oro,Cebu,1977-08-11,Pampanga,Male,Divorced,Student,Filipino,Brother,Vocational,Non-PWD,Voter
+Region IX,Bagong Silang,Gray,Daniel,R.,103,17th Street,Zamboanga City,Misamis Oriental,1955-05-19,Misamis Oriental,Male,Single,Vendor,Filipino,Aunt,High School,PWD,Voter
+Region IX,Sta. Cruz,Turner,Brianna,D.,206,Mitchell Street,Manila,Iloilo,1958-07-22,Pampanga,Female,Married,Driver,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region VII,Bagong Silang,Brown,Douglas,C.,933,1st Drive,Manila,Bulacan,1958-10-14,Zamboanga del Sur,Male,Married,Driver,Filipino,Sister,High School,Non-PWD,Voter
+Region X,Poblacion,Le,Susan,S.,254,Munoz Street,Cagayan de Oro,Cavite,2010-07-03,Zamboanga del Sur,Female,Widowed,Nurse,Filipino,Grandfather,College,Non-PWD,Voter
+NCR,Mabini,Sanders,Jason,M.,139,Nipa Street,Iloilo City,Iloilo,1989-09-10,Metro Manila,Male,Single,Teacher,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region II,BF Homes,Wagner,Hannah,C.,911,Bouganvilla Avenue,Manila,Batangas,2002-04-03,Cebu,Female,Married,Vendor,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region V,Poblacion,Patterson,Kelly,B.,675,Planet Street,Zamboanga City,Bulacan,1958-05-16,Batangas,Female,Widowed,Student,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region X,Sto. Niño,Durham,Shannon,A.,995,Fernandez Drive,Davao City,Laguna,1988-09-06,Cavite,Female,Married,Vendor,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+CAR,San Isidro,Carlson,Jose,C.,476,78th Street,Paranaque,Zamboanga del Sur,1962-04-25,Cavite,Male,Divorced,Farmer,Filipino,Father,Post Graduate,PWD,Voter
+Region X,San Roque,Barton,Anthony,D.,415,Dapdap Street,Cebu City,Cebu,1984-08-19,Bulacan,Male,Single,Police Officer,Filipino,Father,Elementary,Non-PWD,Voter
+Region VII,Sto. Niño,Soto,Cameron,S.,360,Catmon Drive,Cagayan de Oro,Batangas,2001-04-16,Bulacan,Male,Married,Driver,Filipino,Aunt,Vocational,Non-PWD,Non-Voter
+Region III,San Isidro,Byrd,Andrew,T.,655,17th Street,Quezon City,Davao del Sur,1954-11-13,Batangas,Male,Single,Student,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region XI,Talon Uno,Johnson,Dana,O.,253,Thompson Street,Caloocan,Pampanga,1978-01-05,Bulacan,Female,Widowed,Nurse,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region II,Bagong Silang,Johnson,David,C.,941,39th Drive,Iloilo City,Metro Manila,1956-04-25,Pampanga,Male,Widowed,Police Officer,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region X,Sto. Niño,Williams,Stephanie,J.,270,Hibok-Hibok Street,Zamboanga City,Davao del Sur,1979-05-15,Iloilo,Female,Single,Driver,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region V,Talon Uno,Williams,Jasmine,W.,319,Arayat Road,Davao City,Pampanga,1964-03-15,Metro Manila,Female,Married,Teacher,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region IV-A,Sta. Cruz,Martinez,Deanna,A.,294,Bryan Expressway,Caloocan,Cavite,1961-07-14,Cebu,Female,Widowed,Nurse,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region IV-A,San Isidro,Cardenas,Laurie,J.,730,Emerald Drive Extension,Manila,Iloilo,2001-03-31,Zamboanga del Sur,Female,Divorced,Vendor,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region VII,San Antonio,Anderson,Hannah,K.,229,Cordillera Extension,Pasig,Cebu,1961-12-08,Bulacan,Female,Single,Nurse,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region VI,Bagong Silang,Johnson,Kevin,B.,429,Palanan Street,Zamboanga City,Metro Manila,2002-09-17,Laguna,Male,Single,Student,Filipino,Daughter,Elementary,Non-PWD,Non-Voter
+Region II,BF Homes,Miller,Samantha,J.,812,Planet Street,Quezon City,Pampanga,1960-12-12,Misamis Oriental,Female,Widowed,Driver,Filipino,Grandfather,Post Graduate,Non-PWD,Non-Voter
+Region III,Sto. Niño,Vaughn,Amanda,D.,948,Orchid Road,Iloilo City,Batangas,1990-07-12,Davao del Sur,Female,Married,Nurse,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region IV-A,San Isidro,Perez,Yvette,B.,738,Kaimito Road,Cebu City,Davao del Sur,1984-04-29,Iloilo,Female,Single,Engineer,Filipino,Sister,High School,Non-PWD,Voter
+Region VII,BF Homes,Hopkins,Laurie,B.,846,Diamond Drive,Caloocan,Iloilo,1965-05-25,Bulacan,Female,Widowed,Driver,Filipino,Sister,College,Non-PWD,Voter
+Region VII,Poblacion,Caldwell,Stacy,M.,606,Apo Road,Zamboanga City,Cavite,1982-06-15,Pampanga,Female,Divorced,Teacher,Filipino,Father,No Formal Education,Non-PWD,Non-Voter
+Region V,San Isidro,Watts,Gregory,B.,812,Emerald Street,Iloilo City,Pampanga,1971-11-29,Misamis Oriental,Male,Single,Student,Filipino,Son,No Formal Education,Non-PWD,Non-Voter
+Region III,San Isidro,Douglas,Michael,J.,511,Sagittarius Street,Pasig,Zamboanga del Sur,2002-09-03,Iloilo,Male,Widowed,Driver,Filipino,Mother,College,Non-PWD,Voter
+Region V,BF Homes,Marshall,Jennifer,M.,645,Hernandez Road,Cebu City,Pampanga,1989-03-02,Misamis Oriental,Female,Single,Driver,Filipino,Son,Vocational,Non-PWD,Voter
+NCR,San Isidro,Savage,Scott,C.,203,Camia Street,Paranaque,Laguna,1962-06-28,Pampanga,Male,Married,Student,Filipino,Daughter,College,Non-PWD,Voter
+Region I,Talon Uno,Sims,Brent,M.,780,70th Street,Davao City,Laguna,1978-07-03,Misamis Oriental,Male,Divorced,Engineer,Filipino,Brother,Vocational,Non-PWD,Voter
+Region II,Sta. Cruz,Smith,Philip,H.,593,Matumtum Street,Manila,Cavite,1971-06-05,Misamis Oriental,Male,Widowed,Farmer,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region XII,Talon Uno,Murray,Robert,K.,845,Aquarius Street,Cebu City,Zamboanga del Sur,1981-09-14,Metro Manila,Male,Widowed,Student,Filipino,Son,Elementary,Non-PWD,Non-Voter
+Region IX,BF Homes,Williams,Margaret,R.,690,Martinez Service Road,Paranaque,Bulacan,1999-07-05,Pampanga,Female,Divorced,Teacher,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region VII,Poblacion,Braun,Lori,J.,936,Jasmine Road,Davao City,Cebu,1957-08-27,Davao del Sur,Female,Single,Driver,Filipino,Daughter,Elementary,PWD,Voter
+Region VIII,Mabini,Evans,Anna,C.,032,Caraballo Boulevard,Iloilo City,Iloilo,1993-09-25,Cavite,Female,Widowed,Farmer,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region IV-A,San Antonio,Stewart,Jared,M.,417,99th Road,Cebu City,Bulacan,1985-01-12,Cebu,Male,Widowed,Engineer,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region IX,San Isidro,Kelly,Tanya,T.,140,Sierra Madre Road,Cagayan de Oro,Cebu,1974-12-15,Misamis Oriental,Female,Single,Engineer,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region I,BF Homes,Johnson,Douglas,A.,253,Jasmine Boulevard,Quezon City,Laguna,1988-12-12,Cavite,Male,Widowed,Vendor,Filipino,Grandmother,Post Graduate,PWD,Voter
+Region II,San Isidro,Cisneros,Anthony,B.,194,Aries Avenue,Cebu City,Davao del Sur,1955-02-06,Iloilo,Male,Married,Vendor,Filipino,Grandfather,No Formal Education,Non-PWD,Non-Voter
+Region IX,Talon Uno,Spears,Christina,A.,508,30th Street,Iloilo City,Davao del Sur,1953-11-09,Batangas,Female,Single,Driver,Filipino,Father,College,Non-PWD,Voter
+Region XI,Talon Uno,Gibbs,Emily,E.,663,Keith Street,Cebu City,Metro Manila,1988-06-02,Iloilo,Female,Divorced,Engineer,Filipino,Sister,Elementary,PWD,Non-Voter
+Region XI,San Isidro,Martin,Megan,K.,522,52nd Drive,Cagayan de Oro,Pampanga,1953-04-17,Misamis Oriental,Female,Single,Student,Filipino,Grandmother,College,Non-PWD,Non-Voter
+Region XI,Sta. Cruz,Cooke,Bryan,R.,526,Sardonyx Street,Cebu City,Bulacan,1960-05-10,Bulacan,Male,Widowed,Farmer,Filipino,Uncle,College,Non-PWD,Voter
+Region IV-A,BF Homes,Norris,Raymond,L.,352,Sampaloc Street,Cagayan de Oro,Metro Manila,2009-09-19,Batangas,Male,Widowed,None,Filipino,Son,College,Non-PWD,Voter
+BARMM,Bagong Silang,Chandler,Angela,S.,039,Anonas Avenue,Quezon City,Davao del Sur,1990-12-26,Misamis Oriental,Female,Widowed,Engineer,Filipino,Father,College,Non-PWD,Voter
+Region XII,San Isidro,Rodriguez,Matthew,A.,340,Mariveles Drive,Quezon City,Cebu,1991-05-31,Batangas,Male,Divorced,Farmer,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region X,Sto. Niño,Wolf,Mary,E.,297,Milky Way Drive,Davao City,Cavite,1957-11-27,Cavite,Female,Widowed,Police Officer,Filipino,Aunt,Elementary,Non-PWD,Voter
+Region VII,San Roque,Conrad,James,D.,368,Jordan Boulevard Extension,Caloocan,Misamis Oriental,1984-12-06,Davao del Sur,Male,Widowed,Vendor,Filipino,Father,Vocational,Non-PWD,Voter
+Region XII,Poblacion,Campbell,Joshua,L.,696,Turquoise Avenue,Cagayan de Oro,Cavite,1959-04-30,Cavite,Male,Widowed,None,Filipino,Daughter,High School,Non-PWD,Voter
+Region VIII,Mabini,Green,Laura,H.,079,Malugay Road,Iloilo City,Cavite,1999-10-13,Batangas,Female,Divorced,Engineer,Filipino,Son,College,Non-PWD,Voter
+Region VII,Bagong Silang,Lopez,Shelley,D.,239,98th Street,Davao City,Bulacan,1957-01-17,Misamis Oriental,Female,Divorced,Teacher,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region VI,Mabini,Henderson,Nicole,S.,222,Malinao Street,Caloocan,Cavite,1964-12-19,Bulacan,Female,Single,Vendor,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region I,Sto. Niño,Richardson,Megan,D.,825,Aquamarine Boulevard,Manila,Cebu,1982-07-25,Metro Manila,Female,Divorced,None,Filipino,Mother,Elementary,Non-PWD,Voter
+BARMM,Sta. Cruz,Brown,Jessica,M.,633,Narra Street,Iloilo City,Cebu,1972-11-02,Iloilo,Female,Widowed,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region III,Poblacion,Espinoza,Jodi,A.,599,Tulip Drive,Cagayan de Oro,Iloilo,1993-09-27,Metro Manila,Female,Widowed,Vendor,Filipino,Grandmother,Vocational,Non-PWD,Non-Voter
+NCR,Poblacion,Ramirez,Amanda,J.,696,Pepper Road,Manila,Bulacan,1975-12-15,Pampanga,Female,Widowed,Police Officer,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+CAR,Bagong Silang,Maynard,Raymond,J.,729,Milky Way Drive,Pasig,Laguna,1950-11-26,Misamis Oriental,Male,Widowed,None,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+NCR,Talon Uno,Keller,Brian,J.,067,10th Road,Manila,Pampanga,1964-03-17,Batangas,Male,Single,None,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region X,Sta. Cruz,Benson,Nicholas,M.,425,34th Road,Pasig,Zamboanga del Sur,1989-04-19,Cebu,Male,Single,Cashier,Filipino,Father,Elementary,Non-PWD,Voter
+NCR,Mabini,Noble,Jill,T.,515,Scorpio Service Road,Iloilo City,Bulacan,1955-08-02,Iloilo,Female,Married,Police Officer,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region XII,Talon Uno,Wong,Patrick,A.,381,Zircon Drive,Quezon City,Bulacan,1993-08-08,Metro Manila,Male,Widowed,Driver,Filipino,Father,High School,Non-PWD,Non-Voter
+Region VI,Sto. Niño,Barr,Nicole,V.,426,Sapphire Street,Cebu City,Metro Manila,1973-10-22,Cavite,Female,Single,None,Filipino,Grandfather,Elementary,Non-PWD,Non-Voter
+Region VII,San Isidro,Baker,Brittany,J.,614,Agate Road,Paranaque,Bulacan,1996-02-20,Metro Manila,Female,Married,Police Officer,Filipino,Sister,No Formal Education,Non-PWD,Voter
+Region II,San Antonio,Wilson,Robert,J.,540,Uranus Street,Cebu City,Metro Manila,1989-10-26,Bulacan,Male,Married,Driver,Filipino,Grandfather,College,PWD,Non-Voter
+BARMM,Talon Uno,Wells,Sarah,A.,134,Moonstone Road,Quezon City,Laguna,1998-12-30,Batangas,Female,Single,Engineer,Filipino,Sister,College,Non-PWD,Non-Voter
+Region II,Sta. Cruz,Davila,Wayne,M.,584,Cresta Street,Manila,Misamis Oriental,1953-07-15,Misamis Oriental,Male,Divorced,Nurse,Filipino,Grandmother,College,Non-PWD,Voter
+Region XII,Bagong Silang,Allen,Lisa,M.,627,Lily Avenue,Paranaque,Bulacan,1999-07-08,Laguna,Female,Single,Teacher,Filipino,Daughter,Post Graduate,Non-PWD,Non-Voter
+Region VII,Poblacion,Randall,Stephanie,P.,447,Juno Boulevard,Caloocan,Misamis Oriental,1982-04-06,Batangas,Female,Single,Police Officer,Filipino,Daughter,College,Non-PWD,Voter
+Region VIII,Mabini,Walters,Charles,C.,346,Palali Road,Caloocan,Laguna,1990-10-04,Bulacan,Male,Married,Police Officer,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region IV-A,Poblacion,Smith,Courtney,S.,143,7th Road,Cebu City,Misamis Oriental,1950-03-16,Cebu,Female,Married,Cashier,Filipino,Uncle,College,Non-PWD,Voter
+Region VIII,Sto. Niño,Thompson,Eric,D.,975,Crawford Expressway,Zamboanga City,Batangas,1997-04-24,Batangas,Male,Divorced,Engineer,Filipino,Brother,College,Non-PWD,Voter
+Region XI,San Antonio,Ryan,Nancy,S.,142,Amber Street,Caloocan,Laguna,1953-06-17,Zamboanga del Sur,Female,Single,Engineer,Filipino,Uncle,College,Non-PWD,Voter
+Region IX,Sta. Cruz,Barnett,Ashley,T.,211,67th Street,Zamboanga City,Metro Manila,2008-03-06,Davao del Sur,Female,Widowed,Engineer,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+Region XI,Talon Uno,Wilson,Joshua,M.,237,Tabayoc Drive,Iloilo City,Misamis Oriental,1997-03-11,Laguna,Male,Single,Teacher,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+NCR,Mabini,Brady,William,E.,792,Andromeda Boulevard,Iloilo City,Iloilo,1999-01-09,Zamboanga del Sur,Male,Married,Nurse,Filipino,Brother,College,Non-PWD,Voter
+Region VI,Bagong Silang,Garcia,John,R.,409,Cabbage Street,Cebu City,Cebu,1958-05-31,Batangas,Male,Married,Engineer,Filipino,Son,College,Non-PWD,Non-Voter
+Region XII,San Roque,Clark,Sherry,D.,865,Leo Avenue,Cebu City,Metro Manila,1967-01-29,Laguna,Female,Divorced,Nurse,Filipino,Son,High School,Non-PWD,Voter
+Region X,Sto. Niño,Wright,Scott,A.,503,Nipa Drive,Paranaque,Metro Manila,2010-07-16,Misamis Oriental,Male,Single,Farmer,Filipino,Sister,No Formal Education,Non-PWD,Non-Voter
+Region VII,Sta. Cruz,Guzman,Nicole,E.,076,Anderson Street,Davao City,Davao del Sur,1977-11-19,Metro Manila,Female,Single,Police Officer,Filipino,Sister,High School,Non-PWD,Voter
+Region V,Poblacion,Nelson,Amber,M.,990,Magnolia Road,Quezon City,Misamis Oriental,1992-10-29,Davao del Sur,Female,Divorced,Farmer,Filipino,Brother,Vocational,Non-PWD,Non-Voter
+Region VII,BF Homes,Cervantes,Allen,Z.,865,30th Road,Zamboanga City,Laguna,1979-05-30,Bulacan,Male,Married,Police Officer,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region VIII,Sta. Cruz,Santiago,Paul,J.,850,Virgo Road,Quezon City,Cavite,1988-08-09,Iloilo,Male,Widowed,Driver,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region V,Poblacion,Solomon,Karen,T.,546,Granada Road,Cagayan de Oro,Laguna,1996-09-01,Cavite,Female,Divorced,Nurse,Filipino,Father,Vocational,Non-PWD,Non-Voter
+Region XII,Poblacion,Cameron,David,M.,699,63rd Road,Zamboanga City,Cavite,1981-08-14,Misamis Oriental,Male,Widowed,None,Filipino,Uncle,College,Non-PWD,Non-Voter
+Region IV-A,BF Homes,Wright,Jeffrey,R.,525,Gumamela Road,Caloocan,Zamboanga del Sur,1962-02-23,Davao del Sur,Male,Married,Cashier,Filipino,Mother,High School,Non-PWD,Non-Voter
+Region X,Sta. Cruz,Ware,Justin,B.,649,Banahaw Avenue,Davao City,Batangas,1996-04-25,Pampanga,Male,Widowed,None,Filipino,Grandmother,High School,Non-PWD,Voter
+Region IV-A,Talon Uno,Lara,Gerald,J.,928,Amethyst Road,Davao City,Cebu,1999-06-21,Cebu,Male,Married,None,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+CAR,Sto. Niño,Miller,Jeffrey,A.,958,Ortiz Avenue,Cagayan de Oro,Zamboanga del Sur,2001-12-09,Cebu,Male,Married,Cashier,Filipino,Daughter,College,Non-PWD,Non-Voter
+NCR,San Isidro,Simmons,Daniel,K.,547,67th Street,Paranaque,Zamboanga del Sur,1967-04-23,Zamboanga del Sur,Male,Divorced,None,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region XII,Sta. Cruz,Hooper,Antonio,K.,125,44th Extension,Caloocan,Davao del Sur,1993-07-15,Misamis Oriental,Male,Divorced,Teacher,Filipino,Brother,College,Non-PWD,Voter
+Region III,Sta. Cruz,Ford,Christopher,B.,573,Tabayoc Extension,Zamboanga City,Metro Manila,1950-10-04,Cavite,Male,Widowed,Engineer,Filipino,Mother,Post Graduate,Non-PWD,Voter
+NCR,San Roque,Church,Emily,N.,392,Garnet Street,Zamboanga City,Davao del Sur,1975-03-14,Bulacan,Female,Divorced,Cashier,Filipino,Daughter,High School,Non-PWD,Non-Voter
+Region V,Mabini,West,Brandon,C.,240,Williams Street,Cagayan de Oro,Laguna,1963-05-22,Iloilo,Male,Widowed,None,Filipino,Aunt,College,Non-PWD,Voter
+NCR,San Antonio,Wilson,Eric,A.,934,Topaz Street,Quezon City,Metro Manila,1990-09-01,Bulacan,Male,Married,Farmer,Filipino,Mother,High School,Non-PWD,Voter
+Region IV-A,Sto. Niño,Taylor,Michelle,M.,970,71st Street,Caloocan,Bulacan,1991-01-04,Bulacan,Female,Married,None,Filipino,Son,Vocational,Non-PWD,Non-Voter
+Region IV-A,Talon Uno,Reynolds,Rachael,T.,241,59th Drive,Zamboanga City,Zamboanga del Sur,1965-01-10,Bulacan,Female,Divorced,Farmer,Filipino,Brother,High School,Non-PWD,Voter
+Region III,Mabini,Porter,Nicholas,C.,068,Chase Boulevard,Paranaque,Pampanga,1984-11-23,Bulacan,Male,Single,Nurse,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region V,Poblacion,Hendricks,Dawn,R.,857,Emerald Street,Zamboanga City,Batangas,1969-07-17,Pampanga,Female,Widowed,Farmer,Filipino,Son,Elementary,Non-PWD,Non-Voter
+Region XI,Sto. Niño,Larsen,Judy,D.,685,Juno Street,Paranaque,Batangas,1999-09-07,Metro Manila,Female,Married,Engineer,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region XI,Bagong Silang,James,Amber,G.,565,Hibok-Hibok Drive,Cagayan de Oro,Cebu,1953-11-12,Davao del Sur,Female,Married,Engineer,Filipino,Sister,High School,Non-PWD,Voter
+BARMM,BF Homes,Young,Christopher,S.,722,Santan Boulevard,Cebu City,Metro Manila,1993-03-13,Bulacan,Male,Widowed,Cashier,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region XII,Sta. Cruz,Spencer,Amanda,A.,645,Baker Avenue,Pasig,Bulacan,1954-05-19,Misamis Oriental,Female,Married,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region VII,Bagong Silang,Carter,Lauren,K.,061,Baker Road,Cebu City,Batangas,1961-02-23,Batangas,Female,Single,Farmer,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+NCR,BF Homes,Mckay,Elizabeth,H.,148,Hydra Street,Cagayan de Oro,Batangas,1988-05-15,Laguna,Female,Widowed,Driver,Filipino,Father,Elementary,Non-PWD,Voter
+Region II,BF Homes,Hart,Molly,P.,298,Kanlaon Drive,Pasig,Pampanga,1970-03-30,Metro Manila,Female,Married,None,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region VI,Sto. Niño,Cook,Spencer,R.,415,Canopus Avenue,Quezon City,Iloilo,1998-09-25,Zamboanga del Sur,Male,Single,Engineer,Filipino,Sister,College,Non-PWD,Non-Voter
+NCR,San Roque,Maldonado,Cassie,B.,187,Squash Avenue,Manila,Iloilo,1997-07-12,Cebu,Female,Married,Engineer,Filipino,Sister,Elementary,Non-PWD,Voter
+CAR,Poblacion,Collins,Colleen,T.,973,Yoder Street,Caloocan,Misamis Oriental,1961-12-24,Zamboanga del Sur,Female,Widowed,Engineer,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region XII,Mabini,Thomas,Sarah,F.,499,Diamond Street,Iloilo City,Pampanga,1975-02-25,Pampanga,Female,Widowed,None,Filipino,Uncle,High School,Non-PWD,Voter
+Region II,Sta. Cruz,Lara,Julie,M.,666,22nd Road,Quezon City,Pampanga,1973-05-03,Cavite,Female,Widowed,Student,Filipino,Grandfather,Post Graduate,Non-PWD,Non-Voter
+NCR,Bagong Silang,Johnson,Michael,J.,788,Torres Road,Cebu City,Misamis Oriental,1985-03-18,Zamboanga del Sur,Male,Single,Vendor,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region V,Bagong Silang,Ewing,Lori,C.,467,Matumtum Boulevard,Davao City,Metro Manila,2009-05-05,Bulacan,Female,Single,Nurse,Filipino,Son,High School,Non-PWD,Voter
+Region V,Sta. Cruz,Ramirez,Jasmin,D.,477,Iriga Street,Paranaque,Davao del Sur,2004-12-10,Misamis Oriental,Female,Single,Police Officer,Filipino,Grandmother,Elementary,Non-PWD,Non-Voter
+Region IV-A,Bagong Silang,Gregory,Mark,D.,071,Mercury Road,Pasig,Iloilo,1980-08-31,Iloilo,Male,Married,Driver,Filipino,Uncle,Elementary,Non-PWD,Voter
+Region I,Talon Uno,Miller,Rhonda,C.,503,Neptune Extension,Caloocan,Laguna,1962-10-02,Pampanga,Female,Single,Driver,Filipino,Uncle,High School,Non-PWD,Voter
+Region XI,San Isidro,Arnold,Kevin,K.,904,Jasper Road Extension,Davao City,Laguna,1996-08-24,Bulacan,Male,Single,Nurse,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region X,Bagong Silang,Moore,Kevin,N.,595,Arayat Road Extension,Cebu City,Pampanga,2000-07-17,Metro Manila,Male,Widowed,Driver,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+Region III,BF Homes,Deleon,David,H.,011,Scorpio Drive,Zamboanga City,Cavite,1973-09-22,Laguna,Male,Single,Engineer,Filipino,Brother,Vocational,Non-PWD,Voter
+Region XI,Poblacion,Walker,Joyce,J.,636,Sicaba Road,Caloocan,Cebu,2002-08-28,Davao del Sur,Female,Widowed,Cashier,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+Region VI,BF Homes,Wells,Wesley,H.,243,Weber Street,Iloilo City,Bulacan,1987-11-10,Cavite,Male,Single,Student,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region II,Sto. Niño,Schultz,Terri,E.,327,Amber Road,Quezon City,Pampanga,1979-05-21,Cebu,Female,Single,Student,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+Region I,Sta. Cruz,Trevino,Manuel,J.,398,Balimbing Avenue,Cagayan de Oro,Metro Manila,2001-10-11,Laguna,Male,Divorced,Teacher,Filipino,Father,College,Non-PWD,Voter
+Region IX,San Roque,Hamilton,Sandra,K.,473,Roberts Road Extension,Davao City,Laguna,1955-03-03,Davao del Sur,Female,Married,Nurse,Filipino,Sister,Post Graduate,Non-PWD,Non-Voter
+Region VII,San Isidro,Jacobs,Russell,S.,279,Stewart Extension,Cagayan de Oro,Misamis Oriental,1974-10-27,Iloilo,Male,Widowed,Nurse,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+Region V,San Isidro,White,Joyce,D.,091,Capricorn Road,Zamboanga City,Zamboanga del Sur,2007-09-29,Pampanga,Female,Widowed,Cashier,Filipino,Father,Elementary,Non-PWD,Non-Voter
+Region XI,San Roque,Hawkins,Sandra,M.,633,Mustard Street,Cagayan de Oro,Laguna,1960-08-06,Metro Manila,Female,Widowed,Engineer,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region XI,Mabini,Curtis,Shannon,K.,565,Topaz Road,Cebu City,Batangas,1980-05-19,Pampanga,Female,Divorced,Driver,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region IX,San Antonio,Lopez,Hannah,T.,253,29th Road,Zamboanga City,Pampanga,1964-11-05,Cebu,Female,Divorced,Cashier,Filipino,Brother,High School,Non-PWD,Non-Voter
+Region XI,Bagong Silang,Brown,Russell,A.,392,Tabayoc Street,Iloilo City,Laguna,1964-08-02,Zamboanga del Sur,Male,Married,Vendor,Filipino,Brother,Vocational,Non-PWD,Voter
+CAR,Poblacion,Figueroa,Michelle,B.,398,Jupiter Road,Cagayan de Oro,Metro Manila,2004-04-11,Cebu,Female,Single,Cashier,Filipino,Mother,High School,Non-PWD,Voter
+Region V,Bagong Silang,Martin,Tara,D.,622,Neptune Boulevard,Quezon City,Cebu,1966-11-08,Davao del Sur,Female,Single,Cashier,Filipino,Aunt,Vocational,Non-PWD,Non-Voter
+Region II,BF Homes,Cole,Sarah,L.,901,Lopez Avenue,Cagayan de Oro,Metro Manila,1998-05-16,Bulacan,Female,Divorced,Farmer,Filipino,Father,Post Graduate,Non-PWD,Voter
+NCR,Sto. Niño,Lane,Crystal,G.,970,Vega Road,Manila,Cebu,2002-08-13,Iloilo,Female,Widowed,None,Filipino,Uncle,High School,Non-PWD,Voter
+Region XII,Poblacion,Robinson,Julie,L.,206,Gemini Street,Caloocan,Iloilo,1991-06-23,Laguna,Female,Widowed,Teacher,Filipino,Grandfather,High School,Non-PWD,Voter
+Region IV-A,Sto. Niño,Rowe,Angela,C.,614,Castaneda Street,Paranaque,Iloilo,1966-02-07,Misamis Oriental,Female,Widowed,Vendor,Filipino,Daughter,College,Non-PWD,Voter
+Region IV-A,Sta. Cruz,Carroll,Kevin,T.,936,39th Road,Cagayan de Oro,Misamis Oriental,1998-03-03,Metro Manila,Male,Married,Student,Filipino,Son,College,Non-PWD,Voter
+NCR,San Antonio,Bishop,Ricky,C.,111,Topaz Drive,Iloilo City,Pampanga,1964-11-21,Davao del Sur,Male,Single,Police Officer,Filipino,Sister,High School,Non-PWD,Voter
+NCR,San Roque,Leonard,Devon,A.,538,Raddish Expressway,Iloilo City,Cavite,1989-06-28,Bulacan,Male,Single,Cashier,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region IX,BF Homes,Williams,Justin,J.,040,Diamond Avenue,Pasig,Iloilo,1996-01-12,Bulacan,Male,Single,Farmer,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+CAR,Sta. Cruz,Green,Brian,E.,781,80th Avenue,Manila,Bulacan,2001-07-22,Misamis Oriental,Male,Married,Engineer,Filipino,Mother,Vocational,Non-PWD,Voter
+Region VI,San Roque,Murphy,Richard,C.,702,Planet Drive Extension,Cagayan de Oro,Iloilo,1975-08-14,Batangas,Male,Married,Vendor,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region I,Sta. Cruz,Knight,Angela,A.,768,Agate Highway,Iloilo City,Pampanga,1974-01-27,Iloilo,Female,Widowed,Student,Filipino,Uncle,Elementary,Non-PWD,Voter
+CAR,Talon Uno,Lester,David,E.,021,Jarvis Road,Cagayan de Oro,Davao del Sur,1955-08-05,Cebu,Male,Divorced,Teacher,Filipino,Sister,Vocational,Non-PWD,Voter
+Region I,San Antonio,Salazar,Briana,E.,578,Kaimito Road,Manila,Laguna,1985-12-20,Misamis Oriental,Female,Widowed,Police Officer,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region X,Mabini,Taylor,Julie,K.,988,Asteroid Street,Manila,Davao del Sur,2003-04-08,Misamis Oriental,Female,Married,Driver,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region I,Poblacion,Moody,Joshua,G.,074,Bauhinia Street,Manila,Iloilo,1998-12-07,Davao del Sur,Male,Divorced,Driver,Filipino,Daughter,Vocational,Non-PWD,Voter
+CAR,Mabini,Compton,Steven,D.,339,Mayon Road,Caloocan,Cebu,1965-07-02,Misamis Oriental,Male,Widowed,Farmer,Filipino,Son,High School,Non-PWD,Voter
+Region IV-A,San Isidro,Foster,James,D.,265,Makiling Drive,Cebu City,Bulacan,1967-03-13,Iloilo,Male,Married,Cashier,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region IV-A,Bagong Silang,Smith,Christina,K.,346,64th Street,Caloocan,Laguna,2008-02-09,Davao del Sur,Female,Widowed,Driver,Filipino,Son,High School,Non-PWD,Non-Voter
+Region VII,Sto. Niño,Arnold,Steven,E.,126,Azalea Road,Davao City,Cebu,2005-06-12,Pampanga,Male,Married,Cashier,Filipino,Daughter,College,Non-PWD,Voter
+Region I,Bagong Silang,Guerra,Tracy,A.,256,Matumtum Extension,Zamboanga City,Laguna,1964-09-22,Bulacan,Female,Married,Student,Filipino,Mother,Vocational,Non-PWD,Non-Voter
+Region X,San Isidro,Davis,Susan,A.,437,Apo Drive,Cagayan de Oro,Misamis Oriental,1986-03-23,Iloilo,Female,Widowed,None,Filipino,Mother,Elementary,Non-PWD,Voter
+Region VI,Sto. Niño,Gardner,Jacob,C.,270,67th Road,Zamboanga City,Laguna,1988-06-02,Bulacan,Male,Married,Farmer,Filipino,Uncle,No Formal Education,Non-PWD,Non-Voter
+Region X,San Isidro,Anthony,Christopher,J.,493,Sicaba Road Extension,Cebu City,Batangas,1999-06-22,Cebu,Male,Single,Cashier,Filipino,Uncle,High School,Non-PWD,Voter
+Region III,Sta. Cruz,Mills,Ricardo,C.,665,Santol Street,Cebu City,Bulacan,1964-03-21,Iloilo,Male,Widowed,Teacher,Filipino,Son,No Formal Education,Non-PWD,Non-Voter
+Region III,Mabini,Wong,Anthony,C.,602,Nipa Road,Cebu City,Misamis Oriental,1966-10-16,Bulacan,Male,Married,None,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region VI,Poblacion,Torres,Heather,J.,703,Pisces Street,Davao City,Pampanga,1995-06-08,Davao del Sur,Female,Married,None,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region III,Talon Uno,Aguilar,Brittney,C.,403,Agate Extension,Caloocan,Batangas,1977-06-13,Cebu,Female,Single,Farmer,Filipino,Mother,High School,Non-PWD,Non-Voter
+CAR,San Isidro,Conway,Eric,S.,571,27th Street,Quezon City,Davao del Sur,1985-06-05,Pampanga,Male,Divorced,Police Officer,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region X,BF Homes,Thompson,Ann,T.,661,Mariveles Road,Cagayan de Oro,Bulacan,1949-12-27,Cavite,Female,Married,Engineer,Filipino,Son,Elementary,Non-PWD,Voter
+NCR,Poblacion,Jackson,Hector,H.,715,Planet Drive,Caloocan,Bulacan,1971-10-07,Metro Manila,Male,Divorced,Vendor,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region IX,Mabini,Smith,Shannon,M.,752,Banahaw Drive,Caloocan,Metro Manila,1974-12-18,Davao del Sur,Female,Single,Nurse,Filipino,Son,Vocational,Non-PWD,Voter
+CAR,San Isidro,Rodriguez,Steven,B.,103,Champaca Street,Manila,Batangas,1960-11-06,Misamis Oriental,Male,Single,Police Officer,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region XI,Sta. Cruz,Nicholson,Joshua,T.,457,Parker Avenue,Cagayan de Oro,Misamis Oriental,1957-09-25,Zamboanga del Sur,Male,Divorced,Farmer,Filipino,Mother,Vocational,Non-PWD,Voter
+Region XII,Talon Uno,Graham,Pam,S.,267,Leo Road,Davao City,Metro Manila,1953-08-06,Misamis Oriental,Female,Married,Cashier,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region V,Sto. Niño,Burns,Seth,S.,760,Agate Extension,Caloocan,Batangas,1956-05-17,Laguna,Male,Widowed,None,Filipino,Mother,High School,Non-PWD,Voter
+Region IX,Sto. Niño,Torres,Thomas,C.,903,Aries Road,Manila,Misamis Oriental,1999-01-19,Misamis Oriental,Male,Single,Cashier,Filipino,Aunt,Post Graduate,Non-PWD,Voter
+Region VII,Sta. Cruz,Anderson,Raymond,K.,532,Kalamansi Street,Paranaque,Cebu,1953-05-19,Cavite,Male,Single,Nurse,Filipino,Grandfather,Vocational,Non-PWD,Non-Voter
+Region IX,BF Homes,Walsh,Cheryl,J.,855,Sagittarius Drive,Zamboanga City,Misamis Oriental,1961-10-29,Laguna,Female,Single,Student,Filipino,Daughter,No Formal Education,PWD,Non-Voter
+Region II,Sta. Cruz,Smith,Laura,M.,840,Mayon Drive,Manila,Iloilo,2002-07-19,Davao del Sur,Female,Single,Cashier,Filipino,Father,High School,PWD,Non-Voter
+Region I,Talon Uno,Meyer,Johnathan,M.,493,Jade Street,Quezon City,Metro Manila,1997-09-20,Bulacan,Male,Divorced,Engineer,Filipino,Mother,Vocational,Non-PWD,Voter
+Region XI,San Isidro,Williams,Jeffery,T.,504,Sunstone Street,Quezon City,Misamis Oriental,1951-02-15,Misamis Oriental,Male,Single,Cashier,Filipino,Sister,College,Non-PWD,Voter
+Region VII,Sto. Niño,Chavez,Rebecca,R.,091,Valencia Street,Iloilo City,Cebu,1977-02-02,Cebu,Female,Widowed,Teacher,Filipino,Mother,Elementary,Non-PWD,Voter
+Region VI,Talon Uno,Blackburn,Jacob,B.,557,97th Street,Paranaque,Davao del Sur,1951-12-17,Zamboanga del Sur,Male,Married,None,Filipino,Uncle,High School,Non-PWD,Voter
+Region IV-A,Bagong Silang,Larson,Kyle,A.,981,Peridot Road,Zamboanga City,Bulacan,1988-02-23,Laguna,Male,Widowed,Teacher,Filipino,Father,Vocational,Non-PWD,Voter
+Region VII,Talon Uno,Kaufman,Reginald,G.,176,Taurus Road,Cebu City,Iloilo,1960-08-22,Pampanga,Male,Married,Teacher,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+BARMM,San Antonio,Vaughan,John,L.,190,65th Street,Manila,Zamboanga del Sur,1964-02-10,Cavite,Male,Divorced,Police Officer,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region I,Bagong Silang,Cooper,Katherine,J.,547,Asparagus Street,Cagayan de Oro,Iloilo,1977-08-13,Pampanga,Female,Widowed,Nurse,Filipino,Grandfather,Elementary,PWD,Voter
+Region II,San Isidro,Crawford,Kenneth,A.,052,Capricorn Avenue,Cagayan de Oro,Pampanga,1999-06-10,Pampanga,Male,Divorced,Driver,Filipino,Father,College,Non-PWD,Voter
+Region IX,Poblacion,Bryant,Willie,A.,039,Emerald Street,Davao City,Cavite,1979-02-17,Misamis Oriental,Male,Widowed,Farmer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region IX,Bagong Silang,Wheeler,Walter,J.,979,46th Drive,Pasig,Cavite,1960-12-12,Bulacan,Male,Widowed,Cashier,Filipino,Daughter,High School,Non-PWD,Voter
+Region VIII,Talon Uno,Smith,Lindsey,C.,471,Iriga Drive,Cagayan de Oro,Bulacan,1956-11-08,Cebu,Female,Single,None,Filipino,Grandmother,Vocational,Non-PWD,Voter
+BARMM,San Antonio,Miller,Nicole,V.,996,Earth Service Road,Manila,Bulacan,1986-09-24,Cebu,Female,Widowed,Farmer,Filipino,Son,High School,Non-PWD,Voter
+BARMM,Poblacion,Boone,Kimberly,S.,788,Chico Avenue,Pasig,Cebu,1957-03-16,Cavite,Female,Single,Engineer,Filipino,Grandmother,Elementary,Non-PWD,Non-Voter
+Region VI,San Roque,Woodard,Sharon,M.,603,Johnson Drive,Zamboanga City,Zamboanga del Sur,1958-01-07,Batangas,Female,Single,Farmer,Filipino,Mother,Post Graduate,Non-PWD,Voter
+BARMM,Sto. Niño,Fernandez,Amy,J.,335,Mariveles Road,Quezon City,Iloilo,1987-10-26,Zamboanga del Sur,Female,Single,Cashier,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region VIII,Sto. Niño,Webb,Samuel,A.,965,Hercules Road,Cebu City,Iloilo,1954-07-16,Iloilo,Male,Married,Driver,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region X,Poblacion,Lane,Kristin,R.,241,Palali Road,Quezon City,Pampanga,1962-11-27,Misamis Oriental,Female,Single,Cashier,Filipino,Grandmother,High School,Non-PWD,Voter
+Region VI,Poblacion,Nguyen,Gary,M.,625,Cancer Drive,Paranaque,Batangas,1984-02-09,Cavite,Male,Married,Student,Filipino,Grandfather,No Formal Education,Non-PWD,Voter
+Region VI,San Roque,Gilbert,Shannon,M.,618,Avocado Boulevard,Pasig,Pampanga,1991-04-03,Cavite,Female,Divorced,Engineer,Filipino,Grandfather,College,Non-PWD,Voter
+Region IV-A,Poblacion,Hensley,Theodore,M.,307,Andromeda Road,Quezon City,Zamboanga del Sur,1990-06-24,Batangas,Male,Single,Driver,Filipino,Sister,High School,Non-PWD,Non-Voter
+Region VII,San Isidro,Contreras,Jeremy,S.,915,4th Street,Manila,Metro Manila,1967-03-03,Bulacan,Male,Widowed,Nurse,Filipino,Brother,High School,Non-PWD,Non-Voter
+Region X,San Roque,Khan,Billy,E.,585,40th Street,Iloilo City,Batangas,2007-11-18,Batangas,Male,Single,Police Officer,Filipino,Grandfather,Elementary,Non-PWD,Voter
+Region X,Mabini,Wood,Jennifer,J.,740,Samat Drive,Caloocan,Misamis Oriental,2006-08-01,Cebu,Female,Divorced,None,Filipino,Aunt,College,Non-PWD,Voter
+Region XI,Talon Uno,Oliver,Luis,L.,279,Coconut Avenue,Paranaque,Zamboanga del Sur,1979-06-06,Metro Manila,Male,Married,Farmer,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region I,San Isidro,Moore,Jennifer,A.,241,Mullen Road,Manila,Davao del Sur,1974-11-19,Laguna,Female,Divorced,Vendor,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region II,San Roque,Myers,Linda,K.,063,Capricorn Road,Manila,Pampanga,1950-06-27,Misamis Oriental,Female,Married,Cashier,Filipino,Grandmother,High School,Non-PWD,Non-Voter
+BARMM,Sta. Cruz,Rose,Brandy,C.,384,Blackwell Road,Quezon City,Cavite,1969-11-01,Pampanga,Female,Widowed,Cashier,Filipino,Mother,High School,Non-PWD,Voter
+Region III,Talon Uno,Kaufman,Laura,T.,386,Russell Highway,Davao City,Iloilo,1987-09-19,Iloilo,Female,Widowed,Police Officer,Filipino,Father,Vocational,Non-PWD,Voter
+Region VII,Sta. Cruz,Campbell,Allison,M.,041,Patterson Road,Iloilo City,Cebu,1987-08-25,Cebu,Female,Widowed,Teacher,Filipino,Son,Elementary,Non-PWD,Voter
+Region I,San Isidro,Miller,Erin,K.,119,Amber Avenue,Quezon City,Cebu,1999-01-07,Misamis Oriental,Female,Widowed,Teacher,Filipino,Grandfather,Vocational,Non-PWD,Voter
+NCR,Poblacion,Sutton,Jacob,J.,471,Matumtum Boulevard,Manila,Zamboanga del Sur,1978-03-23,Laguna,Male,Married,Vendor,Filipino,Grandfather,High School,Non-PWD,Voter
+BARMM,Sto. Niño,Yates,Jeff,N.,199,Hunter Road Extension,Pasig,Laguna,1975-01-06,Bulacan,Male,Married,Engineer,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region IV-A,Bagong Silang,Clayton,John,M.,548,Montgomery Drive,Davao City,Bulacan,1967-11-19,Zamboanga del Sur,Male,Married,Cashier,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region VI,Sto. Niño,Durham,Angela,T.,055,91st Avenue,Paranaque,Cebu,1991-07-24,Pampanga,Female,Married,Police Officer,Filipino,Father,College,Non-PWD,Non-Voter
+Region XII,Sto. Niño,Russell,Mackenzie,D.,873,Moonstone Extension,Davao City,Misamis Oriental,1982-10-24,Davao del Sur,Female,Widowed,Vendor,Filipino,Grandmother,High School,Non-PWD,Voter
+Region II,BF Homes,Lopez,Christy,G.,311,Zinia Road,Cagayan de Oro,Cebu,1985-01-21,Bulacan,Female,Married,None,Filipino,Mother,Vocational,Non-PWD,Non-Voter
+Region V,Sta. Cruz,Williams,William,A.,572,Hibok-Hibok Street,Caloocan,Batangas,1953-07-23,Bulacan,Male,Divorced,Vendor,Filipino,Aunt,Elementary,Non-PWD,Voter
+Region IV-A,Sto. Niño,Bradshaw,Tyler,C.,204,Emerald Road,Cagayan de Oro,Cavite,1989-04-08,Bulacan,Male,Single,Vendor,Filipino,Aunt,No Formal Education,Non-PWD,Voter
+BARMM,Sta. Cruz,Poole,Zachary,C.,711,Carissa Drive,Caloocan,Zamboanga del Sur,1976-09-05,Davao del Sur,Male,Single,Police Officer,Filipino,Grandfather,High School,Non-PWD,Voter
+Region X,Sto. Niño,Wilson,Jason,P.,909,Jacaranda Street,Quezon City,Misamis Oriental,1985-07-17,Davao del Sur,Male,Single,Engineer,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region IX,Poblacion,Green,Gina,M.,529,Zircon Road,Quezon City,Metro Manila,1957-08-03,Iloilo,Female,Married,None,Filipino,Uncle,College,Non-PWD,Voter
+NCR,Sta. Cruz,Gonzalez,Michael,K.,002,Acacia Street,Zamboanga City,Pampanga,2005-02-01,Pampanga,Male,Widowed,Police Officer,Filipino,Aunt,College,Non-PWD,Non-Voter
+Region XII,Poblacion,Contreras,Christopher,R.,171,Bagtikan Road,Manila,Cavite,1960-06-12,Zamboanga del Sur,Male,Married,Police Officer,Filipino,Sister,No Formal Education,Non-PWD,Non-Voter
+Region XII,San Roque,Wong,Lisa,C.,316,Leblanc Street,Quezon City,Cebu,1966-07-24,Batangas,Female,Single,Engineer,Filipino,Sister,Post Graduate,Non-PWD,Non-Voter
+Region XII,Poblacion,Crosby,Lee,L.,711,Hibok-Hibok Street,Manila,Iloilo,1968-11-01,Batangas,Male,Married,Farmer,Filipino,Uncle,Elementary,Non-PWD,Non-Voter
+Region II,Mabini,Shaw,Shane,D.,452,Canopus Avenue,Pasig,Batangas,1993-02-26,Iloilo,Male,Widowed,None,Filipino,Son,College,Non-PWD,Non-Voter
+NCR,Bagong Silang,Ortega,Robert,M.,085,Pao Drive,Zamboanga City,Pampanga,1997-02-09,Iloilo,Male,Widowed,Nurse,Filipino,Brother,Post Graduate,Non-PWD,Voter
+BARMM,Sto. Niño,Rodriguez,Gordon,H.,858,37th Drive,Cebu City,Cavite,1986-01-01,Laguna,Male,Widowed,Vendor,Filipino,Grandfather,No Formal Education,Non-PWD,Non-Voter
+Region XI,Poblacion,Sharp,Sandra,H.,008,Orion Drive,Cagayan de Oro,Cavite,1993-08-20,Laguna,Female,Single,Farmer,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region XI,Sta. Cruz,Robinson,Mark,S.,128,Barr Road,Paranaque,Cavite,1955-12-20,Davao del Sur,Male,Married,Vendor,Filipino,Father,High School,Non-PWD,Non-Voter
+Region I,San Roque,Owens,Jack,B.,879,Polaris Road,Paranaque,Cavite,1990-08-28,Zamboanga del Sur,Male,Married,Nurse,Filipino,Aunt,High School,Non-PWD,Voter
+Region VI,Mabini,Salas,Travis,J.,337,Morris Street,Pasig,Batangas,2003-08-19,Pampanga,Male,Single,Farmer,Filipino,Brother,Post Graduate,Non-PWD,Non-Voter
+Region IX,Poblacion,Jones,Andrew,D.,946,Ruby Street,Davao City,Davao del Sur,1980-12-22,Zamboanga del Sur,Male,Married,Nurse,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region IV-A,San Roque,Rodgers,Ann,C.,770,Jade Street,Caloocan,Zamboanga del Sur,1984-10-21,Metro Manila,Female,Single,Teacher,Filipino,Father,Post Graduate,PWD,Voter
+NCR,Talon Uno,Valdez,Mario,R.,433,Milky Way Road,Iloilo City,Batangas,1988-11-22,Iloilo,Male,Widowed,Police Officer,Filipino,Aunt,High School,Non-PWD,Voter
+Region IX,San Roque,Jackson,John,M.,616,23rd Avenue,Pasig,Batangas,1997-12-21,Batangas,Male,Single,None,Filipino,Uncle,High School,Non-PWD,Non-Voter
+BARMM,Poblacion,Cortez,Jessica,G.,800,Mayon Boulevard,Iloilo City,Zamboanga del Sur,1991-09-17,Pampanga,Female,Married,Cashier,Filipino,Son,Post Graduate,Non-PWD,Non-Voter
+Region XII,Talon Uno,Williams,Robert,P.,886,Leo Street,Paranaque,Davao del Sur,1957-01-08,Metro Manila,Male,Single,Farmer,Filipino,Father,High School,Non-PWD,Non-Voter
+Region VII,Mabini,Goodwin,Walter,C.,128,77th Drive Extension,Paranaque,Cavite,2002-12-02,Bulacan,Male,Married,None,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region I,Talon Uno,Moore,Ronald,S.,589,White Road,Zamboanga City,Pampanga,2010-03-06,Batangas,Male,Married,Nurse,Filipino,Brother,College,Non-PWD,Voter
+Region XI,Bagong Silang,Clark,Mary,R.,137,Apo Street,Cebu City,Batangas,1978-09-30,Metro Manila,Female,Single,Nurse,Filipino,Grandmother,College,Non-PWD,Non-Voter
+Region IX,San Roque,Mathis,Veronica,P.,106,Libra Road,Pasig,Pampanga,1976-03-07,Cavite,Female,Divorced,Farmer,Filipino,Aunt,College,Non-PWD,Voter
+Region III,BF Homes,Barnes,Laura,S.,539,Lyons Avenue Extension,Cebu City,Cebu,2002-02-06,Davao del Sur,Female,Single,Engineer,Filipino,Grandfather,College,PWD,Voter
+Region VII,Sta. Cruz,Lewis,Susan,M.,554,Raddish Boulevard,Cagayan de Oro,Cavite,1973-06-15,Laguna,Female,Single,Student,Filipino,Father,Post Graduate,Non-PWD,Non-Voter
+Region VIII,San Antonio,Willis,Kimberly,D.,086,Mustard Road,Caloocan,Pampanga,1998-04-19,Metro Manila,Female,Widowed,Teacher,Filipino,Brother,Vocational,Non-PWD,Non-Voter
+Region IX,San Roque,Williams,Donna,K.,167,Carrot Drive,Iloilo City,Cebu,1958-10-24,Metro Manila,Female,Widowed,Farmer,Filipino,Son,College,Non-PWD,Voter
+Region VII,San Isidro,Campbell,Allison,S.,910,Zinia Street,Cagayan de Oro,Cebu,1959-06-09,Misamis Oriental,Female,Widowed,Cashier,Filipino,Father,Vocational,Non-PWD,Non-Voter
+Region III,San Antonio,Anderson,Alexandria,R.,477,Macapuno Drive,Zamboanga City,Cavite,1987-06-25,Pampanga,Female,Widowed,Driver,Filipino,Son,College,Non-PWD,Voter
+Region XII,BF Homes,Thomas,Annette,J.,223,Hibok-Hibok Boulevard,Manila,Pampanga,1967-06-08,Iloilo,Female,Widowed,Farmer,Filipino,Daughter,College,Non-PWD,Voter
+Region XII,Sto. Niño,Smith,Jeffrey,I.,355,Matumtum Road,Paranaque,Metro Manila,1991-02-26,Bulacan,Male,Divorced,Driver,Filipino,Grandmother,High School,Non-PWD,Voter
+Region XII,Bagong Silang,Stokes,Destiny,R.,973,24th Extension,Manila,Zamboanga del Sur,2008-02-09,Cebu,Female,Single,Teacher,Filipino,Son,Vocational,Non-PWD,Voter
+Region V,Sto. Niño,Davidson,Jimmy,R.,878,Milky Way Road,Paranaque,Bulacan,2000-02-28,Zamboanga del Sur,Male,Married,Engineer,Filipino,Father,Post Graduate,Non-PWD,Voter
+Region VI,San Antonio,Freeman,Brandon,F.,676,Gonzales Road,Iloilo City,Misamis Oriental,1990-11-30,Cavite,Male,Married,Nurse,Filipino,Brother,College,PWD,Non-Voter
+Region VIII,San Antonio,Ruiz,Benjamin,J.,112,Neptune Drive,Paranaque,Metro Manila,1999-04-28,Pampanga,Male,Widowed,Police Officer,Filipino,Daughter,College,Non-PWD,Voter
+Region XI,Mabini,Jimenez,Mark,E.,761,Piña Street,Cagayan de Oro,Iloilo,1980-10-14,Bulacan,Male,Divorced,None,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region VI,San Antonio,Robinson,Colleen,T.,876,Brown Street,Cagayan de Oro,Pampanga,1953-01-02,Metro Manila,Female,Single,Nurse,Filipino,Sister,High School,Non-PWD,Voter
+Region XII,BF Homes,Wells,Marissa,R.,037,Jade Extension,Paranaque,Davao del Sur,1976-04-09,Laguna,Female,Single,Farmer,Filipino,Son,Elementary,Non-PWD,Voter
+Region I,Sto. Niño,Castro,Cory,K.,994,Mustard Road,Quezon City,Metro Manila,1975-11-26,Cebu,Male,Widowed,Police Officer,Filipino,Father,College,Non-PWD,Non-Voter
+BARMM,Sta. Cruz,Young,Aaron,A.,453,10th Drive Extension,Manila,Davao del Sur,1977-04-30,Batangas,Male,Single,Farmer,Filipino,Father,Elementary,Non-PWD,Non-Voter
+Region IX,Sta. Cruz,Walter,Derek,C.,557,Sapphire Avenue,Quezon City,Pampanga,2006-10-15,Misamis Oriental,Male,Widowed,Vendor,Filipino,Mother,Elementary,Non-PWD,Voter
+Region XI,San Antonio,Perez,Walter,C.,731,Sunstone Road,Manila,Misamis Oriental,2001-05-14,Misamis Oriental,Male,Single,Farmer,Filipino,Uncle,High School,PWD,Voter
+Region IX,Poblacion,Krueger,April,M.,312,Elliott Street,Pasig,Iloilo,1968-08-09,Zamboanga del Sur,Female,Married,Student,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+BARMM,Talon Uno,Fry,Lauren,D.,870,Bouganvilla Street,Caloocan,Laguna,1979-11-03,Pampanga,Female,Widowed,Student,Filipino,Aunt,College,Non-PWD,Non-Voter
+NCR,San Roque,Jones,Kaitlyn,A.,728,Rodriguez Street,Pasig,Batangas,1966-06-24,Cebu,Female,Widowed,Student,Filipino,Brother,No Formal Education,Non-PWD,Non-Voter
+BARMM,Sto. Niño,Taylor,Lori,P.,304,Simmons Road Extension,Quezon City,Bulacan,1964-11-20,Cebu,Female,Married,Vendor,Filipino,Sister,Vocational,Non-PWD,Voter
+Region I,BF Homes,Joseph,James,S.,404,43rd Drive,Pasig,Batangas,1962-02-10,Zamboanga del Sur,Male,Single,Farmer,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region VIII,Talon Uno,Gates,Sean,A.,554,Makiling Road,Iloilo City,Pampanga,1984-05-22,Iloilo,Male,Widowed,Vendor,Filipino,Grandmother,Elementary,Non-PWD,Voter
+BARMM,San Roque,Carter,Cheryl,H.,523,Garnet Street,Cebu City,Pampanga,1992-08-08,Cavite,Female,Divorced,Student,Filipino,Grandfather,College,PWD,Voter
+BARMM,Sta. Cruz,Reid,William,A.,085,Gemini Street,Paranaque,Cebu,1974-09-08,Cebu,Male,Married,Student,Filipino,Uncle,High School,Non-PWD,Voter
+NCR,Bagong Silang,Williams,Angela,M.,450,12th Street,Zamboanga City,Laguna,1984-03-17,Batangas,Female,Divorced,Police Officer,Filipino,Uncle,High School,Non-PWD,Voter
+Region IX,San Isidro,Kim,Zachary,C.,831,53rd Street,Cebu City,Cavite,1966-02-06,Zamboanga del Sur,Male,Divorced,Driver,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region V,San Roque,Jenkins,Zachary,R.,639,Pisces Street,Caloocan,Metro Manila,1983-10-15,Davao del Sur,Male,Widowed,Vendor,Filipino,Brother,Elementary,Non-PWD,Voter
+Region I,San Isidro,Garcia,Jennifer,K.,411,39th Drive Extension,Caloocan,Laguna,1999-06-20,Misamis Oriental,Female,Widowed,Police Officer,Filipino,Son,Elementary,Non-PWD,Voter
+Region XII,Sta. Cruz,Kennedy,Lisa,R.,222,Pluto Extension,Cebu City,Bulacan,1973-08-16,Metro Manila,Female,Divorced,Vendor,Filipino,Grandfather,Vocational,Non-PWD,Voter
+Region XII,Sta. Cruz,Gonzalez,Ray,A.,849,Jasper Street,Iloilo City,Iloilo,1970-08-19,Batangas,Male,Married,Student,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region VI,Poblacion,Williams,Amy,L.,479,Raddish Street,Zamboanga City,Bulacan,1961-01-24,Davao del Sur,Female,Divorced,Police Officer,Filipino,Son,Elementary,Non-PWD,Voter
+Region VIII,San Antonio,Franklin,Kenneth,J.,266,Phillips Drive,Cagayan de Oro,Iloilo,2010-03-30,Metro Manila,Male,Married,Farmer,Filipino,Father,High School,Non-PWD,Voter
+Region I,Poblacion,Byrd,Donna,N.,509,Azucena Street,Cagayan de Oro,Pampanga,2008-05-21,Batangas,Female,Married,Cashier,Filipino,Mother,Vocational,Non-PWD,Voter
+BARMM,Bagong Silang,Brandt,Nathaniel,J.,554,Morrow Road,Iloilo City,Davao del Sur,2006-03-21,Davao del Sur,Male,Divorced,Farmer,Filipino,Brother,Vocational,Non-PWD,Voter
+Region X,San Antonio,Walter,Morgan,J.,243,Halcon Avenue,Iloilo City,Batangas,1988-01-19,Iloilo,Female,Married,Student,Filipino,Daughter,Post Graduate,Non-PWD,Voter
+Region V,Poblacion,Blackwell,Brooke,C.,927,Arayat Drive,Manila,Batangas,1993-08-24,Laguna,Female,Married,Nurse,Filipino,Mother,Vocational,Non-PWD,Voter
+Region XI,Bagong Silang,Stewart,Jose,R.,107,73rd Drive,Cebu City,Misamis Oriental,1960-12-23,Misamis Oriental,Male,Married,Nurse,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region XII,Sto. Niño,Avery,Stephanie,D.,191,34th Circle,Paranaque,Cavite,1967-09-08,Bulacan,Female,Single,Student,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region IX,BF Homes,Esparza,Micheal,T.,629,27th Street,Pasig,Laguna,1979-02-11,Bulacan,Male,Widowed,Engineer,Filipino,Son,High School,PWD,Voter
+NCR,Bagong Silang,Hood,Susan,C.,675,Tindalo Drive,Paranaque,Cavite,1982-03-02,Bulacan,Female,Married,Nurse,Filipino,Mother,College,Non-PWD,Voter
+CAR,Mabini,Rivers,Joanna,R.,751,24th Drive,Iloilo City,Misamis Oriental,1981-11-07,Metro Manila,Female,Single,Student,Filipino,Father,Vocational,Non-PWD,Voter
+BARMM,San Antonio,Burns,Patrick,C.,993,Andromeda Street,Paranaque,Cebu,1993-05-25,Pampanga,Male,Widowed,Nurse,Filipino,Grandfather,Elementary,Non-PWD,Voter
+CAR,Bagong Silang,Freeman,Rebecca,E.,817,Sardonyx Avenue,Davao City,Cebu,1955-10-04,Bulacan,Female,Widowed,Student,Filipino,Grandmother,No Formal Education,PWD,Voter
+CAR,Sto. Niño,Brown,Lisa,K.,759,Ramirez Extension,Cebu City,Metro Manila,1969-11-08,Bulacan,Female,Widowed,Vendor,Filipino,Uncle,Vocational,PWD,Non-Voter
+Region VIII,Sto. Niño,Patterson,Kayla,E.,103,23rd Avenue Extension,Cagayan de Oro,Pampanga,2010-05-27,Cebu,Female,Widowed,Student,Filipino,Grandmother,No Formal Education,Non-PWD,Voter
+BARMM,San Roque,Jensen,Alan,J.,749,Oliva Drive,Iloilo City,Misamis Oriental,1998-01-05,Metro Manila,Male,Divorced,Student,Filipino,Father,Vocational,Non-PWD,Voter
+Region XII,San Antonio,Cohen,Pamela,M.,619,Onyx Street,Davao City,Pampanga,1990-03-04,Cavite,Female,Single,Nurse,Filipino,Aunt,College,Non-PWD,Non-Voter
+Region IV-A,Talon Uno,Cunningham,Madison,H.,254,4th Avenue Extension,Caloocan,Iloilo,1975-10-02,Iloilo,Female,Widowed,Police Officer,Filipino,Grandmother,Post Graduate,Non-PWD,Non-Voter
+Region II,San Antonio,Morris,Angel,J.,936,37th Drive Extension,Davao City,Iloilo,1977-04-03,Pampanga,Male,Divorced,Nurse,Filipino,Grandmother,Elementary,Non-PWD,Voter
+Region X,San Antonio,Summers,Eduardo,S.,325,Rodriguez Avenue,Iloilo City,Bulacan,1964-11-07,Zamboanga del Sur,Male,Widowed,Cashier,Filipino,Daughter,Vocational,Non-PWD,Non-Voter
+NCR,Sta. Cruz,Clark,Dustin,S.,232,Orion Street,Cagayan de Oro,Zamboanga del Sur,1959-12-28,Cebu,Male,Married,Engineer,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region VIII,San Roque,Carey,Lacey,A.,534,Lang Road,Cagayan de Oro,Davao del Sur,1961-10-02,Davao del Sur,Female,Divorced,Cashier,Filipino,Daughter,Vocational,Non-PWD,Voter
+Region VIII,San Roque,Jimenez,Brooke,R.,742,Buck Drive,Iloilo City,Bulacan,2007-01-15,Laguna,Female,Widowed,Engineer,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region VI,Bagong Silang,Higgins,Jill,T.,531,73rd Road,Iloilo City,Iloilo,2006-11-16,Cavite,Female,Divorced,Farmer,Filipino,Grandmother,High School,Non-PWD,Voter
+Region V,Talon Uno,Rodriguez,Ryan,P.,394,Samat Drive,Cagayan de Oro,Davao del Sur,1989-10-02,Cebu,Male,Widowed,Nurse,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region XI,Sta. Cruz,Frazier,Todd,A.,400,Samat Road,Cebu City,Cavite,2002-11-30,Laguna,Male,Widowed,Student,Filipino,Mother,Vocational,Non-PWD,Non-Voter
+NCR,San Antonio,Carrillo,Brandon,L.,126,38th Drive,Caloocan,Metro Manila,1976-08-07,Iloilo,Male,Divorced,Farmer,Filipino,Father,Vocational,Non-PWD,Voter
+BARMM,Poblacion,Graves,Emily,M.,663,Iriga Street,Paranaque,Bulacan,1968-04-24,Bulacan,Female,Married,Farmer,Filipino,Uncle,High School,Non-PWD,Non-Voter
+BARMM,BF Homes,Macdonald,Caroline,M.,280,Opal Street,Cagayan de Oro,Laguna,1978-07-25,Pampanga,Female,Married,Farmer,Filipino,Brother,No Formal Education,Non-PWD,Non-Voter
+Region IX,San Antonio,Odonnell,Michelle,B.,061,80th Road Extension,Cagayan de Oro,Metro Manila,1956-07-12,Metro Manila,Female,Married,Vendor,Filipino,Grandmother,High School,Non-PWD,Voter
+BARMM,Bagong Silang,Klein,Joan,G.,111,Mayapis Drive Extension,Zamboanga City,Bulacan,1954-02-06,Laguna,Female,Married,Nurse,Filipino,Brother,Vocational,PWD,Non-Voter
+BARMM,San Roque,Crawford,Jennifer,J.,502,42nd Drive,Cebu City,Bulacan,1984-06-28,Bulacan,Female,Single,Police Officer,Filipino,Brother,No Formal Education,Non-PWD,Non-Voter
+Region IX,Talon Uno,Hunt,Doris,C.,712,95th Street,Paranaque,Batangas,2004-09-16,Misamis Oriental,Female,Divorced,Student,Filipino,Daughter,College,Non-PWD,Voter
+Region IX,San Antonio,Willis,Jerry,E.,172,Wolf Street,Manila,Davao del Sur,1968-08-26,Laguna,Male,Married,Driver,Filipino,Father,Elementary,Non-PWD,Voter
+Region VI,San Antonio,Brooks,Stephanie,J.,010,62nd Road,Pasig,Misamis Oriental,1961-07-08,Cebu,Female,Divorced,Teacher,Filipino,Brother,Vocational,Non-PWD,Non-Voter
+Region III,BF Homes,Ballard,Douglas,J.,758,93rd Boulevard,Cebu City,Pampanga,2006-04-15,Cavite,Male,Widowed,Farmer,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region IV-A,Bagong Silang,Arnold,Julia,K.,102,21st Drive,Cebu City,Cavite,1994-12-06,Misamis Oriental,Female,Single,Cashier,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region XII,Talon Uno,Hall,Christie,A.,281,Banahaw Street,Pasig,Zamboanga del Sur,1956-12-23,Misamis Oriental,Female,Married,Engineer,Filipino,Grandfather,Vocational,Non-PWD,Voter
+CAR,San Antonio,Johnson,Derrick,P.,318,Galaxy Street,Paranaque,Batangas,1997-12-02,Cavite,Male,Married,Engineer,Filipino,Aunt,Elementary,Non-PWD,Voter
+BARMM,Talon Uno,Harris,Elizabeth,R.,821,Campanilla Street,Cebu City,Metro Manila,2000-06-08,Iloilo,Female,Married,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region X,Sto. Niño,Wood,Dustin,A.,795,Dapdap Road,Zamboanga City,Bulacan,1980-01-05,Cebu,Male,Divorced,Student,Filipino,Grandfather,Post Graduate,Non-PWD,Non-Voter
+Region XI,Talon Uno,Davenport,Ross,P.,774,Gumamela Boulevard,Caloocan,Cebu,2003-09-29,Bulacan,Male,Widowed,Police Officer,Filipino,Daughter,No Formal Education,Non-PWD,Non-Voter
+Region VI,San Antonio,Crawford,Ashley,B.,411,Constellation Street,Quezon City,Zamboanga del Sur,1998-04-17,Batangas,Female,Single,Student,Filipino,Father,High School,Non-PWD,Voter
+Region XII,Bagong Silang,Brown,Jonathan,F.,161,Mariveles Drive,Davao City,Davao del Sur,2006-05-28,Misamis Oriental,Male,Married,Student,Filipino,Mother,High School,Non-PWD,Voter
+Region X,San Roque,Schultz,Benjamin,L.,521,Citrine Street,Davao City,Zamboanga del Sur,1964-04-17,Batangas,Male,Single,Student,Filipino,Daughter,College,Non-PWD,Voter
+Region VIII,Poblacion,Hill,Carlos,S.,785,Mars Avenue,Cebu City,Zamboanga del Sur,2008-05-11,Batangas,Male,Single,Police Officer,Filipino,Sister,No Formal Education,Non-PWD,Non-Voter
+Region VI,San Antonio,Ingram,Stacy,J.,028,Apo Boulevard Extension,Caloocan,Bulacan,1960-10-30,Bulacan,Female,Married,Nurse,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region I,Sto. Niño,Mccoy,Connor,J.,628,Diamond Drive,Cebu City,Misamis Oriental,2001-03-29,Batangas,Male,Single,Cashier,Filipino,Mother,High School,Non-PWD,Voter
+CAR,Sta. Cruz,Hernandez,Patrick,E.,335,Shelton Avenue,Zamboanga City,Iloilo,1981-03-20,Zamboanga del Sur,Male,Married,Farmer,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region XII,Bagong Silang,Russell,Stephen,C.,236,Cancer Drive,Quezon City,Bulacan,1961-09-14,Iloilo,Male,Married,Cashier,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region II,San Isidro,Murphy,Jennifer,S.,577,Hercules Street,Manila,Metro Manila,2009-01-31,Pampanga,Female,Single,Vendor,Filipino,Grandmother,High School,Non-PWD,Voter
+Region XI,Sto. Niño,Reid,Dillon,C.,614,51st Drive,Paranaque,Bulacan,2010-05-12,Cebu,Male,Married,Engineer,Filipino,Brother,College,Non-PWD,Non-Voter
+Region VII,San Isidro,Reese,Nancy,L.,595,Neptune Avenue,Quezon City,Metro Manila,1986-03-17,Cebu,Female,Divorced,None,Filipino,Daughter,High School,Non-PWD,Non-Voter
+Region III,San Antonio,Pena,Tina,G.,008,Tulip Drive,Paranaque,Metro Manila,1980-12-15,Metro Manila,Female,Married,Police Officer,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region XI,Talon Uno,Murray,Sophia,S.,450,Mariveles Road,Iloilo City,Metro Manila,1971-01-04,Cavite,Female,Divorced,None,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region X,Sto. Niño,Wood,Catherine,J.,866,Avocado Road,Zamboanga City,Laguna,1981-08-05,Bulacan,Female,Widowed,Police Officer,Filipino,Sister,High School,Non-PWD,Non-Voter
+Region VI,San Roque,Ingram,Jessica,J.,858,Lapis Lazuli Drive,Pasig,Cavite,1978-05-29,Zamboanga del Sur,Female,Widowed,Driver,Filipino,Son,No Formal Education,Non-PWD,Voter
+CAR,Poblacion,Johnson,Christian,R.,796,20th Avenue,Cebu City,Misamis Oriental,1969-09-19,Batangas,Male,Divorced,Farmer,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region XII,San Isidro,Sullivan,Brandon,T.,017,Scorpio Drive,Zamboanga City,Iloilo,1996-07-31,Cebu,Male,Married,Teacher,Filipino,Uncle,Elementary,Non-PWD,Non-Voter
+Region V,San Antonio,Davidson,Charles,A.,341,Magnolia Boulevard,Caloocan,Cavite,1965-07-09,Davao del Sur,Male,Single,Engineer,Filipino,Sister,College,Non-PWD,Voter
+CAR,San Roque,Rodriguez,Melanie,S.,342,Agate Road Extension,Cagayan de Oro,Laguna,1970-03-18,Zamboanga del Sur,Female,Married,Driver,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region X,Bagong Silang,Garcia,Victoria,R.,355,Makiling Street,Davao City,Metro Manila,1965-12-08,Laguna,Female,Widowed,Farmer,Filipino,Grandfather,Post Graduate,Non-PWD,Non-Voter
+Region VIII,Sto. Niño,Jones,Donna,S.,924,Hercules Street,Pasig,Iloilo,2003-05-08,Zamboanga del Sur,Female,Single,Farmer,Filipino,Grandfather,Elementary,Non-PWD,Voter
+CAR,Sto. Niño,Villegas,Justin,S.,258,Cattleya Street,Manila,Iloilo,1994-04-13,Metro Manila,Male,Single,Vendor,Filipino,Mother,Post Graduate,Non-PWD,Voter
+Region IV-A,Mabini,Day,Lisa,B.,844,Grant Drive Extension,Pasig,Davao del Sur,1953-07-06,Laguna,Female,Single,Teacher,Filipino,Brother,College,Non-PWD,Voter
+Region III,BF Homes,Robinson,Melissa,R.,776,Arayat Road,Quezon City,Zamboanga del Sur,1967-02-01,Zamboanga del Sur,Female,Married,Nurse,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region IX,BF Homes,Mann,Melissa,A.,697,Lapis Lazuli Road,Cagayan de Oro,Metro Manila,1987-11-01,Metro Manila,Female,Married,Engineer,Filipino,Daughter,Elementary,Non-PWD,Non-Voter
+Region X,San Roque,Lewis,Christine,M.,461,36th Street,Zamboanga City,Pampanga,1989-05-15,Bulacan,Female,Divorced,Vendor,Filipino,Father,No Formal Education,Non-PWD,Non-Voter
+NCR,Sto. Niño,Berg,Johnny,B.,737,Neptune Avenue,Cagayan de Oro,Laguna,1994-03-13,Misamis Oriental,Male,Divorced,Farmer,Filipino,Mother,Elementary,Non-PWD,Voter
+Region I,Bagong Silang,Watson,Michael,B.,323,Malinao Drive,Manila,Pampanga,1981-09-09,Batangas,Male,Divorced,Nurse,Filipino,Mother,Vocational,Non-PWD,Non-Voter
+Region XI,Bagong Silang,Ho,Sean,B.,344,89th Avenue,Zamboanga City,Davao del Sur,1977-06-15,Davao del Sur,Male,Married,Nurse,Filipino,Mother,No Formal Education,Non-PWD,Voter
+Region VIII,Poblacion,Mitchell,Michelle,J.,974,Ward Road,Zamboanga City,Cavite,1992-09-06,Laguna,Female,Single,Farmer,Filipino,Daughter,Elementary,Non-PWD,Voter
+Region VII,Sto. Niño,Meyer,Allen,K.,801,3rd Road,Cagayan de Oro,Metro Manila,1971-05-14,Iloilo,Male,Married,Police Officer,Filipino,Aunt,Vocational,Non-PWD,Voter
+Region IX,San Roque,Gomez,Beth,M.,819,Gemini Street,Davao City,Misamis Oriental,1950-12-20,Laguna,Female,Single,Student,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region VII,Sta. Cruz,Petty,Jonathan,J.,099,Mayon Road,Iloilo City,Metro Manila,1994-02-11,Metro Manila,Male,Married,Engineer,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+NCR,San Roque,Walsh,Chris,H.,603,Sardonyx Road,Paranaque,Misamis Oriental,1987-02-11,Cebu,Male,Single,Police Officer,Filipino,Grandfather,College,Non-PWD,Voter
+Region IV-A,BF Homes,Schultz,Chad,A.,858,Agate Street,Cagayan de Oro,Cavite,1993-08-25,Cavite,Male,Single,Teacher,Filipino,Grandfather,High School,Non-PWD,Voter
+CAR,Sta. Cruz,Black,Jeffrey,S.,110,Caraballo Street,Manila,Batangas,2004-07-15,Laguna,Male,Married,Student,Filipino,Aunt,College,Non-PWD,Voter
+Region VIII,Talon Uno,Palmer,Lynn,L.,545,Sierra Madre Street,Zamboanga City,Misamis Oriental,1994-05-03,Cebu,Female,Widowed,Police Officer,Filipino,Grandfather,Elementary,Non-PWD,Non-Voter
+Region VIII,Bagong Silang,Perez,Andrew,J.,658,Canopus Street,Cebu City,Misamis Oriental,1988-06-08,Misamis Oriental,Male,Single,Farmer,Filipino,Son,High School,PWD,Voter
+Region IX,Poblacion,Ryan,Megan,C.,029,Sicaba Street,Cagayan de Oro,Laguna,2002-03-12,Pampanga,Female,Married,Teacher,Filipino,Sister,College,Non-PWD,Voter
+Region V,Mabini,Faulkner,Martin,A.,489,Kanlaon Street,Zamboanga City,Cebu,1994-01-11,Misamis Oriental,Male,Single,Teacher,Filipino,Uncle,Vocational,Non-PWD,Non-Voter
+Region III,Talon Uno,Odonnell,Jennifer,B.,599,Alvarez Drive,Manila,Metro Manila,1982-10-10,Laguna,Female,Divorced,Nurse,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region V,Mabini,Alexander,Julie,K.,130,Davidson Street,Caloocan,Laguna,1990-06-03,Metro Manila,Female,Divorced,Vendor,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region VI,San Isidro,Tate,Sean,C.,943,Gloriosa Road,Manila,Misamis Oriental,1962-03-04,Metro Manila,Male,Divorced,Driver,Filipino,Brother,High School,Non-PWD,Voter
+Region II,Poblacion,Ingram,Daisy,J.,290,Ruiz Street,Paranaque,Cavite,1980-12-19,Davao del Sur,Female,Divorced,Driver,Filipino,Aunt,Elementary,Non-PWD,Voter
+Region IX,BF Homes,Norton,Michael,R.,304,Butler Expressway,Manila,Pampanga,1966-03-11,Batangas,Male,Single,Engineer,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region VIII,Sta. Cruz,Turner,Wesley,C.,884,22nd Drive,Davao City,Batangas,1992-04-21,Pampanga,Male,Widowed,Student,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region I,Sta. Cruz,Nguyen,Amanda,E.,913,Banahaw Extension,Cagayan de Oro,Iloilo,2006-01-18,Cavite,Female,Divorced,Student,Filipino,Sister,Elementary,Non-PWD,Voter
+Region I,San Roque,Cox,Jason,T.,970,Venus Avenue,Paranaque,Batangas,1958-09-02,Bulacan,Male,Single,Farmer,Filipino,Grandfather,No Formal Education,Non-PWD,Non-Voter
+Region XI,San Isidro,Yates,Jocelyn,K.,857,16th Boulevard,Caloocan,Metro Manila,1966-03-25,Metro Manila,Female,Widowed,Teacher,Filipino,Son,High School,Non-PWD,Non-Voter
+Region XII,Sta. Cruz,Rose,Morgan,K.,205,12th Street,Davao City,Batangas,1967-09-24,Laguna,Female,Widowed,Vendor,Filipino,Aunt,Post Graduate,Non-PWD,Non-Voter
+Region II,Mabini,Rodgers,Olivia,S.,916,Medina Street,Zamboanga City,Iloilo,1990-07-11,Bulacan,Female,Divorced,Teacher,Filipino,Father,Post Graduate,Non-PWD,Non-Voter
+Region IX,Poblacion,Edwards,Mark,H.,258,Bowman Avenue,Iloilo City,Pampanga,1963-09-26,Zamboanga del Sur,Male,Widowed,Student,Filipino,Sister,High School,Non-PWD,Voter
+Region IX,Sto. Niño,Barber,Jillian,C.,840,Lapis Lazuli Avenue,Pasig,Cebu,1977-07-11,Batangas,Female,Divorced,None,Filipino,Grandmother,Post Graduate,Non-PWD,Non-Voter
+Region I,Bagong Silang,Price,Michael,C.,164,17th Street,Quezon City,Misamis Oriental,1963-06-04,Cavite,Male,Divorced,Engineer,Filipino,Mother,High School,Non-PWD,Voter
+Region XI,San Isidro,Guerrero,Mike,N.,342,Citrine Street,Zamboanga City,Iloilo,1989-09-06,Cebu,Male,Married,Police Officer,Filipino,Grandfather,High School,Non-PWD,Non-Voter
+Region II,BF Homes,Guerrero,Jacob,T.,381,Iriga Road,Manila,Davao del Sur,2003-07-21,Misamis Oriental,Male,Divorced,Farmer,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region V,Talon Uno,Cox,Kevin,M.,450,Uranus Boulevard,Iloilo City,Zamboanga del Sur,1986-03-06,Zamboanga del Sur,Male,Married,Teacher,Filipino,Uncle,High School,Non-PWD,Non-Voter
+Region IV-A,San Antonio,Cameron,Joseph,P.,556,Drake Drive,Paranaque,Bulacan,1981-07-05,Zamboanga del Sur,Male,Married,Farmer,Filipino,Grandfather,Post Graduate,PWD,Voter
+Region III,San Antonio,Cooley,Gary,R.,384,Antares Road,Iloilo City,Zamboanga del Sur,1961-09-14,Pampanga,Male,Married,Student,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+BARMM,San Roque,Martin,Bobby,B.,051,Piña Road Extension,Cebu City,Pampanga,1956-05-17,Davao del Sur,Male,Widowed,Teacher,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region II,Poblacion,Hatfield,Brianna,P.,829,Leo Avenue Extension,Zamboanga City,Cebu,1998-06-07,Cebu,Female,Married,Vendor,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+CAR,Sta. Cruz,Lewis,Christopher,O.,166,Amethyst Drive,Paranaque,Metro Manila,1978-01-27,Pampanga,Male,Divorced,Student,Filipino,Son,Vocational,Non-PWD,Voter
+Region IX,Talon Uno,Gilbert,Patrick,R.,880,85th Extension,Davao City,Cebu,1957-07-06,Iloilo,Male,Single,Student,Filipino,Daughter,High School,Non-PWD,Voter
+Region VI,Mabini,Sanchez,Ronald,M.,788,Topaz Avenue,Quezon City,Cavite,1973-01-25,Zamboanga del Sur,Male,Widowed,Student,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+NCR,Poblacion,Dunn,Megan,T.,222,Sunstone Street,Cebu City,Misamis Oriental,1998-12-16,Zamboanga del Sur,Female,Single,Student,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region II,Mabini,Williams,Haley,T.,840,86th Boulevard,Cagayan de Oro,Batangas,2001-12-26,Cebu,Female,Married,Police Officer,Filipino,Uncle,Vocational,Non-PWD,Non-Voter
+BARMM,Bagong Silang,Chapman,Craig,T.,935,83rd Road,Iloilo City,Laguna,2007-11-12,Laguna,Male,Single,Student,Filipino,Aunt,College,Non-PWD,Voter
+NCR,Mabini,Camacho,Todd,G.,743,Amethyst Drive,Caloocan,Misamis Oriental,1999-03-12,Cebu,Male,Widowed,Farmer,Filipino,Mother,High School,Non-PWD,Non-Voter
+Region XI,San Isidro,Pratt,Michael,J.,959,Topaz Expressway,Paranaque,Cavite,1970-03-12,Laguna,Male,Divorced,Teacher,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region I,San Antonio,Mccormick,Kathy,B.,212,Sicaba Extension,Paranaque,Misamis Oriental,1972-10-26,Cavite,Female,Married,Farmer,Filipino,Son,No Formal Education,Non-PWD,Voter
+Region IV-A,BF Homes,Dawson,Nathaniel,S.,640,Matumtum Boulevard,Cebu City,Laguna,1976-05-20,Pampanga,Male,Married,Police Officer,Filipino,Brother,Elementary,Non-PWD,Non-Voter
+Region III,Talon Uno,Nichols,Maria,E.,752,10th Street,Zamboanga City,Laguna,2008-10-01,Laguna,Female,Married,Cashier,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region I,Mabini,Price,James,T.,610,Apo Drive,Caloocan,Bulacan,2003-10-29,Cavite,Male,Widowed,Engineer,Filipino,Mother,Elementary,Non-PWD,Voter
+BARMM,Sto. Niño,Allen,Joshua,K.,054,Libra Road,Iloilo City,Metro Manila,1998-01-24,Cavite,Male,Single,Cashier,Filipino,Sister,Post Graduate,Non-PWD,Voter
+Region I,San Roque,Young,William,F.,253,Palanan Boulevard,Caloocan,Metro Manila,1970-02-15,Laguna,Male,Widowed,Police Officer,Filipino,Sister,Post Graduate,Non-PWD,Non-Voter
+Region IV-A,Bagong Silang,Gonzalez,Lauren,D.,336,56th Street,Caloocan,Iloilo,1961-04-18,Davao del Sur,Female,Widowed,Nurse,Filipino,Aunt,College,Non-PWD,Voter
+BARMM,BF Homes,Hobbs,Scott,R.,496,94th Street,Pasig,Misamis Oriental,1981-10-12,Bulacan,Male,Single,None,Filipino,Sister,High School,Non-PWD,Voter
+Region IV-A,San Isidro,Stewart,Nicholas,M.,096,Jones Street,Caloocan,Cebu,1966-06-10,Bulacan,Male,Divorced,Nurse,Filipino,Sister,Vocational,Non-PWD,Voter
+Region I,San Isidro,May,Morgan,K.,688,Sanchez Street,Davao City,Cavite,1980-07-01,Zamboanga del Sur,Female,Single,Farmer,Filipino,Brother,College,Non-PWD,Voter
+Region XI,Sto. Niño,Wilkins,Amber,R.,065,Acacia Extension,Caloocan,Zamboanga del Sur,1963-12-27,Cavite,Female,Single,Cashier,Filipino,Mother,Elementary,PWD,Non-Voter
+CAR,San Roque,Roth,Tammy,C.,604,Zodiac Drive,Manila,Pampanga,2003-08-22,Laguna,Female,Widowed,Police Officer,Filipino,Aunt,Vocational,Non-PWD,Voter
+BARMM,Poblacion,Nguyen,Derrick,C.,937,32nd Boulevard Extension,Zamboanga City,Cebu,2004-03-25,Cebu,Male,Single,Student,Filipino,Uncle,High School,Non-PWD,Voter
+Region X,Talon Uno,Crawford,Paul,C.,116,Ruby Avenue,Manila,Iloilo,1999-10-04,Cebu,Male,Single,Nurse,Filipino,Aunt,High School,Non-PWD,Voter
+NCR,BF Homes,Washington,Brandon,J.,996,Oleander Avenue,Zamboanga City,Zamboanga del Sur,1954-03-15,Bulacan,Male,Single,Vendor,Filipino,Sister,Post Graduate,Non-PWD,Non-Voter
+Region XI,BF Homes,Payne,Tina,C.,848,Kelly Street,Cagayan de Oro,Cebu,1965-05-25,Iloilo,Female,Single,Teacher,Filipino,Uncle,Vocational,Non-PWD,Voter
+Region VIII,Sta. Cruz,Norris,Jeffrey,A.,040,Park Street,Davao City,Cebu,1969-03-05,Bulacan,Male,Widowed,Driver,Filipino,Aunt,Vocational,Non-PWD,Voter
+BARMM,Sta. Cruz,Obrien,Katherine,T.,201,Freeman Avenue Extension,Cebu City,Zamboanga del Sur,1952-03-24,Bulacan,Female,Single,Engineer,Filipino,Uncle,College,Non-PWD,Voter
+CAR,Talon Uno,Stewart,Brian,N.,077,Pepper Street,Manila,Cavite,1992-07-01,Bulacan,Male,Married,Teacher,Filipino,Brother,Elementary,Non-PWD,Voter
+Region IV-A,Bagong Silang,Gardner,Katherine,K.,774,Apo Drive,Pasig,Pampanga,1967-05-06,Laguna,Female,Married,Engineer,Filipino,Brother,No Formal Education,Non-PWD,Voter
+NCR,Bagong Silang,Anderson,Kevin,M.,075,Malugay Road,Cebu City,Misamis Oriental,2002-04-24,Pampanga,Male,Widowed,Driver,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region VII,Bagong Silang,Medina,Janet,K.,221,Gloriosa Street,Cagayan de Oro,Cavite,1962-11-22,Laguna,Female,Married,Student,Filipino,Uncle,Post Graduate,Non-PWD,Voter
+Region IX,San Isidro,Maxwell,David,K.,256,Atis Avenue,Davao City,Cebu,1995-03-13,Laguna,Male,Widowed,Teacher,Filipino,Daughter,College,Non-PWD,Voter
+Region V,San Roque,Davis,Kristin,R.,169,Virgo Drive,Cagayan de Oro,Metro Manila,1971-05-29,Laguna,Female,Married,Student,Filipino,Grandmother,College,Non-PWD,Voter
+Region V,San Isidro,Curry,Michael,K.,325,Gloriosa Street,Iloilo City,Cavite,1979-05-05,Batangas,Male,Divorced,None,Filipino,Father,College,Non-PWD,Non-Voter
+Region IV-A,Sta. Cruz,Johnson,Christian,S.,631,Opal Road Extension,Caloocan,Cavite,1971-11-25,Misamis Oriental,Male,Widowed,None,Filipino,Uncle,No Formal Education,Non-PWD,Voter
+Region I,Bagong Silang,Pierce,Kelly,M.,546,Saturn Street,Paranaque,Zamboanga del Sur,1974-03-16,Iloilo,Male,Divorced,None,Filipino,Mother,Elementary,Non-PWD,Non-Voter
+Region VIII,Mabini,Mendez,Samantha,J.,076,Capricorn Drive,Cagayan de Oro,Misamis Oriental,1995-04-09,Metro Manila,Female,Single,Vendor,Filipino,Brother,High School,Non-PWD,Non-Voter
+Region I,Sto. Niño,Howard,Rhonda,A.,356,Owen Street,Cebu City,Batangas,1972-10-09,Metro Manila,Female,Widowed,Teacher,Filipino,Uncle,Vocational,Non-PWD,Voter
+NCR,San Roque,Williams,Marissa,L.,729,Kanlaon Street,Iloilo City,Cavite,2007-11-01,Pampanga,Female,Married,Nurse,Filipino,Father,High School,Non-PWD,Voter
+Region III,San Roque,Anderson,Dana,A.,863,Sampaguita Drive,Zamboanga City,Batangas,2009-06-15,Zamboanga del Sur,Female,Married,Farmer,Filipino,Son,Elementary,Non-PWD,Voter
+Region I,BF Homes,Taylor,Matthew,J.,630,Peridot Drive Extension,Cebu City,Cavite,2009-07-24,Bulacan,Male,Married,Farmer,Filipino,Son,Post Graduate,Non-PWD,Voter
+Region VIII,San Antonio,Rivera,Alexandra,S.,964,Sagittarius Drive,Caloocan,Cavite,1953-06-25,Iloilo,Female,Single,Cashier,Filipino,Aunt,High School,Non-PWD,Voter
+Region IX,San Roque,Jones,April,R.,736,40th Avenue,Zamboanga City,Iloilo,1990-10-20,Zamboanga del Sur,Female,Married,Farmer,Filipino,Sister,Elementary,Non-PWD,Non-Voter
+Region VI,Mabini,Garcia,Marcus,E.,705,Dita Drive,Pasig,Batangas,2006-02-06,Misamis Oriental,Male,Single,Cashier,Filipino,Father,Elementary,Non-PWD,Voter
+Region VII,San Antonio,Lam,Jennifer,T.,359,Cordillera Street,Caloocan,Misamis Oriental,1956-08-14,Zamboanga del Sur,Female,Married,Vendor,Filipino,Son,Vocational,Non-PWD,Non-Voter
+CAR,Sta. Cruz,Brock,Laura,J.,777,Hibok-Hibok Road,Caloocan,Cavite,1949-12-27,Metro Manila,Female,Widowed,Vendor,Filipino,Grandmother,Vocational,Non-PWD,Voter
+Region VII,Poblacion,Vargas,Allen,P.,850,Mayon Street,Davao City,Batangas,1961-07-04,Iloilo,Male,Widowed,Nurse,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+Region VI,San Roque,Bass,Janice,G.,504,Thompson Drive,Zamboanga City,Metro Manila,1998-07-09,Pampanga,Female,Widowed,Driver,Filipino,Son,College,Non-PWD,Voter
+Region I,San Roque,Clarke,Donald,K.,275,Kanlaon Extension,Zamboanga City,Iloilo,1957-09-10,Metro Manila,Male,Single,Student,Filipino,Sister,Post Graduate,Non-PWD,Voter
+NCR,San Antonio,Kirby,Chelsea,A.,571,Duhat Drive,Cebu City,Cebu,1960-04-24,Bulacan,Female,Single,Police Officer,Filipino,Brother,Post Graduate,Non-PWD,Voter
+Region I,San Antonio,Gomez,Jacob,V.,207,Mercury Road,Pasig,Bulacan,1998-01-01,Cebu,Male,Single,Teacher,Filipino,Father,Elementary,Non-PWD,Voter
+Region VI,Poblacion,Medina,Lindsay,M.,572,Davis Road,Davao City,Cebu,2001-11-19,Misamis Oriental,Female,Widowed,Nurse,Filipino,Sister,Elementary,Non-PWD,Voter
+Region X,San Roque,Roberts,Susan,M.,568,Sicaba Boulevard,Davao City,Iloilo,1968-09-13,Laguna,Female,Single,Farmer,Filipino,Brother,Post Graduate,Non-PWD,Non-Voter
+NCR,Bagong Silang,Dickson,Tara,H.,871,Celery Street,Cebu City,Iloilo,1987-09-23,Bulacan,Female,Married,Cashier,Filipino,Daughter,High School,Non-PWD,Non-Voter
+Region XI,San Isidro,Tate,Mark,S.,813,Jupiter Boulevard,Pasig,Iloilo,1973-04-18,Laguna,Male,Divorced,Engineer,Filipino,Aunt,College,Non-PWD,Non-Voter
+NCR,BF Homes,Fowler,James,M.,405,Balete Road,Iloilo City,Laguna,1967-08-14,Davao del Sur,Male,Divorced,Engineer,Filipino,Father,No Formal Education,Non-PWD,Non-Voter
+Region VII,San Isidro,Escobar,Virginia,T.,792,Sicaba Street,Manila,Cebu,2004-05-02,Misamis Oriental,Female,Widowed,Teacher,Filipino,Son,Elementary,Non-PWD,Voter
+Region XII,San Antonio,Stewart,Jesus,J.,443,Hodges Avenue,Paranaque,Davao del Sur,1986-02-18,Cavite,Male,Married,Farmer,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region IV-A,Sto. Niño,Berger,Maria,M.,946,Hydra Drive,Pasig,Iloilo,1969-09-23,Cebu,Female,Widowed,Teacher,Filipino,Mother,Vocational,Non-PWD,Voter
+Region II,Talon Uno,Rivera,Austin,S.,768,Planet Drive Extension,Paranaque,Bulacan,1960-12-19,Batangas,Male,Widowed,Student,Filipino,Son,Elementary,Non-PWD,Voter
+Region VII,Bagong Silang,Porter,Cory,T.,307,Apo Street,Iloilo City,Misamis Oriental,1975-07-14,Metro Manila,Male,Divorced,Vendor,Filipino,Grandmother,Elementary,Non-PWD,Non-Voter
+CAR,Sta. Cruz,Lawson,Tanya,W.,742,Neptune Extension,Zamboanga City,Metro Manila,1964-11-12,Batangas,Female,Widowed,Student,Filipino,Mother,No Formal Education,Non-PWD,Voter
+BARMM,Bagong Silang,Short,John,A.,373,Nguyen Drive,Manila,Davao del Sur,1951-05-04,Misamis Oriental,Male,Widowed,Vendor,Filipino,Daughter,No Formal Education,Non-PWD,Voter
+Region VIII,Mabini,Martin,Jesse,L.,300,Moreno Road,Paranaque,Cebu,1995-07-19,Metro Manila,Male,Married,Student,Filipino,Father,No Formal Education,Non-PWD,Voter
+Region VII,Sto. Niño,Stone,John,C.,292,Jupiter Avenue,Manila,Batangas,1951-02-02,Cavite,Male,Widowed,Vendor,Filipino,Sister,Elementary,Non-PWD,Voter
+Region X,San Antonio,Charles,James,J.,633,Azucena Extension,Davao City,Cavite,1995-12-14,Cebu,Male,Widowed,Cashier,Filipino,Mother,High School,Non-PWD,Voter
+Region III,Mabini,Daniel,William,J.,358,Agate Street,Cagayan de Oro,Iloilo,1998-05-10,Iloilo,Male,Divorced,Driver,Filipino,Grandfather,Post Graduate,Non-PWD,Voter
+Region IV-A,Bagong Silang,Ramirez,Dustin,G.,598,Anonas Boulevard,Paranaque,Pampanga,1985-08-18,Metro Manila,Male,Single,Farmer,Filipino,Brother,No Formal Education,Non-PWD,Voter
+Region IX,Sto. Niño,Chapman,Tiffany,B.,229,Oliva Street,Iloilo City,Zamboanga del Sur,2008-01-01,Cavite,Female,Divorced,Farmer,Filipino,Aunt,Elementary,Non-PWD,Non-Voter
+Region IV-A,Sta. Cruz,Barr,Angela,G.,935,Juno Street,Cagayan de Oro,Cebu,1997-07-07,Batangas,Female,Single,Student,Filipino,Grandfather,College,Non-PWD,Voter
+Region II,BF Homes,Wagner,Anita,M.,910,Nipa Boulevard Extension,Pasig,Zamboanga del Sur,1987-09-14,Metro Manila,Female,Divorced,Farmer,Filipino,Grandmother,Post Graduate,Non-PWD,Voter
+Region V,Mabini,Pearson,Laura,G.,420,Tanguile Drive Extension,Cebu City,Cavite,1959-03-08,Laguna,Female,Widowed,Nurse,Filipino,Grandfather,High School,Non-PWD,Voter
+Region VIII,Mabini,Parker,Amber,A.,194,Montoya Street,Iloilo City,Misamis Oriental,1979-03-14,Bulacan,Female,Single,Farmer,Filipino,Daughter,Elementary,Non-PWD,Non-Voter

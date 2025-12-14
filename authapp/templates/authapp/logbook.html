@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/logbook.css' %}">
+    <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --border-radius: 8px;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure body takes full height */
+        html, body {
+            height: 100%;
+        }
+
+        /* Adjust main content for sidebar */
+        main.logbook {
+            margin-left: 275px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+            background-color: #e0dede;
+        }
+
+        .sidebar.collapsed ~ main.logbook {
+            margin-left: 80px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            main.logbook {
+                margin-left: 0;
+                padding: 15px;
+            }
+            
+            .sidebar.collapsed ~ main.logbook {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            main.logbook {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'authapp/navbar.html' %}
+
+    <main class="logbook">
+        <div class="logbook-header">
+            <h1><i class="fas fa-book"></i> Logbook</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search by resident name, certificate type, or user..." class="search-box">
+            </div>
+        </div>
+
+        <div class="logbook-container">
+            <div class="log-table-container">
+                <table class="log-table" id="logTable">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Certificate No.</th>
+                            <th>Certificate Type</th>
+                            <th>Resident</th>
+                            <th>Purpose</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody">
+                        {% for log in logs %}
+                        <tr class="log-row">
+                            <td>
+                                {% if log.user %}
+                                    {{ log.user.get_full_name|default:log.user.username }}
+                                {% else %}
+                                    System
+                                {% endif %}
+                            </td>
+                            <td>{{ log.certificate_number|default:"-" }}</td>
+                            <td>{{ log.certificate_type|default:"-" }}</td>
+                            <td>{{ log.resident_name|default:"Manual Entry" }}</td>
+                            <td>{{ log.purpose|default:"-" }}</td>
+                            <td>{{ log.created_at|date:"M d, Y" }}</td>
+                            <td>{{ log.created_at|time:"h:i A" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr id="emptyStateRow">
+                            <td colspan="7" class="empty-state">
+                                <i class="fas fa-clipboard-list"></i>
+                                <p>No logs available</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 🔍 Real-time search filter with "No results found" message
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const logRows = document.querySelectorAll('.log-row');
+            const emptyStateRow = document.getElementById('emptyStateRow');
+            const logTableBody = document.getElementById('logTableBody');
+            
+            // Store original logs for resetting search
+            const originalLogs = [];
+            logRows.forEach(row => {
+                originalLogs.push({
+                    element: row,
+                    visible: true
+                });
+            });
+            
+            // Create "No results found" row (initially hidden)
+            const noResultsRow = document.createElement('tr');
+            noResultsRow.id = 'noResultsRow';
+            noResultsRow.className = 'no-results-row';
+            noResultsRow.style.display = 'none';
+            noResultsRow.innerHTML = `
+                <td colspan="7" class="no-results">
+                    <i class="fas fa-search"></i>
+                    <p>No logs found matching your search</p>
+                </td>
+            `;
+            
+            // Insert no results row after the existing rows
+            if (emptyStateRow) {
+                emptyStateRow.parentNode.insertBefore(noResultsRow, emptyStateRow.nextSibling);
+            } else if (logTableBody) {
+                logTableBody.appendChild(noResultsRow);
+            }
+            
+            searchInput.addEventListener('keyup', function() {
+                const searchValue = this.value.toLowerCase().trim();
+                let foundAny = false;
+                
+                // If search is empty, show all rows
+                if (searchValue === '') {
+                    logRows.forEach(row => {
+                        row.style.display = '';
+                    });
+                    if (emptyStateRow) emptyStateRow.style.display = '';
+                    noResultsRow.style.display = 'none';
+                    return;
+                }
+                
+                // Search through each row
+                logRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    let rowText = '';
+                    
+                    // Combine all cell text for searching
+                    cells.forEach(cell => {
+                        rowText += ' ' + cell.textContent.toLowerCase();
+                    });
+                    
+                    // Check if search term exists in row
+                    if (rowText.includes(searchValue)) {
+                        row.style.display = '';
+                        foundAny = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide empty state based on search results
+                if (emptyStateRow) {
+                    emptyStateRow.style.display = 'none';
+                }
+                
+                // Show "No results found" message if no matches
+                if (foundAny) {
+                    noResultsRow.style.display = 'none';
+                } else {
+                    noResultsRow.style.display = '';
+                }
+            });
+            
+            // Clear search when clicking the X in search box
+            searchInput.addEventListener('search', function() {
+                if (this.value === '') {
+                    logRows.forEach(row => {
+                        row.style.display = '';
+                    });
+                    if (emptyStateRow) emptyStateRow.style.display = '';
+                    noResultsRow.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+    <script src="{% static 'js/logbook.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!-- navbar.html -->
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+<div class="sidebar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <span class="toggle-icon">&#8592;</span>
+    </button>
+    <div class="logo-container">
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}"><i class="fas fa-home"></i><span class="nav-text"> Home</span></a></li>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-th"></i><span class="nav-text"> Dashboard</span></a></li>
+            <li><a href="{% url 'records' %}"><i class="fas fa-folder"></i><span class="nav-text"> Records</span></a></li>
+            <li><a href="{% url 'certification' %}"><i class="fas fa-id-card"></i><span class="nav-text"> Certification</span></a></li>
+            <li><a href="{% url 'logbook' %}"><i class="fas fa-book"></i><span class="nav-text"> Log-book</span></a></li>
+            {% if user.groups.all.0.name == "Admin" %}
+            <li><a href="{% url 'user_settings' %}"><i class="fas fa-cog"></i><span class="nav-text"> Settings</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Logout Button -->
+    <button type="button" class="logout-btn" onclick="openLogoutBanner()">Logout</button>
+</div>
+
+<!-- Logout Confirmation Banner -->
+<div id="logoutBanner" class="logout-banner">
+    <p>💾 Do you want to back up the database before logging out?</p>
+
+    <div class="button-container">
+        <button class="backup-btn" onclick="performBackup()">Yes, Backup & Logout</button>
+        <button class="logout-btn" onclick="logoutWithoutBackup()">Logout Without Backup</button>
+        <button class="cancel-btn" onclick="closeLogoutBanner()">Cancel</button>
+    </div>
+
+    <span id="backupStatus"></span>
+</div>
+
+<!-- Global Dialog Overlay -->
+<div id="appDialogOverlay" class="app-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle" aria-describedby="appDialogMessage">
+    <div class="app-dialog">
+        <h4 id="appDialogTitle">{{ request.get_host|default:'127.0.0.1:8000' }} says</h4>
+        <p id="appDialogMessage">Are you sure?</p>
+        <div class="app-dialog-actions">
+            <button type="button" class="app-dialog-btn ghost" id="appDialogCancel">Cancel</button>
+            <button type="button" class="app-dialog-btn primary" id="appDialogConfirm">OK</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const dialogOverlay = document.getElementById("appDialogOverlay");
+    const dialogTitle = document.getElementById("appDialogTitle");
+    const dialogMessage = document.getElementById("appDialogMessage");
+    const dialogConfirmBtn = document.getElementById("appDialogConfirm");
+    const dialogCancelBtn = document.getElementById("appDialogCancel");
+    const dialogState = { resolve: null, showCancel: true };
+
+    function openAppDialog({ title, message, confirmText = 'OK', cancelText = 'Cancel', showCancel = true }) {
+        dialogTitle.textContent = title || `${window.location.host || '127.0.0.1:8000'} says`;
+        dialogMessage.textContent = message || '';
+        dialogConfirmBtn.textContent = confirmText;
+        dialogCancelBtn.textContent = cancelText;
+        dialogCancelBtn.style.display = showCancel ? 'inline-flex' : 'none';
+        dialogState.showCancel = showCancel;
+        dialogOverlay.classList.add('show');
+        dialogConfirmBtn.focus();
+
+        return new Promise(resolve => {
+            dialogState.resolve = resolve;
+        });
+    }
+
+    function closeAppDialog(result) {
+        dialogOverlay.classList.remove('show');
+        if (dialogState.resolve) {
+            dialogState.resolve(result);
+            dialogState.resolve = null;
+        }
+    }
+
+    dialogConfirmBtn.addEventListener('click', () => closeAppDialog(true));
+    dialogCancelBtn.addEventListener('click', () => closeAppDialog(false));
+    dialogOverlay.addEventListener('click', (event) => {
+        if (event.target === dialogOverlay && dialogState.showCancel) {
+            closeAppDialog(false);
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && dialogOverlay.classList.contains('show') && dialogState.showCancel) {
+            closeAppDialog(false);
+        }
+    });
+
+    window.showConfirmDialog = function(message, options = {}) {
+        return openAppDialog({ message, showCancel: true, ...options });
+    };
+
+    window.showAlertDialog = function(message, options = {}) {
+        return openAppDialog({ message, showCancel: false, ...options }).then(() => true);
+    };
+
+    const logoutUrl = "{% url 'logout' %}";
+    const backupUrl = "{% url 'backup_database' %}";
+    const csrfToken = "{{ csrf_token }}";
+
+    function openLogoutBanner() {
+        const banner = document.getElementById("logoutBanner");
+        banner.style.display = "block";
+        setTimeout(() => banner.classList.add("show"), 50);
+        document.getElementById("backupStatus").textContent = "";
+    }
+
+    function closeLogoutBanner() {
+        const banner = document.getElementById("logoutBanner");
+        banner.classList.remove("show");
+        setTimeout(() => (banner.style.display = "none"), 300);
+        document.getElementById("backupStatus").textContent = "";
+    }
+
+    function logoutWithoutBackup() {
+        window.location.href = logoutUrl;
+    }
+
+    async function performBackup() {
+        const statusElem = document.getElementById("backupStatus");
+        const buttons = document.querySelectorAll("#logoutBanner button");
+
+        // Disable buttons while processing
+        buttons.forEach(btn => btn.disabled = true);
+
+        statusElem.style.color = "black";
+        statusElem.textContent = "⏳ Backing up database...";
+
+        try {
+            const response = await fetch(backupUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({})
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                statusElem.style.color = "green";
+                statusElem.textContent = "✅ Backup successful! Logging out...";
+                setTimeout(() => (window.location.href = logoutUrl), 1500);
+            } else {
+                throw new Error(result.error || "Backup failed");
+            }
+        } catch (error) {
+            statusElem.style.color = "red";
+            statusElem.textContent = "❌ Backup failed: " + error.message;
+            setTimeout(async () => {
+                const proceed = await showConfirmDialog("Backup failed. Do you still want to logout?", {
+                    confirmText: 'Logout',
+                    cancelText: 'Stay Logged In'
+                });
+                if (proceed) {
+                    window.location.href = logoutUrl;
+                } else {
+                    buttons.forEach(btn => btn.disabled = false);
+                }
+            }, 2000);
+        }
+    }
+
+    // Sidebar Toggle (same as dashboard)
+    function toggleSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        const toggleIcon = document.querySelector(".toggle-icon");
+        sidebar.classList.toggle("collapsed");
+        toggleIcon.innerHTML = sidebar.classList.contains("collapsed") ? "&#8594;" : "&#8592;";
+    }
+</script>
+
+<style>
+/* Logout Banner Styling */
+#logoutBanner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #ffffff;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 2000;
+    max-width: 400px;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+#logoutBanner.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+#logoutBanner p {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#logoutBanner .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#logoutBanner button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+#logoutBanner .backup-btn {
+    background: #2563EB;
+    color: white;
+}
+#logoutBanner .logout-btn {
+    background: #DC2626;
+    color: white;
+    width: 350px;
+}
+#logoutBanner .cancel-btn {
+    background: #6B7280;
+    color: white;
+}
+#backupStatus {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* Global Dialog Styles */
+.app-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 10, 25, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 16px;
+}
+
+.app-dialog-overlay.show {
+    display: flex;
+}
+
+.app-dialog {
+    width: min(420px, 100%);
+    background: #040404;
+    color: #f1f5f9;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.app-dialog h4 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    color: #cbd5f5;
+}
+
+.app-dialog p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #dde4f1;
+}
+
+.app-dialog-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.app-dialog-btn {
+    min-width: 90px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.app-dialog-btn.ghost {
+    background: transparent;
+    color: #d1d9ff;
+    border-color: #3f4a68;
+}
+
+.app-dialog-btn.primary {
+    background: #d20808;
+    color: #f8fafc;
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+}
+
+.app-dialog-btn:focus-visible {
+    outline: 3px solid rgba(143, 133, 255, 0.45);
+    outline-offset: 2px;
+}
+
+.app-dialog-btn:hover {
+    transform: translateY(-1px);
+}
+
+.app-dialog-btn:active {
+    transform: translateY(0);
+}
+</style>

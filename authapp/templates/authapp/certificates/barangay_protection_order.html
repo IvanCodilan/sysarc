@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Barangay Protection Order</title>
+  <link rel="stylesheet" href="{% static 'css/officials.css' %}">
+  <style>
+    @page { size: A4; margin: 0; }
+
+    html, body { 
+        margin: 0; 
+        padding: 0; 
+        height: 100%; 
+        width: 100%; 
+        font-family: "Times New Roman", serif; 
+        -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; 
+        background: none; }
+
+    .certificate-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 60mm 15mm 15mm;
+      margin: 0 auto;
+      position: relative;
+      background: url("{% static 'images/good_moral_design.png' %}") no-repeat center center;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+    }
+
+    .title { 
+        text-align: center; 
+        font-weight: bold; 
+        font-size: 22px; 
+        margin-top: 10px; 
+        margin-bottom: 18px; 
+        text-transform: uppercase; 
+    }
+    .no-indent { 
+        text-indent: 0; 
+        font-weight: bold; 
+        font-size: 16px; 
+        margin: 8px 0 12px; 
+    }
+    .body-text { 
+        font-size: 18px; 
+        text-align: justify; 
+        line-height: 1.6; 
+    }
+    .body-text p { 
+        margin-bottom: 14px; 
+    }
+
+    .underline { 
+        border-bottom: 1px solid #000; 
+        display: inline-block; 
+        min-width: 150px; 
+        line-height: 1; 
+        padding-bottom: 2px; 
+        vertical-align: baseline; 
+    }
+    .underline[contenteditable="true"] { 
+        outline: none; 
+        min-width: 120px; 
+    }
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+
+    .cert-number { 
+        position: absolute; 
+        bottom: 20mm; 
+        right: 20mm; 
+        font-size: 14px; 
+        font-weight: bold; 
+        color: #333; 
+    }
+
+    .signature-area { 
+        margin-top: 40px; 
+        text-align: right; 
+        font-size: 18px; 
+    }
+    .signature-line { 
+        margin-top: 40px; 
+        font-weight: bold; 
+        text-decoration: underline; 
+        border-top: 1px solid #000; 
+        padding-top: 5px; 
+        width: 220px; 
+    }
+    .footer-grid { 
+        margin-top: 24px; 
+        width: 100%; 
+        font-size: 17px; 
+    }
+    .footer-row { 
+        display: flex; 
+        justify-content: space-between; 
+        gap: 12px; 
+        margin-top: 10px; 
+    }
+
+    .print-controls { 
+        position: fixed; 
+        top: 15px; 
+        right: 15px; 
+        z-index: 9999; 
+    }
+    .print-btn { 
+        font-size: 14px; 
+        padding: 8px 14px; 
+        border: 1px solid #333; 
+        background: #fff; 
+        cursor: pointer; 
+    }
+    @media print { .print-controls { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Print</button>
+  </div>
+  <div class="certificate-container">
+    <!-- Officials (left panel) -->
+    <div class="cert-number">{{ certificate_number }}</div>
+
+    <div class="text-box" style="font-size: 20px;">
+      <div class="title">Barangay Protection Order</div>
+
+      <p class="no-indent">NAME OF RESPONDENT: <span class="underline">{{ full_name }}</span></p>
+      <p class="no-indent">ADDRESS: <span class="underline">{{ address }}</span></p>
+
+      <p class="no-indent" style="margin-top: 30px; font-size: 20px;">ORDER</p>
+
+      <p>
+        <span class="editable-underline" contenteditable="true" style="min-width: 300px;"></span>
+        applied for a Barangay Protection Order (BPO) on
+        <span class="editable-underline" contenteditable="true" style="min-width: 180px;"></span>
+        under oath stating that <span class="editable-underline" contenteditable="true" style="min-width: 180px;">"      "</span>
+      </p>
+      <p>
+        After having heard the application and the witnesses and evidence, the undersigned hereby issues this BPO ordering you to immediately cease and desist from causing or threatening to cause physical harm to and from harassing, annoying, telephoning, contacting or communicating with the person of
+        <span class="editable-underline" contenteditable="true" style="min-width: 260px;"></span>.
+      </p>
+
+      <p>
+        This BPO is effective now <span class="editable-underline" contenteditable="true" style="min-width: 180px;"></span>.
+      </p>
+
+      <p class="no-indent" style="text-align:center; margin-top: 16px; font-weight: bold;">VIOLATION OF THIS ORDER IS PUNISHABLE BY LAW</p>
+    </div>
+
+    <div class="signature-area">
+      <span class="underline signature-name" id="signature-name"></span>
+      <p>PUNONG BARANGAY</p>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-row">
+        <div>Copy received by: <span class="editable-underline" contenteditable="true" ></span></div>
+        <div>Date Issued: <span class="editable-underline" contenteditable="true" ></span></div>
+      </div>
+      <div class="footer-row">
+        <div>Date received: <span class="editable-underline" contenteditable="true" ></span></div>
+        <div>Served by: <span class="editable-underline" contenteditable="true" ></span></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/certificate-officials.js' %}"></script>
+  <script>
+    document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+      el.addEventListener('keypress', function(e){ if(e.key === 'Enter'){ e.preventDefault(); }});
+    });
+  </script>
+</body>
+</html>

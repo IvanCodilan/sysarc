@@ -1,0 +1,61 @@
+/* Punong Barangay - Independent Position */
+.punong-barangay-section {
+  position: absolute;
+  top: 300px; 
+  left: 3px; 
+  width: 250px;
+  text-align: center;
+}
+
+.kagawad-section {
+  position: absolute;
+  top: 395px; 
+  width: 250px;
+  display: grid;
+  row-gap: 46px; 
+  text-align: center;
+}
+
+.secretary-section {
+  position: absolute;
+  top: 880px; 
+  width: 250px;
+  text-align: center;
+}
+
+.treasurer-section {
+  position: absolute;
+  top: 940px; 
+  width: 250px;
+  text-align: center;
+}
+
+.sk-section {
+  position: absolute;
+  top: 1015px;
+  width: 250px;
+  text-align: center;
+}
+
+.official-row {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.official-name {
+  font-weight: bold;
+  font-size: 16px;
+  display: inline-block;
+  max-width: 100%;
+  word-break: break-word;
+  white-space: normal;
+}
+
+#punong-barangay {
+  font-size: 18px;
+}
+
+#sk-chairperson {
+  font-size: 18px;
+}

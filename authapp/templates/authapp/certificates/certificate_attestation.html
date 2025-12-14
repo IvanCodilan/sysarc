@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Certificate of Attestation for Low - Income Earner</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        font-family: "Times New Roman", serif;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: none;
+      }
+      .certificate-container {
+        width: 210mm;
+        height: 297mm;
+        padding: 60mm 15mm 15mm;
+        margin: 0 auto;
+        position: relative;
+        background: url("{% static 'images/good_moral_design.png' %}") no-repeat center center;
+        background-size: 100% 100%;
+        box-sizing: border-box;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+      }
+      .title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+      .subtitle {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+      }
+      .date-issued {
+        font-size: 18px;
+        margin-bottom: 25px;
+      }
+      .body-text {
+        font-size: 15px;
+        text-align: justify;
+        line-height: 1.6;
+      }
+      .body-text p {
+        margin-bottom: 14px;
+        text-indent: 50px;
+      }
+      .signature-sign {
+        margin-top: 20px; /* Reduced space above the signature block */
+        text-align: center;
+        font-size: 14px; /* Corrected font size to match body text */
+      }
+      .signature-sign p {
+        margin: 6px 0;
+      }
+      .signature-line-l {
+        text-decoration: underline;
+        margin-top: 80px; /* Adjusted spacing */
+        margin-left: auto;
+        margin-right: auto;
+        width: 250px; /* Set a specific width */
+      }
+      .signature-line {
+        margin-top: 60px;
+        font-weight: bold;
+        margin-left: auto;
+        margin-right: auto;
+        width: 250px; /* Set a specific width */
+        border-top: 1px solid #000;
+        padding-top: 5px;
+      }
+      /* Centering and spacing for signature lines */
+      .signature-sign .signature-line-l,
+      .signature-sign .signature-line {
+        display: block; /* Ensure it's a block-level element for margin auto to work */
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .signed-by {
+        margin-bottom: 30px;
+      }
+      .cert-number {
+      position: absolute;
+      bottom: 50px;
+      right: 60px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+      /* Corrected CSS for editable, multi-line underlines */
+      .editable-underline {
+        display: inline;
+        text-decoration: none;
+        border-bottom: 1px solid #000;
+        line-height: 1.6;
+        padding: 0 4px 2px 4px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .editable-underline:empty::before {
+        content: '\200B';
+        display: inline-block;
+        min-width: 150px;
+      }
+      .underline-chairman {
+        border-bottom: 1px solid #000;
+        min-width: 150px;
+        line-height: 1;
+        padding-bottom: 2px;
+      }
+      .underline {
+        border-bottom: 1px solid #000;
+        min-width: 150px;
+        line-height: 1;
+        padding-bottom: 2px;
+      }
+      .cert-number {
+        position: absolute;
+        bottom: 20mm;
+        right: 20mm;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+      .print-controls {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 9999;
+      }
+      .print-btn {
+        font-size: 14px;
+        padding: 8px 14px;
+        border: 1px solid #333;
+        background: #fff;
+        cursor: pointer;
+      }
+      @media print {
+        .print-controls {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Print</button>
+    </div>
+    <div class="certificate-container">
+    <div class="cert-number">{{ certificate_number }}</div>
+      <div class="header">
+        <!-- Image is part of the background, so no need for an img tag here -->
+        <h2 class="title">CERTIFICATE OF ATTESTATION</h2>
+        <p class="subtitle">FOR LOW – INCOME EARNER</p>
+      </div>
+      <div class="body-text">
+        <p>
+          This is to certify that Mr./Ms. <span class="underline">{{ full_name }}</span>, <span class="underline">{{ age }}</span> years old, residing at <span class="underline">{{ address }}</span>, is currently working as a <span class="editable-underline" contenteditable="true" data-field="job_title"></span> at <span class="editable-underline" contenteditable="true" data-field="workplace_address"></span>, earning monthly income of Php <span class="editable-underline" contenteditable="true" data-field="monthly_income"></span>.
+        </p>
+        <p>
+          Following a thorough assessment and validation of the client's socio-economic profile conducted by the undersigned social worker, it has been determined that Mr./Ms. <span class="underline">{{ full_name }}</span> is an individual receiving income below the regional minimum wage and is facing significant challenges because of the effects of inflation, like the rising prices of goods and services. The above-mentioned income remains insufficient to meet the unforeseen expenses for (food, medical, funeral), on top of my family’s monthly household expenses amounting to Php <span class="editable-underline" contenteditable="true" data-field="household_expenses"></span>, thus further straining our family’s limited financial resources.
+        </p>
+        <p>This certification is issued upon the request of the above-named person for DSWD REQUIREMENTS.</p>
+        <p>Issued on <span class="underline">{{ date_today }}</span> at Brgy 570 ,Zone 56.</p>
+      </div>
+
+      <!-- Signature block for the Brgy Chairman -->
+      <div class="signature-sign">
+        <div class="signature-line-l"></div>
+        <div class="signature-line"></div>
+        <p id="signature-name"></p>
+        <p>Name and Signature of Brgy Chairman</p>
+      </div>
+
+      <!-- Declaraton text -->
+      <div class="signature-sign" style="margin-top: 20px; text-align: justify; text-indent: 0; font-size: 15px;">
+        <p>
+          “I declare under pain of criminal prosecution that all the information provided herewith are TRUE, CORRECT, VALID and COMPLETE pursuant to existing laws, rules, and regulations of the Republic of the Philippines. I authorize the Agency Head/ Authorized Representatives to verify and validate the contents stated herein. I also AGREE that any misrepresentation and information/acts to defraud the government may lead to the filing of appropriate cases against me, and may cause disqualification to receives financial assistance from DSWD.”
+        </p>
+      </div>
+
+      <!-- Signature block for the applicant -->
+      <div class="signature-sign" style="margin-top: 30px;">
+        <div class="signature-line"></div>
+        <p>{{ full_name }}</p>
+        <p>Signature over Printed Name</p>
+      </div>
+    </div>
+    <script src="{% static 'js/certificate-officials.js' %}"></script>
+    <script>
+      document.querySelectorAll('[contenteditable][data-field]').forEach(function(el){
+        el.addEventListener('keypress', function(e){
+          if(e.key === 'Enter'){
+            e.preventDefault();
+          }});
+      });
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Archived Residents</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/archive.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+  <style>
+    :root {
+        --primary: #007bff;
+        --secondary: #6c757d;
+        --success: #28a745;
+        --info: #17a2b8;
+        --warning: #ffc107;
+        --danger: #dc3545;
+        --light: #f8f9fa;
+        --dark: #343a40;
+    }
+
+    /* Main content adjustments */
+    main.records {
+        margin-left: 275px;
+        padding: 20px;
+        transition: margin-left 0.3s ease;
+        min-height: 100vh;
+        background-color: #e0dede;
+    }
+
+    .sidebar.collapsed ~ main.records {
+        margin-left: 80px;
+    }
+
+    @media (max-width: 768px) {
+        main.records {
+            margin-left: 0;
+            padding: 15px;
+        }
+        
+        .sidebar.collapsed ~ main.records {
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        main.records {
+            padding: 10px;
+        }
+    }
+  </style>
+</head>
+<body>
+  {% include 'authapp/navbar.html' %}
+
+  <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+  <main class="records">
+    <!-- Page Header -->
+    <div class="archive-header">
+      <h1><i class="fas fa-file-archive"></i> Archived Residents</h1>
+      <p class="archived-subtitle">Manage and view all archived resident information</p>
+      <!-- Action Buttons -->
+      <div class="archive-buttons">
+        <a href="{% url 'records' %}" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Back to Records
+        </a>
+        
+        {% if archived %}
+        <button onclick="confirmDeleteAll()" class="btn btn-danger">
+          <i class="fas fa-trash-alt"></i> Delete All Archived
+        </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="archive-container">
+    <!-- Search & Filter -->
+    <div class="search-filter-section">
+      <div class="search-container">
+        <input type="text" id="liveSearch" placeholder="Search by name..." class="search-box" />
+        <div class="filter-group">
+        <select name="filter" id="filterSelect" class="filter-select">
+          <option value="">Filter by Type</option>
+          <option value="seniors">Seniors (60+)</option>
+          <option value="kids">Kids (≤17)</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        </div>
+        <span id="recordCount" class="record-count">Total: {{ archived|length }}</span>
+      </div>
+    </div>
+      <div class="table-responsive">
+        <table class="records-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>Birthdate</th>
+              <th>Gender</th>
+              <th>Archive Reason & Actions</th>
+            </tr>
+          </thead>
+          <tbody id="residents-body">
+            {% for resident in archived %}
+            <tr class="resident-row">
+              <td>{{ forloop.counter }}</td>
+              <td>{{ resident.first_name }} {{ resident.middle_name }} {{ resident.last_name }}</td>
+              <td>{{ resident.date_of_birth|date:"Y-m-d" }}</td>
+              <td>{{ resident.gender }}</td>
+              <td>
+                <div class="reason-cell">
+                  <span class="reason-text">{{ resident.archived_reason }}</span>
+                  <div class="action-buttons">
+                    {% if resident.archived_reason == "Status changed to Inactive" %}
+                    <a href="{% url 'restore_resident' resident.id %}" class="action-btn btn-success">
+                      <i class="fas fa-undo"></i> Restore
+                    </a>
+                    {% endif %}
+                    <button onclick="confirmDelete({{ resident.id }})" class="action-btn btn-danger">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="5" class="empty-state">
+                <i class="fas fa-archive"></i>
+                <p>No archived residents found</p>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Search functionality
+    document.getElementById('liveSearch')?.addEventListener('keyup', function() {
+      const searchValue = this.value.toLowerCase();
+      const rows = document.querySelectorAll('.resident-row');
+      let visibleCount = 0;
+      
+      rows.forEach(row => {
+        const nameCells = row.querySelectorAll('td:nth-child(2)');
+        const name = nameCells.length > 0 ? nameCells[0].textContent.toLowerCase() : '';
+        
+        if (name.includes(searchValue)) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      // Update count
+      document.getElementById('recordCount').textContent = `Showing: ${visibleCount} / {{ archived|length }}`;
+    });
+    
+    // Filter functionality
+    document.getElementById('filterSelect')?.addEventListener('change', function() {
+      const filterValue = this.value;
+      const rows = document.querySelectorAll('.resident-row');
+      let visibleCount = 0;
+      
+      rows.forEach(row => {
+        const genderCell = row.querySelector('td:nth-child(4)');
+        const birthdateCell = row.querySelector('td:nth-child(3)');
+        const gender = genderCell ? genderCell.textContent.toLowerCase() : '';
+        const birthdate = birthdateCell ? birthdateCell.textContent : '';
+        
+        let showRow = false;
+        
+        switch(filterValue) {
+          case 'seniors':
+            // Check if birthdate indicates 60+ years
+            if (birthdate) {
+              const birthYear = parseInt(birthdate.split('-')[0]);
+              const currentYear = new Date().getFullYear();
+              if (currentYear - birthYear >= 60) showRow = true;
+            }
+            break;
+          case 'kids':
+            if (birthdate) {
+              const birthYear = parseInt(birthdate.split('-')[0]);
+              const currentYear = new Date().getFullYear();
+              if (currentYear - birthYear <= 17) showRow = true;
+            }
+            break;
+          case 'male':
+            if (gender.includes('male') && !gender.includes('fe')) showRow = true;
+            break;
+          case 'female':
+            if (gender.includes('female')) showRow = true;
+            break;
+          default:
+            showRow = true;
+        }
+        
+        if (showRow) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      // Update count
+      document.getElementById('recordCount').textContent = `Showing: ${visibleCount} / {{ archived|length }}`;
+    });
+    
+    function submitPost(actionUrl) {
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = actionUrl;
+
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = csrfToken;
+        form.appendChild(csrfInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    async function confirmDelete(residentId) {
+        const proceed = await (window.showConfirmDialog
+            ? window.showConfirmDialog('Are you sure you want to delete this resident permanently?', {
+                confirmText: 'Delete',
+                cancelText: 'Cancel'
+            })
+            : Promise.resolve(confirm('Are you sure you want to delete this resident permanently?')));
+
+        if (proceed) {
+            submitPost(`/delete-archived-resident/${residentId}/`);
+        }
+        return false;
+    }
+
+    async function confirmDeleteAll() {
+        const proceed = await (window.showConfirmDialog
+            ? window.showConfirmDialog('This will permanently delete all archived residents. Continue?', {
+                confirmText: 'Delete All',
+                cancelText: 'Cancel'
+            })
+            : Promise.resolve(confirm('This will permanently delete all archived residents. Continue?')));
+
+        if (proceed) {
+            submitPost('/delete-all-archived/');
+        }
+        return false;
+    }
+  </script>
+</body>
+</html>

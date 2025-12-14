@@ -1,0 +1,11 @@
+first_name,middle_name,last_name,date_of_birth,place_of_birth,gender,civil_status,occupation,citizenship,relationship_to_household_head,educational_background,street_number,street,barangay,city,province,region,pwd_status,voter_status,resident_status
+Juan,Cruz,Santos,1988-03-12,Quezon City,Male,Married,Driver,Filipino,Son,High School,12,Mabini Street,Barangay 1,Manila,Metro Manila,NCR,No,Voter,Active
+Maria,Luz,Reyes,1992-07-25,Cebu City,Female,Single,Teacher,Filipino,Daughter,College,34,Rizal Avenue,Barangay 2,Cebu City,Cebu,Region VII,No,Non-Voter,Active
+Pedro,Delos,Dela Cruz,1975-11-03,Davao City,Male,Widowed,Farmer,Filipino,Father,Elementary,56,Bonifacio Street,Barangay 3,Davao City,Davao Del Sur,Region XI,PWD,Voter,Inactive
+Ana,Mae,Gonzales,2001-02-18,Bacolod City,Female,Single,Student,Filipino,Sister,High School,78,Lopez Jaena Street,Barangay 4,Bacolod City,Negros Occidental,Region VI,No,Voter,Active
+Jose,Manuel,Garcia,1984-09-09,Iloilo City,Male,Married,Engineer,Filipino,Husband,College,89,Quezon Street,Barangay 5,Iloilo City,Iloilo,Region VI,No,Voter,Active
+Luz,Marin,Mendoza,1999-12-30,Baguio City,Female,Single,Vendor,Filipino,Daughter,High School,145,Session Road,Barangay 6,Baguio City,Benguet,CAR,No,Non-Voter,Active
+Ramon,De,Lopez,1968-05-21,Zamboanga City,Male,Separated,Fisherman,Filipino,Uncle,No Formal Education,23,Pilar Street,Barangay 7,Zamboanga City,Zamboanga Del Sur,Region IX,No,Voter,Inactive
+Elena,Rose,Navarro,1995-04-14,Cagayan De Oro,Female,Married,Nurse,Filipino,Wife,College,310,Hayes Street,Barangay 8,Cagayan De Oro,Misamis Oriental,Region X,No,Voter,Active
+Carlos,Jr.,Torres,1972-08-07,General Santos,Male,Married,Security Guard,Filipino,Father,High School,502,Osmeña Street,Barangay 9,General Santos,South Cotabato,Region XII,No,Non-Voter,Active
+Rosa,Ann,Domingo,2003-06-28,Pasig City,Female,Single,Student,Filipino,Daughter,High School,77,Shaw Boulevard,Barangay 10,Pasig,Metro Manila,NCR,No,Voter,Active

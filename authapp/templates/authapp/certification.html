@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/certification.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+    <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --border-radius: 8px;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.603);
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        main.certification {
+            margin-left: 275px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .sidebar.collapsed ~ main.certification {
+            margin-left: 80px;
+        }
+
+        @media (max-width: 768px) {
+            main.certification {
+                margin-left: 0;
+                padding: 15px;
+            }
+            
+            .sidebar.collapsed ~ main.certification {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            main.certification {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'authapp/navbar.html' %}
+
+    <main class="certification">
+        <div class="certification-main-card">
+            <header>
+                <h1><i class="fas fa-id-card"></i> Certification</h1>
+                <p class="certificate-subtitle">Choose a certificate for the residents request</p>
+            </header>
+
+            <div class="certificate-grid-container">
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Good Moral Character</h3>
+                    <a href="{% url 'search_resident' 'good_moral' %}">
+                        <img src="{% static 'images/goodmoral.png' %}" alt="Good Moral Character">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title"> Financial Assistance</h3>
+                    <a href="{% url 'search_resident' 'financial_assistance' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-financial-assistancee.png' %}" alt="Financial Assistance">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Proof of Residency</h3>
+                    <a href="{% url 'search_resident' 'proof_of_residency' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-Proof-of-Residency.png' %}" alt="Certificate of Residency">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Medical Assistance</h3>
+                    <a href="{% url 'search_resident' 'medical_assistance' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-of-Indigency-for-Medical-Assistance.png' %}" alt="Certificate of Medical Assistance">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Burial Assistance</h3>
+                    <a href="{% url 'search_resident' 'burial_assistance' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-burial-assistance.png' %}" alt="Burial Assistance">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Solo Parent Renewal</h3>
+                    <a href="{% url 'search_resident' 'solo_parent_renewal' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-Solo-Parent-Renewal.png' %}" alt="Solo Parent Renewal">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Business Permit</h3>
+                    <a href="{% url 'search_resident' 'business_permit' %}">
+                        <img src="{% static 'images/Barangay-Clearance-for-Business-Permit.png' %}" alt="Business Permit">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Building Permit</h3>
+                    <a href="{% url 'search_resident' 'building_permit' %}">
+                        <img src="{% static 'images/building-permit-clearance.png' %}" alt="Business Permit">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">PWD Application</h3>
+                    <a href="{% url 'search_resident' 'pwd_application' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-PWD-ID.png' %}" alt="Business Permit">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Social Pension</h3>
+                    <a href="{% url 'search_resident' 'social_pension' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-of-Indigency-for-SOCIAL-PENSION.png' %}" alt="Business Permit">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Transmittal Social Pension</h3>
+                    <a href="{% url 'search_resident' 'transmittal_social_pension' %}">
+                        <img src="{% static 'images/cert-for-transmittal-for-Social-Pension.png' %}" alt="Business Permit">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Barangay Protection Order</h3>
+                    <a href="{% url 'search_resident' 'barangay_protection_order' %}">
+                        <img src="{% static 'images/Barangay-Protection-Order.png' %}" alt="Business Permit">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of Bail</h3>
+                    <a href="{% url 'search_resident' 'bail' %}">
+                        <img src="{% static 'images/New-Brgy-Cert-for-BAIL.png' %}" alt="Certificate of Bail">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of No Cohabitation</h3>
+                    <a href="{% url 'search_resident' 'no_cohabitation' %}">
+                        <img src="{% static 'images/New-Brgy-Cert-for-NO-cohabitation.png' %}" alt="No Cohabitation">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">4ps Certificate</h3>
+                    <a href="{% url 'search_resident' '4ps' %}">
+                        <img src="{% static 'images/New-Brgy.-Cert-for-PWD-ID.png' %}" alt="4ps Certificate">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Deceased Person</h3>
+                    <a href="{% url 'search_resident' 'deceased_person' %}">
+                        <img src="{% static 'images/deceased-person.png' %}" alt="Deceased Person">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Guardian Certificate</h3>
+                    <a href="{% url 'search_resident' 'guardian_certificate' %}">
+                        <img src="{% static 'images/guardian-certificate.png' %}" alt="Guardian Certificate">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">PWD Minor Application</h3>
+                    <a href="{% url 'search_resident' 'pwd_minor_application' %}">
+                        <img src="{% static 'images/PWD-Minor-Application.png' %}" alt="PWD Minor Application">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Maynilad Leak</h3>
+                    <a href="{% url 'search_resident' 'maynilad_leak' %}">
+                        <img src="{% static 'images/maynilad-leak.png' %}" alt="Maynilad Leak">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Relation and Residence</h3>
+                    <a href="{% url 'search_resident' 'relation_and_residence' %}">
+                        <img src="{% static 'images/Relation_and_Residence.png' %}" alt="Certificate of Relation and Residence">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Unlocated Person</h3>
+                    <a href="{% url 'search_resident' 'unlocated_person' %}">
+                        <img src="{% static 'images/unlocated-person.png' %}" alt="Unlocated Person">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Death Certificate</h3>
+                    <a href="{% url 'search_resident' 'death_certificate' %}">
+                        <img src="{% static 'images/cert-for-death.png' %}" alt="Unlocated Person">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of Low Cost Income</h3>
+                    <a href="{% url 'search_resident' 'low_cost_income' %}">
+                        <img src="{% static 'images/cert-for-low-cost-income.png' %}" alt="Unlocated Person">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of Housing Application and Registration</h3>
+                    <a href="{% url 'search_resident' 'housing_application_registration' %}">
+                        <img src="{% static 'images/cert-for-housing-application-and-registration-authority.png' %}" alt="Unlocated Person">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of Service</h3>
+                    <a href="{% url 'search_resident' 'service' %}">
+                        <img src="{% static 'images/cert-for-service.png' %}" alt="Unlocated Person">
+                    </a>
+                </div>
+
+                 <div class="certificate-card">
+                    <h3 class="cert-title">Local Employment</h3>
+                    <a href="{% url 'search_resident' 'local_employment' %}">
+                        <img src="{% static 'images/local-employment.png' %}" alt="Local Employment">
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <h3 class="cert-title">Attestation for low Income</h3>
+                    <a href="{% url 'search_resident' 'certificate_attestation' %}">
+                        <img src="{% static 'images/certification-attestation.png' %}" alt="Attestation for low Income">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of Completion</h3>
+                    <a href="{% url 'search_resident' 'certificate_completion' %}">
+                        <img src="{% static 'images/certificate-completion.png' %}" alt="Certification of Completion">
+                    </a>
+                </div>
+                <div class="certificate-card">
+                    <h3 class="cert-title">Lost SC ID</h3>
+                    <a href="{% url 'search_resident' 'lost_scid' %}">
+                        <img src="{% static 'images/lost-scid.png' %}" alt="Lost SC ID">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Calamity</h3>
+                    <a href="{% url 'search_resident' 'cert_calamity' %}">
+                        <img src="{% static 'images/cert-calamity.png' %}" alt="Certificate for Calamity">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate of Response for Hauling</h3>
+                    <a href="{% url 'search_resident' 'response_for_hauling' %}">
+                        <img src="{% static 'images/cert-of-respons-for-hauling.png' %}" alt="Certificate for Calamity">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Declogging</h3>
+                    <a href="{% url 'search_resident' 'declogging' %}">
+                        <img src="{% static 'images/cert-Declogging.png' %}" alt="Certificate for Declogging">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for No Existing Inventory</h3>
+                    <a href="{% url 'search_resident' 'no_existing_inventory' %}">
+                        <img src="{% static 'images/cert-no-existing-inventory.png' %}" alt="Certificate for No Existing Inventory">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for SALN</h3>
+                    <a href="{% url 'search_resident' 'saln' %}">
+                        <img src="{% static 'images/CERT-FOR-SALN.png' %}" alt="Certificate for SALN">
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Demolition</h3>
+                    <a href="{% url 'search_resident' 'demolition_certificate' %}">
+                        <img src="{% static 'images/certificate-of-demolition.png' %}" alt="Certificate for Demolition">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Business Closure</h3>
+                    <a href="{% url 'search_resident' 'business_closure' %}">
+                        <img src="{% static 'images/certificate-of-Business-Closure.png' %}" alt="Certificate for Demolition">
+                    </a>
+                </div>
+
+                <div class="certificate-card">
+                    <h3 class="cert-title">Certificate for Jobseeker</h3>
+                    <a href="{% url 'search_resident' 'cert_jobseeker' %}">
+                        <img src="{% static 'images/cert-jobseeker1.png' %}" alt="Certificate for Jobseeker 1">
+                 </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'js/certification.js' %}"></script>
+</body>
+</html>

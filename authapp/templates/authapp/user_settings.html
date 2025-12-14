@@ -1,0 +1,357 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+</head>
+<body>
+    {% include 'authapp/navbar.html' %}
+
+    <main>
+        <div class="settings-container">
+            <h1><i class="fas fa-user-cog"></i> User Settings</h1>
+            <p class="subtitle">Manage your account information and preferences</p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-error{% endif %}">
+                        <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Account Information Section -->
+            <div class="settings-card">
+                <div class="settings-card-header">
+                    <h3><i class="fas fa-user"></i> Account Information</h3>
+                    <p>Update your username and email address</p>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="update_self">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username"><i class="fas fa-user"></i> Username</label>
+                            {% if user.is_superuser %}
+                                <input type="text" id="username" name="username" value="{{ user.username }}" required>
+                                <small>As an admin, you can change your username.</small>
+                            {% else %}
+                                <input type="text" id="username" name="username" value="{{ user.username }}" class="readonly-field" readonly>
+                                <small>Moderators cannot change their username.</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i class="fas fa-save"></i> Update Account Info
+                    </button>
+                </form>
+            </div>
+
+            <!-- Password Reset Section -->
+            <div class="settings-card">
+                <div class="settings-card-header">
+                    <h3><i class="fas fa-lock"></i> Change Password</h3>
+                    <p>Update your account password</p>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="reset_self_password">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password1"><i class="fas fa-key"></i> New Password</label>
+                            <input type="password" id="password1" name="password1" required placeholder="Enter new password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2"><i class="fas fa-key"></i> Confirm New Password</label>
+                            <input type="password" id="password2" name="password2" required placeholder="Confirm new password">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i class="fas fa-lock"></i> Update Password
+                    </button>
+                </form>
+            </div>
+
+            {% if user.is_superuser %}
+            <!-- Database Backup Section -->
+            <div class="settings-card">
+                <div class="settings-card-header">
+                    <h3><i class="fas fa-database"></i> Import Database Backup</h3>
+                    <p>Upload a .sql backup file to restore the database</p>
+                </div>
+
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Warning:</strong> Importing a backup will replace all current data with the data from the backup file. This action cannot be undone.
+                </div>
+
+                <form method="POST" action="{% url 'import_backup' %}" enctype="multipart/form-data" id="importBackupForm">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="sql_file"><i class="fas fa-file-upload"></i> Select .sql Backup File</label>
+                        <input type="file" id="sql_file" name="sql_file" accept=".sql" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger" onclick="return confirmImport()">
+                        <i class="fas fa-upload"></i> Import Backup
+                    </button>
+                </form>
+            </div>
+
+            <!-- Create Moderator Section -->
+            <div class="settings-card">
+                <div class="settings-card-header">
+                    <h3><i class="fas fa-user-plus"></i> Create New Moderator Account</h3>
+                    <p>Add a new moderator to your system</p>
+                </div>
+
+                <form method="POST" action="{% url 'create_moderator' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new_username"><i class="fas fa-user"></i> Username</label>
+                            <input type="text" id="new_username" name="username" required placeholder="Enter moderator username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="new_email" name="email" required placeholder="Enter moderator email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new_password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="new_password" name="password" required placeholder="Set moderator password">
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i class="fas fa-user-plus"></i> Create Moderator
+                    </button>
+                </form>
+            </div>
+
+            <!-- Manage Permissions Section -->
+            <div class="settings-card">
+                <div class="settings-card-header">
+                    <h3><i class="fas fa-user-shield"></i> Manage Moderator Permissions</h3>
+                    <p>Control access rights for each moderator</p>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Add Resident</th>
+                                <th>Edit Resident</th>
+                                <th>Delete Resident</th>
+                                <th>Upload Excel</th>
+                                <th>Edit Officials</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in users %}
+                            <tr>
+                                <td><i class="fas fa-user"></i> {{ u.user.username }}</td>
+                                <td>{{ u.user.email }}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'user_settings' %}" style="display:inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="user_id" value="{{ u.user.id }}">
+                                        <label class="switch">
+                                            <input type="checkbox" name="can_add" {% if u.can_add_resident %}checked{% endif %}>
+                                            <span class="slider"></span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="switch">
+                                            <input type="checkbox" name="can_edit" {% if u.can_edit_resident %}checked{% endif %}>
+                                            <span class="slider"></span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="switch">
+                                            <input type="checkbox" name="can_delete" {% if u.can_delete_resident %}checked{% endif %}>
+                                            <span class="slider"></span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="switch">
+                                            <input type="checkbox" name="can_upload" {% if u.can_upload_excel %}checked{% endif %}>
+                                            <span class="slider"></span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="switch">
+                                            <input type="checkbox" name="can_edit_officials" {% if u.can_edit_officials %}checked{% endif %}>
+                                            <span class="slider"></span>
+                                        </label>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button type="submit" class="btn btn-sm">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                    </form>
+
+                                        <button type="button"
+                                                class="btn btn-secondary btn-sm open-edit-modal"
+                                                data-id="{{ u.user.id }}"
+                                                data-username="{{ u.user.username }}"
+                                                data-email="{{ u.user.email }}">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+
+                                        {% if not u.user.is_superuser %}
+                                        <form method="POST"
+                                              action="{% url 'delete_moderator' u.user.id %}"
+                                              style="display:inline;"
+                                              class="delete-moderator-form"
+                                              data-username="{{ u.user.username }}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            <a href="{% url 'dashboard' %}" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Edit Moderator Modal -->
+        <div id="editModeratorModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2><i class="fas fa-user-edit"></i> Edit Moderator</h2>
+
+                <form id="editModeratorForm" method="POST" action="{% url 'edit_moderator_modal' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" id="edit_user_id">
+
+                    <div class="form-group">
+                        <label for="edit_username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="edit_username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="edit_email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_password"><i class="fas fa-lock"></i> New Password (optional)</label>
+                        <input type="password" id="edit_password" name="password" placeholder="Leave blank to keep current">
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'js/user_settings.js' %}"></script>
+    <script>
+        const modal = document.getElementById("editModeratorModal");
+        const closeModal = modal.querySelector(".close");
+
+        // Delete confirmation
+        document.addEventListener('DOMContentLoaded', () => {
+            const deleteForms = document.querySelectorAll('.delete-moderator-form');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const username = form.dataset.username || 'this moderator';
+                    const proceed = await (window.showConfirmDialog
+                        ? showConfirmDialog(`Are you sure you want to delete ${username}?`, {
+                            confirmText: 'Delete',
+                            cancelText: 'Cancel'
+                        })
+                        : Promise.resolve(confirm(`Are you sure you want to delete ${username}?`)));
+
+                    if (proceed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+        // Edit modal handlers
+        document.querySelectorAll(".open-edit-modal").forEach(btn => {
+            btn.addEventListener("click", () => {
+                modal.style.display = "flex";
+                document.getElementById("edit_user_id").value = btn.dataset.id;
+                document.getElementById("edit_username").value = btn.dataset.username;
+                document.getElementById("edit_email").value = btn.dataset.email;
+                document.getElementById("edit_password").value = "";
+            });
+        });
+
+        closeModal.addEventListener("click", () => modal.style.display = "none");
+        window.addEventListener("click", e => { 
+            if (e.target === modal) modal.style.display = "none"; 
+        });
+
+        // Import backup confirmation
+        async function confirmImport() {
+            const fileInput = document.getElementById('sql_file');
+            if (fileInput.files.length === 0) {
+                if (window.showAlertDialog) {
+                    await showAlertDialog('Please select a backup file to import.', { confirmText: 'OK' });
+                } else {
+                    alert('Please select a backup file to import.');
+                }
+                return false;
+            }
+
+            const fileName = fileInput.files[0].name;
+            const proceed = await (window.showConfirmDialog
+                ? showConfirmDialog(`WARNING: This will replace ALL current data with the backup file: ${fileName}. This action cannot be undone.`, {
+                    confirmText: 'Import',
+                    cancelText: 'Cancel'
+                })
+                : Promise.resolve(confirm(`WARNING: This will replace ALL current data with the backup file: ${fileName}. This action cannot be undone.`)));
+
+            if (proceed) {
+                const submitBtn = document.querySelector('#importBackupForm button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Importing...';
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
