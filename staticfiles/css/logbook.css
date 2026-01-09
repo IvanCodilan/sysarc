@@ -1,0 +1,230 @@
+/* logbook.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e0dede;
+    min-height: 100vh;
+}
+
+/* Main Content */
+.logbook {
+    margin-left: 275px;
+    padding: 25px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed ~ main.logbook {
+    margin-left: 80px;
+}
+
+/* Page Header */
+.logbook-header {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logbook-header h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-align: center;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Logbook Container */
+.logbook-container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.log-table-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    margin-top: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+/* Table Styles */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.log-table thead {
+    background: #007bff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.log-table th {
+    padding: 16px;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.log-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.log-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.log-table td {
+    padding: 16px;
+    color: #333;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.empty-state i {
+    font-size: 48px;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.empty-state p {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* No Results State */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #dc3545;
+}
+
+.no-results i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #dc3545;
+}
+
+.no-results p {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .logbook {
+        margin-left: 280px;
+    }
+    
+    .sidebar.collapsed ~ main.logbook {
+        margin-left: 90px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logbook-header h1 {
+        font-size: 24px;
+    }
+    
+    .log-table th,
+    .log-table td {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logbook {
+        margin-left: 0;
+        padding: 15px;
+    }
+    
+    .sidebar.collapsed ~ main.logbook {
+        margin-left: 0;
+    }
+    
+    .logbook-header,
+    .logbook-container {
+        padding: 20px;
+    }
+    
+    .log-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .log-table th,
+    .log-table td {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logbook {
+        padding: 10px;
+    }
+    
+    .logbook-header h1 {
+        font-size: 22px;
+    }
+    
+    .search-box {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .logbook-container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .log-table th,
+    .log-table td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}

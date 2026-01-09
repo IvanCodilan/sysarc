@@ -16,18 +16,17 @@ from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+load_dotenv(BASE_DIR / ".env")
+FERNET_KEY = os.environ.get('FERNET_KEY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-+w*x7@_*d7wr(rrmn_d*sg^t2#s$e2u_e&0=cu#@!e_)8on^_7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -127,7 +126,7 @@ USE_I18N = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -145,6 +144,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'jysnbldvn@gmail.com'  # Replace with your email
 EMAIL_HOST_PASSWORD = 'jnov tcfv sqpp gooa'  # Replace with your app password
 DEFAULT_FROM_EMAIL = 'jysnbldvn@gmail.com'  # Replace with your email
-FERNET_KEY = os.environ.get('FERNET_KEY')
 
-load_dotenv(BASE_DIR / ".env")
