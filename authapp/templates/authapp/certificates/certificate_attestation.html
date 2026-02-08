@@ -160,6 +160,23 @@
           display: none;
         }
       }
+
+      .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+    
     </style>
   </head>
   <body>
@@ -180,7 +197,7 @@
         <p>
           Following a thorough assessment and validation of the client's socio-economic profile conducted by the undersigned social worker, it has been determined that Mr./Ms. <span class="underline">{{ full_name }}</span> is an individual receiving income below the regional minimum wage and is facing significant challenges because of the effects of inflation, like the rising prices of goods and services. The above-mentioned income remains insufficient to meet the unforeseen expenses for (food, medical, funeral), on top of my family’s monthly household expenses amounting to Php <span class="editable-underline" contenteditable="true" data-field="household_expenses"></span>, thus further straining our family’s limited financial resources.
         </p>
-        <p>This certification is issued upon the request of the above-named person for DSWD REQUIREMENTS.</p>
+        <p>This certification is issued upon the request of the above-named person for <span class="editable-underline" contenteditable="true"></span>.</p>
         <p>Issued on <span class="underline">{{ date_today }}</span> at Brgy 570 ,Zone 56.</p>
       </div>
 

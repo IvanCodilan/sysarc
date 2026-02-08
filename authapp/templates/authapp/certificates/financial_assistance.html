@@ -124,6 +124,30 @@
     @media print {
       .print-controls { display: none; }
     }
+
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
+    
+
+    .underline {
+      border-bottom: 1px solid #000;
+      min-width: 150px;
+      line-height: 1;
+      padding-bottom: 2px;
+    }
   </style>
 </head>
 <body>
@@ -176,7 +200,7 @@
         record has been filed in this Barangay.
       </p>
       <p>
-        This CERTIFICATION is issued upon request for the purpose of <strong>{{ purpose }}</strong>.
+        This CERTIFICATION is issued upon request for the purpose of <span class="editable-underline" contenteditable="true" data-field="purpose"></span>.
       </p>
       <p>Given this <span class="underline">{{ date_today }}</span>.</p>
     </div>

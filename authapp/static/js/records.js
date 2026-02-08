@@ -68,12 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'X-CSRFToken': csrftoken },
           body: fd
         });
-        if (res.ok) {
+
+        const json = await res.json();
+
+        if (res.ok && json.success) {
+          await appAlert(json.message,  'Successfully added the resident!');
           location.reload();
         } else {
-          const txt = await res.text();
-          console.error('Add failed:', res.status, txt);
-          await appAlert('Failed to add resident');
+          console.error('Add failed:', res.status, json);
+          await appAlert(json.error,  'Failed to add resident');
         }
       } catch (err) {
         console.error(err);

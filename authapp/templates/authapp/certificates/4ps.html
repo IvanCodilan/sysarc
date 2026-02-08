@@ -115,6 +115,22 @@
     @media print {
       .print-controls { display: none; }
     }
+
+    .editable-underline {
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      line-height: 1.6;
+      padding: 0 4px 2px 4px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .editable-underline:empty::before {
+      content: '\200B';
+      display: inline-block;
+      min-width: 150px;
+    }
   </style>
 </head>
 <body>
@@ -169,7 +185,7 @@
       </p>
 
       <p>
-        This CERTIFICATION is being ISSUED upon the request of the above named person for PROOF OF RESIDENCY.
+        This CERTIFICATION is being ISSUED upon the request of the above named person for <span class="editable-underline" contenteditable="true"></span>.
       </p>
 
       <p>

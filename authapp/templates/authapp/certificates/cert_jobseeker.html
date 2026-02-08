@@ -73,13 +73,31 @@
     }
 
     .signature-area {
-      position: absolute;
-      bottom: 50px;
-      right: 80px;
-      text-align: center;
-      line-height: 23px;
-      font-size: 16px;
-    }
+  position: absolute;
+  bottom: 70px;
+  right: 80px;
+  width: 320px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.signature-block {
+  margin-top: 25px;
+}
+
+.signature-line {
+  border-bottom: 1px solid #000;
+  padding-bottom: 4px;
+  margin: 0 auto;
+  width: 280px;
+}
+
+.signature-title {
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
     .cert-number {
       position: absolute;
       top: 200px;
@@ -140,14 +158,7 @@
       text-align: right;
     }
 
-    .signature-line {
-      border-top: 1px solid #000;
-      width: 250px;
-      margin-top: 40px;
-      text-align: center;
-      font-weight: bold;
-      padding-top: 5px;
-    }
+    
 
     .signature-col.right .signature-line {
       margin-left: auto;
@@ -268,14 +279,29 @@
     </div>
 
     <div class="signature-area">
-      <span class="underline signature-name" id="signature-name" style="font-weight: bold;"></span>
-      <p>PUNONG BARANGAY</p>
 
-    <br>
-      <p>Witness by:</p>
-      <span class="underline signature-name" id="signature-secretary-2" style="font-weight: bold;"></span>
-      <p>Barangay Secretary</p>
+  <!-- Punong Barangay -->
+  <div class="signature-block">
+    <div class="signature-line">
+      <strong id="signature-name"></strong>
     </div>
+    <p class="signature-title">PUNONG BARANGAY</p>
+  </div>
+
+
+  <!-- Witness -->
+  <p>Witnessed by:</p>
+
+  <div class="signature-block">
+    <div class="signature-line">
+      <strong id="signature-secretary-2"></strong>
+    </div>
+    <p class="signature-title">Barangay Secretary</p>
+  </div>
+
+</div>
+
+
     <div class="note">NOTE: Not valid without Barangay dry seal.</div>
 
   </div>

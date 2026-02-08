@@ -369,8 +369,7 @@ def add_resident(request):
     if not (request.user.is_superuser or request.user.groups.filter(name="Admin").exists()):
         perms = get_user_permissions(request.user)
         if not (perms and perms.can_add_resident):
-            messages.error(request, "You are not allowed to add residents.")
-            return redirect("records")
+            return JsonResponse({"success": False, "error": "You are not allowed to add residents."}, status=403)
 
     if request.method == "POST":
         try:
@@ -401,11 +400,10 @@ def add_resident(request):
                 resident_status=request.POST.get("resident_status", "Active"),
                 user=request.user,
             )
-            messages.success(request, f"Resident {person.first_name} {person.last_name} added successfully.")
+            return JsonResponse({"success": True, "message": f"Successfully added resident {person.first_name} {person.last_name}!"})
         except Exception as e:
-            messages.error(request, f"Error adding resident: {str(e)}")
-
-    return redirect("records")
+            return JsonResponse({"success": False, "error": f"Error adding resident: {str(e)}"}, status=400)
+    return JsonResponse({"success": False, "error": "Invalid request method"}, status=400)
 
 @csrf_exempt
 @login_required
@@ -428,7 +426,6 @@ def update_resident(request, id):
                 "street_number", "street", "city", "province", "place_of_birth",
                 "gender", "civil_status", "occupation", "citizenship",
                 "relationship_to_household_head", "educational_background",
-                "pwd_status", "voter_status",
                 "pwd_status", "voter_status", "resident_status",
             ]:
                 setattr(person, field, request.POST.get(field))
@@ -496,9 +493,9 @@ def upload_excel(request):
                         city=row[14],
                         province=row[15],
                         region=row[16],
-                        pwd_status=row[17],
-                        voter_status=row[18],
-                        resident_status=row[19],
+                        pwd_status=(row[17] or "No").strip(),
+                        voter_status=(row[18] or "Non-Voter").strip(),
+                        resident_status=(row[19] or "Active").strip(),
 
                     )
                     residents_to_create.append(resident)
@@ -645,6 +642,7 @@ def generate_certificate(request, cert_type, resident_id):
         'civil_status': resident.civil_status,
         'citizenship': resident.citizenship,
         'date_today': date.today().strftime("%B %d, %Y"),
+        'current_year': date.today().year, 
         'date_next_year': date_next_year.strftime("%B %d, %Y"),
         'purpose': purpose_map.get(cert_type, "FOR OFFICIAL PURPOSES"),
         'certificate_number': cert_log.certificate_number
@@ -758,10 +756,10 @@ def backup_database(request):
     if request.method == "POST":
         try:
             # === STEP 1: Detect Flash Drive ===
-            USB_LABEL = "BRGY_BACKUP_USB"  # Label currently unused but kept for clarity
+            USB_LABEL = "GARTZY"  # Label currently unused but kept for clarity
 
             possible_paths = [
-                Path("E:/"),  # Extend to other drive letters if needed
+                Path("D:/"),  # Extend to other drive letters if needed
             ]
 
             usb_path = next((p for p in possible_paths if p.exists()), None)

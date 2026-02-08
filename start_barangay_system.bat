@@ -7,5 +7,8 @@ if errorlevel 1 (
     pause
     exit /b
 )
+REM Run Django using venv Python (hidden)
 start "" wscript.exe "C:\Users\Laptop Supplier PH\Documents\sysarc\run_hidden.vbs"
+
+REM Open browser
 start "" http://127.0.0.1:8000
